@@ -1,0 +1,14 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    background-image: url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/628Dep6AxEtDxjZoGP78TsOxYbK.jpg);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.banner__shadow {
+    background-image: linear-gradient(to right, rgba(136.5, 157.5, 178.5, 1) calc((50vw - 170px) - 340px), rgba(136.5, 157.5, 178.5, 0.84) 50%, rgba(136.5, 157.5, 178.5, 0.84) 100%)
+}

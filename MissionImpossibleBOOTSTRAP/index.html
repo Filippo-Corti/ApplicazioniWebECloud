@@ -7,9 +7,9 @@
     <title>[My] Mission Impossible - Dead Reckoning</title>
     <link rel="icon" type="image/png" sizes="32x32"
         href="https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png">
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <header>
 
         <!-- Main Navbar -->
-        <nav class="navbar navbar-expand-lg justify-content-between bg-dark py-1 py-lg-3">
+        <nav class="navbar navbar-expand-lg justify-content-between text-bg-dark py-1 py-lg-3">
             <div class="container-xxl">
 
                 <!-- Mobile Menu Header -->
@@ -149,11 +149,11 @@
         </nav>
 
         <nav> <!-- White Navbar-->
-            <ul style="height:fit-content" class="nav justify-content-center gap-3 my-1">
+            <ul class="nav justify-content-center ps-2 pt-1 gap-1 gap-lg-3">
                 <li class="nav-item dropdown">
-                    <a class="text-dark nav-link dropdown-toggle border-bottom border-5 border-primary px-0" href="#"
+                    <a class="text-dark nav-link dropdown-toggle border-bottom border-5 border-info px-0" href="#"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
+                        Overview
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Main</a></li>
@@ -227,25 +227,51 @@
 
     </header>
 
-    <section class="text-light"
-        style="background:url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/628Dep6AxEtDxjZoGP78TsOxYbK.jpg); background-position: right top">
-        <div
-            style="background-image:linear-gradient(to right, rgba(136.5, 157.5, 178.5, 1) calc((50vw - 170px) - 340px), rgba(136.5, 157.5, 178.5, 0.84) 50%, rgba(136.5, 157.5, 178.5, 0.84) 100%)">
-            <div class="container-xxl py-5">
-                <div class="row">
-                    <div class="col-3">
-                        <img class="h-100 rounded"
-                            src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/opMK4RJxZmACWrgfZlOnRp6hsQK.jpg"
-                            alt="">
+    <!-- Movie Banner -->
+    <section class="banner | text-light">
+        <div class="banner__shadow">
+            <div class="container-xxl d-flex flex-wrap gap-5 p-5">
+                <div class="rounded overflow-hidden">
+                    <img class="w-100"
+                        src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/opMK4RJxZmACWrgfZlOnRp6hsQK.jpg"
+                        alt="">
+                    <div class="d-none d-lg-flex bg-dark p-2 align-items-center gap-2 pe-3">
+                        <div>
+                            <img class="rounded rounded-2" width="40px"
+                                src="https://www.themoviedb.org/t/p/original/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg"
+                                alt="Buy on Google Play Store">
+                        </div>
+                        <div class="text-white lh-1">
+                            <p class="text-secondary">Disponibile per il noleggio o per l'acquisto</p>
+                            <p class="fw-bold pt-1">Watch Now</p>
+                        </div>
                     </div>
-                    <div class="col">
-                        <h1 class="fs-2 fw-bold">Mission Impossible - Dead Reckoning - Parte uno (2023)</h1>
-                    </div>
+                </div>
+                <div class="col my-auto">
+                    <h1 class="fs-2 fw-bold">Mission Impossible - Dead Reckoning - Parte uno (2023)</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem consequatur aspernatur quibusdam
+                        nostrum enim deleniti, soluta laboriosam sequi excepturi possimus, facere, sapiente optio
+                        provident accusamus. Itaque, sequi. Molestias praesentium commodi reprehenderit, maxime
+                        accusamus eveniet magnam facilis exercitationem corrupti placeat enim neque consectetur
+                        assumenda molestiae laboriosam quae asperiores veniam in voluptas omnis sed eos dolores! Modi
+                        eligendi sequi consequatur architecto iusto cupiditate quo ut a nihil optio voluptatum aliquam
+                        corporis earum, deserunt adipisci ipsa et quidem sed maxime aliquid assumenda ab ullam. Quidem
+                        numquam ab ex molestias quasi, incidunt natus hic consectetur quos amet obcaecati qui quo harum
+                        labore provident earum voluptate voluptatum consequatur facilis quaerat! Cupiditate excepturi
+                        incidunt, porro laboriosam eius illum. Quos corrupti distinctio, harum, repellat tempore quia ex
+                        dolores illo odit, quod totam? Pariatur minima deserunt inventore ea cumque nemo repudiandae!
+                        Magni consequuntur incidunt ea quaerat asperiores, at itaque pariatur repellendus dignissimos
+                        nobis officiis sint doloremque reiciendis mollitia beatae quis velit corporis exercitationem
+                        architecto quod distinctio hic fuga amet! Corporis sunt est beatae temporibus? Quidem nihil sint
+                        atque dolorem similique recusandae praesentium fugit provident ea sit? Provident ullam voluptate
+                        sapiente. Nam nihil porro reprehenderit voluptatum necessitatibus ab magni eius, accusantium
+                        ratione quam cupiditate placeat doloremque labore aut quis.</p>
                 </div>
             </div>
 
         </div>
     </section>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
