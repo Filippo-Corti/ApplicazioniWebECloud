@@ -7,13 +7,16 @@
     <title>[My] Mission Impossible - Dead Reckoning</title>
     <link rel="icon" type="image/png" sizes="32x32"
         href="https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png">
+    <!-- Bootstrap CSS import -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- Page Header -->
     <header>
 
         <!-- Main Navbar -->
@@ -149,10 +152,11 @@
         </nav>
 
         <nav> <!-- White Navbar-->
-            <ul class="nav justify-content-center ps-2 pt-1 gap-1 gap-lg-3">
-                <li class="nav-item dropdown">
-                    <a class="text-dark nav-link dropdown-toggle border-bottom border-5 border-info px-0" href="#"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <ul style="max-height: 3rem"
+                class="nav justify-content-start justify-content-sm-center ps-2 pt-1 gap-1 gap-lg-3 overflow-x-auto flex-nowrap overflow-y-hidden">
+                <li class="nav-item ">
+                    <a class="text-dark nav-link dropdown-toggle border-bottom border-5 border-info px-0 ms-2 ms-lg-0"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Overview
                     </a>
                     <ul class="dropdown-menu">
@@ -168,7 +172,7 @@
                         <li><a class="dropdown-item" href="#">Changes</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Media
@@ -186,7 +190,7 @@
                         <li><a class="dropdown-item" href="#">Changes</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Fandom
@@ -204,7 +208,7 @@
                         <li><a class="dropdown-item" href="#">Changes</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                     <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Share
@@ -230,9 +234,10 @@
     <!-- Movie Banner -->
     <section class="banner | text-light">
         <div class="banner__shadow">
-            <div class="container-xxl d-grid gap-5 p-5">
-                <div class="row gap-5">
-                    <div class="col-3 rounded overflow-hidden p-0">
+            <div class="container-xxl d-grid gap-5 px-4 px-lg-3 py-3 p-sm-5">
+                <div class="row gap-5 d-block d-lg-flex ">
+                    <!-- Poster -->
+                    <div class="poster | col-3 rounded overflow-hidden p-0 mb-4">
                         <img class="w-100"
                             src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/opMK4RJxZmACWrgfZlOnRp6hsQK.jpg"
                             alt="">
@@ -248,15 +253,19 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Movie Info -->
                     <div class="col my-auto">
                         <!-- Movie Title -->
-                        <h1 class="fs-2 fw-bold">Mission Impossible - Dead Reckoning - Parte uno <span
-                                class="opacity-75 fw-normal">(2023)</span></h1>
+                        <h1 class="movie__title | fs-4 fw-bold text-center text-md-start my-2 pb-2 my-lg-0">Mission
+                            Impossible - Dead Reckoning - Parte uno <span class="opacity-75 fw-normal">(2023)</span>
+                        </h1>
                         <!-- Age Restriction, Date, Genre and Duration -->
-                        <p><span class="opacity-75 border border-1 px-1 rounded rounded-1">PG-13</span> 12/07/2023 (IT)
+                        <p class="text-center text-md-start mx-auto"><span
+                                class="opacity-75 border border-1 px-1 rounded rounded-1">PG-13</span> 12/07/2023 (IT)
                             • Azione, Thriller • 2h 43m</p>
                         <!-- Interactive Buttons -->
-                        <div class="d-flex flex-wrap align-items-center gap-4 py-4">
+                        <div
+                            class="movie__buttons | d-flex flex-wrap align-items-center gap-1 gap-md-4 py-3 py-md-4 justify-content-center justify-content-md-start">
                             <div class="d-flex align-items-center justify-content-center gap-1">
                                 <div class="bg-dark rounded-circle border border-4 border-dark">
                                     <button style="width: 3.6rem; height: 3.6rem"
@@ -268,7 +277,7 @@
                                 </div>
                                 <p style="max-width:6ch" class="fw-bold fs-5 lh-1">User Score</p>
                             </div>
-                            <div class="dropdown">
+                            <div class="d-none d-md-block dropdown">
                                 <button style="aspect-ratio: 1;" type="button"
                                     class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
                                     id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -285,7 +294,7 @@
                                             personalizzate</button></li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
+                            <div class="d-none d-md-block dropdown">
                                 <button style="aspect-ratio: 1;" type="button"
                                     class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
                                     id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -301,7 +310,7 @@
                                             personalizzate</button></li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
+                            <div class="d-none d-md-block dropdown">
                                 <button style="aspect-ratio: 1;" type="button"
                                     class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
                                     id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -317,7 +326,7 @@
                                             personalizzate</button></li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
+                            <div class="d-none d-md-block dropdown">
                                 <button style="aspect-ratio: 1;" type="button"
                                     class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
                                     id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -334,7 +343,7 @@
                                 </ul>
                             </div>
                             <button type="button"
-                                class="btn text-light fw-semibold btn-lg d-flex align-items-center gap-1">
+                                class="movie__trailer-button | btn text-light fw-semibold btn-lg d-flex align-items-center gap-1 p-0 py-md-2 px-md-3 border-start rounded-0 ps-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-play-fill" viewBox="0 0 16 16">
                                     <path
@@ -343,8 +352,8 @@
                                 Guarda Trailer
                             </button>
                         </div>
-                        <!-- Slogan -->
-                        <p class="fst-italic opacity-75 fs-5">Condividiamo tutti lo stesso destino.</p>
+                        <!-- Tag Line -->
+                        <p class="movie__tagline | fst-italic opacity-75">Condividiamo tutti lo stesso destino.</p>
                         <!-- Description -->
                         <h2 class="fw-bold fs-5 mt-1">Descrizione</h2>
                         <p class="lh-sm">Ethan Hunt e la sua squadra dell'IMF si trovano di fronte alla sfida più
@@ -355,7 +364,8 @@
                             nelle mani sbagliate. Messo di fronte a un nemico misterioso e onnipotente, tormentato da
                             forze oscure del passato, Ethan sarà costretto a decidere se sacrificare tutto per questa
                             missione, comprese le vite di coloro che gli stanno più a cuore.</p>
-                        <div class="grid row mt-4">
+                        <!-- Directors and Writers-->
+                        <div class="movie__people | grid row mt-4">
                             <div class="col">
                                 <h3 class="fw-bold fs-6 m-0 p-0">Christopher McQuarrie</h3>
                                 <p>Director, Writer</p>
@@ -373,7 +383,204 @@
         </div>
     </section>
 
+    <!-- Rest of the Content -->
+    <section class="container-xxl py-4">
+            <div class="row">
+                <!-- Cast, Socials, Media & Recommendations-->
+                <div class="col-9">
+                    <!-- Cast -->
+                    <div class="overflow-x-hidden">
+                        <h2 class="fs-4 py-3">Top Billed Cast</h2>
+                        <div class="cast__scroller | d-flex flex-nowrap gap-3 overflow-x-auto pb-3">
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"
+                                    alt="Tom Cruise">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Tom Cruise</h5>
+                                    <p class="card-text fs-7 lh-sm">Ethan Hunt</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/jm5pDDjsbgizhxSd7baDxbGYMtW.jpg"
+                                    alt="Hayley Atwell">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Hayley Atwell</h5>
+                                    <p class="card-text fs-7 lh-sm">Grace</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/4gpLVNKPZlVucc4fT2fSZ7DksTK.jpg"
+                                    alt="Ving Rhames">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Ving Rhames</h5>
+                                    <p class="card-text fs-7 lh-sm">Luther Stikell</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/nOWKXxgADG98RjKyfQ7oSDfns6J.jpg"
+                                    alt="Simon Pegg">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Simon Pegg</h5>
+                                    <p class="card-text fs-7 lh-sm">Benji Dunn</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"
+                                    alt="Tom Cruise">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Tom Cruise</h5>
+                                    <p class="card-text fs-7 lh-sm">Ethan Hunt</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/jm5pDDjsbgizhxSd7baDxbGYMtW.jpg"
+                                    alt="Hayley Atwell">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Hayley Atwell</h5>
+                                    <p class="card-text fs-7 lh-sm">Grace</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/4gpLVNKPZlVucc4fT2fSZ7DksTK.jpg"
+                                    alt="Ving Rhames">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Ving Rhames</h5>
+                                    <p class="card-text fs-7 lh-sm">Luther Stikell</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/nOWKXxgADG98RjKyfQ7oSDfns6J.jpg"
+                                    alt="Simon Pegg">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Simon Pegg</h5>
+                                    <p class="card-text fs-7 lh-sm">Benji Dunn</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"
+                                    alt="Tom Cruise">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Tom Cruise</h5>
+                                    <p class="card-text fs-7 lh-sm">Ethan Hunt</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/jm5pDDjsbgizhxSd7baDxbGYMtW.jpg"
+                                    alt="Hayley Atwell">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Hayley Atwell</h5>
+                                    <p class="card-text fs-7 lh-sm">Grace</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/4gpLVNKPZlVucc4fT2fSZ7DksTK.jpg"
+                                    alt="Ving Rhames">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Ving Rhames</h5>
+                                    <p class="card-text fs-7 lh-sm">Luther Stikell</p>
+                                </div>
+                            </div>
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/nOWKXxgADG98RjKyfQ7oSDfns6J.jpg"
+                                    alt="Simon Pegg">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Simon Pegg</h5>
+                                    <p class="card-text fs-7 lh-sm">Benji Dunn</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2><a class="text-decoration-none text-dark fs-5 pb-3" href="#">Full Cast & Crew</a></h2>
+                        <hr>
+                    </div>
+                    <!-- Social -->
+                    <div>
 
+                    </div>
+                    <!-- Media -->
+                    <div></div>
+                    <!-- Collection -->
+                    <div></div>
+                    <!-- Recommendations -->
+                    <div></div>
+                </div>
+                <!-- Production Info, Tags, Keywords & Content Score-->
+                <div class="col-3">
+                    <div>
+                        <!-- Socials -->
+                        <div style="height:4rem;"></div>
+                        <!-- Production Info -->
+                        <div class="ps-1">
+                            <div class="mb-3 lh-sm">
+                                <h5 class="fs-6 my-1 fw-bold">Original Title</h5>
+                                <p class="fs-6 fw-normal">Mission: Impossible - Dead Reckoning Part One</p>
+                            </div>
+                            <div class="mb-3 lh-sm">
+                                <h5 class="fs-6 my-1 fw-bold">Stataus</h5>
+                                <p class="fs-6 fw-normal">Released</p>
+                            </div>
+                            <div class="mb-3 lh-sm">
+                                <h5 class="fs-6 my-1 fw-bold">Original Launguage</h5>
+                                <p class="fs-6 fw-normal">English</p>
+                            </div>
+                            <div class="mb-3 lh-sm">
+                                <h5 class="fs-6 my-1 fw-bold">Original Title</h5>
+                                <p class="fs-6 fw-normal">Mission: Impossible - Dead Reckoning Part One</p>
+                            </div>
+                            <div class="mb-3 lh-sm">
+                                <h5 class="fs-6 my-1 fw-bold">Budget</h5>
+                                <p class="fs-6 fw-normal">$291,000,000.00</p>
+                            </div>
+                            <div class="mb-3 lh-sm">
+                                <h5 class="fs-6 my-1 fw-bold">Revenue</h5>
+                                <p class="fs-6 fw-normal">$567,148,955.00</p>
+                            </div>
+                        </div>
+                        <!-- Keywords -->
+                        <div class="mb-5">
+                            <h4 class="fs-4 mt-5 fw-semibold">Keywords</h4>
+                            <div class="d-flex flex-wrap">
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">rome, italy</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">chase</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">secret agent</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">race against time</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">sequel</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">intelligence-agency</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">rogue agent</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">based on tv series</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">secret government agency</a>
+                                <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">northern norway</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="opacity-75 border border-2">
+                    <div>
+                        <!-- Content Score -->
+                        <div></div>
+                        <!-- Top Contributors -->
+                        <div></div>
+                        <!-- Popularity -->
+                        <div></div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Footer -->
+    <footer></footer>
+
+    <!-- Bootstrap JS import -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
