@@ -18,35 +18,51 @@ a {
     background-repeat: no-repeat;
 }
 
+.collection-banner {
+    background: linear-gradient(to right, rgba(3, 37, 65, 1) 0%, rgba(3, 37, 65, 0.6) 100%), url(https://www.themoviedb.org/t/p/w1440_and_h320_multi_faces/jYl0UuJFcmhymv9ZNO14lPLDY1Z.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .banner__shadow {
     background-image: linear-gradient(to right, rgba(136.5, 157.5, 178.5, 1) calc((50vw - 170px) - 340px), rgba(136.5, 157.5, 178.5, 0.84) 50%, rgba(136.5, 157.5, 178.5, 0.84) 100%)
 }
 
 /* width */
-.cast__scroller::-webkit-scrollbar {
+.scroller::-webkit-scrollbar {
     height: 8px;
 }
 
 /* Track */
-.cast__scroller::-webkit-scrollbar-track {
+.scroller::-webkit-scrollbar-track {
     background: transparent
 }
 
 /* Handle */
-.cast__scroller::-webkit-scrollbar-thumb {
+.scroller::-webkit-scrollbar-thumb {
     border-radius: 1rem;
     background: #DBDBDB;
 }
 
 /* Handle on hover */
-.cast__scroller::-webkit-scrollbar-thumb:hover {
+.scroller::-webkit-scrollbar-thumb:hover {
     background: #d4d3d3;
 }
 
 .keyword {
     background-color: rgba(0, 0, 0, 0.1);
     border-color: rgba(0, 0, 0, 0.2) !important;
-    
+
+}
+
+.tabs .active {
+    border-bottom: 4px solid black;
+}
+
+.gallery {
+    height: 350px;
+    overflow-y: hidden;
 }
 
 
@@ -71,7 +87,7 @@ a {
 
 @media screen and (min-width: 768px) {
     .movie__title {
-        font-size: calc(1.325rem + .9vw)!important
+        font-size: calc(1.325rem + .9vw) !important
     }
 
     .movie__trailer-button {
