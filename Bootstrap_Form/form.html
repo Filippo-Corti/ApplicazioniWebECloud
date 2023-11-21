@@ -12,30 +12,30 @@
 <body>
     <div class="container py-5">
         <h1 class="mb-4">Registrazione:</h1>
-        <form action="success.html" onsubmit="return controllaCampi(event)">
+        <form action="form2.html" onsubmit="return controllaCampi(event)">
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input name="email" id="email" class="form-control" type="email" value="carlotta.donato03@gmail.com">
+                <input name="email" id="email" class="form-control" type="email" value="carlotta.donato03@gmail.com" onkeypress="controllaEmail(event.srcElement)">
             </div>
             <div class="row">
                 <div class="col-md-6 col-12 mb-3">
                     <label for="password" class="form-label">Password 1</label>
-                    <input name="password" id="password" class="form-control" type="password" value="12345678" onkeydown="controllaLunghezza(this, 8);">
+                    <input name="password" id="password" class="form-control | password" type="password" value="12345678" onkeypress="controllaLunghezzaEUguaglianza(event.srcElement, 4);" required>
                     <button class="btn btn-primary" onclick="mostraPassword()" type="button">Mostra Password</button>
                 </div>
                 <div class="col-md-6 col-12 mb-3">
                     <label for="password2" class="form-label">Password 2</label>
-                    <input id="password2" class="form-control" type="password" value="12345678">
+                    <input id="password2" class="form-control | password" type="password" value="12345678" onkeypress="controllaLunghezzaEUguaglianza(event.srcElement, 4);" required>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-12 mb-3">
                     <label for="fname" class="form-label">First Name</label>
-                    <input name="fname" id="fname" class="form-control" type="text" value="Carlotta">
+                    <input name="fname" id="fname" class="form-control" type="text" value="Carlotta" required>
                 </div>
                 <div class="col-md-6 col-12 mb-3">
                     <label for="lname" class="form-label">Last Name</label>
-                    <input name="lname" id="lname" class="form-control" type="text" value="Donato">
+                    <input name="lname" id="lname" class="form-control" type="text" value="Donato" required>
                 </div>
             </div>
             <div class="row">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-6 col-12 mb-3">
                     <label for="date" class="form-label">Date of Birth</label>
-                    <input name="date" id="date" class="form-control" type="date" value="2023-11-20">
+                    <input name="date" id="date" class="form-control" type="date" value="2023-11-20" required>
                 </div>
             </div>
             <div class="row">

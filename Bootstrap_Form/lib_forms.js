@@ -62,13 +62,21 @@ function controllaCampi(event) {
     return redirect;
 }
 
-function controllaLunghezza(elemento, lunghezza) {
-    if(elemento.value.length < lunghezza) {
-        elemento.classList.add("border-danger");
-        return true;
-    } else {
-        elemento.classList.remove("border-danger");
+function controllaLunghezzaEUguaglianza(elemento, lunghezza) {
+    var passwords = document.querySelectorAll("input.password");
+
+
+    console.log(passwords[0].value + " " + passwords[1].value)
+    if (elemento.value.length < lunghezza || passwords[0].value != passwords[1].value) {
+        passwords[0].classList.add("border-danger");
+        passwords[1].classList.add("border-danger");
+        console.log("Sbagliato")
         return false;
+    } else {
+        passwords[0].classList.remove("border-danger");
+        passwords[1].classList.remove("border-danger");
+        console.log("Giusto")
+        return true;
     }
 }
 
@@ -81,10 +89,29 @@ function contieneSoloLettereESpazi(str) {
 }
 
 function mostraPassword() {
-    var passwords = document.querySelectorAll("input[type='password']")
-
+    var passwords = document.querySelectorAll("input.password");
     for (var pw of passwords) {
-            pw.type = "text";
+        pw.type = (pw.type == "text") ? "password" : "text";
     }
 }
 
+function controllaEmail(element) {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (element.value.match(mailformat)) {
+        element.classList.remove("border-danger");
+        element.focus();
+        return true;
+    }
+    else {
+        element.classList.add("border-danger");
+        element.focus();
+        return false;
+    }
+}
+
+function ripopolaForm() {
+    var parametri = new URLSearchParams(window.location.search);
+    for ( var parametro of parametri) {
+        document.getElementById(parametro[0]).value = parametro[1];
+    }
+}
