@@ -96,6 +96,7 @@ function mostraPassword() {
 }
 
 function controllaEmail(element) {
+    //La REGEX Standard è nella RFC 5322
     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (element.value.match(mailformat)) {
         element.classList.remove("border-danger");
