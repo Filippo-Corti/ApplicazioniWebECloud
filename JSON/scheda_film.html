@@ -392,7 +392,7 @@
                 <!-- Cast -->
                 <div class="overflow-x-hidden">
                     <h2 class="fs-4 py-3">Top Billed Cast</h2>
-                    <div class="scroller | d-flex flex-nowrap gap-3 overflow-x-auto pb-3">
+                    <div class="card-scroller scroller | d-flex flex-nowrap gap-3 overflow-x-auto pb-3">
                         <div id="actor-card" class="card rounded overflow-hidden flex-shrink-0 d-none" style="width: 10rem; height: 17.5rem">
                             <img src=""
                                 alt="">
@@ -899,7 +899,7 @@
         </div>
     </footer>
 
-    <script src="film.js"></script>
+    <script src="film_actors.js"></script>
     <script src="film_details.js"></script>
     <script src="script.js"></script>
     <script>
@@ -922,9 +922,14 @@
 
         /* Actors */
         var template = document.querySelector("#actor-card");
+        var scroller = document.querySelector(".card-scroller");
         for (actor of details.cast) {
-            var clone = template.clone(true);
-            clone.classList.remove("")
+            var clone = template.cloneNode(true);
+            clone.classList.remove("d-none");
+            clone.querySelector("#actor-card>img").src = defaultURL_Actors + actor.profile_path;
+            clone.querySelector(".card-title").innerHTML = actor.name;
+            clone.querySelector(".card-text").innerHTML = actor.character;
+            scroller.appendChild(clone);
         }
 
     </script>
