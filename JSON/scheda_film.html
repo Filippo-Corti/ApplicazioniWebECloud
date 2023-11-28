@@ -257,13 +257,16 @@
                     <div class="col my-auto">
                         <!-- Movie Title -->
                         <h1 id="movie-title"
-                            class="movie__title | fs-4 fw-bold text-center text-md-start my-2 pb-2 my-lg-0">Mission
-                            Impossible - Dead Reckoning - Parte uno <span class="opacity-75 fw-normal">(2023)</span>
+                            class="movie__title | fs-4 fw-bold text-center text-md-start my-2 pb-2 my-lg-0"> <span>Movie Title</span>
+                            <span class="opacity-75 fw-normal">(2023)</span>
                         </h1>
                         <!-- Age Restriction, Date, Genre and Duration -->
-                        <p class="text-center text-md-start mx-auto"><span
-                                class="opacity-75 border border-1 px-1 rounded rounded-1">PG-13</span> 12/07/2023 (IT)
-                            • <span id="movie-generi">Azione, Thriller</span> • 2h 43m</p>
+                        <p class="text-center text-md-start mx-auto">
+                            <span class="opacity-75 border border-1 px-1 rounded rounded-1">PG</span>
+                            <span id="movie-release-date">Data di Rilascio</span>
+                            • <span id="movie-generi">Generi </span> •
+                            <span id="movie-runtime">RunTime</span>
+                        </p>
                         <!-- Interactive Buttons -->
                         <div
                             class="movie__buttons | d-flex flex-wrap align-items-center gap-1 gap-md-4 py-3 py-md-4 justify-content-center justify-content-md-start">
@@ -272,7 +275,7 @@
                                     <button style="width: 3.6rem; height: 3.6rem"
                                         class="bg-dark text-light fs-4 border border-4 border-success rounded-circle fw-semibold">
                                         <p>
-                                            83<sup class="fs-6">%</sup>
+                                            00<sup class="fs-6">%</sup>
                                         </p>
                                     </button>
                                 </div>
@@ -354,18 +357,14 @@
                             </button>
                         </div>
                         <!-- Tag Line -->
-                        <p class="movie__tagline | fst-italic opacity-75">Condividiamo tutti lo stesso destino.</p>
+                        <p id="movie-tagline" class="movie__tagline | fst-italic opacity-75">Tagline</p>
                         <!-- Description -->
                         <h2 class="fw-bold fs-5 mt-1">Descrizione</h2>
-                        <p id="movie-overview" class="lh-sm">Ethan Hunt e la sua squadra dell'IMF si trovano di fronte
-                            alla sfida più
-                            pericolosa che
-                            abbiano mai affrontato: trovare e disinnescare una nuova terrificante arma che minaccia l’
-                            intera umanità. Con il destino del mondo e il controllo del futuro appesi a un filo, la
-                            squadra inizierà una frenetica missione in tutto il mondo, per impedire che l’arma cada
-                            nelle mani sbagliate. Messo di fronte a un nemico misterioso e onnipotente, tormentato da
-                            forze oscure del passato, Ethan sarà costretto a decidere se sacrificare tutto per questa
-                            missione, comprese le vite di coloro che gli stanno più a cuore.</p>
+                        <p id="movie-overview" class="lh-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Velit officia a, laudantium odio voluptates voluptate at veritatis, sed delectus, doloremque
+                            reiciendis nesciunt eum! Adipisci eaque repellat veritatis nisi sunt quidem sint, quos,
+                            libero repudiandae dolores neque at illo voluptas perspiciatis facilis animi non quae optio
+                            officiis! Impedit placeat provident alias.</p>
                         <!-- Directors and Writers-->
                         <div class="movie__people | grid row mt-4">
                             <div class="col">
@@ -394,100 +393,12 @@
                 <div class="overflow-x-hidden">
                     <h2 class="fs-4 py-3">Top Billed Cast</h2>
                     <div class="scroller | d-flex flex-nowrap gap-3 overflow-x-auto pb-3">
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"
-                                alt="Tom Cruise">
+                        <div id="actor-card" class="card rounded overflow-hidden flex-shrink-0 d-none" style="width: 10rem; height: 17.5rem">
+                            <img src=""
+                                alt="">
                             <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Tom Cruise</h5>
-                                <p class="card-text fs-7 lh-sm">Ethan Hunt</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/jm5pDDjsbgizhxSd7baDxbGYMtW.jpg"
-                                alt="Hayley Atwell">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Hayley Atwell</h5>
-                                <p class="card-text fs-7 lh-sm">Grace</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/4gpLVNKPZlVucc4fT2fSZ7DksTK.jpg"
-                                alt="Ving Rhames">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Ving Rhames</h5>
-                                <p class="card-text fs-7 lh-sm">Luther Stikell</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/nOWKXxgADG98RjKyfQ7oSDfns6J.jpg"
-                                alt="Simon Pegg">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Simon Pegg</h5>
-                                <p class="card-text fs-7 lh-sm">Benji Dunn</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"
-                                alt="Tom Cruise">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Tom Cruise</h5>
-                                <p class="card-text fs-7 lh-sm">Ethan Hunt</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/jm5pDDjsbgizhxSd7baDxbGYMtW.jpg"
-                                alt="Hayley Atwell">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Hayley Atwell</h5>
-                                <p class="card-text fs-7 lh-sm">Grace</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/4gpLVNKPZlVucc4fT2fSZ7DksTK.jpg"
-                                alt="Ving Rhames">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Ving Rhames</h5>
-                                <p class="card-text fs-7 lh-sm">Luther Stikell</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/nOWKXxgADG98RjKyfQ7oSDfns6J.jpg"
-                                alt="Simon Pegg">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Simon Pegg</h5>
-                                <p class="card-text fs-7 lh-sm">Benji Dunn</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/8qBylBsQf4llkGrWR3qAsOtOU8O.jpg"
-                                alt="Tom Cruise">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Tom Cruise</h5>
-                                <p class="card-text fs-7 lh-sm">Ethan Hunt</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/jm5pDDjsbgizhxSd7baDxbGYMtW.jpg"
-                                alt="Hayley Atwell">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Hayley Atwell</h5>
-                                <p class="card-text fs-7 lh-sm">Grace</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/4gpLVNKPZlVucc4fT2fSZ7DksTK.jpg"
-                                alt="Ving Rhames">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Ving Rhames</h5>
-                                <p class="card-text fs-7 lh-sm">Luther Stikell</p>
-                            </div>
-                        </div>
-                        <div class="card rounded overflow-hidden flex-shrink-0" style="width: 10rem; height: 17.5rem">
-                            <img src="https://www.themoviedb.org/t/p/w276_and_h350_face/nOWKXxgADG98RjKyfQ7oSDfns6J.jpg"
-                                alt="Simon Pegg">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Simon Pegg</h5>
-                                <p class="card-text fs-7 lh-sm">Benji Dunn</p>
+                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Actor's Name</h5>
+                                <p class="card-text fs-7 lh-sm">Character</p>
                             </div>
                         </div>
                     </div>
@@ -989,23 +900,33 @@
     </footer>
 
     <script src="film.js"></script>
+    <script src="film_details.js"></script>
+    <script src="script.js"></script>
     <script>
         var defaultURL = "https://image.tmdb.org/t/p/w220_and_h330_face";
         var defaultURL_Backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
+        var defaultURL_Actors = "https://www.themoviedb.org/t/p/w276_and_h350_face";
+
         var movie = film;
-        document.querySelector("#movie-title").innerHTML = movie.title;
+
+        /* General Details */
+        document.querySelector("#movie-title>span:first-of-type").innerHTML= movie.title;
+        document.querySelector("#movie-title>span:last-of-type").innerHTML = "(" + movie.release_date.substring(0, 4) + ")";
         document.querySelector("#movie-overview").innerHTML = movie.overview;
         document.querySelector("#movie-banner").src = defaultURL + movie.poster_path;
         document.querySelector("#movie-backdrop").style.backgroundImage = "url(" + defaultURL_Backdrop + movie.backdrop_path + ")";
-        document.querySelector("#movie-generi").innerHTML = getStringaGeneri(movie);
+        document.querySelector("#movie-generi").innerHTML = getStringaGeneri(movie.genres);
+        document.querySelector("#movie-tagline").innerHTML = movie.tagline;
+        document.querySelector("#movie-release-date").innerHTML = formatDate(movie.release_date);
+        document.querySelector("#movie-runtime").innerHTML = formatRuntime(movie.runtime);
 
-        function getStringaGeneri(movie) {
-            var s = "";
-            for (genere of movie.genres) {
-                s += genere.name + ", ";
-            }
-            return s.substring(0, s.length - 2)
+        /* Actors */
+        var template = document.querySelector("#actor-card");
+        for (actor of details.cast) {
+            var clone = template.clone(true);
+            clone.classList.remove("")
         }
+
     </script>
     <!-- Bootstrap JS import -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
