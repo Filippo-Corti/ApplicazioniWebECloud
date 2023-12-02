@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Offline Storage</title>
+</head>
+<body>
+
+    <form name="form_data" action="" onsubmit="storeData(); return false;">
+        <h1>Data Storage</h1>
+        <label for="data">Inserisci i Dati:</label>
+        <input id="data" type="text">
+        <input type="submit" value="Store">
+        <button onclick="extractData(); return false;">Extract</button>
+    </form>
+
+    <hr>
+
+    <div class="local-storage">
+        <h2>Local Storage:</h2>
+    </div>
+
+
+    <div class="session-storage">
+        <h2>Session Storage:</h2>
+
+    </div>
+
+    <script>
+
+        function storeData() {
+            let input = document.form_data.data.value;
+            localStorage.setItem("data", input);
+            sessionStorage.setItem("data", input);
+            alert("Dati memorizzati correttamente!")
+        }
+
+        function extractData() {
+            let local = document.querySelector(".local-storage");
+            let session = document.querySelector(".session-storage");
+
+            let pL = document.createElement("p");
+            let pS = pL.cloneNode();
+
+            pL.innerHTML = localStorage.getItem("data");
+            pS.innerHTML = sessionStorage.getItem("data");
+            
+            local.appendChild(pL);
+            session.appendChild(pS);
+            
+        }
+
+
+    </script>
+
+</body>
+</html>
