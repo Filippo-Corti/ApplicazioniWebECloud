@@ -9,13 +9,82 @@
 
 <body>
 
+
     <form name="unform">
-        Ciao: 
-        <input type="text" name="testo">
-        <img src="#" alt="TestoAlternativo" name="immagine" srcset="">
+        Ciao:
+        <input type="text" name="in" id="">
+        <button onclick="popup.document.unaform.in.value ='prova'; popup.focus();">Prova</button>
+        <button type="submit">Submit</button>
     </form>
 
+    <div id="div1">
+        <!-- Commento-->
+        <p id="p1">Testo</p>
+    </div>
 
+
+
+
+    <script>
+        //var popup = window.open("prova.html", "pippo", "width=500, height=500"); popup.focus();
+        var div = document.getElementById("div1");
+        var p1 = document.getElementById("p1").firstChild;
+        console.log(p1)
+        var p2 = p1.cloneNode();
+        p2.textContent = "Testo2";
+        //div.replaceChild(p2, p1.parentElement);
+  </script>
+
+    <script>
+        /*pippo = 10
+        fz();*/
+
+        
+        function fz() {
+            console.log(pippo) //Stampa Undefined
+            var pippo = 4;
+            gz();
+            function gz() {
+            console.log(pippo) //Stampa 4
+            }
+        }
+
+        calc((x) => x*x, 4);
+        calc(new Function("a", "return a*3"), 4);
+
+        var myFunction = new Function("a", 'return a + 1');
+
+        console.log(myFunction(10)); // Output: 11
+
+
+        function calc(f, x) {
+            console.log(f(x))
+        }
+
+        function Point(i, j) {
+            this.x = i;
+            this.y = j;
+
+            this.getX = function() {
+                return this.x;
+            }
+
+            this.getY = function() {
+                return this.y;
+            }
+
+        }
+
+        var p = new Point(3, 5);
+        console.log(p)
+
+        console.log(p.getX())
+
+        p.z = 10;
+        console.log(p)
+
+
+    </script>
 
 
 </body>
