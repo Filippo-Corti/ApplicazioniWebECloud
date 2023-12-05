@@ -908,30 +908,12 @@
         var defaultURL = "https://image.tmdb.org/t/p/w220_and_h330_face";
         var defaultURL_Backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
         var defaultURL_Actors = "https://www.themoviedb.org/t/p/w276_and_h350_face";
+        
+        fetchById();
 
-        /* General Movies Details */
-        document.querySelector("#movie-title>span:first-of-type").innerHTML= movie.title;
-        document.querySelector("#movie-title>span:last-of-type").innerHTML = "(" + movie.release_date.substring(0, 4) + ")";
-        document.querySelector("#movie-overview").innerHTML = movie.overview;
-        document.querySelector("#movie-banner").src = defaultURL + movie.poster_path;
-        document.querySelector("#movie-backdrop").style.backgroundImage = "url(" + defaultURL_Backdrop + movie.backdrop_path + ")";
-        document.querySelector("#movie-generi").innerHTML = getStringaGeneri(movie.genres);
-        document.querySelector("#movie-tagline").innerHTML = movie.tagline;
-        document.querySelector("#movie-release-date").innerHTML = formatDate(movie.release_date);
-        document.querySelector("#movie-runtime").innerHTML = formatRuntime(movie.runtime);
 
-        /* Actors */
-        var template = document.querySelector("#actor-card");
-        var scroller = document.querySelector(".card-scroller");
-        for (actor of details.cast) {
-            var clone = template.cloneNode(true);
-            clone.classList.remove("d-none");
-            clone.querySelector("#actor-card>img").src = defaultURL_Actors + actor.profile_path;
-            clone.querySelector(".card-title").innerHTML = actor.name;
-            clone.querySelector(".card-text").innerHTML = actor.character;
-            scroller.appendChild(clone);
-        }
 
+       
     </script>
     <!-- Bootstrap JS import -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
