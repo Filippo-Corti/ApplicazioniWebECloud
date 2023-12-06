@@ -47,7 +47,9 @@ function fetchMovieCasting() {
 
 function addDetailsToPage(movie) {
   /* General Movies Details */
+  document.querySelector("head>title").innerHTML = "[My] " + movie.title;
   document.querySelector("#movie-title>span:first-of-type").innerHTML = movie.title;
+  document.querySelector("#original-title").innerHTML = (movie.original_title) ? movie.original_title : movie.title;
   document.querySelector("#movie-title>span:last-of-type").innerHTML = "(" + movie.release_date.substring(0, 4) + ")";
   document.querySelector("#movie-overview").innerHTML = movie.overview;
   document.querySelector("#movie-banner").src = defaultURL + movie.poster_path;
@@ -57,6 +59,7 @@ function addDetailsToPage(movie) {
   document.querySelector("#movie-release-date").innerHTML = formatDate(movie.release_date);
   document.querySelector("#movie-runtime").innerHTML = formatRuntime(movie.runtime);
 
+  editUserScore(movie.vote_average);
   editPageColors();
 }
 
@@ -73,6 +76,15 @@ function addCastToPage(details) {
     clone.querySelector(".card-text").innerHTML = actor.character;
     scroller.appendChild(clone);
   }
+
+  /* Crew */
+  for (person of details.crew) {
+    if (person.job == "Director") {
+      document.querySelector("#movie-director").innerHTML = person.name;
+    } else if (person.job == "Writer") {
+      document.querySelector("#movie-writer").innerHTML = person.name;
+    }
+  } 
 
 }
 
@@ -113,6 +125,17 @@ function chooseTextColor(RGBcolors) {
     document.querySelector("#movie-backdrop").classList.remove("text-dark")
   }
 }
+
+function editUserScore(vote) {
+  document.querySelector("#user-score>p").innerHTML = parseInt(vote * 10) + '<sup class="fs-6">%</sup>'
+  if (vote <= 5) {
+    document.querySelector("#user-score").classList.add("border-danger")
+  } else if (vote <= 7) {
+    document.querySelector("#user-score").classList.add("border-warning")
+  } else {
+      document.querySelector("#user-score").classList.add("border-success")
+  }
+} 
 
 /* ------------------------------- UTILITY ------------------------------- */
 function getStringaGeneri(genres) {
