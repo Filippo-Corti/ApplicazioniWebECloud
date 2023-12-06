@@ -12,6 +12,8 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- JQuery for Primary Color -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -31,7 +33,7 @@
                             aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <img class="d-lg-none" width="50px"
+                        <img id="logo" class="d-lg-none" width="50px"
                             src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
                             alt="TMDB">
                         <a class="nav-link text-light fw-bold" href="#" role="button" aria-expanded="false">
@@ -257,7 +259,8 @@
                     <div class="col my-auto">
                         <!-- Movie Title -->
                         <h1 id="movie-title"
-                            class="movie__title | fs-4 fw-bold text-center text-md-start my-2 pb-2 my-lg-0"> <span>Movie Title</span>
+                            class="movie__title | fs-4 fw-bold text-center text-md-start my-2 pb-2 my-lg-0"> <span>Movie
+                                Title</span>
                             <span class="opacity-75 fw-normal">(2023)</span>
                         </h1>
                         <!-- Age Restriction, Date, Genre and Duration -->
@@ -393,9 +396,9 @@
                 <div class="overflow-x-hidden">
                     <h2 class="fs-4 py-3">Top Billed Cast</h2>
                     <div class="card-scroller scroller | d-flex flex-nowrap gap-3 overflow-x-auto pb-3">
-                        <div id="actor-card" class="card rounded overflow-hidden flex-shrink-0 d-none" style="width: 10rem; height: 17.5rem">
-                            <img src=""
-                                alt="">
+                        <div id="actor-card" class="card rounded overflow-hidden flex-shrink-0 d-none"
+                            style="width: 10rem; height: 17.5rem">
+                            <img src="" alt="">
                             <div class="card-body py-2">
                                 <h5 class="card-title fs-6 fw-bold lh-sm my-1">Actor's Name</h5>
                                 <p class="card-text fs-7 lh-sm">Character</p>
@@ -525,9 +528,9 @@
                         <div class="tab-pane fade show active" id="popular" role="tabpanel"
                             aria-labelledby="popular-tab" tabindex="0">
                             <div class="scroller gallery | d-flex flex-nowrap gap-0 overflow-x-auto">
-                                <iframe style="min-width:622px" width="622" height="350"
+                                <!--<iframe style="min-width:622px" width="622" height="350"
                                     src="https://www.youtube.com/embed/63Z0XdzcS-I">
-                                </iframe>
+                                </iframe>-->
                                 <img src="https://www.themoviedb.org/t/p/w533_and_h300_bestv2/628Dep6AxEtDxjZoGP78TsOxYbK.jpg"
                                     alt="">
                                 <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/opMK4RJxZmACWrgfZlOnRp6hsQK.jpg"
@@ -536,15 +539,15 @@
                         </div>
                         <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab" tabindex="0">
                             <div class="scroller gallery | d-flex flex-nowrap gap-0 overflow-x-auto">
-                                <iframe style="min-width:622px" width="622" height="350"
+                                <!--<iframe style="min-width:622px" width="622" height="350"
                                     src="https://www.youtube.com/embed/63Z0XdzcS-I">
-                                </iframe>
-                                <iframe style="min-width:622px" width="622" height="350"
+                                </iframe>-->
+                                <!--<iframe style="min-width:622px" width="622" height="350"
                                     src="https://www.youtube.com/embed/RrdI6AFk1t8">
-                                </iframe>
-                                <iframe style="min-width:622px" width="622" height="350"
+                                </iframe>-->
+                                <!--<iframe style="min-width:622px" width="622" height="350"
                                     src="https://www.youtube.com/embed/9YEH9IQwa_w">
-                                </iframe>
+                                </iframe>-->
                             </div>
                         </div>
                         <div class="tab-pane fade" id="wallpapers" role="tabpanel" aria-labelledby="wallpapers-tab"
@@ -908,17 +911,17 @@
         var defaultURL = "https://image.tmdb.org/t/p/w220_and_h330_face";
         var defaultURL_Backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
         var defaultURL_Actors = "https://www.themoviedb.org/t/p/w276_and_h350_face";
-        
+
         fetchById();
 
 
 
-       
+
     </script>
     <!-- Bootstrap JS import -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

@@ -26,7 +26,7 @@ a {
 }
 
 .banner__shadow {
-    background-image: linear-gradient(to right, rgb(0, 0, 0, 0.4) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.84) 100%)
+   /* background-image: linear-gradient(to right, rgb(0, 0, 0, 0.4) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.84) 100%) */
 }
 
 /* width */
