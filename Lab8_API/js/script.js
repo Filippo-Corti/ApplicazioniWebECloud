@@ -1,5 +1,9 @@
 /* ------------------------------- FETCH ------------------------------- */
 
+var defaultURL = "https://image.tmdb.org/t/p/w220_and_h330_face";
+var defaultURL_Backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
+var defaultURL_Actors = "https://www.themoviedb.org/t/p/w276_and_h350_face";
+
 function fetchById() {
   var parametri = new URLSearchParams(window.location.search);
   id = parametri.get("id")
@@ -99,7 +103,8 @@ function editBannerShadow(RGBcolors) {
 function chooseTextColor(RGBcolors) {
   const luminance = 0.2126 * RGBcolors[0] + 0.7152 * RGBcolors[1] + 0.0722 * RGBcolors[2];
   const contrastRatio = (luminance + 0.05) / (0.05 + 1);
-  if (contrastRatio >= 4.5) {
+  console.log(contrastRatio)
+  if (contrastRatio >= 100) {
     document.querySelector("#movie-backdrop").classList.add("text-dark")
     document.querySelector("#movie-backdrop").classList.remove("text-light")
   }
