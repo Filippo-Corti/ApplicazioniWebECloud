@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="style.css">
     <!-- JQuery for Primary Color -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
 </head>
 
 <body>
@@ -234,8 +235,8 @@
     </header>
 
     <!-- Movie Banner -->
-    <section class="banner | text-light" id="movie-backdrop">
-        <div class="banner__shadow">
+    <section class="banner | text-dark" id="movie-backdrop">
+        <div class="banner__shadow" id="banner-shadow">
             <div class="container-xxl d-grid gap-5 px-4 px-lg-3 py-3 p-sm-5">
                 <div class="row gap-5 d-block d-lg-flex ">
                     <!-- Poster -->
@@ -350,7 +351,7 @@
                                 </ul>
                             </div>
                             <button type="button"
-                                class="movie__trailer-button | btn text-light fw-semibold btn-lg d-flex align-items-center gap-1 p-0 py-md-2 px-md-3 border-start rounded-0 ps-2">
+                                class="movie__trailer-button | btn fw-semibold btn-lg d-flex align-items-center gap-1 p-0 py-md-2 px-md-3 border-start rounded-0 ps-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-play-fill" viewBox="0 0 16 16">
                                     <path
