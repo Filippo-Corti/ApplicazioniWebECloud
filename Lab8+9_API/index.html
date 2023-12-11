@@ -231,10 +231,29 @@
     </header>
 
     <!-- Page Content -->
+
+
     <section class="container-xxl p-5">
-        <button class="btn btn-primary mb-2" type="button" onclick="addMovie()">Aggiungi Film</button>
-        <div class="cards gap-1" style="display:grid;grid-template-columns: repeat(2, auto);">
-            <div class="card mb-3 d-none" style="max-width: 40rem;">
+        <div class="py-4">
+            <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Ricerca</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <button type="submit" class="btn btn-primary">Cerca</button>
+              </form>
+              <nav class="d-flex justify-content-center" aria-label="Page navigation">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" onclick="previousPage()">Previous</a></li>
+                  <li class="page-item"><a class="page-link" style="cursor: pointer;" onclick="fetchPopulars(this)" st>1</a></li>
+                  <li class="page-item"><a class="page-link" style="cursor: pointer;" onclick="fetchPopulars(this)">2</a></li>
+                  <li class="page-item"><a class="page-link" style="cursor: pointer;" onclick="fetchPopulars(this)">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#" onclick="nextPage()">Next</a></li>
+                </ul>
+              </nav>
+        </div>
+        <div class="gap-1">
+            <div class="master | card mb-3 d-none" style="max-width: 40rem;">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img class="card-img-top" src="" alt="">
@@ -256,32 +275,13 @@
                     </a>
                 </div>
             </div>
+            <div class="cards" style="display:grid;grid-template-columns: repeat(2, auto);">
+             </div>
         </div>
         </div>
     </section>
 
-    <script src="js/popolari.js"></script>
-    <script>
-        var defaultURL = "https://image.tmdb.org/t/p/w220_and_h330_face/";
-        var defaultHREF = "pages/scheda_film.html?id="
-
-        i = 0;
-        function addMovie() {
-            var card = document.querySelector(".card");
-            var clone = card.cloneNode(true);
-            clone.classList.remove("d-none")
-            var movie = popolari.results[i];
-            clone.querySelector(".card-title").innerHTML = movie.title;
-            clone.querySelector(".card-text").innerHTML = movie.overview;
-            clone.querySelector(".card-img-top").src = defaultURL + movie.poster_path;
-            clone.querySelector(".card-text>small").innerHTML = "Data di Rilascio: " + movie.release_date;
-            clone.querySelector(".card-footer>a").href = defaultHREF + movie.id;
-            i++;
-            card.after(clone);
-        }
-
-
-    </script>
+    <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

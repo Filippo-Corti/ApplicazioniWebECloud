@@ -3,6 +3,7 @@
 var defaultURL = "https://image.tmdb.org/t/p/w220_and_h330_face";
 var defaultURL_Backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
 var defaultURL_Actors = "https://www.themoviedb.org/t/p/w276_and_h350_face";
+var defaultHREF = "pages/scheda_film.html?id=";
 
 function fetchById() {
   var parametri = new URLSearchParams(window.location.search);
@@ -43,7 +44,41 @@ function fetchMovieCasting() {
     .catch(err => alert("Error: " + err));
 }
 
+function fetchPopularsPage(page, elaborateData) {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWM0Y2VlYzZmODFhYTk1NDcwZDkwYzBiZGYwNDkwNCIsInN1YiI6IjY1NjVmYTBlODlkOTdmMDBhYjE1ZGUxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IMewZuyxwPpR-TG8XR27JvdsXwwSFiOB21ZsRGlH62k'
+    }
+  };
+
+  fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=' + page, options)
+    .then(response => response.json())
+    .then(response => elaborateData(response))
+    .catch(err => console.error(err));
+}
+
 /* ------------------------------- EDIT PAGE WITH FETCHED DATA ------------------------------- */
+
+function addPopularsToPage(populars) {
+  let cards = document.querySelector(".cards");
+  cards.innerHTML = "";
+  for(let i = 0; i < populars.results.length; i++) {
+    var card = document.querySelector(".card");
+    var clone = card.cloneNode(true);
+    clone.classList.remove("d-none")
+    var movie = populars.results[i];
+    clone.querySelector(".card-title").innerHTML = movie.title;
+    clone.querySelector(".card-text").innerHTML = movie.overview;
+    clone.querySelector(".card-img-top").src = defaultURL + movie.poster_path;
+    clone.querySelector(".card-text>small").innerHTML = "Data di Rilascio: " + movie.release_date;
+    clone.querySelector(".card-footer>a").href = defaultHREF + movie.id;
+    i++;
+    cards.appendChild(clone);
+  }
+
+}
 
 function addDetailsToPage(movie) {
   /* General Movies Details */
@@ -84,7 +119,7 @@ function addCastToPage(details) {
     } else if (person.job == "Writer") {
       document.querySelector("#movie-writer").innerHTML = person.name;
     }
-  } 
+  }
 
 }
 
@@ -108,8 +143,8 @@ function editPageColors() {
 
 function editBannerShadow(RGBcolors) {
   document.querySelector("#banner-shadow").style.backgroundImage =
-  'linear-gradient(to right, rgba(' + RGBcolors[0] + ', ' + RGBcolors[1] + ', ' + RGBcolors[2] + ', 1) calc((50vw - 170px) - 340px),' +
-  'rgba(' + RGBcolors[0] + ', ' + RGBcolors[1] + ', ' + RGBcolors[2] + ', 0.84) 50%, rgba(' + RGBcolors[0] + ', ' + RGBcolors[1] + ', ' + RGBcolors[2] + ', 0.84) 100%)';
+    'linear-gradient(to right, rgba(' + RGBcolors[0] + ', ' + RGBcolors[1] + ', ' + RGBcolors[2] + ', 1) calc((50vw - 170px) - 340px),' +
+    'rgba(' + RGBcolors[0] + ', ' + RGBcolors[1] + ', ' + RGBcolors[2] + ', 0.84) 50%, rgba(' + RGBcolors[0] + ', ' + RGBcolors[1] + ', ' + RGBcolors[2] + ', 0.84) 100%)';
 }
 
 function chooseTextColor(RGBcolors) {
@@ -120,7 +155,7 @@ function chooseTextColor(RGBcolors) {
     document.querySelector("#movie-backdrop").classList.add("text-dark")
     document.querySelector("#movie-backdrop").classList.remove("text-light")
   }
-  else  {
+  else {
     document.querySelector("#movie-backdrop").classList.add("text-light")
     document.querySelector("#movie-backdrop").classList.remove("text-dark")
   }
@@ -133,9 +168,9 @@ function editUserScore(vote) {
   } else if (vote <= 7) {
     document.querySelector("#user-score").classList.add("border-warning")
   } else {
-      document.querySelector("#user-score").classList.add("border-success")
+    document.querySelector("#user-score").classList.add("border-success")
   }
-} 
+}
 
 /* ------------------------------- UTILITY ------------------------------- */
 function getStringaGeneri(genres) {
@@ -158,4 +193,17 @@ function formatRuntime(time) {
   }
   s += time % 60 + "m";
   return s;
+}
+
+function fetchPopulars(el) {
+  fetchPopularsPage(el.innerHTML, (x) => addPopularsToPage(x))
+  let pageItems = document.querySelectorAll(".page-item.active");
+  pageItems.forEach(pageItem => {
+    pageItem.classList.remove("active");
+  });
+  el.parentElement.classList.add("active");
+}
+
+function previousPage() {
+  let page = 
 }
