@@ -5,6 +5,14 @@ var defaultURL_Backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces
 var defaultURL_Actors = "https://www.themoviedb.org/t/p/w276_and_h350_face";
 var defaultHREF = "pages/scheda_film.html?id=";
 
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWM0Y2VlYzZmODFhYTk1NDcwZDkwYzBiZGYwNDkwNCIsInN1YiI6IjY1NjVmYTBlODlkOTdmMDBhYjE1ZGUxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IMewZuyxwPpR-TG8XR27JvdsXwwSFiOB21ZsRGlH62k'
+    }
+  };
+  
 function fetchById() {
   var parametri = new URLSearchParams(window.location.search);
   id = parametri.get("id")
@@ -14,13 +22,6 @@ function fetchById() {
 
 function fetchMovieData() {
   /* Fetch Main data */
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWM0Y2VlYzZmODFhYTk1NDcwZDkwYzBiZGYwNDkwNCIsInN1YiI6IjY1NjVmYTBlODlkOTdmMDBhYjE1ZGUxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IMewZuyxwPpR-TG8XR27JvdsXwwSFiOB21ZsRGlH62k'
-    }
-  };
 
   fetch('https://api.themoviedb.org/3/movie/' + id + '?language=en-EN', options)
     .then(response => response.json())
@@ -30,14 +31,6 @@ function fetchMovieData() {
 
 function fetchMovieCasting() {
   /* Fetch Actors */
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWM0Y2VlYzZmODFhYTk1NDcwZDkwYzBiZGYwNDkwNCIsInN1YiI6IjY1NjVmYTBlODlkOTdmMDBhYjE1ZGUxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IMewZuyxwPpR-TG8XR27JvdsXwwSFiOB21ZsRGlH62k'
-    }
-  };
-
   fetch('https://api.themoviedb.org/3/movie/' + id + '/credits?language=en-EN', options)
     .then(response => response.json())
     .then(response => addCastToPage(response))
@@ -45,26 +38,28 @@ function fetchMovieCasting() {
 }
 
 function fetchPopularsPage(page, elaborateData) {
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWM0Y2VlYzZmODFhYTk1NDcwZDkwYzBiZGYwNDkwNCIsInN1YiI6IjY1NjVmYTBlODlkOTdmMDBhYjE1ZGUxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IMewZuyxwPpR-TG8XR27JvdsXwwSFiOB21ZsRGlH62k'
-    }
-  };
+  let lingua = document.querySelector("#lingua").value
 
-  fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=' + page, options)
+  fetch('https://api.themoviedb.org/3/movie/popular?language=' + lingua + '&page=' + page, options)
     .then(response => response.json())
     .then(response => elaborateData(response))
     .catch(err => console.error(err));
 }
+
+function fetchByKeyword(keyword, elaborateData) {
+  fetch('https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=' + keyword, options)
+    .then(response => response.json())
+    .then(response => elaborateData(response))
+    .catch(err => console.error(err));
+
+} 
 
 /* ------------------------------- EDIT PAGE WITH FETCHED DATA ------------------------------- */
 
 function addPopularsToPage(populars) {
   let cards = document.querySelector(".cards");
   cards.innerHTML = "";
-  for(let i = 0; i < populars.results.length; i++) {
+  for (let i = 0; i < populars.results.length; i++) {
     var card = document.querySelector(".card");
     var clone = card.cloneNode(true);
     clone.classList.remove("d-none")
@@ -195,15 +190,44 @@ function formatRuntime(time) {
   return s;
 }
 
+/******************************* Pagination ****************************************/
+
+let currentPage = 1;
+fetchPopularsPage(currentPage, (x) => addPopularsToPage(x));
+updateGUI();
+
 function fetchPopulars(el) {
   fetchPopularsPage(el.innerHTML, (x) => addPopularsToPage(x))
+  currentPage = parseInt(el.innerHTML);
+  updateGUI();
+}
+
+function previousPage() {
+  if (currentPage == 1)
+    return;
+  currentPage--;
+  fetchPopularsPage(currentPage, (x) => addPopularsToPage(x))
+  updateGUI();
+}
+
+function nextPage() {
+  currentPage++;
+  fetchPopularsPage(currentPage, (x) => addPopularsToPage(x))
+  updateGUI();
+}
+
+function updateGUI() {
   let pageItems = document.querySelectorAll(".page-item.active");
   pageItems.forEach(pageItem => {
     pageItem.classList.remove("active");
   });
-  el.parentElement.classList.add("active");
-}
-
-function previousPage() {
-  let page = 
+  if (currentPage == 1) {
+    document.querySelectorAll(".page-item")[1].classList.add("active");
+  }
+  else {
+    document.querySelectorAll(".page-item")[2].classList.add("active");
+    document.querySelector(".page-item.previous-page>a").innerHTML = currentPage - 1;
+    document.querySelector(".page-item.current-page>a").innerHTML = currentPage;
+    document.querySelector(".page-item.next-page>a").innerHTML = currentPage + 1;
+  }
 }

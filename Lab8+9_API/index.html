@@ -237,20 +237,33 @@
         <div class="py-4">
             <form>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Ricerca</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="query" class="form-label">Ricerca</label>
+                    <input type="text" class="form-control" id="query" aria-describedby="emailHelp" onkeyup="fetchByKeyword(this.value, (x) => addPopularsToPage(x))">
+                </div>
+                <div class="mb-3">
+                    <label for="lingua" class="form-label">Lingua</label>
+                    <select class="form-select mb-3" id="lingua" aria-label="Default select example">
+                        <option value="it-IT">Italiano</option>
+                        <option value="en-US">Inglese</option>
+                        <option value="cn-CN">Cinese</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Cerca</button>
-              </form>
-              <nav class="d-flex justify-content-center" aria-label="Page navigation">
+            </form>
+            <nav class="d-flex justify-content-center" aria-label="Page navigation">
                 <ul class="pagination">
-                  <li class="page-item"><a class="page-link" onclick="previousPage()">Previous</a></li>
-                  <li class="page-item"><a class="page-link" style="cursor: pointer;" onclick="fetchPopulars(this)" st>1</a></li>
-                  <li class="page-item"><a class="page-link" style="cursor: pointer;" onclick="fetchPopulars(this)">2</a></li>
-                  <li class="page-item"><a class="page-link" style="cursor: pointer;" onclick="fetchPopulars(this)">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#" onclick="nextPage()">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="cursor: pointer;"
+                            onclick="previousPage()">Previous</a></li>
+                    <li class="page-item previous-page"><a class="page-link" style="cursor: pointer;"
+                            onclick="fetchPopulars(this)" st>1</a></li>
+                    <li class="page-item current-page"><a class="page-link" style="cursor: pointer;"
+                            onclick="fetchPopulars(this)">2</a></li>
+                    <li class="page-item next-page"><a class="page-link" style="cursor: pointer;"
+                            onclick="fetchPopulars(this)">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#" style="cursor: pointer;"
+                            onclick="nextPage()">Next</a></li>
                 </ul>
-              </nav>
+            </nav>
         </div>
         <div class="gap-1">
             <div class="master | card mb-3 d-none" style="max-width: 40rem;">
@@ -276,7 +289,7 @@
                 </div>
             </div>
             <div class="cards" style="display:grid;grid-template-columns: repeat(2, auto);">
-             </div>
+            </div>
         </div>
         </div>
     </section>
