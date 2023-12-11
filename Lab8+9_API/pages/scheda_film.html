@@ -50,7 +50,7 @@
                     <div class="pt-2 pt-lg-0 d-lg-flex align-items-lg-center">
                         <!-- Logo -->
                         <a class="navbar-brand d-none d-lg-block" href="../index.html">
-                            <img width="170px" 
+                            <img width="170px"
                                 src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
                                 alt="TMDB">
                         </a>
@@ -283,7 +283,7 @@
                                         </p>
                                     </button>
                                 </div>
-                                <p style="max-width:6ch" class="fw-bold fs-5 lh-1" >User Score</p>
+                                <p style="max-width:6ch" class="fw-bold fs-5 lh-1">User Score</p>
                             </div>
                             <div class="d-none d-md-block dropdown">
                                 <button style="aspect-ratio: 1;" type="button"
@@ -335,7 +335,8 @@
                                 </ul>
                             </div>
                             <div class="d-none d-md-block dropdown">
-                                <button style="aspect-ratio: 1;" type="button"
+                                <button style="aspect-ratio: 1;" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
                                     class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
                                     id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                                     <svg style="scale: 0.8" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -346,8 +347,7 @@
                                 </button>
                                 <ul class="dropdown-menu p-0" aria-labelledby="dropdownMenu2">
                                     <li><button class="dropdown-item bg-dark text-light px-2 py-1 m-0"
-                                            type="button">Accedi per creare e modificare liste
-                                            personalizzate</button></li>
+                                            type="button">Vota il Film</button></li>
                                 </ul>
                             </div>
                             <button type="button" style="color: inherit"
@@ -359,6 +359,10 @@
                                 </svg>
                                 Guarda Trailer
                             </button>
+                        </div>
+                        <!-- Vote Response -->
+                        <div class="vote-alert alert alert-success d-none" role="alert">
+                            Voto registrato con successo
                         </div>
                         <!-- Tag Line -->
                         <p id="movie-tagline" class="movie__tagline | fst-italic opacity-75">Tagline</p>
@@ -701,7 +705,8 @@
                     <div class="ps-1">
                         <div class="mb-3 lh-sm">
                             <h5 class="fs-6 my-1 fw-bold">Original Title</h5>
-                            <p class="fs-6 fw-normal" id="original-title">Mission: Impossible - Dead Reckoning Part One</p>
+                            <p class="fs-6 fw-normal" id="original-title">Mission: Impossible - Dead Reckoning Part One
+                            </p>
                         </div>
                         <div class="mb-3 lh-sm">
                             <h5 class="fs-6 my-1 fw-bold">Stataus</h5>
@@ -898,6 +903,26 @@
             </div>
         </div>
     </footer>
+
+    <!-- Vote Modal -->
+    <div class="modal" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vota il Film</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="voto" class="form-label">Voto (1 to 5)</label>
+                    <input type="range" class="form-range" min="1" max="5" id="voto">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close-modal-btn | btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="vote()">Vota</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="../js/script.js"></script>

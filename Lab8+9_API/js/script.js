@@ -12,7 +12,7 @@ var defaultHREF = "pages/scheda_film.html?id=";
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWM0Y2VlYzZmODFhYTk1NDcwZDkwYzBiZGYwNDkwNCIsInN1YiI6IjY1NjVmYTBlODlkOTdmMDBhYjE1ZGUxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IMewZuyxwPpR-TG8XR27JvdsXwwSFiOB21ZsRGlH62k'
     }
   };
-  
+
 function fetchById() {
   var parametri = new URLSearchParams(window.location.search);
   id = parametri.get("id")
@@ -38,8 +38,9 @@ function fetchMovieCasting() {
 }
 
 function fetchPopularsPage(page, elaborateData) {
-  let lingua = document.querySelector("#lingua").value
-
+  let lingua;
+  if (document.querySelector("#lingua") != null)
+      lingua = document.querySelector("#lingua").value
   fetch('https://api.themoviedb.org/3/movie/popular?language=' + lingua + '&page=' + page, options)
     .then(response => response.json())
     .then(response => elaborateData(response))
@@ -230,4 +231,41 @@ function updateGUI() {
     document.querySelector(".page-item.current-page>a").innerHTML = currentPage;
     document.querySelector(".page-item.next-page>a").innerHTML = currentPage + 1;
   }
+}
+
+/*********************** Vote Modal *********************/
+let sessionId;
+fetch('https://api.themoviedb.org/3/authentication/guest_session/new', options)
+  .then(response => response.json())
+  .then(response => sessionId = response.guest_session_id)
+  .catch(err => console.error(err));
+console.log(sessionId)
+
+function vote() {
+  let voto = document.querySelector("#voto").value;
+  let payload = {
+    value: voto,
+  }
+
+
+  let id = new URLSearchParams(window.location.search).get("id");
+
+  const POSToptions = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'Content-Type': 'application/json;charset=utf-8',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWM0Y2VlYzZmODFhYTk1NDcwZDkwYzBiZGYwNDkwNCIsInN1YiI6IjY1NjVmYTBlODlkOTdmMDBhYjE1ZGUxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IMewZuyxwPpR-TG8XR27JvdsXwwSFiOB21ZsRGlH62k'
+    },
+    body: JSON.stringify(payload),
+  };
+  
+  fetch('https://api.themoviedb.org/3/movie/' + id + '/rating', POSToptions)
+    .then(response => response.json())
+    .then(response => {
+      document.querySelector(".vote-alert").classList.remove("d-none");
+      document.querySelector(".close-modal-btn").click();
+      console.log(response)
+    })
+    .catch(err => console.error(err));
 }
