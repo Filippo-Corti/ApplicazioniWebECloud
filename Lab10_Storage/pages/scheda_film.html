@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[My] Mission Impossible - Dead Reckoning</title>
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://www.themoviedb.org/assets/2/favicon-32x32-543a21832c8931d3494a68881f6afcafc58e96c5d324345377f3197a37b367b5.png">
+    <!-- Bootstrap CSS import -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- JQuery for Primary Color -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <header>
+
+        <!-- Main Navbar -->
+        <nav class="navbar navbar-expand-lg justify-content-between text-bg-dark py-1 py-lg-3">
+            <div class="container-xxl">
+
+                <!-- Mobile Menu Header -->
+                <div class="flex-fill my-2 d-lg-none">
+                    <div class="d-flex justify-content-between w-100 align-items-center">
+                        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <img class="d-lg-none" width="50px"
+                            src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+                            alt="TMDB">
+                        <a class="nav-link text-light fw-bold" href="#" role="button" aria-expanded="false">
+                            <img width="30"
+                                src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg"
+                                alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Actual Menu -->
+                <div class="collapse navbar-collapse justify-content-between ms-4" id="navbarNavDropdown">
+                    <div class="pt-2 pt-lg-0 d-lg-flex align-items-lg-center">
+                        <!-- Logo -->
+                        <a class="navbar-brand d-none d-lg-block" href="../index.html">
+                            <img width="170px"
+                                src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+                                alt="TMDB">
+                        </a>
+                        <ul class="navbar-nav align-items-lg-center">
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Movies
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Popular</a></li>
+                                    <li><a class="dropdown-item" href="#">Now Playing</a></li>
+                                    <li><a class="dropdown-item" href="#">Upcoming</a></li>
+                                    <li><a class="dropdown-item" href="#">Top Rated</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    TV Shows
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Popular</a></li>
+                                    <li><a class="dropdown-item" href="#">Airing Today</a></li>
+                                    <li><a class="dropdown-item" href="#">On TV</a></li>
+                                    <li><a class="dropdown-item" href="#">Top Rated</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    People
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Popular People</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    More
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Discussions</a></li>
+                                    <li><a class="dropdown-item" href="#">Leaderboard</a></li>
+                                    <li><a class="dropdown-item" href="#">Support</a></li>
+                                    <li><a class="dropdown-item" href="#">API</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pb-4 p-lg-0">
+                        <ul class="navbar-nav align-items-lg-center">
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img width="30"
+                                        src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-371-plus-white-0bac34f16124808a12ea863b4d9cc6e599dee7c0a80658cfe9ead26939e64517.svg"
+                                        alt="">
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Can't find a movie or TV show? Login to
+                                            create
+                                            it.</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <button class="btn btn-outline-light text-light p-0 px-2 rounded-1">IT</button>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">
+                                            Seleziona la lingua...
+                                        </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Login
+                                </a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Join TMDB
+                                </a>
+                            </li>
+                            <li class="nav-item px-2 d-none d-lg-block">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" aria-expanded="false">
+                                    <img width="30"
+                                        src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg"
+                                        alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <nav> <!-- White Navbar-->
+            <ul style="max-height: 3rem"
+                class="nav justify-content-start justify-content-sm-center ps-2 pt-1 gap-1 gap-lg-3 overflow-x-auto flex-nowrap overflow-y-hidden">
+                <li class="nav-item ">
+                    <a class="text-dark nav-link dropdown-toggle border-bottom border-5 border-info px-0 ms-2 ms-lg-0"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Overview
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Media
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Fandom
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Share
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Movie Banner -->
+    <section class="banner | text-dark" id="movie-backdrop">
+        <div class="banner__shadow" id="banner-shadow">
+            <div class="container-xxl d-grid gap-5 px-4 px-lg-3 py-3 p-sm-5">
+                <div class="row gap-5 d-block d-lg-flex ">
+                    <!-- Poster -->
+                    <div class="poster | col-3 rounded overflow-hidden p-0 mb-4">
+                        <img class="w-100" id="movie-banner"
+                            src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/opMK4RJxZmACWrgfZlOnRp6hsQK.jpg"
+                            alt="">
+                        <div class="w-100 d-none d-lg-flex bg-dark p-2 align-items-center gap-2 pe-3">
+                            <div>
+                                <img class="rounded rounded-2" width="40px"
+                                    src="https://www.themoviedb.org/t/p/original/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg"
+                                    alt="Buy on Google Play Store">
+                            </div>
+                            <div class="text-white lh-1">
+                                <p class="text-secondary">Disponibile per il noleggio o per l'acquisto</p>
+                                <p class="fw-bold pt-1">Watch Now</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Movie Info -->
+                    <div class="col my-auto">
+                        <!-- Movie Title -->
+                        <h1 id="movie-title"
+                            class="movie__title | fs-4 fw-bold text-center text-md-start my-2 pb-2 my-lg-0"> <span>Movie
+                                Title</span>
+                            <span class="opacity-75 fw-normal">(2023)</span>
+                        </h1>
+                        <!-- Age Restriction, Date, Genre and Duration -->
+                        <p class="text-center text-md-start mx-auto">
+                            <span class="opacity-75 border border-1 px-1 rounded rounded-1">PG</span>
+                            <span id="movie-release-date">Data di Rilascio</span>
+                            • <span id="movie-generi">Generi </span> •
+                            <span id="movie-runtime">RunTime</span>
+                        </p>
+                        <!-- Interactive Buttons -->
+                        <div
+                            class="movie__buttons | d-flex flex-wrap align-items-center gap-1 gap-md-4 py-3 py-md-4 justify-content-center justify-content-md-start">
+                            <div class="d-flex align-items-center justify-content-center gap-1">
+                                <div class="bg-dark rounded-circle border border-4 border-dark">
+                                    <button id="user-score" style="width: 3.6rem; height: 3.6rem"
+                                        class="bg-dark text-light fs-4 border border-4 rounded-circle fw-semibold">
+                                        <p>
+                                            00<sup class="fs-6">%</sup>
+                                        </p>
+                                    </button>
+                                </div>
+                                <p style="max-width:6ch" class="fw-bold fs-5 lh-1">User Score</p>
+                            </div>
+                            <div class="d-none d-md-block dropdown">
+                                <button style="aspect-ratio: 1;" type="button"
+                                    class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
+                                    id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-list-ul" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z">
+                                        </path>
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu p-0" aria-labelledby="dropdownMenu2">
+                                    <li><button class="dropdown-item bg-dark text-light px-2 py-1 m-0"
+                                            type="button">Accedi per creare e modificare liste
+                                            personalizzate</button></li>
+                                </ul>
+                            </div>
+                            <div class="d-none d-md-block dropdown">
+                                <button style="aspect-ratio: 1;" type="button"
+                                    class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
+                                    id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg style="scale: 0.8" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu p-0" aria-labelledby="dropdownMenu2">
+                                    <li><button class="dropdown-item bg-dark text-light px-2 py-1 m-0"
+                                            type="button">Accedi per creare e modificare liste
+                                            personalizzate</button></li>
+                                </ul>
+                            </div>
+                            <div class="d-none d-md-block dropdown">
+                                <button style="aspect-ratio: 1;" type="button"
+                                    class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
+                                    id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg style="scale: 0.8" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu p-0" aria-labelledby="dropdownMenu2">
+                                    <li><button class="dropdown-item bg-dark text-light px-2 py-1 m-0"
+                                            type="button">Accedi per creare e modificare liste
+                                            personalizzate</button></li>
+                                </ul>
+                            </div>
+                            <div class="d-none d-md-block dropdown">
+                                <button style="aspect-ratio: 1;" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                    class="d-flex btn btn-dark rounded-circle justify-content-center align-items-center"
+                                    id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg style="scale: 0.8" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu p-0" aria-labelledby="dropdownMenu2">
+                                    <li><button class="dropdown-item bg-dark text-light px-2 py-1 m-0"
+                                            type="button">Vota il Film</button></li>
+                                </ul>
+                            </div>
+                            <button type="button" style="color: inherit"
+                                class="movie__trailer-button | btn fw-semibold btn-lg d-flex align-items-center gap-1 p-0 py-md-2 px-md-3 border-start rounded-0 ps-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-play-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                                </svg>
+                                Guarda Trailer
+                            </button>
+                        </div>
+                        <!-- Vote Response -->
+                        <div class="vote-alert alert alert-success d-none" role="alert">
+                            Voto registrato con successo
+                        </div>
+                        <!-- Tag Line -->
+                        <p id="movie-tagline" class="movie__tagline | fst-italic opacity-75">Tagline</p>
+                        <!-- Description -->
+                        <h2 class="fw-bold fs-5 mt-1">Descrizione</h2>
+                        <p id="movie-overview" class="lh-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Velit officia a, laudantium odio voluptates voluptate at veritatis, sed delectus, doloremque
+                            reiciendis nesciunt eum! Adipisci eaque repellat veritatis nisi sunt quidem sint, quos,
+                            libero repudiandae dolores neque at illo voluptas perspiciatis facilis animi non quae optio
+                            officiis! Impedit placeat provident alias.</p>
+                        <!-- Directors and Writers-->
+                        <div class="movie__people | grid row mt-4">
+                            <div class="col">
+                                <h3 class="fw-bold fs-6 m-0 p-0" id="movie-director">Christopher McQuarrie</h3>
+                                <p>Director</p>
+                            </div>
+                            <div class="col">
+                                <h3 class="fw-bold fs-6 m-0 p-0" id="movie-writer">
+                                    Erik Jendresen</h3>
+                                <p>Writer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Rest of the Content -->
+    <section class="container-xxl py-4 px-4">
+        <div class="row d-block d-lg-flex">
+            <!-- Cast, Socials, Media & Recommendations-->
+            <div class="col-lg-9">
+                <!-- Cast -->
+                <div class="overflow-x-hidden">
+                    <h2 class="fs-4 py-3">Top Billed Cast</h2>
+                    <div class="card-scroller scroller | d-flex flex-nowrap gap-3 overflow-x-auto pb-3">
+                        <div id="actor-card" class="card rounded overflow-hidden flex-shrink-0 d-none"
+                            style="width: 10rem; height: 17.5rem">
+                            <img src="" alt="">
+                            <div class="card-body py-2">
+                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Actor's Name</h5>
+                                <p class="card-text fs-7 lh-sm">Character</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h2><a class="text-decoration-none text-dark fs-5 pb-3" href="#">Full Cast & Crew</a></h2>
+                    <hr>
+                </div>
+                <!-- Social -->
+                <div class="pe-2">
+                    <ul class="socials tabs | nav nav-pills mb-3 pt-3 d-flex flex-nowrap align-items-center gap-2"
+                        id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <h2 class="fs-4 me-5">Social</h2>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link bg-white text-black fw-semibold fs-5 rounded-0" id="reviews-tab"
+                                data-bs-toggle="pill" data-bs-target="#reviews" type="button" role="tab"
+                                aria-controls="reviews" aria-selected="true">Recensioni <span
+                                    class="opacity-75">0</span></button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active bg-white text-black fw-semibold fs-5 rounded-0"
+                                id="discussions-tab" data-bs-toggle="pill" data-bs-target="#discussions" type="button"
+                                role="tab" aria-controls="discussions" aria-selected="true">Discussioni <span
+                                    class="opacity-75">11</span></button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab"
+                            tabindex="0">
+                            <p>Non abbiamo recensioni per Mission Impossible - Dead Reckoning - Parte uno.</p>
+                        </div>
+                        <div class="tab-pane fade show active" id="discussions" role="tabpanel"
+                            aria-labelledby="discussions-tab" tabindex="0">
+                            <div
+                                class="row d-sm-flex d-block align-items-center border px-3 py-2 rounded-3 shadow mb-3">
+                                <div class="col-sm-7 row align-items-center">
+                                    <div class="col-2">
+                                        <img class="rounded-circle" width="40"
+                                            src="https://www.themoviedb.org/t/p/w45_and_h45_face/tz7DJXPNGNS6brlE2f8NU2iGC1g.jpg">
+                                    </div>
+                                    <p class="col">What an absolute amazing movie!</p>
+                                </div>
+                                <div class="col row align-items-center justify-content-end">
+                                    <p class="col-3 col-sm-3 opacity-75">Aperto</p>
+                                    <p class="col-1 col-sm-2 opacity-75">12</p>
+                                    <div class="col text-end">
+                                        <p class="opacity-75">17 ott, 2023 alle 11:21PM</p>
+                                        <p><span class="opacity-75">di</span> HarrySkywalker</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center border px-3 py-2 rounded-3 shadow mb-3">
+                                <div class="col-sm-7 row align-items-center">
+                                    <div class="col-2">
+                                        <img class="rounded-circle" width="40"
+                                            src="https://www.themoviedb.org/t/p/w45_and_h45_face/w3BgSplZt0Cptu9ZqNs3cZz3BIY.jpg">
+                                    </div>
+                                    <p class="col">How Did You Like How Ethan Entered The Train?</p>
+                                </div>
+                                <div class="col row align-items-center justify-content-end">
+                                    <p class="col-3 col-sm-3 opacity-75">Aperto</p>
+                                    <p class="col-1 col-sm-2 opacity-75">3</p>
+                                    <div class="col text-end">
+                                        <p class="opacity-75">15 ott, 2023 alle 3:30PM</p>
+                                        <p><span class="opacity-75">di</span> D-magic </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center border px-3 py-2 rounded-3 shadow mb-3">
+                                <div class="col-sm-7 row align-items-center">
+                                    <div class="col-2">
+                                        <img class="rounded-circle" width="40"
+                                            src="https://www.themoviedb.org/t/p/w45_and_h45_face/wcGMvwZjHSIxfFavfZ4OzXbhyG8.jpg">
+                                    </div>
+                                    <p class="col">OT: Letterboxd sold to Canadian firm</p>
+                                </div>
+                                <div class="col row align-items-center justify-content-end">
+                                    <p class="col-3 col-sm-3 opacity-75">Aperto</p>
+                                    <p class="col-1 col-sm-2 opacity-75">0</p>
+                                    <div class="col text-end">
+                                        <p class="opacity-75">30 set, 2023 alle 12:09AM</p>
+                                        <p><span class="opacity-75">di</span> bratface</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="fs-5 my-4"><a href="#">Vai a discussioni</a></h5>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- Media -->
+                <div class="pe-2">
+                    <ul class="tabs | nav nav-pills mb-3 pt-3 d-flex align-items-center gap-2" id="pills-tab"
+                        role="tablist">
+                        <li class="nav-item">
+                            <h2 class="fs-4 me-5">Media</h2>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active bg-white text-black fw-semibold fs-5 rounded-0"
+                                id="popular-tab" data-bs-toggle="pill" data-bs-target="#popular" type="button"
+                                role="tab" aria-controls="popular" aria-selected="true">Più popolare <span
+                                    class="opacity-75"></span></button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link bg-white text-black fw-semibold fs-5 rounded-0" id="video-tab"
+                                data-bs-toggle="pill" data-bs-target="#video" type="button" role="tab"
+                                aria-controls="video" aria-selected="true">Video <span
+                                    class="opacity-75">2</span></button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link bg-white text-black fw-semibold fs-5 rounded-0" id="wallpapers-tab"
+                                data-bs-toggle="pill" data-bs-target="#wallpapers" type="button" role="tab"
+                                aria-controls="wallpapers" aria-selected="true">Sfondi <span
+                                    class="opacity-75">44</span></button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link bg-white text-black fw-semibold fs-5 rounded-0" id="posters-tab"
+                                data-bs-toggle="pill" data-bs-target="#posters" type="button" role="tab"
+                                aria-controls="posters" aria-selected="true">Poster <span
+                                    class="opacity-75">275</span></button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="popular" role="tabpanel"
+                            aria-labelledby="popular-tab" tabindex="0">
+                            <div class="scroller gallery | d-flex flex-nowrap gap-0 overflow-x-auto">
+                                <!--<iframe style="min-width:622px" width="622" height="350"
+                                    src="https://www.youtube.com/embed/63Z0XdzcS-I">
+                                </iframe>-->
+                                <img src="https://www.themoviedb.org/t/p/w533_and_h300_bestv2/628Dep6AxEtDxjZoGP78TsOxYbK.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/opMK4RJxZmACWrgfZlOnRp6hsQK.jpg"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab" tabindex="0">
+                            <div class="scroller gallery | d-flex flex-nowrap gap-0 overflow-x-auto">
+                                <!--<iframe style="min-width:622px" width="622" height="350"
+                                    src="https://www.youtube.com/embed/63Z0XdzcS-I">
+                                </iframe>-->
+                                <!--<iframe style="min-width:622px" width="622" height="350"
+                                    src="https://www.youtube.com/embed/RrdI6AFk1t8">
+                                </iframe>-->
+                                <!--<iframe style="min-width:622px" width="622" height="350"
+                                    src="https://www.youtube.com/embed/9YEH9IQwa_w">
+                                </iframe>-->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="wallpapers" role="tabpanel" aria-labelledby="wallpapers-tab"
+                            tabindex="0">
+                            <div class="scroller gallery | d-flex flex-nowrap gap-0 overflow-x-auto">
+                                <img src="https://www.themoviedb.org/t/p/w533_and_h300_bestv2/628Dep6AxEtDxjZoGP78TsOxYbK.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w533_and_h300_bestv2/h56edmERPTkey89SqyKu4hINVNy.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w533_and_h300_bestv2/slnKiyRpFudzkzvcvvIFaltSvCl.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w533_and_h300_bestv2/1kSpSW5geG01phAYENdFeWDZXMy.jpg"
+                                    alt="">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="posters" role="tabpanel" aria-labelledby="posters-tab"
+                            tabindex="0">
+                            <div class="scroller gallery | d-flex flex-nowrap gap-0 overflow-x-auto">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/kHTj8UEVI0IhY1BTBa1zE1iaNHk.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/asrh3qvqPYkuDGs24CUTIsoUyDd.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/YUk4GZrcPvf88raPMvpGNkhTem.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/c4rLrwr0XmzRxyfDHOjFQ7rTyDW.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/vbOTF7nKtEkgCHxlWJ5YDKiK5BU.jpg"
+                                    alt="">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/opMK4RJxZmACWrgfZlOnRp6hsQK.jpg"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- Collection -->
+                <div>
+                    <div class="collection-banner | my-4 py-5 px-4 text-white rounded-2">
+                        <h2>Parte del Mission: Impossible - Collezione</h2>
+                        <p>Inserire Mission: Impossible, Mission: Impossible II, Mission: Impossible III, Mission:
+                            Impossible - Protocollo fantasma, Mission: Impossible - Rogue Nation, and Mission:
+                            Impossible - Fallout</p>
+                        <button type="button" class="btn btn-secondary rounded rounded-5 mt-3 fw-bolder ">GUARDA LA
+                            COLLEZIONE</button>
+                    </div>
+                    <hr>
+                </div>
+                <!-- Recommendations -->
+                <div>
+                    <h2 class="fs-4 py-3">Consigliati</h2>
+                    <div class="scroller | d-flex flex-nowrap gap-0 overflow-x-auto gap-3">
+                        <div class="card border-0 flex-shrink-0" style="width: 18rem;">
+                            <img class="rounded"
+                                src="https://www.themoviedb.org/t/p/w250_and_h141_face/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg"
+                                class="card-img-top" alt="">
+                            <div class="card-body d-flex justify-content-between pt-1">
+                                <span class="card-text text-start">Oppenheimer</span>
+                                <span class="text-end">82%</span>
+                            </div>
+                        </div>
+                        <div class="card border-0 flex-shrink-0" style="width: 18rem;">
+                            <img class="rounded"
+                                src="https://www.themoviedb.org/t/p/w250_and_h141_face/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg"
+                                class="card-img-top" alt="">
+                            <div class="card-body d-flex justify-content-between pt-1">
+                                <span class="card-text text-start">Barbie</span>
+                                <span class="text-end">72%</span>
+                            </div>
+                        </div>
+                        <div class="card border-0 flex-shrink-0" style="width: 18rem;">
+                            <img class="rounded"
+                                src="https://www.themoviedb.org/t/p/w250_and_h141_face/35z8hWuzfFUZQaYog8E9LsXW3iI.jpg"
+                                class="card-img-top" alt="">
+                            <div class="card-body d-flex justify-content-between pt-1">
+                                <span class="card-text text-start text-truncate">Indiana Jones e il quadrante
+                                    magico</span>
+                                <span class="text-end">67%</span>
+                            </div>
+                        </div>
+                        <div class="card border-0 flex-shrink-0" style="width: 18rem;">
+                            <img class="rounded"
+                                src="https://www.themoviedb.org/t/p/w250_and_h141_face/bjtrwMfmYNrY4TxkNaTVCpEe0s0.jpg"
+                                class="card-img-top" alt="">
+                            <div class="card-body d-flex justify-content-between pt-1">
+                                <span class="card-text text-start">Shiv Shastri Balboa</span>
+                                <span class="text-end">50%</span>
+                            </div>
+                        </div>
+                        <div class="card border-0 flex-shrink-0" style="width: 18rem;">
+                            <img class="rounded"
+                                src="https://www.themoviedb.org/t/p/w250_and_h141_face/yF1eOkaYvwiORauRCPWznV9xVvi.jpg"
+                                class="card-img-top" alt="">
+                            <div class="card-body d-flex justify-content-between pt-1">
+                                <span class="card-text text-start">The Flash</span>
+                                <span class="text-end">68%</span>
+                            </div>
+                        </div>
+                        <div class="card border-0 flex-shrink-0" style="width: 18rem;">
+                            <img class="rounded"
+                                src="https://www.themoviedb.org/t/p/w250_and_h141_face/seBLWU1Zf6hr1Y7THEiunUYU5Ab.jpg"
+                                class="card-img-top" alt="">
+                            <div class="card-body d-flex justify-content-between pt-1">
+                                <span class="card-text text-start text-truncate">Tarzan - Il mistero della città
+                                    perduta</span>
+                                <span class="text-end">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Production Info, Tags, Keywords & Content Score-->
+            <div class="col-lg-3">
+                <div>
+                    <!-- Socials -->
+                    <div class="d-flex gap-3 py-3 fs-3">
+                        <div>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path
+                                        d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                    <path
+                                        d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                    <path
+                                        d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Production Info -->
+                    <div class="ps-1">
+                        <div class="mb-3 lh-sm">
+                            <h5 class="fs-6 my-1 fw-bold">Original Title</h5>
+                            <p class="fs-6 fw-normal" id="original-title">Mission: Impossible - Dead Reckoning Part One
+                            </p>
+                        </div>
+                        <div class="mb-3 lh-sm">
+                            <h5 class="fs-6 my-1 fw-bold">Stataus</h5>
+                            <p class="fs-6 fw-normal">Released</p>
+                        </div>
+                        <div class="mb-3 lh-sm">
+                            <h5 class="fs-6 my-1 fw-bold">Original Language</h5>
+                            <p class="fs-6 fw-normal">English</p>
+                        </div>
+                        <div class="mb-3 lh-sm">
+                            <h5 class="fs-6 my-1 fw-bold">Budget</h5>
+                            <p class="fs-6 fw-normal">$291,000,000.00</p>
+                        </div>
+                        <div class="mb-3 lh-sm">
+                            <h5 class="fs-6 my-1 fw-bold">Revenue</h5>
+                            <p class="fs-6 fw-normal">$567,148,955.00</p>
+                        </div>
+                    </div>
+                    <!-- Keywords -->
+                    <div class="mb-5">
+                        <h4 class="fs-5 mt-5 fw-semibold">Parole Chiave</h4>
+                        <div class="d-flex flex-wrap">
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">rome, italy</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">chase</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">secret agent</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">race against time</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">sequel</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1"
+                                href="#">intelligence-agency</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">rogue agent</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">based on tv series</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">secret government
+                                agency</a>
+                            <a class="keyword | border border-2 rounded-2 px-2 py-1 m-1" href="#">northern norway</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="opacity-75 border border-2">
+                <div>
+                    <!-- Content Score -->
+                    <div>
+                        <h2 class="fs-5 me-5">Valutazione Contenuto</h2>
+                        <div style="background-color: rgba(0, 0, 0, 0.17);" class="text-light rounded overflow-hidden">
+                            <p style="background-color:rgba(136.5, 157.5, 178.5, 1)" class="fw-semibold ps-3 py-2">100
+                            </p>
+                            <p class="fs-6 ps-3 text-dark">Sì! Sembra buono!</p>
+                        </div>
+                    </div>
+                    <!-- Top Contributors -->
+                    <div class="mt-4">
+                        <h2 class="fs-5 me-5">Collaboratori principali</h2>
+                        <div class="row align-items-center gap-1 mb-4">
+                            <div class="col-2 text-end">
+                                <img class="rounded-circle" width="42"
+                                    src="https://www.themoviedb.org/t/p/w45_and_h45_face/yYG7Rhn9HfFpssIMeNiDynvxC14.jpg">
+                            </div>
+                            <div class="col">
+                                <p class="fw-semibold">414</p>
+                                <p class="fw-light lh-1">raze464</p>
+                            </div>
+                        </div>
+                        <div class="row align-items-center gap-1 mb-4">
+                            <div class="col-2 text-end">
+                                <img class="rounded-circle" width="42"
+                                    src="https://www.themoviedb.org/t/p/w45_and_h45_face/w3BgSplZt0Cptu9ZqNs3cZz3BIY.jpg">
+                            </div>
+                            <div class="col">
+                                <p class="fw-semibold">195</p>
+                                <p class="fw-light lh-1">Giger</p>
+                            </div>
+                        </div>
+                        <div class="row align-items-center gap-1 mb-4">
+                            <div class="col-2 text-end">
+                                <img class="rounded-circle" width="42"
+                                    src="https://www.themoviedb.org/t/p/w45_and_h45_face/tz7DJXPNGNS6brlE2f8NU2iGC1g.jpg">
+                            </div>
+                            <div class="col">
+                                <p class="fw-semibold">61</p>
+                                <p class="fw-light lh-1">FletcherMunson</p>
+                            </div>
+                        </div>
+                        <div class="row align-items-center gap-1 mb-4">
+                            <div class="col-2 text-end">
+                                <img class="rounded-circle" width="42"
+                                    src="https://www.themoviedb.org/t/p/w45_and_h45_face/5BvxGhRE7yjtbHCXgrTxPk9hBXp.jpg">
+                            </div>
+                            <div class="col">
+                                <p class="fw-semibold">57</p>
+                                <p class="fw-light lh-1">Shei</p>
+                            </div>
+                        </div>
+                        <p>Visualizza cronologia modifiche</p>
+                    </div>
+                    <!-- Popularity -->
+                    <div class="mt-4">
+                        <h2 class="fs-5 me-5">Trend gradimento</h2>
+                        <div>
+                            <!-- Grafico Trend Gradimento -->
+                            <svg style="width: 100%; height: 70px; overflow: hidden;" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+                                <defs></defs>
+                                <g>
+                                    <path d="M0 0 L 203 0 203 50 0 50Z" stroke="none" fill="none"></path>
+                                    <path d="M2 3 L 200 3 200 48 2 48Z" stroke="none" fill="#fff" fill-opacity="0">
+                                    </path>
+                                    <g>
+                                        <g></g>
+                                        <g></g>
+                                        <g>
+                                            <path style="display: none;" d="M101 3 L 101 48" stroke="#8e8e8e"
+                                                stroke-width="2" fill="none"></path>
+                                        </g>
+                                        <g></g>
+                                        <g>
+                                            <g>
+                                                <path
+                                                    d="M16.143 13 L 44.429 13 72.714 13 101 33 129.286 33 157.571 33 185.857 43"
+                                                    stroke="#899eb3" stroke-width="2" fill="none"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <g></g>
+                                </g>
+                            </svg>
+                        </div>
+                        <button type="button"
+                            class="btn btn-secondary rounded rounded-5 mt-3 fw-bolder d-flex align-items-center gap-2">
+                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 448 512">
+                                <path
+                                    d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z" />
+                            </svg>
+                            <p>ACCEDI PER MODIFICARE</p>
+                        </button>
+                        <div class="d-flex align-items-center gap-2 text-dark opacity-75 ms-2 my-4">
+                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 576 512">
+                                <path
+                                    d="M64 64C28.7 64 0 92.7 0 128V384c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H64zm16 64h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM64 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V240zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm80-176c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V144zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V240c0-8.8 7.2-16 16-16zM160 336c0-8.8 7.2-16 16-16H400c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336zM272 128h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM256 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H272c-8.8 0-16-7.2-16-16V240zM368 128h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM352 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H368c-8.8 0-16-7.2-16-16V240zM464 128h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H464c-8.8 0-16-7.2-16-16V144c0-8.8 7.2-16 16-16zM448 240c0-8.8 7.2-16 16-16h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H464c-8.8 0-16-7.2-16-16V240zm16 80h32c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H464c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16z" />
+                            </svg>
+                            <p>Scorciatoie tastiera</p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 text-dark ms-2 my-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                <path
+                                    d="M123.6 391.3c12.9-9.4 29.6-11.8 44.6-6.4c26.5 9.6 56.2 15.1 87.8 15.1c124.7 0 208-80.5 208-160s-83.3-160-208-160S48 160.5 48 240c0 32 12.4 62.8 35.7 89.2c8.6 9.7 12.8 22.5 11.8 35.5c-1.4 18.1-5.7 34.7-11.3 49.4c17-7.9 31.1-16.7 39.4-22.7zM21.2 431.9c1.8-2.7 3.5-5.4 5.1-8.1c10-16.6 19.5-38.4 21.4-62.9C17.7 326.8 0 285.1 0 240C0 125.1 114.6 32 256 32s256 93.1 256 208s-114.6 208-256 208c-37.1 0-72.3-6.4-104.1-17.9c-11.9 8.7-31.3 20.6-54.3 30.6c-15.1 6.6-32.3 12.6-50.1 16.1c-.8 .2-1.6 .3-2.4 .5c-4.4 .8-8.7 1.5-13.2 1.9c-.2 0-.5 .1-.7 .1c-5.1 .5-10.2 .8-15.3 .8c-6.5 0-12.3-3.9-14.8-9.9c-2.5-6-1.1-12.8 3.4-17.4c4.1-4.2 7.8-8.7 11.3-13.5c1.7-2.3 3.3-4.6 4.8-6.9c.1-.2 .2-.3 .3-.5z" />
+                            </svg>
+                            <p>Entra per segnalare un problema</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Footer -->
+    <footer class="bg-dark">
+        <div style="padding-bottom:6rem"
+            class="container-xxl d-block d-lg-flex text-light pt-5 justify-content-center gap-5 ps-5 ps-lg-0">
+            <div class="d-flex flex-column align-items-lg-end align-items-center gap-3 pb-3">
+                <img width="130px"
+                    src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+                    alt="">
+                <button type="button" class="btn btn-light rounded mt-3 fw-bolder px-4">
+                    UNISCITI AL GRUPPO
+                </button>
+            </div>
+            <div>
+                <p class="fw-bolder pb-1">LE BASI</p>
+                <p>Info su TMDB</p>
+                <p>Contatti</p>
+                <p>Forum di supporto</p>
+                <p>API</p>
+                <p>Stato del sistema</p>
+            </div>
+            <div>
+                <p class="fw-bolder pb-1">METTERSI IN GIOCO</p>
+                <p>Guida Contributi</p>
+                <p>Aggiungi Nuovo Film</p>
+                <p>Aggiungi Nuova Serie TV</p>
+            </div>
+            <div>
+                <p class="fw-bolder pb-1">COMMUNITY</p>
+                <p>Linee Guida</p>
+                <p>Discussioni</p>
+                <p>Classifica</p>
+            </div>
+            <div>
+                <p class="fw-bolder pb-1">LEGALE</p>
+                <p>Condizioni d'uso</p>
+                <p>Termini d'uso delle API</p>
+                <p>Politica Privacy</p>
+                <p>DMCA Privacy</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Vote Modal -->
+    <div class="modal" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vota il Film</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="voto" class="form-label">Voto:</label>
+                    <input type="number" class="form-number ms-3" min="1" max="5" id="voto" value="3" step="0.5">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="close-modal-btn | btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="vote()">Vota</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/lib.js"></script>
+    <script src="../js/movie.js"></script>
+    <script>
+        fetchById();
+    </script>
+    <!-- Bootstrap JS import -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

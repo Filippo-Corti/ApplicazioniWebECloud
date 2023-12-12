@@ -1,0 +1,100 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.fs-7 {
+    font-size: 0.9rem;
+}
+
+.banner {
+    /*background-image: url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/628Dep6AxEtDxjZoGP78TsOxYbK.jpg);
+   */ background-position: right top;
+    background-repeat: no-repeat;
+}
+
+.collection-banner {
+    background: linear-gradient(to right, rgba(3, 37, 65, 1) 0%, rgba(3, 37, 65, 0.6) 100%), url(https://www.themoviedb.org/t/p/w1440_and_h320_multi_faces/jYl0UuJFcmhymv9ZNO14lPLDY1Z.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner__shadow {
+   /* background-image: linear-gradient(to right, rgb(0, 0, 0, 0.4) calc((50vw - 170px) - 340px), rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.84) 100%) */
+}
+
+/* width */
+.scroller::-webkit-scrollbar {
+    height: 8px;
+}
+
+/* Track */
+.scroller::-webkit-scrollbar-track {
+    background: transparent
+}
+
+/* Handle */
+.scroller::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: #DBDBDB;
+}
+
+/* Handle on hover */
+.scroller::-webkit-scrollbar-thumb:hover {
+    background: #d4d3d3;
+}
+
+.keyword {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.2) !important;
+
+}
+
+.tabs .active {
+    border-bottom: 4px solid black;
+}
+
+.gallery {
+    height: 350px;
+    overflow-y: hidden;
+}
+
+
+@media screen and (max-width: 992px) {
+    .banner {
+        background-size: contain;
+    }
+
+    .banner__shadow {
+        background-image: linear-gradient(to bottom, rgba(136.5, 157.5, 178.5, 0) calc((50vw - 170px) - 340px), rgba(29, 43, 56, 0.9) 30%, rgba(7, 18, 29, 1) 100%)
+    }
+
+    .poster {
+        transform: translateX(20%);
+    }
+
+    .movie__people {
+        font-size: 0.9rem;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+    .movie__title {
+        font-size: calc(1.325rem + .9vw) !important
+    }
+
+    .movie__trailer-button {
+        border: 0 !important;
+    }
+
+    .movie__tagline {
+        font-size: 1.2rem;
+    }
+}
