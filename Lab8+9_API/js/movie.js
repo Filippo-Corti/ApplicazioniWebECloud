@@ -10,7 +10,7 @@ var defaultHREF = "pages/scheda_film.html?id=";
 function fetchById() {
   id = getIdByURL();
   fetchMovieData(id, x => addDetailsToPage(x));
-  fetchMovieCasting(id, x => addDetailsToPage(x));
+  fetchMovieCasting(id, x => addCastToPage(x));
 }
 
 function addDetailsToPage(movie) {
