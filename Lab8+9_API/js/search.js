@@ -66,16 +66,3 @@ function updatePaginationGUI() {
     document.querySelector(".page-item.next-page>a").innerHTML = currentPage + 1;
   }
 }
-
-/* ------------------------------- VOTE MODAL ------------------------------- */
-
-
-function vote() {
-  let voto = document.querySelector("#voto").value;
-  fetchForRating(getIdByURL(), voto, (x) => notifyVoteReceived(x));
-}
-
-function notifyVoteReceived(response) {
-    document.querySelector(".vote-alert").classList.remove("d-none");
-    document.querySelector(".close-modal-btn").click();
-}
