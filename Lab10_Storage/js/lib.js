@@ -66,7 +66,7 @@ function fetchByKeyword(keyword, elaborateData) {
 
 function fetchForRating(id, rating, elaborateData) {
     let payload = {
-      value: rating,
+        value: rating,
     }
     let options = POSToptions;
     options.body = JSON.stringify(payload);
@@ -77,13 +77,19 @@ function fetchForRating(id, rating, elaborateData) {
         .catch(err => console.error(err));
 }
 
+function fetchActorData(id, elaborateData) {
+    fetch('https://api.themoviedb.org/3/person/' + id +'?language=en-US', options)
+        .then(response => response.json())
+        .then(response => elaborateData(response))
+        .catch(err => console.error(err));
+}
 /* ------------------------------- GET GUEST SESSION ID ------------------------------- */
 async function getSessionId() {
-    if(sessionId == null) {
+    if (sessionId == null) {
         await fetch('https://api.themoviedb.org/3/authentication/guest_session/new', optionsGET)
-        .then(response => response.json())
-        .then(response => sessionId = response.guest_session_id)
-        .catch(err => console.error(err));
+            .then(response => response.json())
+            .then(response => sessionId = response.guest_session_id)
+            .catch(err => console.error(err));
     }
     return sessionId;
 }
