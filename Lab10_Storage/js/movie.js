@@ -3,7 +3,8 @@
 var defaultURL = "https://image.tmdb.org/t/p/w220_and_h330_face";
 var defaultURL_Backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces";
 var defaultURL_Actors = "https://www.themoviedb.org/t/p/w276_and_h350_face";
-var defaultHREF = "pages/scheda_film.html?id=";
+var defaultHREF = "scheda_film.html?id=";
+var defaultHREF_Actor = "scheda_attore.html?id=";
 
 /* ------------------------------- EDIT PAGE WITH FETCHED DATA ------------------------------- */
 
@@ -38,8 +39,9 @@ function addCastToPage(details) {
   for (actor of details.cast) {
     var clone = template.cloneNode(true);
     clone.classList.remove("d-none");
+    clone.href = defaultHREF_Actor + actor.id;
     if (actor.profile_path)
-      clone.querySelector("#actor-card>img").src = defaultURL_Actors + actor.profile_path;
+      clone.querySelector("img").src = defaultURL_Actors + actor.profile_path;
     clone.querySelector(".card-title").innerHTML = actor.name;
     clone.querySelector(".card-text").innerHTML = actor.character;
     scroller.appendChild(clone);

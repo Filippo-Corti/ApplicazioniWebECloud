@@ -15,7 +15,7 @@ const optionsGET = {
     }
 };
 
-const POSToptions = {
+const optionsPOST = {
     method: 'POST',
     headers: {
         accept: 'application/json',
@@ -68,17 +68,24 @@ function fetchForRating(id, rating, elaborateData) {
     let payload = {
         value: rating,
     }
-    let options = POSToptions;
+    let options = optionsPOST;
     options.body = JSON.stringify(payload);
 
-    fetch('https://api.themoviedb.org/3/movie/' + id + '/rating', POSToptions)
+    fetch('https://api.themoviedb.org/3/movie/' + id + '/rating', optionsPOST)
         .then(response => response.json())
         .then(response => elaborateData(response))
         .catch(err => console.error(err));
 }
 
 function fetchActorData(id, elaborateData) {
-    fetch('https://api.themoviedb.org/3/person/' + id +'?language=en-US', options)
+    fetch('https://api.themoviedb.org/3/person/' + id + '?language=en-US', optionsGET)
+        .then(response => response.json())
+        .then(response => elaborateData(response))
+        .catch(err => console.error(err));
+}
+
+function fetchActorCredits(id, elaborateData) {
+    fetch('https://api.themoviedb.org/3/person/' + id + '/movie_credits?language=en-US', optionsGET)
         .then(response => response.json())
         .then(response => elaborateData(response))
         .catch(err => console.error(err));

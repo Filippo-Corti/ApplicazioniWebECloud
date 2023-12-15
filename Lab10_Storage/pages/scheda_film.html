@@ -401,14 +401,16 @@
                 <div class="overflow-x-hidden">
                     <h2 class="fs-4 py-3">Top Billed Cast</h2>
                     <div class="card-scroller scroller | d-flex flex-nowrap gap-3 overflow-x-auto pb-3">
-                        <div id="actor-card" class="card rounded overflow-hidden flex-shrink-0 d-none"
-                            style="width: 10rem; height: 17.5rem">
-                            <img src="" alt="">
-                            <div class="card-body py-2">
-                                <h5 class="card-title fs-6 fw-bold lh-sm my-1">Actor's Name</h5>
-                                <p class="card-text fs-7 lh-sm">Character</p>
+                        <a id="actor-card" class="d-none" href="">
+                            <div class="card rounded overflow-hidden flex-shrink-0"
+                                style="width: 10rem; height: 17.5rem">
+                                <img src="" alt="">
+                                <div class="card-body py-2">
+                                    <h5 class="card-title fs-6 fw-bold lh-sm my-1">Actor's Name</h5>
+                                    <p class="card-text fs-7 lh-sm">Character</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <h2><a class="text-decoration-none text-dark fs-5 pb-3" href="#">Full Cast & Crew</a></h2>
                     <hr>
@@ -917,7 +919,8 @@
                     <input type="number" class="form-number ms-3" min="1" max="5" id="voto" value="3" step="0.5">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="close-modal-btn | btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="close-modal-btn | btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" onclick="vote()">Vota</button>
                 </div>
             </div>
