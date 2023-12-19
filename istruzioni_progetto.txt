@@ -1,0 +1,15 @@
+- Solo GET (al massimo POST, non altro)
+- Login e Users con Local Storage
+- Email è un identificatore univoco degli utenti 
+    -> Quando ne creo uno nuovo devo controllare che non esista già un utente con quella mail
+    -> La uso anche per il login
+- La password può anche essere salvata in chiaro (solo per quest'anno)
+- Registrazione e login devono controllare la validità dei campi
+
+- 5 Fasi spiegate nel pdf di presentazione del Progetto
+- Metterci del proprio nel profilo dell'utente
+
+- Prepararsi un local storage con cui partire (facoltativo ma è utile)
+
+- Almeno un po' responsive
+

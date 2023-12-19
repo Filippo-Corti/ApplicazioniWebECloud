@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+
+    
+    <!-- Page Header -->
+    <header>
+
+        <!-- Main Navbar -->
+        <nav class="navbar navbar-expand-lg justify-content-between text-bg-dark py-1 py-lg-3">
+            <div class="container-xxl">
+
+                <!-- Mobile Menu Header -->
+                <div class="flex-fill my-2 d-lg-none">
+                    <div class="d-flex justify-content-between w-100 align-items-center">
+                        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <img class="d-lg-none" width="50px"
+                            src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
+                            alt="TMDB">
+                        <a class="nav-link text-light fw-bold" href="#" role="button" aria-expanded="false">
+                            <img width="30"
+                                src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg"
+                                alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Actual Menu -->
+                <div class="collapse navbar-collapse justify-content-between ms-4" id="navbarNavDropdown">
+                    <div class="pt-2 pt-lg-0 d-lg-flex align-items-lg-center">
+                        <!-- Logo -->
+                        <a class="navbar-brand d-none d-lg-block" href="#">
+                            <img width="170px"
+                                src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+                                alt="TMDB">
+                        </a>
+                        <ul class="navbar-nav align-items-lg-center">
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Movies
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Popular</a></li>
+                                    <li><a class="dropdown-item" href="#">Now Playing</a></li>
+                                    <li><a class="dropdown-item" href="#">Upcoming</a></li>
+                                    <li><a class="dropdown-item" href="#">Top Rated</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    TV Shows
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Popular</a></li>
+                                    <li><a class="dropdown-item" href="#">Airing Today</a></li>
+                                    <li><a class="dropdown-item" href="#">On TV</a></li>
+                                    <li><a class="dropdown-item" href="#">Top Rated</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    People
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Popular People</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    More
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Discussions</a></li>
+                                    <li><a class="dropdown-item" href="#">Leaderboard</a></li>
+                                    <li><a class="dropdown-item" href="#">Support</a></li>
+                                    <li><a class="dropdown-item" href="#">API</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pb-4 p-lg-0">
+                        <ul class="navbar-nav align-items-lg-center">
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img width="30"
+                                        src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-371-plus-white-0bac34f16124808a12ea863b4d9cc6e599dee7c0a80658cfe9ead26939e64517.svg"
+                                        alt="">
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Can't find a movie or TV show? Login to
+                                            create
+                                            it.</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <button class="btn btn-outline-light text-light p-0 px-2 rounded-1">IT</button>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">
+                                            Seleziona la lingua...
+                                        </a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Login
+                                </a>
+                            </li>
+                            <li class="nav-item px-2">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Join TMDB
+                                </a>
+                            </li>
+                            <li class="nav-item px-2 d-none d-lg-block">
+                                <a class="nav-link text-light fw-bold" href="#" role="button" aria-expanded="false">
+                                    <img width="30"
+                                        src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg"
+                                        alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+
+        <nav> <!-- White Navbar-->
+            <ul style="max-height: 3rem"
+                class="nav justify-content-start justify-content-sm-center ps-2 pt-1 gap-1 gap-lg-3 overflow-x-auto flex-nowrap overflow-y-hidden">
+                <li class="nav-item ">
+                    <a class="text-dark nav-link dropdown-toggle border-bottom border-5 border-info px-0 ms-2 ms-lg-0"
+                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Overview
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Media
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Fandom
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="text-dark nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Share
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Main</a></li>
+                        <li><a class="dropdown-item" href="#">Alternative Titles</a></li>
+                        <li><a class="dropdown-item" href="#">Cast & Crew</a></li>
+                        <li><a class="dropdown-item" href="#">Release Dates</a></li>
+                        <li><a class="dropdown-item" href="#">Translations</a></li>
+                        <li><a class="dropdown-item" href="#">Watch Now</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Changes</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    
+    <div class="container py-5">
+        <h1 class="mb-4">Registrazione:</h1>
+        <form  onsubmit="return controllaCampi(event)">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input name="email" id="email" class="form-control" type="email" value="nome.cognome03@gmail.com" onkeypress="controllaEmail(event.srcElement)">
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12 mb-3">
+                    <label for="password" class="form-label">Password 1</label>
+                    <input name="password" id="password" class="form-control | password" type="password" value="12345678" onkeypress="controllaLunghezzaEUguaglianza(event.srcElement, 4);" required>
+                    <button class="btn btn-primary" onclick="mostraPassword()" type="button">Mostra Password</button>
+                </div>
+                <div class="col-md-6 col-12 mb-3">
+                    <label for="password2" class="form-label">Password 2</label>
+                    <input id="password2" class="form-control | password" type="password" value="12345678" onkeypress="controllaLunghezzaEUguaglianza(event.srcElement, 4);" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-12 mb-3">
+                    <label for="fname" class="form-label">First Name</label>
+                    <input name="fname" id="fname" class="form-control" type="text" value="Nome" required>
+                </div>
+                <div class="col-md-6 col-12 mb-3">
+                    <label for="lname" class="form-label">Last Name</label>
+                    <input name="lname" id="lname" class="form-control" type="text" value="Cognome" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="factor" class="form-label">Attore Preferito</label>
+                    <input name="factor" id="factor" class="form-control" type="text" value="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-check p-4">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox" checked>
+                    <label class="form-check-label" for="flexCheckDefault" >
+                      Accetto
+                    </label>
+                  </div>
+            </div>
+
+            <button type="reset" class="btn btn-danger">Reset</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+    <script src="../js/registration.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
