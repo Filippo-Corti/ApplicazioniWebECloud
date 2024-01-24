@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selettore di Immagini</title>
+</head>
+<body>
+    <style>
+        section {
+            display: flex;
+            justify-content: center;
+        }
+
+        img {
+            border: 1px solid black;
+        }
+    </style>
+
+    <section>
+        <img id="image1" width="60" height="45" src="https://images.unsplash.com/photo-1682686581264-c47e25e61d95" onclick="selectImage(this)">
+        <img id="image2" width="60" height="45" src="https://images.unsplash.com/photo-1683009680116-b5c04463551d" onclick="selectImage(this)">
+        <img id="image3" width="60" height="45" src="https://images.unsplash.com/photo-1705923401054-b06daf310fc3" onclick="selectImage(this)">
+        <img id="image4" width="60" height="45" src="https://images.unsplash.com/photo-1705931622510-096b8faf03ce" onclick="selectImage(this)">
+        <img id="image5" width="60" height="45" src="https://images.unsplash.com/photo-1705943881669-6c561d98ab40" onclick="selectImage(this)">
+        <img id="image6" width="60" height="45" src="https://images.unsplash.com/photo-1706001858535-2d782a8f3137" onclick="selectImage(this)">
+    </section>
+
+    <section>
+        <img id="current-image" width="180" height="135" src="...">
+    </section>
+
+    <section>
+        <form onsubmit="sendData()">
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label for="surname">Cognome:</label>
+                <input type="text" name="surname">
+            </div>
+            <div>
+                <label for="address">Indirizzo:</label>
+                <input type="text" name="address">
+            </div>
+            <div>
+                <label for="image-number">Numero Immagine:</label>
+                <input type="number" name="image-number" min="1" max="6" value="1">
+            </div>
+            <input type="submit">
+        </form>
+    </section>
+
+    <script>
+        function selectImage(el) {
+            document.getElementById("current-image").src = el.src;
+        }
+    </script>
+
+
+</body>
+</html>
