@@ -7,7 +7,7 @@ const COL_SIZE = 80; //px
 const COLS = window.screen.width / COL_SIZE;
 let grid_row = document.querySelector(".grid-row");
 const ROW_SIZE = COL_SIZE;
-const ROWS = document.body.scrollHeight / ROW_SIZE;
+const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
 
 for (let i = 1; i < COLS; i++) {
     let new_col = grid_col.cloneNode(true);

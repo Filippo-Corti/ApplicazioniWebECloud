@@ -7,9 +7,17 @@ body {
     font-style: normal;
 }
 
+.offcanvas {
+    --bs-offcanvas-width: 250px;
+}
+
+.nav-item {
+    width: fit-content;
+}
+
 .btn {
-    --bs-btn-padding-y: .35rem; 
-    --bs-btn-padding-x: 1.7rem; 
+    --bs-btn-padding-y: .35rem;
+    --bs-btn-padding-x: 1.7rem;
     border-radius: var(--bs-border-radius-xxl);
 }
 
@@ -22,15 +30,21 @@ body {
 }
 
 .tint-black {
-  filter: invert(100%) saturate(0%);
+    filter: invert(100%) saturate(0%);
 }
 
 .h-0 {
     font-size: clamp(1.5rem, 1.75rem + 2vw, 3rem);
 }
 
-.review_score > img {
+.review_score>img {
     width: 20px;
+}
+
+@media (min-width: 768px) {
+    .border-md-end {
+        border-right: 1px solid rgba(0, 0, 0, 0.25) !important;
+    }
 }
 
 /* Background Grid & Stripe */
@@ -59,8 +73,8 @@ body {
 
 .background-stripe {
     position: absolute;
-    background: rgb(255,255,255);
-    background: linear-gradient(166deg, rgba(255,255,255,1) 8%, rgba(255,188,150,1) 40%, rgba(255,255,255,1) 71%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(166deg, rgba(255, 255, 255, 1) 8%, rgba(255, 188, 150, 1) 40%, rgba(255, 255, 255, 1) 71%);
     background-repeat: no-repeat;
     z-index: -2;
     width: 100vw;
@@ -74,7 +88,7 @@ body {
 /* Header */
 
 
-.logo > img {
+.logo>img {
     height: clamp(1.6rem, 1.85rem + 2vw, 3.1rem);
 }
 

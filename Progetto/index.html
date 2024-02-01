@@ -24,28 +24,50 @@
   </div>
 
   <!-- Header -->
-  <header class="container-xxl d-flex justify-content-between pt-5 px-3">
-    <!-- Logo -->
-    <div class="logo | d-flex align-items-baseline gap-1">
-      <img class="tint-primary" src="assets/img/chef.png" alt="PGRC Logo">
-      <h1 class="h-0 text-primary">PGRC</h1>
-    </div>
-    <!-- Buttons -->
-    <div>
-      <button class="btn btn-outline-secondary fs-4">
-        SIGN IN
+  <nav class="navbar navbar-expand-lg " aria-label="Offcanvas navbar large">
+    <div class="container-xxl pt-4 pt-md-5 px-3 px-md-3">
+      <!-- Logo -->
+      <div class="logo | d-flex align-items-baseline gap-1">
+        <img class="tint-primary" src="assets/img/chef.png" alt="PGRC Logo">
+        <h1 class="h-0 text-primary">PGRC</h1>
+      </div>
+      <!-- Mobile Menu Button-->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <button class="btn btn-primary fs-4">
-        LOGIN
-      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body justify-content-end">
+          <ul class="navbar-nav align-items-center gap-2">
+            <li class="nav-item">
+              <h5 class="text-center border-top border-bottom py-4 d-lg-none">
+                Sign in for more functionalities!
+              </h5>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary fs-4">
+                SIGN IN
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-primary fs-4">
+                LOGIN
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </header>
+  </nav>
 
   <!-- Recipe -->
   <section class="container-xxl my-4 mx-auto px-5">
     <!-- Recipe Preview -->
     <div class="row align-items-end gap-4">
-      <div class="col">
+      <div class="col-lg">
         <!-- Stats -->
         <div>
           <div class="row">
@@ -83,7 +105,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-lg order-first order-lg-0">
         <!-- Image -->
         <img id="recipe_image" class="rounded-5" src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg"
           alt="Sticky Toffee Pudding Ultimate">
@@ -92,7 +114,7 @@
     <!-- Recipe Details -->
     <div class="row gap-4 mt-5 border-top border-black border-opacity-25">
       <!-- Recipe Ingredients -->
-      <div class="col-5 border-end border-black border-opacity-25 pt-5">
+      <div class="col-md-5 border-md-end border-black border-opacity-25 pt-5">
         <h3>INGREDIENTS</h3>
         <div>
           <div class="row justify-content-center align-items-center">
@@ -116,7 +138,7 @@
         </div>
       </div>
       <!-- Recipe Instructions -->
-      <div class="col pt-5">
+      <div class="col-md pt-5">
         <div>
           <div>
             <p class="fs-5 text-secondary mb-1">STEP 1</p>
@@ -156,7 +178,7 @@
   <!-- Reviews -->
   <section class="container-xxl my-4 mx-auto px-5">
     <h3>REVIEWS</h3>
-    <div class="w-100 d-flex flex-column">
+    <div class="w-100 d-flex flex-column align-items-center">
       <!-- Review Card -->
       <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
         <div class="row">
@@ -202,7 +224,8 @@
               <!-- Review Date -->
               <p class="text-secondary mb-2">24-10-2023</p>
               <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a custom
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
                 mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
                 joy I invite together in this kind of creation.
                 The fun and genuine joy.
@@ -255,7 +278,8 @@
               <!-- Review Date -->
               <p class="text-secondary mb-2">24-10-2023</p>
               <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a custom
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
                 mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
                 joy I invite together in this kind of creation.
                 The fun and genuine joy.
@@ -308,7 +332,8 @@
               <!-- Review Date -->
               <p class="text-secondary mb-2">24-10-2023</p>
               <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a custom
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
                 mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
                 joy I invite together in this kind of creation.
                 The fun and genuine joy.
@@ -361,7 +386,8 @@
               <!-- Review Date -->
               <p class="text-secondary mb-2">24-10-2023</p>
               <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a custom
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
                 mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
                 joy I invite together in this kind of creation.
                 The fun and genuine joy.
@@ -374,58 +400,31 @@
   </section>
 
 
-
-
-  <!--
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Responsive offcanvas navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2"
-        aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2"
-        aria-labelledby="offcanvasNavbar2Label">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-            aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex mt-3 mt-lg-0" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
+  <footer class="border-top border-black border-opacity-25">
+    <div class="container-xxl d-flex my-5 mx-auto px-3 justify-content-between">
+      <!-- Logo -->
+      <div class="logo | d-flex align-items-baseline gap-1">
+        <img class="tint-primary" src="assets/img/chef.png" alt="PGRC Logo">
+        <h1 class="h-0 text-primary">PGRC</h1>
+      </div>
+      <!-- Demo Buttons -->
+      <div>
+        <ul class="list-group list-unstyled list-group-horizontal d-flex gap-2">
+          <li>
+            <button class="btn btn-outline-secondary fs-4">
+              Reset Data
+            </button>
+          </li>
+          <li>
+            <button class="btn btn-outline-secondary fs-4">
+              Load Demo Data
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
-  </nav>
-  <h1 class="text-primary">Hello, world!</h1>
-  <button class="btn btn-primary" onclick="showRandomMeals()">Button</button>
--->
-
+    </div>
+  </footer>
 
 
   <script src="assets/js/lib.js"></script>
