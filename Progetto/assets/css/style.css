@@ -10,6 +10,7 @@ body {
 .btn {
     --bs-btn-padding-y: .35rem; 
     --bs-btn-padding-x: 1.7rem; 
+    border-radius: var(--bs-border-radius-xxl);
 }
 
 .tint-primary {
@@ -20,7 +21,11 @@ body {
     filter: invert(31%) sepia(77%) saturate(3016%) hue-rotate(341deg) brightness(85%) contrast(116%);
 }
 
-/* Background Grid */
+.h-0 {
+    font-size: clamp(1.5rem, 1.75rem + 2vw, 3rem);
+}
+
+/* Background Grid & Stripe */
 
 .grid {
     position: absolute;
@@ -44,12 +49,27 @@ body {
     border-top: 1px dashed black;
 }
 
+.background-stripe {
+    position: absolute;
+    background: rgb(255,255,255);
+    background: linear-gradient(175deg, rgba(255,255,255,1) 8%, rgba(255,188,150,1) 40%, rgba(255,255,255,1) 71%);
+    background-repeat: no-repeat;
+    z-index: -2;
+    width: 100vw;
+    height: 100vh;
+}
+
 /* Header */
 
-.logo > h1 {
-    font-size: clamp(1.5rem, 1.75rem + 2vw, 3rem);
-}
 
 .logo > img {
     height: clamp(1.6rem, 1.85rem + 2vw, 3.1rem);
+}
+
+/* Recipe */
+
+img#recipe_image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
 }

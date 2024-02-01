@@ -13,6 +13,10 @@
 
 <body class="overflow-x-hidden">
 
+  <!-- Background Stripe -->
+  <div class="background-stripe">
+  </div>
+
   <!-- Background Grid-->
   <div class="grid">
     <div class="d-none grid-col"></div>
@@ -20,18 +24,18 @@
   </div>
 
   <!-- Header -->
-  <header class="container-xxl d-flex justify-content-between pt-5 px-5">
+  <header class="container-xxl d-flex justify-content-between pt-5 px-3">
     <!-- Logo -->
     <div class="logo | d-flex align-items-baseline gap-1">
       <img class="tint-primary" src="assets/img/chef.png" alt="PGRC Logo">
-      <h1 class="text-primary">PGRC</h1>
+      <h1 class="h-0 text-primary">PGRC</h1>
     </div>
     <!-- Buttons -->
     <div>
-      <button class="btn btn-lg btn-outline-secondary rounded-5 fs-4">
+      <button class="btn btn-outline-secondary fs-4">
         SIGN IN
       </button>
-      <button class="btn btn-lg btn-primary rounded-5 fs-4">
+      <button class="btn btn-primary fs-4">
         LOGIN
       </button>
     </div>
@@ -40,22 +44,49 @@
   <!-- Recipe -->
   <section class="container-xxl my-4 mx-auto px-5">
     <!-- Recipe Preview -->
-    <div>
-      <div>
+    <div class="row align-items-end gap-4">
+      <div class="col">
         <!-- Stats -->
         <div>
-          <div></div>
+          <div class="row">
+            <div class="col flex-grow-0">
+              <img width="24" src="assets/img/star.png" alt="Taste Score">
+            </div>
+            <div class="col">
+              <h4>Taste: <span class="ms-1">3.7</span>/5</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col flex-grow-0">
+              <img width="24" class="tint-danger" src="assets/img/chef.png" alt="Difficulty Score">
+            </div>
+            <div class="col">
+              <h4>Difficulty: <span class="ms-1">4.2</span>/5</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col flex-grow-0">
+              <img width="24" src="assets/img/comment.png" alt="Number of Reviews">
+            </div>
+            <div class="col">
+              <h4>Reviews: <span class="ms-1">6</span></h4>
+            </div>
+          </div>
         </div>
         <!-- Title & Tags -->
         <div>
-          <h1>Sticky Toffee Pudding Ultimate</h1>
+          <h1 class="display-2 my-3">Sticky Toffee Pudding Ultimate</h1>
           <div>
-
+            <button class="btn btn-outline-success fs-5">Indian</button>
+            <button class="btn btn-outline-info fs-5">Seafood</button>
+            <button class="btn btn-outline-danger fs-5">Chicken</button>
           </div>
         </div>
       </div>
-      <div>
-        <img src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg" alt="Sticky Toffee Pudding Ultimate">
+      <div class="col">
+        <!-- Image -->
+        <img id="recipe_image" class="rounded-5" src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg"
+          alt="Sticky Toffee Pudding Ultimate">
       </div>
     </div>
     <!-- Recipe Details -->
@@ -64,6 +95,8 @@
       <div></div>
     </div>
   </section>
+
+
 
   <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
     <div class="container-fluid">
