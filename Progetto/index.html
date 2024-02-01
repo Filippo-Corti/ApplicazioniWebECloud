@@ -25,7 +25,7 @@
 
   <!-- Header -->
   <nav class="navbar navbar-expand-lg " aria-label="Offcanvas navbar large">
-    <div class="container-xxl pt-4 pt-md-5 px-3 px-md-3">
+    <div class="container-xxl pt-4 pt-md-5 px-3">
       <!-- Logo -->
       <div class="logo | d-flex align-items-baseline gap-1">
         <img class="tint-primary" src="assets/img/chef.png" alt="PGRC Logo">
@@ -64,12 +64,12 @@
   </nav>
 
   <!-- Recipe -->
-  <section class="container-xxl my-4 mx-auto px-5">
+  <section class="container-xxl my-4 mx-auto px-4 px-md-5">
     <!-- Recipe Preview -->
     <div class="row align-items-end gap-4">
       <div class="col-lg">
         <!-- Stats -->
-        <div>
+        <div class="d-lg-block d-flex flex-column align-items-center">
           <div class="row">
             <div class="col flex-grow-0">
               <img width="24" src="assets/img/star.png" alt="Taste Score">
@@ -99,9 +99,9 @@
         <div>
           <h1 class="display-2 my-3">Sticky Toffee Pudding Ultimate</h1>
           <div>
-            <button class="btn btn-outline-success fs-5">Indian</button>
-            <button class="btn btn-outline-info fs-5">Seafood</button>
-            <button class="btn btn-outline-danger fs-5">Chicken</button>
+            <button class="btn btn-outline-success my-1 fs-5">Indian</button>
+            <button class="btn btn-outline-info my-1 fs-5">Seafood</button>
+            <button class="btn btn-outline-danger my-1 fs-5">Chicken</button>
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@
   </section>
 
   <!-- Reviews -->
-  <section class="container-xxl my-4 mx-auto px-5">
+  <section class="container-xxl my-4 mx-auto px-md-5">
     <h3>REVIEWS</h3>
     <div class="w-100 d-flex flex-column align-items-center">
       <!-- Review Card -->
@@ -400,16 +400,17 @@
   </section>
 
 
+  <!-- Footer -->
   <footer class="border-top border-black border-opacity-25">
-    <div class="container-xxl d-flex my-5 mx-auto px-3 justify-content-between">
+    <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
       <!-- Logo -->
-      <div class="logo | d-flex align-items-baseline gap-1">
+      <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
         <img class="tint-primary" src="assets/img/chef.png" alt="PGRC Logo">
         <h1 class="h-0 text-primary">PGRC</h1>
       </div>
       <!-- Demo Buttons -->
       <div>
-        <ul class="list-group list-unstyled list-group-horizontal d-flex gap-2">
+        <ul class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
           <li>
             <button class="btn btn-outline-secondary fs-4">
               Reset Data
