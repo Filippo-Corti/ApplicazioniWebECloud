@@ -18,3 +18,9 @@ https://caniuse.com/mdn-api_element_scrollheight
 ### Gradient Generator
 
 https://cssgradient.io/
+
+
+### Clamp Calculator
+
+https://chrisburnell.com/clamp-calculator/
+

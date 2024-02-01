@@ -3,7 +3,7 @@
 
 let grid_container = document.querySelector(".grid");
 let grid_col = document.querySelector(".grid-col");
-const COL_SIZE = 80; //px
+const COL_SIZE = 90; //px
 const COLS = window.screen.width / COL_SIZE;
 let grid_row = document.querySelector(".grid-row");
 const ROW_SIZE = COL_SIZE;
@@ -22,6 +22,15 @@ for (let i = 1; i < ROWS; i++) {
     new_row.style.top = ROW_SIZE * i + "px";
     grid_container.appendChild(new_row);
 }
+
+/* Background Stripe Blur (very minimal): */
+
+let background_stripe = document.querySelector(".background-stripe");
+
+document.addEventListener("scroll", (event) => {
+    let currentScrollPercentage = window.scrollY / (document.body.scrollHeight - window.screen.height);
+    background_stripe.style.filter = "blur(" + 200 * currentScrollPercentage + "px)";
+})
 
 
 async function showRandomMeals() {

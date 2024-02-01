@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PGRC | Recipe Name</title>
+  <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/css/my-colors.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body class="overflow-x-hidden">
+
+  <!-- Background Stripes -->
+  <div class="background-stripe">
+  </div>
+
+  <!-- Background Grid-->
+  <div class="grid">
+    <div class="d-none grid-col"></div>
+    <div class="d-none grid-row"></div>
+  </div>
+
+  <!-- Header & Nav -->
+  <nav class="navbar navbar-expand-lg " aria-label="Offcanvas navbar large">
+    <div class="container-xxl pt-4 pt-md-5 px-3">
+      <!-- Logo -->
+      <div class="logo | d-flex align-items-baseline gap-1">
+        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+        <h1 class="h-0 text-primary">PGRC</h1>
+      </div>
+      <!-- Mobile Menu Button-->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body justify-content-end">
+          <ul class="navbar-nav align-items-center gap-2">
+            <li class="nav-item">
+              <h5 class="text-center border-top border-bottom py-4 d-lg-none">
+                Sign in for more functionalities!
+              </h5>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary fs-4">
+                SIGN IN
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-primary fs-4">
+                LOGIN
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Recipe -->
+  <section class="container-xxl my-4 mx-auto px-4 px-md-5">
+    <!-- Recipe Preview -->
+    <div class="row align-items-end gap-4">
+      <div class="col-lg">
+        <!-- Stats -->
+        <div class="d-lg-block d-flex flex-column align-items-center">
+          <div class="row">
+            <div class="col flex-grow-0">
+              <img width="24" src="../assets/img/star.png" alt="Taste Score">
+            </div>
+            <div class="col">
+              <h4>Taste: <span class="ms-1">3.7</span>/5</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col flex-grow-0">
+              <img width="24" class="tint-danger" src="../assets/img/chef.png" alt="Difficulty Score">
+            </div>
+            <div class="col">
+              <h4>Difficulty: <span class="ms-1">4.2</span>/5</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col flex-grow-0">
+              <img width="24" src="../assets/img/comment.png" alt="Number of Reviews">
+            </div>
+            <div class="col">
+              <h4>Reviews: <span class="ms-1">6</span></h4>
+            </div>
+          </div>
+        </div>
+        <!-- Title & Tags -->
+        <div>
+          <h1 class="display-2 my-3">Sticky Toffee Pudding Ultimate</h1>
+          <div>
+            <button class="btn btn-success my-1 fs-5">Indian</button>
+            <button class="btn btn-info my-1 fs-5">Seafood</button>
+            <button class="btn btn-danger my-1 fs-5">Chicken</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg order-first order-lg-0">
+        <!-- Image -->
+        <img id="recipe_image" class="rounded-5" src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg"
+          alt="Sticky Toffee Pudding Ultimate">
+      </div>
+    </div>
+    <!-- Recipe Details -->
+    <div class="row gap-4 mt-5 border-top border-black border-opacity-25">
+      <!-- Recipe Ingredients -->
+      <div class="col-lg-3 border-lg-end border-black border-opacity-25 pt-5">
+        <h3 class="mb-3">INGREDIENTS</h3>
+        <div>
+          <div class="row justify-content-center align-items-center">
+            <img class="col-3" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png"
+              alt="Medjool Dates">
+            <p class="col fs-5 text-decoration-underline">Medjool dates</p>
+            <p class="col-3 text-secondary fs-5">255g</p>
+          </div>
+          <div class="row justify-content-center align-items-center">
+            <img class="col-3" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png"
+              alt="Medjool Dates">
+            <p class="col fs-5 text-decoration-underline">Medjool dates</p>
+            <p class="col-3 text-secondary fs-5">255g</p>
+          </div>
+          <div class="row justify-content-center align-items-center">
+            <img class="col-3" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png"
+              alt="Medjool Dates">
+            <p class="col fs-5 text-decoration-underline">Medjool dates</p>
+            <p class="col-3 text-secondary fs-5">255g</p>
+          </div>
+        </div>
+      </div>
+      <!-- Recipe Instructions -->
+      <div class="col-md pt-5">
+        <div class="mt-5">
+          <div>
+            <p class="fs-5 text-secondary mb-1">STEP 1</p>
+            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
+            </p>
+          </div>
+          <div>
+            <p class="fs-5 text-secondary mb-1">STEP 2</p>
+            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
+            </p>
+          </div>
+          <div>
+            <p class="fs-5 text-secondary mb-1">STEP 3</p>
+            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
+            </p>
+          </div>
+          <div>
+            <p class="fs-5 text-secondary mb-1">STEP 4</p>
+            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
+            </p>
+          </div>
+          <div>
+            <p class="fs-5 text-secondary mb-1">STEP 5</p>
+            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
+            </p>
+          </div>
+          <div>
+            <p class="fs-5 text-secondary mb-1">STEP 6</p>
+            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="container-xxl my-4 mx-auto px-md-5">
+    <h3>REVIEWS</h3>
+    <div class="w-100 d-flex flex-column align-items-center">
+      <!-- Review Card -->
+      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card-body">
+              <!-- Username & Picture -->
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-primary rounded-5" style="width:fit-content">
+                  <img src="../assets/img/anon.png" alt="Profile Picture">
+                </div>
+                <p class="card-text">Filippo</p>
+              </div>
+              <!-- Taste -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Taste:
+                </p>
+                <div class="review_score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                </div>
+              </div>
+              <!-- Difficulty -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Difficulty:
+                </p>
+                <div class="review_score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <!-- Review Date -->
+              <p class="text-secondary mb-2">24-10-2023</p>
+              <!-- Review Content -->
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
+                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
+                joy I invite together in this kind of creation.
+                The fun and genuine joy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card-body">
+              <!-- Username & Picture -->
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-primary rounded-5" style="width:fit-content">
+                  <img src="../assets/img/anon.png" alt="Profile Picture">
+                </div>
+                <p class="card-text">Filippo</p>
+              </div>
+              <!-- Taste -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Taste:
+                </p>
+                <div class="review_score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                </div>
+              </div>
+              <!-- Difficulty -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Difficulty:
+                </p>
+                <div class="review_score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <!-- Review Date -->
+              <p class="text-secondary mb-2">24-10-2023</p>
+              <!-- Review Content -->
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
+                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
+                joy I invite together in this kind of creation.
+                The fun and genuine joy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card-body">
+              <!-- Username & Picture -->
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-primary rounded-5" style="width:fit-content">
+                  <img src="../assets/img/anon.png" alt="Profile Picture">
+                </div>
+                <p class="card-text">Filippo</p>
+              </div>
+              <!-- Taste -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Taste:
+                </p>
+                <div class="review_score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                </div>
+              </div>
+              <!-- Difficulty -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Difficulty:
+                </p>
+                <div class="review_score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <!-- Review Date -->
+              <p class="text-secondary mb-2">24-10-2023</p>
+              <!-- Review Content -->
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
+                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
+                joy I invite together in this kind of creation.
+                The fun and genuine joy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card-body">
+              <!-- Username & Picture -->
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-primary rounded-5" style="width:fit-content">
+                  <img src="../assets/img/anon.png" alt="Profile Picture">
+                </div>
+                <p class="card-text">Filippo</p>
+              </div>
+              <!-- Taste -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Taste:
+                </p>
+                <div class="review_score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img src="../assets/img/star.png" alt="Taste Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                </div>
+              </div>
+              <!-- Difficulty -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Difficulty:
+                </p>
+                <div class="review_score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <!-- Review Date -->
+              <p class="text-secondary mb-2">24-10-2023</p>
+              <!-- Review Content -->
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
+                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
+                joy I invite together in this kind of creation.
+                The fun and genuine joy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="border-top border-black border-opacity-25">
+    <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
+      <!-- Logo -->
+      <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
+        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+        <h1 class="h-0 text-primary">PGRC</h1>
+      </div>
+      <!-- Demo Buttons -->
+      <div>
+        <ul
+          class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
+          <li>
+            <button class="btn btn-outline-secondary fs-4">
+              Reset Data
+            </button>
+          </li>
+          <li>
+            <button class="btn btn-outline-secondary fs-4">
+              Load Demo Data
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/js/lib.js"></script>
+  <script src="../assets/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
