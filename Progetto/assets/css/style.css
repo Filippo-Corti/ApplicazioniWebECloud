@@ -41,8 +41,8 @@ body {
     width: 20px;
 }
 
-@media (min-width: 768px) {
-    .border-md-end {
+@media (min-width: 992px) {
+    .border-lg-end {
         border-right: 1px solid rgba(0, 0, 0, 0.25) !important;
     }
 }
@@ -74,7 +74,7 @@ body {
 .background-stripe {
     position: absolute;
     background: rgb(255, 255, 255);
-    background: linear-gradient(166deg, rgba(255, 255, 255, 1) 8%, rgb(250, 177, 134) 30%, rgb(248, 159, 107) 40%, rgb(250, 177, 134) 50%,  rgba(255, 255, 255, 1) 71%);
+    background: linear-gradient(175deg, rgba(255, 255, 255, 1) 8%, rgb(250, 177, 134) 25%, rgb(248, 159, 107) 30%, rgb(250, 177, 134) 33%,  rgba(255, 255, 255, 1) 61%);
     background-repeat: no-repeat;
     z-index: -1;
     width: 100vw;
