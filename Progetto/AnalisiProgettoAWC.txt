@@ -1,0 +1,64 @@
+1) Analisi dei Requisiti
+	Requisiti Funzionali
+	Requisiti Non Funzionali
+2) Identificazione delle Funzionalità da Sviluppare
+	Descrivere meglio i Requisiti Funzionali e come si traducono nello Sviluppo (vedi "Operazioni da Svolgere")
+3) Progettazione della Struttura e della Presentazione delle Pagine Web
+	Descrizione della Directory di Lavoro
+	Descrizione dell'HTML e CSS per mettere insieme la Struttura della Pagina (FIGMA)
+4) Progettazione della Sorgente di Informazioni Statica o Dinamica
+	Fetch dei Dati: API utilizzate
+	Gestione del Local Storage & Session Storage
+5) Implementazione dell'Applicazione Stessa
+	Screenshot dell'Applicazione ...
+
+Tutti i dati degli utenti possono andare in un json utenti, incluso i loro piatti preferiti e le ricette salvate nel ricettario personale (basta l'ID per entrambe le cose, poi il fetch meglio farlo in locale direttamente). Rettifica: per il ricettario personale ci vuole anche una nota oltre all'ID.
+
+Le recensioni vanno in un altro json, con ID_MEAL + USER_EMAIL + data (per qualche motivo inserita dall'utente) + i due voti
+
+Nel Session Storage va semplicemente l'email dell'utente collegato, se è collegato qualcuno.
+
+Idee:
+- Home Page con:
+	- Piatti preferiti
+	- Ricette salvate
+	- Un elenco di categoria a caso
+	- Un elenco di area (nazione) a caso
+
+- Login con Termini e Condizioni d'Uso personalizzate?
+
+- Pagine HTML da implementare:
+	1) login
+	2) registrazione
+	3) home page
+	4) profilo personale, con modifica dati e ricette preferite
+	5) pagina di una ricetta
+	6) pagina del proprio ricettario
+
+
+Cose importanti:
+- Considerare casi limite:
+	Utente cancella account -> Cosa succede alle sue recensioni?
+		> Utente "Anonimo" (così rimangono i dati)
+		> Cancello recensioni
+		> Segnalarlo nell'informativa
+- Ogni piatto deve mostrare sia gusto che difficoltà
+
+
+Tecnicismi:
+- COLORI BOOTSTRAP? Solved
+- MENU RESPONSIVE BOOTSTRAP? Solved
+- CALL ALLE API? Solved
+- MECCANISMO DI RECUPERO LISTA INGREDIENTI? Solved
+
+Fonti:
+https://lingtalfi.com/bootstrap4-color-generator
+https://getbootstrap.com/docs/5.3/examples/navbars-offcanvas
+
+
+
+
+
+
+
+	
