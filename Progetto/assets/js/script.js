@@ -1,9 +1,10 @@
+
 /* Build GRID: */
 
 let grid_container = document.querySelector(".grid");
 let grid_col = document.querySelector(".grid-col");
-const COLS = 30;
-const COL_SIZE = window.screen.width / COLS;
+const COL_SIZE = 80; //px
+const COLS = window.screen.width / COL_SIZE;
 let grid_row = document.querySelector(".grid-row");
 const ROW_SIZE = COL_SIZE;
 const ROWS = document.body.scrollHeight / ROW_SIZE;
@@ -21,10 +22,6 @@ for (let i = 1; i < ROWS; i++) {
     new_row.style.top = ROW_SIZE * i + "px";
     grid_container.appendChild(new_row);
 }
-
-
-
-
 
 
 async function showRandomMeals() {

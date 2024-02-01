@@ -21,8 +21,16 @@ body {
     filter: invert(31%) sepia(77%) saturate(3016%) hue-rotate(341deg) brightness(85%) contrast(116%);
 }
 
+.tint-black {
+  filter: invert(100%) saturate(0%);
+}
+
 .h-0 {
     font-size: clamp(1.5rem, 1.75rem + 2vw, 3rem);
+}
+
+.review_score > img {
+    width: 20px;
 }
 
 /* Background Grid & Stripe */
@@ -52,11 +60,15 @@ body {
 .background-stripe {
     position: absolute;
     background: rgb(255,255,255);
-    background: linear-gradient(175deg, rgba(255,255,255,1) 8%, rgba(255,188,150,1) 40%, rgba(255,255,255,1) 71%);
+    background: linear-gradient(166deg, rgba(255,255,255,1) 8%, rgba(255,188,150,1) 40%, rgba(255,255,255,1) 71%);
     background-repeat: no-repeat;
     z-index: -2;
     width: 100vw;
     height: 100vh;
+}
+
+.horizontal-separator {
+    border-width: 2px;
 }
 
 /* Header */
