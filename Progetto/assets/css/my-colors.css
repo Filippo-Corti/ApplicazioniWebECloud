@@ -1,3 +1,8 @@
+:root {
+    --clr-primary: #EF4C01;
+    --clr-secondary: #2E4765;
+}
+
 /*------------------------------------
 Color Primary Override to Orange (#EF4C01)
 ------------------------------------*/

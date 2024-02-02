@@ -29,7 +29,7 @@ let background_stripe = document.querySelector(".background-stripe");
 
 document.addEventListener("scroll", (event) => {
     let currentScrollPercentage = window.scrollY / (document.body.scrollHeight - window.screen.height);
-    background_stripe.style.filter = "blur(" + 200 * currentScrollPercentage + "px)";
+    background_stripe.style.filter = "blur(" + 10000 * currentScrollPercentage + "px)";
 })
 
 /* Position main Scroller */
@@ -43,6 +43,17 @@ scrollers.forEach((scroller) => {
     });
 
 })
+
+/* Scroll when Search Bar is Selected */
+
+function scrollToHere(element) {
+    let element_y = element.getBoundingClientRect().top + window.scrollY; //Relative to the document, not the viewport
+    window.scroll({
+        top: element_y - 100,
+        left: 0,
+        behaviour: "smooth",
+    });
+}
 
 async function showRandomMeals() {
     let meals = await fetchRandomMeals(6);

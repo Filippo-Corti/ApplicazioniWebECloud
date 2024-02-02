@@ -28,7 +28,7 @@
   <header>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg " aria-label="Offcanvas navbar large">
+    <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
       <div class="container-xxl pt-4 pt-md-5 px-3">
         <!-- Logo -->
         <div class="logo | d-flex align-items-baseline gap-1">
@@ -74,14 +74,46 @@
           What are you cooking today?
         </h1>
       </div>
+      <!-- Sarch Bar -->
       <div class="py-3 py-lg-5 my-2 py-lg-5 w-100">
         <form class="w-100" action="#">
-          <div
-            class="d-flex flex-column flex-md-row w-100 bg-white rounded-5 border border-1 border-secondary fs-3 overflow-hidden">
-            <input type="text" class="w-100 ps-4 rounded-5 border-0 form-control fs-3 my-1 my-lg-3" name="search"
-              id="search" placeholder='Try with "English Breakfast" ...'>
-            <button class="btn btn-outline-secondary my-2 fs-4 mx-auto mx-md-2"
-              style="border-radius: 1.5rem;">Search</button>
+          <div class="search-input position-relative bg-white rounded-5 border border-1 border-secondary fs-3">
+            <div
+              class="d-flex flex-column flex-md-row w-100">
+              <input type="text" class="w-100 ps-4 rounded-5 border-0 form-control fs-3 my-1 my-lg-3" name="search"
+                id="search" placeholder='Try with "English Breakfast" ...' onfocus="scrollToHere(this)">
+              <button class="btn btn-outline-secondary my-2 fs-4 mx-auto mx-md-2"
+                style="border-radius: 1.5rem;">Search</button>
+            </div>
+            <div class="search-results | w-100 bg-white position-absolute border-secondary border-start border-end border-bottom pb-4 rounded-bottom-5 ">
+              <div class="search-result ps-4 border-top py-3 d-flex gap-4 align-items-center">
+                <div>
+                  <img src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg" alt="English Breakfast">
+                </div>
+                <div >
+                  <p class="fs-4 mb-0">English Breakfast</p>
+                  <p class="fs-5 my-0 opacity-75 d-none d-md-block">Sausage, Bacon, Mushrooms, Tomatoes, ...</p>
+                </div>
+              </div>
+              <div class="search-result ps-4 border-top py-3 d-flex gap-4 align-items-center">
+                <div>
+                  <img src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg" alt="English Breakfast">
+                </div>
+                <div >
+                  <p class="fs-4 mb-0">English Breakfast</p>
+                  <p class="fs-5 my-0 opacity-75 d-none d-md-block">Sausage, Bacon, Mushrooms, Tomatoes, ...</p>
+                </div>
+              </div>
+              <div class="search-result ps-4 border-top py-3 d-flex gap-4 align-items-center">
+                <div>
+                  <img src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg" alt="English Breakfast">
+                </div>
+                <div >
+                  <p class="fs-4 mb-0">English Breakfast</p>
+                  <p class="fs-5 my-0 opacity-75 d-none d-md-block">Sausage, Bacon, Mushrooms, Tomatoes, ...</p>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -90,10 +122,15 @@
   </header>
 
   <!-- Recipe Suggestions - Based on what you like -->
-  <section class="container-fluid my-5 px-3 px-lg-0 row justify-content-center gap-3 gap-lg-0 mx-0" >
+  <section class="container-fluid mt-5 mb-6 px-3 px-lg-0 gap-3 gap-lg-0 mx-0">
+
+    <div class="container-xxl">
+      <h2 class="py-2">Maybe one of your favourites...</h2>
+    </div>
 
     <!-- Recipe Slider -->
-    <div class="scroller scroll-to-center | d-flex overflow-x-scroll gap-3 p-2" style="width: fit-content">
+    <div class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-scroll gap-3 p-3 flex-shrink-0"
+      style="width: fit-content; max-width: 100%;">
 
       <!-- Recipe Card Group of 3-->
       <div class="flex-grow-1 recipe-card-group d-flex flex-column">
@@ -544,7 +581,465 @@
 
   </section>
 
+  <!-- Recipe Suggestions - Randomly Picked -->
+  <section class="container-fluid mb-6 px-3 px-lg-0 gap-3 gap-lg-0 mx-0">
 
+    <div class="container-xxl">
+      <h2 class="py-2 text-end">...or what about something new?</h2>
+    </div>
+
+    <!-- Recipe Slider -->
+    <div class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-scroll gap-3 p-3 flex-shrink-0"
+      style="width: fit-content; max-width: 100%;">
+
+      <!-- Recipe Card Group of 3-->
+      <div class="flex-grow-1 recipe-card-group d-flex flex-column">
+        <div class="d-flex gap-3 my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe Card Group of 3-->
+      <div class="flex-grow-1 recipe-card-group d-flex flex-column">
+        <div class="d-flex gap-3 my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe Card Group of 3-->
+      <div class="flex-grow-1 recipe-card-group d-flex flex-column">
+        <div class="d-flex gap-3 my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe Card Group of 3-->
+      <div class="flex-grow-1 recipe-card-group d-flex flex-column">
+        <div class="d-flex gap-3 my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipe Card Group of 3-->
+      <div class="flex-grow-1 recipe-card-group d-flex flex-column">
+        <div class="d-flex gap-3 my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-2">
+          <!-- Recipe Card -->
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100">
+            <div class="card border-0">
+              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+              <div class="card-body">
+                <div class="card-text row gap-2 justify-content-center mb-2">
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/star.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                  <div class="col-3 d-flex align-items-center gap-2">
+                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
+                    <span>3.7</span>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <h5 class="card-title text-primary text-uppercase fs-5">Russian Cuisine</h5>
+                  <h4 class="card-title fs-3">Lamb Pilaf (Plov)</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
 
 
   <!-- Footer -->
