@@ -1,15 +1,15 @@
 
 /* Build GRID: */
 
-let grid_container = document.querySelector(".grid");
-let grid_col = document.querySelector(".grid-col");
+let grid_container = document.querySelector(".background-grid");
+let grid_col = document.querySelector(".background-grid-col");
 const COL_SIZE = 90; //px
 const COLS = window.screen.width / COL_SIZE;
-let grid_row = document.querySelector(".grid-row");
+let grid_row = document.querySelector(".background-grid-row");
 const ROW_SIZE = COL_SIZE;
 const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
 
-for (let i = 1; i < COLS; i++) {
+for (let i = 2; i < COLS - 2; i++) {
     let new_col = grid_col.cloneNode(true);
     new_col.classList.remove("d-none");
     new_col.style.left = COL_SIZE * i + "px";
@@ -23,7 +23,7 @@ for (let i = 1; i < ROWS; i++) {
     grid_container.appendChild(new_row);
 }
 
-/* Background Stripe Blur (very minimal): */
+/* Background Stripe Blur */
 
 let background_stripe = document.querySelector(".background-stripe");
 
@@ -32,6 +32,17 @@ document.addEventListener("scroll", (event) => {
     background_stripe.style.filter = "blur(" + 200 * currentScrollPercentage + "px)";
 })
 
+/* Position main Scroller */
+
+let scrollers = document.querySelectorAll(".scroll-to-center");
+scrollers.forEach((scroller) => {
+    let scroll_to = (scroller.scrollWidth - scroller.clientWidth) / 2;
+    scroller.scroll({
+        top: 0,
+        left: scroll_to,
+    });
+
+})
 
 async function showRandomMeals() {
     let meals = await fetchRandomMeals(6);
