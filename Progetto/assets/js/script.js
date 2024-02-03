@@ -9,7 +9,9 @@ let grid_row = document.querySelector(".background-grid-row");
 const ROW_SIZE = COL_SIZE;
 const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
 
-for (let i = 2; i < COLS - 2; i++) {
+let remove_lateral_cols = (window.screen.width > 1420);
+
+for (let i = 1 + ((remove_lateral_cols) ? 1 : 0); i < COLS - ((remove_lateral_cols) ? 2 : 0); i++) {
     let new_col = grid_col.cloneNode(true);
     new_col.classList.remove("d-none");
     new_col.style.left = COL_SIZE * i + "px";
