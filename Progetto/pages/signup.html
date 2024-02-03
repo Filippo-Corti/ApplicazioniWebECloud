@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PGRC | Registration </title>
+  <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/css/my-colors.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body class="overflow-x-hidden min-vh-100 d-flex flex-column">
+
+  <!-- Background Stripes -->
+  <div class="background-stripe">
+  </div>
+
+  <!-- Background Grid-->
+  <div class="background-grid">
+    <div class="d-none background-grid-col"></div>
+    <div class="d-none background-grid-row"></div>
+  </div>
+
+  <!-- Header & Nav -->
+  <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+    <div class="container-xxl pt-4 pt-md-5 px-3">
+      <!-- Logo -->
+      <div class="logo | d-flex align-items-baseline gap-1">
+        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+        <h1 class="h-0 text-primary">PGRC</h1>
+      </div>
+      <!-- Mobile Menu Button-->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body justify-content-end">
+          <ul class="navbar-nav align-items-center gap-2">
+            <li class="nav-item">
+              <h5 class="text-center border-top border-bottom py-4 d-lg-none">
+                SIGN UP for more functionalities!
+              </h5>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary fs-4">
+                SIGN UP
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-primary fs-4">
+                LOGIN
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sign Up Card -->
+  <section class="container container-xs my-5 p-5 bg-white rounded-5 mx-auto shadow">
+    <!-- Sign Up Title -->
+    <div class="position-relative row text-center align-items-center justify-content-center mx-3">
+      <div class="line | bg-primary col rounded-5 d-none d-md-block"></div>
+      <div class="col">
+        <h2 class="mb-0">SIGN UP</h2>
+        <p class="text-secondary m-0">Step 1 of 2</p>
+      </div>
+      <div class="line | col rounded-5 d-none d-md-block"></div>
+    </div>
+    <!-- Sign Up Form -->
+    <form class="m-3 px-4" method="GET" action="">
+      <div class="d-flex flex-column mt-4">
+        <label class="fs-5 text-dark" for="email">Email</label>
+        <input class="rounded-2 p-2" type="email" name="email" id="email" required>
+      </div>
+      <div class="d-flex flex-column my-3">
+        <label class="fs-5 text-dark" for="username">Username</label>
+        <input class="rounded-2 p-2" type="text" name="username" id="username">
+      </div>
+      <div class="d-flex flex-column my-3">
+        <label class="fs-5 text-dark" for="password">Password</label>
+        <p class="text-secondary fs-6 mb-2 line-height-sm">Password must be at least 8 characters long and include a number and a symbol.</p>
+        <input class="rounded-2 p-2" type="password" name="password" id="password" required>
+      </div>
+      <div class="d-flex flex-column my-3">
+        <label class="fs-5 text-dark" for="password_confirm">Confirm Password</label>
+        <input class="rounded-2 p-2" type="password" id="password_confirm" required>
+      </div>
+      <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2 text-secondary">
+        <label class="line-height-sm" style="max-width: 17ch">I agree with <span class="text-decoration-underline">Terms and Conditions</span></label>
+        <input class="border-3" style="width: 40px; height: 40px;" type="checkbox" id="accept_conditions" required>
+      </div>
+      <div>
+        <input type="submit" value="Continue">
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-top border-black border-opacity-25 mt-auto">
+    <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
+      <!-- Logo -->
+      <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
+        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+        <h1 class="h-0 text-primary">PGRC</h1>
+      </div>
+      <!-- Demo Buttons -->
+      <div>
+        <ul
+          class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
+          <li>
+            <button class="btn btn-outline-secondary fs-4">
+              Reset Data
+            </button>
+          </li>
+          <li>
+            <button class="btn btn-outline-secondary fs-4">
+              Load Demo Data
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </footer>
+
+
+  <script src="../assets/js/lib.js"></script>
+  <script src="../assets/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

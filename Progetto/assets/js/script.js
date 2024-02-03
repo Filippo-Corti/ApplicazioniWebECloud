@@ -4,12 +4,12 @@
 let grid_container = document.querySelector(".background-grid");
 let grid_col = document.querySelector(".background-grid-col");
 const COL_SIZE = 90; //px
-const COLS = window.screen.width / COL_SIZE;
+const COLS = document.body.clientWidth / COL_SIZE;
 let grid_row = document.querySelector(".background-grid-row");
 const ROW_SIZE = COL_SIZE;
 const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
 
-let remove_lateral_cols = (window.screen.width > 1420);
+let remove_lateral_cols = (document.body.clientWidth > 1420);
 
 for (let i = 1 + ((remove_lateral_cols) ? 1 : 0); i < COLS - ((remove_lateral_cols) ? 2 : 0); i++) {
     let new_col = grid_col.cloneNode(true);
