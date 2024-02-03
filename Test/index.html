@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova di HTML</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
+    <!-- Stili -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="stili.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img width="70" src="img/logo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-3 font-protest" aria-current="page" href="#">Ricettario
+                            Universitario</a>
+                    </li>
+                </ul>
+                <div class="d-flex justify-content-center">
+                    <form class="d-flex w-75" role="search" action="pages/risultati.html">
+                        <input type="text" class="form-control" id="search" name="search"
+                            placeholder="Cerca una Ricetta">
+                        <button class="btn btn-dark ms-1" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-dark ms-3" type="submit">Login</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SOTTOMENU -->
+    <div class="container-fluid my-1">
+        <ul class="nav justify-content-center gap-3 fs-5">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Categorie
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Categoria 1</a></li>
+                    <li><a class="dropdown-item" href="#">Categoria 2</a></li>
+                    <li><a class="dropdown-item" href="#">Categoria 3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Aree
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Area 1</a></li>
+                    <li><a class="dropdown-item" href="#">Area 2</a></li>
+                    <li><a class="dropdown-item" href="#">Area 3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" aria-disabled="true">Ricette Salvate</a>
+            </li>
+        </ul>
+    </div>
+    <hr class="mt-0">
+
+    <!-- CAROUSEL -->
+    <div class="container text-center my-5">
+        <div id="carouselCaptions" class="carousel slide">
+            <div id="carousel-buttons" class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="d-none active"
+                    aria-current="true" aria-label="Slide 0"></button>
+            </div>
+            <div id="carousel-items" class="carousel-inner">
+                <div class="carousel-item active d-none">
+                    <a class="carousel-item_link" href="pages/ricetta.html?id=0000">
+                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
+                            class="carousel-item_img d-block w-100 stretched-img" alt="...">
+                        <div class="carousel-caption d-none d-md-block text-dark">
+                            <h4 class="carousel-item_title fw-bold mb-4 bg-white mx-auto bg-opacity-75" style="max-width: fit-content;">Piatto 1</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 10 PIATTI A CASO PER TUTTE LE CATEGORIE -->
+    <div class="container my-5">
+        <h2 class="font-protest">SCELTI PER VOI</h2>
+        <!-- 10 PIATTI PER UNA CATEGORIA -->
+        <div class="mx-5">
+            <h4 class="my-3">CATEGORIA</h4>
+            <div class="overflow-x-scroll d-flex gap-1">
+                <a class="text-decoration-none" href="pages/ricetta.html?id=000">
+                    <div class="card flex-shrink-0" style="width: 16rem;">
+                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
+                            class="card-img-top" alt="...">
+                        <h5 class="card-title text-center my-3">Spaghetti</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        ricettaRandom().then((ricetta) => {
+          //  var carousel_buttons = document.getElementById("carousel-buttons");
+            var carousel_items = document.getElementById("carousel-items");
+           // var carousel_button_layout = carousel_buttons.firstElementChild;
+            var carousel_item_layout = carousel_items.firstElementChild;
+
+           // var new_carousel_button = carousel_button_layout.cloneNode(true);
+           // new_carousel_button.classList.remove("d-none");
+          //  carousel_buttons.appendChild(new_carousel_button);
+
+            var new_carousel_item = carousel_item_layout.cloneNode(true);
+            new_carousel_item.classList.remove("d-none");
+            new_carousel_item.getElementsByClassName("carousel-item_link")[0].href = "pages/ricetta.html?id=" + ricetta.idMeal;
+            new_carousel_item.getElementsByClassName("carousel-item_img")[0].src = ricetta.strMealThumb;
+            new_carousel_item.getElementsByClassName("carousel-item_title")[0].innerHTML = ricetta.strMeal;
+            carousel_items.appendChild(new_carousel_item);
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
