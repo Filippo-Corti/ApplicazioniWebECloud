@@ -83,22 +83,22 @@
 
     <!-- RISULTATI -->
     <div class="container my-5">
-        <h2 class="font-protest">RISULTATI DELLA RICERCA <span>"Parola Cercata"</span>:</h2>
-        <!-- 10 PIATTI PER UNA CATEGORIA -->
+        <h2 class="font-protest">RISULTATI DELLA RICERCA "<span id="parola-cercata">Parola Cercata</span>":</h2>
         <div class="mx-5">
-            <div class="row justify-content-center gap-1">
-                <a class="text-decoration-none" href="ricetta.html?id=000">
-                    <div class="card flex-shrink-0" style="width: 16rem;">
+            <div id="results-container" class="row justify-content-center gap-1">
+                <!-- RISULTATI DELLA RICERCA -->
+                <div class="card flex-shrink-0 d-none" style="width: 16rem;">
+                    <a class="card_link text-decoration-none" href="ricetta.html?id=000">
                         <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
-                            class="card-img-top" alt="...">
-                        <h5 class="card-title text-center my-3">Spaghetti</h5>
-                    </div>
-                </a>
+                            class="card_img card-img-top" alt="...">
+                        <h5 class="card_name card-title text-center my-3 text-dark">Spaghetti</h5>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-    
+
     <!-- 10 PIATTI A CASO PER TUTTE LE CATEGORIE -->
     <div class="container my-5">
         <h2 class="font-protest">SCELTI PER VOI</h2>
@@ -117,7 +117,31 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
+    <script>
+        var parametri = new URLSearchParams(window.location.search);
+        var keyword = parametri.get("search")
+
+        document.getElementById("parola-cercata").innerHTML = keyword;
+
+        ricetteSearch(keyword).then((results) => {
+            var results_container = document.getElementById("results-container");
+            var result_card_layout = results_container.firstElementChild;
+
+
+            for (var i = 0; i < results.length; i++) {
+                var new_result_card = result_card_layout.cloneNode(true);
+                var id = results[i].idMeal;
+                new_result_card.classList.remove("d-none");
+                new_result_card.getElementsByClassName("card_link")[0].href = "ricetta.html?id=" + id;
+                new_result_card.getElementsByClassName("card_img")[0].src = results[i].strMealThumb;
+                new_result_card.getElementsByClassName("card_name")[0].innerHTML = results[i].strMeal;
+                results_container.appendChild(new_result_card);
+            }
+
+        })
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

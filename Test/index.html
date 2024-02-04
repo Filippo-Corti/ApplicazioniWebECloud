@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="stili.css">
 </head>
 
+
 <body>
 
     <!-- NAVIGATION -->
@@ -59,10 +60,9 @@
                     aria-expanded="false">
                     Categorie
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Categoria 1</a></li>
-                    <li><a class="dropdown-item" href="#">Categoria 2</a></li>
-                    <li><a class="dropdown-item" href="#">Categoria 3</a></li>
+                <ul id="category-list" class="dropdown-menu">
+                    <li class="category-item d-none"><a class="category-item_link dropdown-item" href="#">Categoria
+                            Fittizia</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -87,16 +87,16 @@
     <div class="container text-center my-5">
         <div id="carouselCaptions" class="carousel slide">
             <div id="carousel-buttons" class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="d-none active"
+                <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="-1" class="d-none"
                     aria-current="true" aria-label="Slide 0"></button>
             </div>
             <div id="carousel-items" class="carousel-inner">
-                <div class="carousel-item active d-none">
+                <div class="carousel-item d-none">
                     <a class="carousel-item_link" href="pages/ricetta.html?id=0000">
-                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
-                            class="carousel-item_img d-block w-100 stretched-img" alt="...">
+                        <img src="..." class="carousel-item_img d-block w-100 stretched-img" alt="...">
                         <div class="carousel-caption d-none d-md-block text-dark">
-                            <h4 class="carousel-item_title fw-bold mb-4 bg-white mx-auto bg-opacity-75" style="max-width: fit-content;">Piatto 1</h4>
+                            <h4 class="carousel-item_title fw-bold mb-4 bg-white mx-auto bg-opacity-75"
+                                style="max-width: fit-content;">Piatto</h4>
                         </div>
                     </a>
                 </div>
@@ -132,23 +132,63 @@
 
     <script src="script.js"></script>
     <script>
-        ricettaRandom().then((ricetta) => {
-          //  var carousel_buttons = document.getElementById("carousel-buttons");
-            var carousel_items = document.getElementById("carousel-items");
-           // var carousel_button_layout = carousel_buttons.firstElementChild;
-            var carousel_item_layout = carousel_items.firstElementChild;
 
-           // var new_carousel_button = carousel_button_layout.cloneNode(true);
-           // new_carousel_button.classList.remove("d-none");
-          //  carousel_buttons.appendChild(new_carousel_button);
+        getCategorie().then((categorie) => {
+            //Elaborazione delle Categorie
+            var category_list = document.getElementById("category-list");
+            var category_item_layout = category_list.firstElementChild;
 
-            var new_carousel_item = carousel_item_layout.cloneNode(true);
-            new_carousel_item.classList.remove("d-none");
-            new_carousel_item.getElementsByClassName("carousel-item_link")[0].href = "pages/ricetta.html?id=" + ricetta.idMeal;
-            new_carousel_item.getElementsByClassName("carousel-item_img")[0].src = ricetta.strMealThumb;
-            new_carousel_item.getElementsByClassName("carousel-item_title")[0].innerHTML = ricetta.strMeal;
-            carousel_items.appendChild(new_carousel_item);
+            for (var i = 0; i < categorie.length; i++) {
+                var new_category_item = category_item_layout.cloneNode(true);
+                new_category_item.classList.remove("d-none");
+                new_category_item.getElementsByClassName("category-item_link")[0].innerHTML = categorie[i].strCategory;
+                category_list.appendChild(new_category_item);
+            }
+
+        })
+
+
+        ricetteRandom(6).then((ricette) => {
+            var i = 0;
+            for (var ricetta of ricette) {
+                var carousel_buttons = document.getElementById("carousel-buttons");
+                var carousel_items = document.getElementById("carousel-items");
+                var carousel_button_layout = carousel_buttons.firstElementChild;
+                var carousel_item_layout = carousel_items.firstElementChild;
+
+                //Duplica il Template per l'elemento del Carosello
+                var new_carousel_item = carousel_item_layout.cloneNode(true);
+                //Mostralo
+                new_carousel_item.classList.add("carouse-item");
+                new_carousel_item.classList.remove("d-none");
+                if (i == 0) {
+                    new_carousel_item.classList.add("active");
+                }
+                //Cambiare l'href del link con l'id del piatto
+                new_carousel_item.getElementsByClassName("carousel-item_link")[0].href = "pages/ricetta.html?id=" + ricetta.idMeal;
+                //Cambiare il src dell'immagine
+                new_carousel_item.getElementsByClassName("carousel-item_img")[0].src = ricetta.strMealThumb;
+                //Cambiare il titolo della ricetta
+                new_carousel_item.getElementsByClassName("carousel-item_title")[0].innerHTML = ricetta.strMeal;
+                //Aggiungere in coda alla lista di Carousel Items
+                carousel_items.appendChild(new_carousel_item);
+
+
+                var new_carousel_button = carousel_button_layout.cloneNode(true);
+                new_carousel_button.classList.remove("d-none");
+                if (i == 0) {
+                    new_carousel_button.classList.add("active");
+                }
+                new_carousel_button.setAttribute("data-bs-slide-to", "" + i);
+                new_carousel_button.setAttribute("aria-label", "Slide " + (i + 1));
+                carousel_buttons.appendChild(new_carousel_button);
+                i++;
+            }
+            carousel_button_layout.remove();
+            carousel_item_layout.remove();
         });
+
+
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
