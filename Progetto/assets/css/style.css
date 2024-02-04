@@ -271,3 +271,8 @@ input[type="checkbox"]:checked {
     --bs-btn-padding-x: 1.3rem;
     width: fit-content;
 }
+
+/* Profile Tabs */
+.nav-pills > li > button{
+    background-color: red;
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PGRC | Registration </title>
+    <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/my-colors.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body class="overflow-x-hidden min-vh-100 d-flex flex-column">
+
+    <!-- Background Stripes -->
+    <div class="background-stripe">
+    </div>
+
+    <!-- Background Grid-->
+    <div class="background-grid">
+        <div class="d-none background-grid-col"></div>
+        <div class="d-none background-grid-row"></div>
+    </div>
+
+    <!-- Header & Nav -->
+    <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+        <div class="container-xxl pt-4 pt-md-5 px-3">
+            <!-- Logo -->
+            <div class="logo | d-flex align-items-baseline gap-1">
+                <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+                <h1 class="h-0 text-primary">PGRC</h1>
+            </div>
+            <!-- Mobile Menu Button-->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body justify-content-end">
+                    <ul class="navbar-nav align-items-center gap-2">
+                        <li class="nav-item">
+                            <h5 class="text-center border-top border-bottom py-4 d-lg-none">
+                                SIGN UP for more functionalities!
+                            </h5>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-secondary fs-4">
+                                SIGN UP
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-primary fs-4">
+                                LOG IN
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <section class="container my-5 p-4 p-md-5 mx-auto d-flex">
+
+        <!-- Side Menu -->
+        <div class="bg-white rounded-5 mx-auto shadow px-4 py-5 h-100">
+            <nav>
+                <div class="bg-primary rounded-4 p-2 mx-auto" style="width:fit-content">
+                    <img src="../assets/img/anon.png" alt="Profile Picture">
+                </div>
+                <ul class="nav list-unstyled my-4 d-flex flex-column gap-3 nav-pills" id="v-tabs" role="tablist"
+                    aria-orientation="vertical">
+                    <li>
+                        <button id="cookbook-tab" data-bs-toggle="pill" data-bs-target="#cookbook" type="button"
+                            role="tab" aria-controls="cookbook"
+                            class="d-flex gap-2 align-items-center justify-content-start px-4 py-3 w-100 border-0 bg-transparent active">
+                            <img width="24" src="../assets/img/bookmark.png" alt="Your Cookbook">
+                            <p class="my-0 fs-5">Cookbook</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button id="reviews-tab" data-bs-toggle="pill" data-bs-target="#reviews" type="button"
+                            role="tab" aria-controls="reviews"
+                            class="d-flex gap-2 align-items-center justify-content-start px-4 py-3 w-100 border-0 bg-transparent">
+                            <img width="24" src="../assets/img/comment.png" alt="Your Reviews">
+                            <p class="my-0 fs-5">Reviews</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button id="profile-tab" data-bs-toggle="pill" data-bs-target="#profile" type="button"
+                            role="tab" aria-controls="profile"
+                            class="d-flex gap-2 align-items-center justify-content-start px-4 py-3 w-100 border-0 bg-transparent">
+                            <img width="24" src="../assets/img/setting.png" alt="Your Profile">
+                            <p class="my-0 fs-5">Profile</p>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Content Card -->
+        <div class="tab-content bg-white rounded-5 mx-auto shadow p-4 h-100" style="width: 900px">
+            <div id="cookbook" class="tab-pane active px-3" role="tabpanel">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Your Cookbook</h1>
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Sort by
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fs-5" href="#">Difficulty (Easiest First)</a></li>
+                            <li><a class="dropdown-item fs-5" href="#">Taste (Tastiest First)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="reviews" class="tab-pane px-3" role="tabpanel">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1>Your Reviews</h1>
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Sort by
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item fs-5" href="#">Date (Latest First)</a></li>
+                            <li><a class="dropdown-item fs-5" href="#">Difficulty (Easiest First)</a></li>
+                            <li><a class="dropdown-item fs-5" href="#">Taste (Tastiest First)</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="profile" class="tab-pane px-3" role="tabpanel">
+                <h1>Your Profile</h1>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-top border-black border-opacity-25 mt-auto">
+        <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
+            <!-- Logo -->
+            <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
+                <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+                <h1 class="h-0 text-primary">PGRC</h1>
+            </div>
+            <!-- Demo Buttons -->
+            <div>
+                <ul
+                    class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
+                    <li>
+                        <button class="btn btn-outline-secondary fs-4">
+                            Reset Data
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-outline-secondary fs-4">
+                            Load Demo Data
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+
+    <script src="../assets/js/lib.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
