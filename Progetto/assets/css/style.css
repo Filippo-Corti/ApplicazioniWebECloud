@@ -250,8 +250,12 @@ body {
     border: 1px solid var(--clr-primary);
 }
 
-label:has( ~ input[required])::after {
+label:has(~ input[required])::after {
     content: '*';
+}
+
+input:not(.is-invalid, .is-valid) {
+    border-color: black;
 }
 
 input[type="checkbox"]:checked {
@@ -260,4 +264,10 @@ input[type="checkbox"]:checked {
 
 .form-content {
     transition: transform 200ms ease-in;
+}
+
+.tag {
+    --bs-btn-padding-y: .25rem;
+    --bs-btn-padding-x: 1.3rem;
+    width: fit-content;
 }

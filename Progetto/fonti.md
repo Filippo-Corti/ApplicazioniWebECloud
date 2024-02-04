@@ -24,3 +24,23 @@ https://cssgradient.io/
 
 https://chrisburnell.com/clamp-calculator/
 
+
+### Checkboxes for Multiple Tags
+
+https://stackoverflow.com/questions/52048624/how-do-i-submit-more-than-one-checkbox-in-an-html-form
+
+
+### Password Validation REGEX
+
+https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
+
+Explaination: 
+
+``` ^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$ ```
+
+- ^ e $ delimitano la regex
+- (?= ... ) si chiamano 'lookahead', sono sostanzialmente regex dentro regex.
+- (?=.*[A-Za-z]) verifica che contenga almeno una lettera 
+- (?=.*\d) verifica che contenga almeno una cifra
+- (?=.*[@$!%*#?&]) verifica che contenga almeno un carattere speciale tra quelli indicati
+- [A-Za-z\d@$!%*#?&]{8,} verifica che nel complesso la stringa sia lunga almeno 8 caratteri
