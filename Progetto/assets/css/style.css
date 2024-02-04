@@ -257,3 +257,7 @@ label:has( ~ input[required])::after {
 input[type="checkbox"]:checked {
     color: black;
 }
+
+.form-content {
+    transition: transform 200ms ease-in;
+}
