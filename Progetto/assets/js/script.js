@@ -18,10 +18,10 @@ for (let i = 1 + ((remove_lateral_cols) ? 1 : 0); i < COLS - ((remove_lateral_co
     grid_container.appendChild(new_col);
 }
 
-for (let i = 1; i < ROWS; i++) {
+for (let i = 1; i < ROWS + 1; i++) {
     let new_row = grid_row.cloneNode(true);
     new_row.classList.remove("d-none");
-    new_row.style.top = ROW_SIZE * i + "px";
+    new_row.style.top = ROW_SIZE * i - 50 + "px";
     grid_container.appendChild(new_row);
 }
 
@@ -63,5 +63,7 @@ async function showRandomMeals() {
         console.log(extractIngredients(meal))
     }
 }
+
+
 
 

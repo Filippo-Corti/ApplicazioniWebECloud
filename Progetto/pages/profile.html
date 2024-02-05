@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PGRC | Registration </title>
+    <title>PGRC | Profile </title>
     <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -66,16 +66,16 @@
     </nav>
 
     <!-- Main -->
-    <section class="container my-5 p-4 p-md-5 mx-auto d-flex">
+    <section class="container my-5 py-4 px-2 px-md-1 py-md-5 mx-auto d-flex flex-column flex-lg-row">
 
         <!-- Side Menu -->
-        <div class="bg-white rounded-5 mx-auto shadow px-4 py-5 h-100">
+        <div class="bg-white rounded-lg-5 rounded-top-5 mx-lg-3 shadow px-2 py-lg-5 py-2 h-100">
             <nav>
-                <div class="bg-primary rounded-4 p-2 mx-auto" style="width:fit-content">
+                <div class="bg-primary rounded-4 p-2 mx-auto d-none d-lg-block" style="width:fit-content">
                     <img src="../assets/img/anon.png" alt="Profile Picture">
                 </div>
-                <ul class="nav list-unstyled my-4 d-flex flex-column gap-3 nav-pills position-relative" id="v-tabs"
-                    role="tablist" aria-orientation="vertical">
+                <ul class="nav nav-pills list-unstyled my-lg-4 d-flex flex-lg-column flex-row gap-3 position-relative justify-content-around"
+                    id="v-tabs" role="tablist" aria-orientation="vertical">
                     <li>
                         <button id="cookbook-tab" data-bs-toggle="pill" data-bs-target="#cookbook" type="button"
                             role="tab" aria-controls="cookbook"
@@ -106,14 +106,14 @@
                             <p class="my-0 fs-5">Profile</p>
                         </button>
                     </li>
-                    <li class="current-tab rounded-5 w-100">
+                    <li class="current-tab rounded-top-5 rounded-lg-5">
                     </li>
                 </ul>
             </nav>
         </div>
-        <!-- Content Card -->
-        <div class="tab-content bg-white rounded-5 mx-auto shadow p-4 h-100" style="width: 900px">
-            <div id="cookbook" class="tab-pane active px-3" role="tabpanel">
+        <!-- Content Tabs -->
+        <div class="tab-content bg-white rounded-bottom-5 rounded-lg-5 mx-auto shadow py-3 px-2 p-xl-4 w-100">
+            <div id="cookbook" class="tab-pane px-4 py-3 active" role="tabpanel">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>Your Cookbook</h1>
                     <div class="dropdown">
@@ -127,8 +127,178 @@
                         </ul>
                     </div>
                 </div>
+                <div class="py-3 d-flex flex-column gap-3">
+                    <!-- Saved Recipe Card -->
+                    <div class="recipe-card | rounded-5 overflow-hidden shadow w-100" data-favourite>
+                        <div class="card border-0">
+                            <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+                            <div class="card-body">
+                                <div class="row pe-4 ps-1 align-items-baseline">
+                                    <div class="col-7 mt-4">
+                                        <h5 class="card-title text-primary text-uppercase fs-6">Russian Cuisine</h5>
+                                        <h4 class="card-title fs-4">Lamb Pilaf (Plov)</h4>
+                                    </div>
+                                    <div class="col-5 row gap-2 justify-content-end mb-2">
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img width="20" src="../assets/img/star.png" alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img class="tint-danger" width="20" src="../assets/img/chef.png"
+                                                alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-text py-2 px-1 mb-1 position-relative">
+                                    <h5 class="text-secondary fs-6">Your Note:</h5>
+                                    <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"
+                                        disabled></textarea>
+                                    <div class="edit-button | position-absolute"
+                                        style="cursor:pointer; top: 30%; right: 4%" onclick="enableEdit(this)">
+                                        <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                                    </div>
+                                    <button
+                                        class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none"
+                                        style="cursor:pointer; bottom: 12%; right: 4%" onclick="disableEdit(this)">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="recipe-save"></div>
+                        </div>
+                    </div>
+                    <!-- Saved Recipe Card -->
+                    <div class="recipe-card | rounded-5 overflow-hidden shadow w-100" data-favourite>
+                        <div class="card border-0">
+                            <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+                            <div class="card-body">
+                                <div class="row pe-4 ps-1 align-items-baseline">
+                                    <div class="col-7 mt-4">
+                                        <h5 class="card-title text-primary text-uppercase fs-6">Russian Cuisine</h5>
+                                        <h4 class="card-title fs-4">Lamb Pilaf (Plov)</h4>
+                                    </div>
+                                    <div class="col-5 row gap-2 justify-content-end mb-2">
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img width="20" src="../assets/img/star.png" alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img class="tint-danger" width="20" src="../assets/img/chef.png"
+                                                alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-text py-2 px-1 mb-1 position-relative">
+                                    <h5 class="text-secondary fs-6">Your Note:</h5>
+                                    <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"
+                                        disabled></textarea>
+                                    <div class="edit-button | position-absolute"
+                                        style="cursor:pointer; top: 30%; right: 4%" onclick="enableEdit(this)">
+                                        <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                                    </div>
+                                    <button
+                                        class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none"
+                                        style="cursor:pointer; bottom: 12%; right: 4%" onclick="disableEdit(this)">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="recipe-save"></div>
+                        </div>
+                    </div>
+                    <!-- Saved Recipe Card -->
+                    <div class="recipe-card | rounded-5 overflow-hidden shadow w-100" data-favourite>
+                        <div class="card border-0">
+                            <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+                            <div class="card-body">
+                                <div class="row pe-4 ps-1 align-items-baseline">
+                                    <div class="col-7 mt-4">
+                                        <h5 class="card-title text-primary text-uppercase fs-6">Russian Cuisine</h5>
+                                        <h4 class="card-title fs-4">Lamb Pilaf (Plov)</h4>
+                                    </div>
+                                    <div class="col-5 row gap-2 justify-content-end mb-2">
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img width="20" src="../assets/img/star.png" alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img class="tint-danger" width="20" src="../assets/img/chef.png"
+                                                alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-text py-2 px-1 mb-1 position-relative">
+                                    <h5 class="text-secondary fs-6">Your Note:</h5>
+                                    <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"
+                                        disabled></textarea>
+                                    <div class="edit-button | position-absolute"
+                                        style="cursor:pointer; top: 30%; right: 4%" onclick="enableEdit(this)">
+                                        <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                                    </div>
+                                    <button
+                                        class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none"
+                                        style="cursor:pointer; bottom: 12%; right: 4%" onclick="disableEdit(this)">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="recipe-save"></div>
+                        </div>
+                    </div>
+                    <!-- Saved Recipe Card -->
+                    <div class="recipe-card | rounded-5 overflow-hidden shadow w-100" data-favourite>
+                        <div class="card border-0">
+                            <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+                            <div class="card-body">
+                                <div class="row pe-4 ps-1 align-items-baseline">
+                                    <div class="col-7 mt-4">
+                                        <h5 class="card-title text-primary text-uppercase fs-6">Russian Cuisine</h5>
+                                        <h4 class="card-title fs-4">Lamb Pilaf (Plov)</h4>
+                                    </div>
+                                    <div class="col-5 row gap-2 justify-content-end mb-2">
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img width="20" src="../assets/img/star.png" alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                        <div class="col d-flex align-items-center gap-2">
+                                            <img class="tint-danger" width="20" src="../assets/img/chef.png"
+                                                alt="Taste Score">
+                                            <span>3.7</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-text py-2 px-1 mb-1 position-relative">
+                                    <h5 class="text-secondary fs-6">Your Note:</h5>
+                                    <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"
+                                        disabled></textarea>
+                                    <div class="edit-button | position-absolute"
+                                        style="cursor:pointer; top: 30%; right: 4%" onclick="enableEdit(this)">
+                                        <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                                    </div>
+                                    <button
+                                        class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none"
+                                        style="cursor:pointer; bottom: 12%; right: 4%" onclick="disableEdit(this)">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="recipe-save"></div>
+                        </div>
+                    </div>
+                    <div class="fs-5 text-secondary text-center mt-2">
+                        Looking for new recipes? <br>
+                        Check them out on our <span class="text-decoration-underline">Home Page</span>
+                    </div>
+                </div>
             </div>
-            <div id="reviews" class="tab-pane px-3" role="tabpanel">
+            <div id="reviews" class="tab-pane px-4 py-3" role="tabpanel">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>Your Reviews</h1>
                     <div class="dropdown">
@@ -143,12 +313,754 @@
                         </ul>
                     </div>
                 </div>
+                <div class="py-3 d-flex flex-column gap-3">
+                    <!-- Recipe Review Card -->
+                    <div class="review-card | card mx-3 p-3 rounded-5 shadow border-0 position-relative"
+                        style="max-width: 900px;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card-body">
+                                    <!-- Recipe Name -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <p class="card-text fs-5 text-secondary">Lamb Pilaf (Plov)</p>
+                                    </div>
+                                    <!-- Taste -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Taste:
+                                        </p>
+                                        <div class="review-score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                    <!-- Difficulty -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Difficulty:
+                                        </p>
+                                        <div class="review-score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <!-- Review Date -->
+                                    <p class="text-secondary mb-2">24-10-2023</p>
+                                    <!-- Review Content -->
+                                    <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond
+                                        delighted! I requested a
+                                        custom
+                                        mala based on two stones I was called to invite together in this kind of
+                                        creation. The fun and genuine
+                                        joy I invite together in this kind of creation.
+                                        The fun and genuine joy.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-delete"></div>
+                    </div>
+                    <!-- Recipe Review Card -->
+                    <div class="review-card | card mx-3 p-3 rounded-5 shadow border-0 position-relative"
+                        style="max-width: 900px;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card-body">
+                                    <!-- Recipe Name -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <p class="card-text fs-5 text-secondary">Lamb Pilaf (Plov)</p>
+                                    </div>
+                                    <!-- Taste -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Taste:
+                                        </p>
+                                        <div class="review-score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                    <!-- Difficulty -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Difficulty:
+                                        </p>
+                                        <div class="review-score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <!-- Review Date -->
+                                    <p class="text-secondary mb-2">24-10-2023</p>
+                                    <!-- Review Content -->
+                                    <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond
+                                        delighted! I requested a
+                                        custom
+                                        mala based on two stones I was called to invite together in this kind of
+                                        creation. The fun and genuine
+                                        joy I invite together in this kind of creation.
+                                        The fun and genuine joy.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-delete"></div>
+                    </div>
+                    <!-- Recipe Review Card -->
+                    <div class="review-card | card mx-3 p-3 rounded-5 shadow border-0 position-relative"
+                        style="max-width: 900px;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card-body">
+                                    <!-- Recipe Name -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <p class="card-text fs-5 text-secondary">Lamb Pilaf (Plov)</p>
+                                    </div>
+                                    <!-- Taste -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Taste:
+                                        </p>
+                                        <div class="review-score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                    <!-- Difficulty -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Difficulty:
+                                        </p>
+                                        <div class="review-score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <!-- Review Date -->
+                                    <p class="text-secondary mb-2">24-10-2023</p>
+                                    <!-- Review Content -->
+                                    <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond
+                                        delighted! I requested a
+                                        custom
+                                        mala based on two stones I was called to invite together in this kind of
+                                        creation. The fun and genuine
+                                        joy I invite together in this kind of creation.
+                                        The fun and genuine joy.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-delete"></div>
+                    </div>
+                    <!-- Recipe Review Card -->
+                    <div class="review-card | card mx-3 p-3 rounded-5 shadow border-0 position-relative"
+                        style="max-width: 900px;">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card-body">
+                                    <!-- Recipe Name -->
+                                    <div class="d-flex align-items-center gap-2">
+                                        <p class="card-text fs-5 text-secondary">Lamb Pilaf (Plov)</p>
+                                    </div>
+                                    <!-- Taste -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Taste:
+                                        </p>
+                                        <div class="review-score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img src="../assets/img/star.png" alt="Taste Score">
+                                            <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                    <!-- Difficulty -->
+                                    <div class>
+                                        <p class="card-text my-0 pt-3">
+                                            Difficulty:
+                                        </p>
+                                        <div class="review-score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                            <img src="../assets/img/chef.png" alt="Taste Score">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card-body">
+                                    <!-- Review Date -->
+                                    <p class="text-secondary mb-2">24-10-2023</p>
+                                    <!-- Review Content -->
+                                    <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond
+                                        delighted! I requested a
+                                        custom
+                                        mala based on two stones I was called to invite together in this kind of
+                                        creation. The fun and genuine
+                                        joy I invite together in this kind of creation.
+                                        The fun and genuine joy.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review-delete"></div>
+                    </div>
+                    <div class="fs-5 text-secondary text-center mt-2">
+                        Looking for new recipes? <br>
+                        Check them out on our <span class="text-decoration-underline">Home Page</span>
+                    </div>
+                </div>
             </div>
-            <div id="profile" class="tab-pane px-3" role="tabpanel">
+            <div id="profile" class="tab-pane px-4 py-3" role="tabpanel">
                 <h1>Your Profile</h1>
+                <div class="pt-2">
+                    <div
+                        class="d-flex flex-column mt-4 border-bottom border-black pb-3 border-opacity-50 position-relative">
+                        <label class="fs-5 text-secondary" for="email">Email</label>
+                        <input class="editable | form-control rounded-2 border-2 fs-4 text-black p-0" type="email"
+                            name="email" id="email" value="corti.filippo03@gmail.com" disabled required>
+                        <div class="invalid-feedback">Your Email doesn't look correct</div>
+                        <div class="edit-button | position-absolute" style="cursor:pointer; top: 40%; right: 4%"
+                            onclick="enableEdit(this)">
+                            <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                        </div>
+                        <button class="save-button | btn btn-outline-secondary rounded-5 mt-1 ms-auto d-none"
+                            style="width: fit-content;" onclick="disableEdit(this)">
+                            Save
+                        </button>
+                    </div>
+                    <div
+                        class="d-flex flex-column mt-4 border-bottom border-black pb-3 border-opacity-50 position-relative">
+                        <label class="fs-5 text-secondary" for="username">Username</label>
+                        <input class="editable | form-control rounded-2 border-2 fs-4 text-black p-0" type="text"
+                            name="username" id="username" pattern=".{3,}" value="corti.filippo03" disabled>
+                        <div class="invalid-feedback">Your Username should be at least 3 characters long</div>
+                        <div class="edit-button | position-absolute" style="cursor:pointer; top: 40%; right: 4%"
+                            onclick="enableEdit(this)">
+                            <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                        </div>
+                        <button class="save-button | btn btn-outline-secondary rounded-5 mt-1 ms-auto d-none"
+                            style="width: fit-content;" onclick="disableEdit(this)">
+                            Save
+                        </button>
+                    </div>
+                    <div
+                        class="d-flex flex-column mt-4 border-bottom border-black pb-3 border-opacity-50 position-relative">
+                        <label class="fs-5 text-secondary" for="password">Password</label>
+                        <input class="editable | toggle-visibility form-control rounded-2 border-2 fs-4 text-black p-0"
+                            type="password" name="password" id="password"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" value="Filippo123!"
+                            disabled required>
+                        <div class="invalid-feedback">
+                            Your Password doesn't match requirements.
+                            Password must be at least 8 characters long and include a letter, a
+                            number and a special character.
+                        </div>
+                        <div class="edit-button | position-absolute" style="cursor:pointer; top: 40%; right: 4%"
+                            onclick="enableEdit(this)">
+                            <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                        </div>
+                        <img style="cursor: pointer;" class="visible-on-edit d-none position-absolute top-0 end-0"
+                            src="../assets/img/view.png" alt="Show Password" width="25" onclick="toggleShowPassword()">
+                        <div class="visible-on-edit d-none mt-1">
+                            <label class="fs-5 text-secondary" for="password_confirm">Confirm New Password</label>
+                            <input class="toggle-visibility | form-control rounded-2 border-2 fs-4 text-black p-0"
+                                type="password" id="password_confirm" value="Filippo123!" required>
+                            <div class="invalid-feedback">Your Passwords are different</div>
+                        </div>
+                        <button class="save-button | btn btn-outline-secondary rounded-5 mt-1 ms-auto d-none"
+                            style="width: fit-content;" onclick="confirmPasswordEdit(this)">
+                            Save
+                        </button>
+                    </div>
+                    <div
+                        class="d-flex flex-column mt-4 border-bottom border-black pb-4 border-opacity-50 position-relative">
+                        <label class="fs-5 text-secondary" for="preferences">Favourite Tags:</label>
+                        <input class=" rounded-2 border-2 fs-4 text-black px-2" type="text" id="preferences"
+                            oninput="searchTags(this.value)">
+                        <div class="m-3 overflow-hidden shadow-sm" style="height: 200px">
+                            <div class="custom-scrollbar overflow-y-auto overflow-x-hidden d-flex flex-column gap-2"
+                                style="max-height: 100%;">
+                                <div class="row gap-2 mx-3">
+                                    <span
+                                        class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                </div>
+                                <div class="row gap-2 mx-3">
+                                    <span
+                                        class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[category_breakfast]"
+                                            value="Breakfast">
+                                        <span>Breakfast</span>
+                                        <img class="d-none" width="12" src="../assets/img/close.png" alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                </div>
+                                <div class="row gap-2 mx-3">
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_chicken]"
+                                            value="Chicken">
+                                        <span>Chicken</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                    <span
+                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+                                        onclick="toggleState(this)">
+                                        <input class="d-none" type="checkbox" name="preferences[area_italian]"
+                                            value="Italian">
+                                        <span>Italian</span>
+                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
+                                            alt="Deselect Tag">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fs-5 text-secondary text-center mt-4">
+                        <span class="text-decoration-underline">Log out</span> <br>
+                        Do you want to delete your account? <span class="text-decoration-underline">click here</span>
+                    </div>
+                </div>
             </div>
         </div>
-
     </section>
 
     <!-- Footer -->
@@ -181,6 +1093,8 @@
 
 
     <script src="../assets/js/lib.js"></script>
+    <script src="../assets/js/form-control.js"></script>
+    <script src="../assets/js/profile.js"></script>
     <script src="../assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

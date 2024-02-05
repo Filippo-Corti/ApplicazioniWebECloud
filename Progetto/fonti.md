@@ -44,3 +44,9 @@ Explaination:
 - (?=.*\d) verifica che contenga almeno una cifra
 - (?=.*[@$!%*#?&]) verifica che contenga almeno un carattere speciale tra quelli indicati
 - [A-Za-z\d@$!%*#?&]{8,} verifica che nel complesso la stringa sia lunga almeno 8 caratteri
+
+
+### Optional Chaining
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+

@@ -7,6 +7,17 @@ body {
     font-style: normal;
 }
 
+textarea {
+    resize: none;
+}
+
+input[disabled] {
+    border: 0;
+    border-radius: 0 !important;
+    background-color: transparent !important; 
+}
+
+
 .offcanvas {
     --bs-offcanvas-width: 300px;
 }
@@ -54,8 +65,14 @@ body {
 }
 
 @media (min-width: 992px) {
+
+    /* Large */
     .border-lg-end {
         border-right: 1px solid rgba(0, 0, 0, 0.25) !important;
+    }
+
+    .rounded-lg-5 {
+        border-radius: var(--bs-border-radius-xxl) !important;
     }
 }
 
@@ -125,28 +142,37 @@ body {
     height: clamp(1.6rem, 1.85rem + 2vw, 3.1rem);
 }
 
-/* Recipe Card */
+/* Recipe Card + Review Card*/
 
 .recipe-card {
     container-type: inline-size;
 }
 
-.recipe-card .card::before {
-    content: "";
+.recipe-card .recipe-save,
+.review-card .review-delete {
     position: absolute;
     top: 0;
     right: 0;
-    width: 48px;
-    height: 48px;
     margin: 1.1rem;
-    background-image: url("../img/heart_outline.png");
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
     z-index: 999;
 }
 
-.recipe-card[data-favourite] .card::before {
+.recipe-card .recipe-save {
+    width: 48px;
+    height: 48px;
+    background-image: url("../img/heart_outline.png");
+}
+
+.review-card .review-delete {
+    width: 35px;
+    height: 35px;
+    background-image: url("../img/bin.png");
+}
+
+.recipe-card[data-favourite] .recipe-save {
     background-image: url("../img/heart_full.png");
 }
 
@@ -156,7 +182,7 @@ body {
         flex-direction: row;
     }
 
-    .recipe-card>.card>img {
+    .recipe-card>.card>.recipe-image {
         width: 35%;
         aspect-ratio: 1;
     }
@@ -187,6 +213,7 @@ body {
 /* Scroller Responsiveness */
 
 @media (max-width: 768px) {
+    /* Medium */
 
     .scroller {
         overflow-x: hidden !important;
@@ -278,14 +305,11 @@ input[type="checkbox"]:checked {
 }
 
 .nav-pills button img {
-    width: 0;
-    visibility: hidden;
-    transition: all 500ms;
+    width: 24px;
 }
 
-.nav-pills button:hover img, .nav-pills button.active img {
-    visibility: visible !important;
-    width: 100%;
+.nav-pills button p {
+    display: none;
 }
 
 .nav-pills .current-tab {
@@ -294,18 +318,73 @@ input[type="checkbox"]:checked {
     top: 0;
     left: 0;
     height: 60px;
+    width: 24vw;
     z-index: 1;
-    transition: top 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+    transition-property: top, left;
 }
 
-.nav-pills:has(> li:nth-of-type(1) button.active) .current-tab{
-    top: 0;
+.nav-pills:has(> li:nth-of-type(1) button.active) .current-tab {
+    left: 0;
 }
 
-.nav-pills:has(> li:nth-of-type(2) button.active) .current-tab{
-    top: 35.5%;
+.nav-pills:has(> li:nth-of-type(2) button.active) .current-tab {
+    left: 35%;
 }
 
-.nav-pills:has(> li:nth-of-type(3) button.active) .current-tab{
-    top: 71%;
+.nav-pills:has(> li:nth-of-type(3) button.active) .current-tab {
+    left: 70%;
+}
+
+@media (min-width: 992px) {
+
+    /* Large */
+    .nav-pills button img {
+        width: 0;
+        visibility: hidden;
+        transition: all 500ms;
+    }
+
+    .nav-pills button p {
+        display: block;
+    }
+
+    .nav-pills button:hover img,
+    .nav-pills button.active img {
+        visibility: visible !important;
+        width: 100%;
+    }
+
+    .nav-pills .current-tab {
+        transform: none;
+        width: 100%;
+        left: 0 !important;
+    }
+
+    .nav-pills:has(> li:nth-of-type(1) button.active) .current-tab {
+        top: 0;
+    }
+
+    .nav-pills:has(> li:nth-of-type(2) button.active) .current-tab {
+        top: 35.5%;
+    }
+
+    .nav-pills:has(> li:nth-of-type(3) button.active) .current-tab {
+        top: 71%;
+    }
+
+}
+
+
+/* Reviews Edit */
+.editable:not([disabled])~.save-button {
+    display: block !important;
+}
+
+.editable:not([disabled])~.edit-button {
+    display: none !important;
+}
+
+.editable:not([disabled]) ~ .visible-on-edit {
+    display: block !important; 
 }

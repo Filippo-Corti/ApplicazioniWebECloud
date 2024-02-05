@@ -1,15 +1,15 @@
 /* Multi-Part Form Sliding & Validation */
 
 let form = document.querySelector("form");
-let form_content = form.querySelector(".form-content");
-let form_part_1 = form_content.firstElementChild;
-let form_part_2 = form_content.lastElementChild;
+let form_content = form?.querySelector(".form-content");
+let form_part_1 = form_content?.firstElementChild;
+let form_part_2 = form_content?.lastElementChild;
 
 let form_step_count = document.querySelector("#form-step-count");
 let first_line = document.querySelectorAll(".line")[0];
 let second_line = document.querySelectorAll(".line")[1];
-let continue_button = form.querySelector("button[role='continue'");
-let back_button = form.querySelector("button[role='back'");
+let continue_button = form?.querySelector("button[role='continue'");
+let back_button = form?.querySelector("button[role='back'");
 
 //Validate Fields of Step 1 + Go to Step 2
 function validateAndContinueForm() {
@@ -33,7 +33,6 @@ function validateAndContinueForm() {
     //Missing Check for Already Used Email !!!!
     let password = form_content.querySelector("input#password");
     let password_confirm = form_content.querySelector("input#password_confirm");
-    console.log(password_confirm.value)
     if (password.value !== password_confirm.value) {
         password_confirm.classList.remove("is-valid");
         password_confirm.classList.add("is-invalid");
@@ -62,7 +61,7 @@ function goBack() {
 
 //Toggle Password Visibiliy
 function toggleShowPassword() {
-    let password_fields = form_content.querySelectorAll(".toggle-visibility");
+    let password_fields = document.querySelectorAll(".toggle-visibility");
 
     for (let password_field of password_fields) {
         if (password_field.type == "password")
@@ -97,7 +96,7 @@ function toggleState(tag) {
 //Tag Selection - Show Searched Tags 
 function searchTags(keyword) {
     keyword = keyword.toLowerCase();
-    let tags = form_content.querySelectorAll(".tag");
+    let tags = document.querySelectorAll(".tag");
     for (let tag of tags) {
         let value = tag.firstElementChild.value.toLowerCase();
         if(!value.startsWith(keyword)) {
