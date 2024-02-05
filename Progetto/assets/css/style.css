@@ -278,14 +278,12 @@ input[type="checkbox"]:checked {
 }
 
 .nav-pills button img {
-    width: 0;
-    visibility: hidden;
+    display: none;
     transition: all 500ms;
 }
 
 .nav-pills button:hover img, .nav-pills button.active img {
-    visibility: visible !important;
-    width: 100%;
+    display: block;
 }
 
 .nav-pills .current-tab {
