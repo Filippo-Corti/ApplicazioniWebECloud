@@ -273,6 +273,39 @@ input[type="checkbox"]:checked {
 }
 
 /* Profile Tabs */
-.nav-pills > li > button{
-    background-color: red;
+.nav-pills li {
+    z-index: 2;
+}
+
+.nav-pills button img {
+    width: 0;
+    visibility: hidden;
+    transition: all 500ms;
+}
+
+.nav-pills button:hover img, .nav-pills button.active img {
+    visibility: visible !important;
+    width: 100%;
+}
+
+.nav-pills .current-tab {
+    position: absolute;
+    background-color: rgba(170, 168, 168, 0.286);
+    top: 0;
+    left: 0;
+    height: 60px;
+    z-index: 1;
+    transition: top 500ms ease-in-out;
+}
+
+.nav-pills:has(> li:nth-of-type(1) button.active) .current-tab{
+    top: 0;
+}
+
+.nav-pills:has(> li:nth-of-type(2) button.active) .current-tab{
+    top: 35.5%;
+}
+
+.nav-pills:has(> li:nth-of-type(3) button.active) .current-tab{
+    top: 71%;
 }
