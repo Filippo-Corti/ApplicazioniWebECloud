@@ -82,141 +82,141 @@
     <hr class="mt-0">
 
     <div class="container my-5">
-        <h1 class="font-protest">SPAGHETTI</h1>
-        <img class="stretched-img w-100" src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" alt="">
+        <h1 id="ricetta_nome" class="font-protest">SPAGHETTI</h1>
+        <img id="ricetta_img" class="stretched-img w-100"
+            src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" alt="">
         <div class="m-5">
             <h3 class="text-center">INGREDIENTI</h3>
-            <div class="my-4">
-                <div class="d-flex my-3 justify-content-around">
-                    <div class="d-flex justify-content-start align-items-center gap-3">
-                        <img width="50" src="https://www.themealdb.com/images/ingredients/onions.png" alt="">
-                        <p class="m-0">2 onions</p>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center gap-3">
-                        <img width="50" src="https://www.themealdb.com/images/ingredients/olive%20oil.png" alt="">
-                        <p class="m-0">1 tbsp olive oil</p>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center gap-3">
-                        <img width="50" src="https://www.themealdb.com/images/ingredients/onions.png" alt="">
-                        <p class="m-0">2 onions</p>
-                    </div>
-                </div>
-                <div class="d-flex my-3 justify-content-around">
-                    <div class="d-flex justify-content-start align-items-center gap-3">
-                        <img width="50" src="https://www.themealdb.com/images/ingredients/onions.png" alt="">
-                        <p class="m-0">2 onions</p>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center gap-3">
-                        <img width="50" src="https://www.themealdb.com/images/ingredients/olive%20oil.png" alt="">
-                        <p class="m-0">1 tbsp olive oil</p>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center gap-3">
-                        <img width="50" src="https://www.themealdb.com/images/ingredients/onions.png" alt="">
-                        <p class="m-0">2 onions</p>
-                    </div>
+            <div id="ricetta_ingredienti-container" class="my-5 row justify-content-around">
+                <div
+                    class="ricetta_ingrediente d-none col-4 d-flex justify-content-start align-items-center gap-3 my-2">
+                    <img class="ricetta_ingrediente-img" width="50"
+                        src="https://www.themealdb.com/images/ingredients/onions.png" alt="">
+                    <p class="ricetta_ingrediente-nome m-0">Ingredient Name</p>
                 </div>
             </div>
         </div>
         <div class="m-5">
             <h3 class="text-center">PROCEDIMENTO</h3>
             <div class="mt-4">
-                <p>Put the onion and oil in a large pan and fry over a fairly high heat for 3-4 mins.
+                <p id="ricetta_procedimento">Put the onion and oil in a large pan and fry over a fairly high heat for
+                    3-4 mins.
                     Add the garlic and mince and fry until they both brown.
                     Add the mushrooms and herbs, and cook for another couple of mins.
                     Stir in the tomatoes, beef stock, tomato ketchup or purée, Worcestershire sauce and seasoning.
                     Bring to the boil, then reduce the heat, cover and simmer, stirring occasionally, for 30 mins.
-                    Meanwhile, cook the spaghetti in a large pan of boiling, salted water, according to packet instructions.
-                    Drain well, run hot water through it, put it back in the pan and add a dash of olive oil, if you like, then stir in the meat sauce.
+                    Meanwhile, cook the spaghetti in a large pan of boiling, salted water, according to packet
+                    instructions.
+                    Drain well, run hot water through it, put it back in the pan and add a dash of olive oil, if you
+                    like, then stir in the meat sauce.
                     Serve in hot bowls and hand round Parmesan cheese, for sprinkling on top.</p>
             </div>
         </div>
     </div>
 
 
-    <!-- 10 PIATTI A CASO PER TUTTE LE CATEGORIE -->
+    <!-- CONSIGLI -->
     <div class="container my-5">
         <h2 class="font-protest">SCELTI PER VOI</h2>
-        <!-- 10 PIATTI PER UNA CATEGORIA -->
+        <!-- 10 PIATTI PER LA STESSA CATEGORIA -->
         <div class="mx-5">
-            <h4 class="my-3">CATEGORIA</h4>
-            <div class="overflow-x-scroll d-flex gap-1">
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
+            <h4 class="my-3">Altre Ricette della Categoria "<span id="nome-categoria">NomeCategoria</span>"</h4>
+            <div id="category-slider" class="overflow-x-auto d-flex gap-1">
+                <a class="category-card text-decoration-none d-none" href="pages/ricetta.html?id=000">
+                    <div class="card flex-shrink-0" style="width: 16rem;">
+                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
+                            class="card_img card-img-top" alt="...">
+                        <h5 class="card_name card-title text-center my-3">Spaghetti</h5>
+                    </div>
+                </a>
             </div>
         </div>
-        <!-- 10 PIATTI PER UNA CATEGORIA -->
+        <!-- 10 PIATTI PER LA STESSA AREA -->
         <div class="mx-5">
-            <h4 class="my-3">CATEGORIA</h4>
-            <div class="overflow-x-scroll d-flex gap-1">
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-            </div>
-        </div>
-        <!-- 10 PIATTI PER UNA CATEGORIA -->
-        <div class="mx-5">
-            <h4 class="my-3">CATEGORIA</h4>
-            <div class="overflow-x-scroll d-flex gap-1">
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
-                <div class="card flex-shrink-0" style="width: 16rem;">
-                    <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" class="card-img-top"
-                        alt="...">
-                    <h5 class="card-title text-center my-3">Spaghetti</h5>
-                </div>
+            <h4 class="my-3">Altre Ricette dell'Area "<span id="nome-area">NomeArea</span>"</h4>
+            <div id="area-slider" class="overflow-x-auto d-flex gap-1">
+                <a class="area-card text-decoration-none d-none" href="pages/ricetta.html?id=000">
+                    <div class="card flex-shrink-0" style="width: 16rem;">
+                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
+                            class="card_img card-img-top" alt="...">
+                        <h5 class="card_name card-title text-center my-3">Spaghetti</h5>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
 
     <script src="../script.js"></script>
+    <script>
+
+        var parametri = new URLSearchParams(window.location.search);
+        var id = parametri.get("id");
+
+        getDettagliRicetta(id).then((ricetta) => {
+            //Aggiunta Descrizioni Generali
+            document.getElementById("ricetta_nome").innerHTML = ricetta.strMeal;
+            document.getElementById("ricetta_img").src = ricetta.strMealThumb;
+            document.getElementById("ricetta_procedimento").innerHTML = ricetta.strInstructions;
+
+            //Aggiunta Ingredienti
+            var ingredienti_container = document.getElementById("ricetta_ingredienti-container");
+            var ingrediente_layout = ingredienti_container.firstElementChild;
+
+            for (var i = 1; i <= 20; i++) {
+
+                var ingredient_name = ricetta["strIngredient" + i];
+                var ingredient_measure = ricetta["strMeasure" + i];
+                if (ingredient_name) {
+                    var new_ingrediente = ingrediente_layout.cloneNode(true);
+                    new_ingrediente.classList.remove("d-none");
+                    new_ingrediente.getElementsByClassName("ricetta_ingrediente-img")[0].src = "https://www.themealdb.com/images/ingredients/" + ingredient_name + "-Small.png";
+                    new_ingrediente.getElementsByClassName("ricetta_ingrediente-nome")[0].innerHTML = ingredient_measure + " - " + ingredient_name;
+                    ingredienti_container.appendChild(new_ingrediente);
+                }
+            }
+
+            //Aggiunta dei Consigliati (Area e Categoria)
+            var categoria = ricetta.strCategory;
+            document.getElementById("nome-categoria").innerHTML = categoria;
+            var category_container = document.getElementById("category-slider");
+            var category_card_layout = category_container.getElementsByClassName("category-card")[0];
+
+            getRicetteByCategoria(categoria).then((data) => {
+                var ricette = data.ricette;
+
+                for (var i = 0; i < 10; i++) {
+                    var new_category_card = category_card_layout.cloneNode(true);
+                    new_category_card.classList.remove("d-none");
+                    new_category_card.href = "pages/ricetta.html?id=" + ricette[i].idMeal;
+                    new_category_card.getElementsByClassName("card_img")[0].src = ricette[i].strMealThumb;
+                    new_category_card.getElementsByClassName("card_name")[0].innerHTML = ricette[i].strMeal;
+                    category_container.appendChild(new_category_card);
+                }
+            })
+
+            var area = ricetta.strArea;
+            document.getElementById("nome-area").innerHTML = area;
+            var area_container = document.getElementById("area-slider");
+            var area_card_layout = area_container.getElementsByClassName("area-card")[0];
+
+            getRicetteByArea(area).then((data) => {
+                var ricette = data.ricette;
+
+                for (var i = 0; i < 10; i++) {
+                    var new_area_card = category_card_layout.cloneNode(true);
+                    new_area_card.classList.remove("d-none");
+                    new_area_card.href = "pages/ricetta.html?id=" + ricette[i].idMeal;
+                    new_area_card.getElementsByClassName("card_img")[0].src = ricette[i].strMealThumb;
+                    new_area_card.getElementsByClassName("card_name")[0].innerHTML = ricette[i].strMeal;
+                    area_container.appendChild(new_area_card);
+                }
+            })
+
+
+
+        });
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

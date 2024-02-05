@@ -9,3 +9,7 @@
     object-fit: cover;
     margin: 0 auto;
 }
+
+.search-element, .category-element, .area-element {
+  display: none;
+}

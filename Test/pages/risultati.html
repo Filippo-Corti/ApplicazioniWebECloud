@@ -82,7 +82,7 @@
     <hr class="mt-0">
 
     <!-- RISULTATI -->
-    <div class="container my-5">
+    <div class="search-element container my-5">
         <h2 class="font-protest">RISULTATI DELLA RICERCA "<span id="parola-cercata">Parola Cercata</span>":</h2>
         <div class="mx-5">
             <div id="results-container" class="row justify-content-center gap-1">
@@ -99,35 +99,72 @@
     </div>
 
 
-    <!-- 10 PIATTI A CASO PER TUTTE LE CATEGORIE -->
-    <div class="container my-5">
-        <h2 class="font-protest">SCELTI PER VOI</h2>
-        <!-- 10 PIATTI PER UNA CATEGORIA -->
+    <div class="category-element container my-5">
+        <h2 class="font-protest">RICETTE DELLA CATEGORIA "<span id="categoria-cercata">Categoria</span>":</h2>
         <div class="mx-5">
-            <h4 class="my-3">CATEGORIA</h4>
-            <div class="overflow-x-scroll d-flex gap-1">
-                <a class="text-decoration-none" href="ricetta.html?id=000">
-                    <div class="card flex-shrink-0" style="width: 16rem;">
+            <div id="category-container" class="row justify-content-center gap-1">
+                <!-- PIATTI -->
+                <div class="card flex-shrink-0 d-none" style="width: 16rem;">
+                    <a class="card_link text-decoration-none" href="ricetta.html?id=000">
                         <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
-                            class="card-img-top" alt="...">
-                        <h5 class="card-title text-center my-3">Spaghetti</h5>
-                    </div>
-                </a>
+                            class="card_img card-img-top" alt="...">
+                        <h5 class="card_name card-title text-center my-3 text-dark">Spaghetti</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="area-element container my-5">
+        <h2 class="font-protest">RICETTE DELL'AREA"<span id="area-cercata">Area</span>":</h2>
+        <div class="mx-5">
+            <div id="area-container" class="row justify-content-center gap-1">
+                <!-- PIATTI -->
+                <div class="card flex-shrink-0 d-none" style="width: 16rem;">
+                    <a class="card_link text-decoration-none" href="ricetta.html?id=000">
+                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
+                            class="card_img card-img-top" alt="...">
+                        <h5 class="card_name card-title text-center my-3 text-dark">Spaghetti</h5>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
+
     <script src="../script.js"></script>
     <script>
         var parametri = new URLSearchParams(window.location.search);
-        var keyword = parametri.get("search")
+        var keyword = parametri.get("search");
+        var categoria = parametri.get("category");
+        var area = parametri.get("area");
 
-        document.getElementById("parola-cercata").innerHTML = keyword;
+        if (keyword) {
+            document.getElementsByClassName("search-element")[0].style.display = "block";
+            document.getElementById("parola-cercata").innerHTML = keyword;
+            ricetteSearch(keyword).then((results) => {
+                var results_container = document.getElementById("results-container");
+                posizionaRicetteInContainer(results_container, results);
+            })
+        }
+        if (categoria) {
+            document.getElementsByClassName("category-element")[0].style.display = "block";
+            document.getElementById("categoria-cercata").innerHTML = categoria;
+            getRicetteByCategoria(categoria).then((results) => {
+                var results_container = document.getElementById("category-container");
+                posizionaRicetteInContainer(results_container, results.ricette);
+            })
+        }
+        if (area) {
+            document.getElementsByClassName("area-element")[0].style.display = "block";
+            document.getElementById("area-cercata").innerHTML = area;
+            getRicetteByArea(area).then((results) => {
+                var results_container = document.getElementById("area-container");
+                posizionaRicetteInContainer(results_container, results.ricette);
+            })
+        }
 
-        ricetteSearch(keyword).then((results) => {
-            var results_container = document.getElementById("results-container");
+        function posizionaRicetteInContainer(results_container, results) {
             var result_card_layout = results_container.firstElementChild;
-
 
             for (var i = 0; i < results.length; i++) {
                 var new_result_card = result_card_layout.cloneNode(true);
@@ -139,7 +176,7 @@
                 results_container.appendChild(new_result_card);
             }
 
-        })
+        }
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

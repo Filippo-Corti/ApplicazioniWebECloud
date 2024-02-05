@@ -46,7 +46,8 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <button class="btn btn-dark ms-3" type="submit">Login</button>
+                    <button id="login-trigger" class="btn btn-dark ms-3" type="submit" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">Login</button>
                 </div>
             </div>
         </div>
@@ -61,8 +62,11 @@
                     Categorie
                 </a>
                 <ul id="category-list" class="dropdown-menu">
-                    <li class="category-item d-none"><a class="category-item_link dropdown-item" href="#">Categoria
-                            Fittizia</a></li>
+                    <li class="category-item d-none">
+                        <a class="category-item_link dropdown-item" href="#">
+                            Categoria Fittizia
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -93,7 +97,7 @@
             <div id="carousel-items" class="carousel-inner">
                 <div class="carousel-item d-none">
                     <a class="carousel-item_link" href="pages/ricetta.html?id=0000">
-                        <img src="..." class="carousel-item_img d-block w-100 stretched-img" alt="...">
+                        <img src="" class="carousel-item_img d-block w-100 stretched-img" alt="...">
                         <div class="carousel-caption d-none d-md-block text-dark">
                             <h4 class="carousel-item_title fw-bold mb-4 bg-white mx-auto bg-opacity-75"
                                 style="max-width: fit-content;">Piatto</h4>
@@ -113,41 +117,117 @@
     </div>
 
     <!-- 10 PIATTI A CASO PER TUTTE LE CATEGORIE -->
-    <div class="container my-5">
+    <div id="categories-container" class="container my-5">
         <h2 class="font-protest">SCELTI PER VOI</h2>
         <!-- 10 PIATTI PER UNA CATEGORIA -->
-        <div class="mx-5">
-            <h4 class="my-3">CATEGORIA</h4>
-            <div class="overflow-x-scroll d-flex gap-1">
-                <a class="text-decoration-none" href="pages/ricetta.html?id=000">
+        <div id="category-container" class="m-lg-5 m-3 d-none">
+            <h4 class="category-name my-3 font-protest">CATEGORIA</h4>
+            <div class="category-slider overflow-x-auto d-flex gap-1">
+                <a class="category-card text-decoration-none d-none" href="pages/ricetta.html?id=000">
                     <div class="card flex-shrink-0" style="width: 16rem;">
                         <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
-                            class="card-img-top" alt="...">
-                        <h5 class="card-title text-center my-3">Spaghetti</h5>
+                            class="card_img card-img-top" alt="...">
+                        <h5 class="card_name card-title text-center my-3">Spaghetti</h5>
                     </div>
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Modal LOGIN -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">LOGIN</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- FORM DI LOGIN -->
+                    <div class="container-sm mt-4">
+                        <form method="POST" onsubmit="return controllaCampi();">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Indirizzo Email</label>
+                                <input name="email" id="email" class="form-control" type="email" required>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col-md-6 col-12 mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input name="password" id="password" class="form-control" type="password"
+                                        oninput="controllaLunghezza(event.srcElement,8)" required>
+                                </div>
+                                <div class="col-md-6 col-12 mb-3">
+                                    <button id="tasto" class="btn btn-primary" style="width:170px"
+                                        onclick="mostraPassword(document.getElementById('password'),null,getElementById('tasto')); return false;">Mostra
+                                        password</button>
+                                </div>
+                            </div>
+                            <button type="reset" class="btn btn-danger">Resetta</button>
+                            <button type="submit" class="btn btn-dark">Login</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="gestione-form.js"></script>
+
     <script>
 
+        //Categorie e Consigliati
         getCategorie().then((categorie) => {
-            //Elaborazione delle Categorie
+
+            //Elaborazione delle Categorie Nel Menu
+
             var category_list = document.getElementById("category-list");
             var category_item_layout = category_list.firstElementChild;
 
             for (var i = 0; i < categorie.length; i++) {
                 var new_category_item = category_item_layout.cloneNode(true);
                 new_category_item.classList.remove("d-none");
+                new_category_item.getElementsByClassName("category-item_link")[0].href = "pages/risultati.html?category=" + categorie[i].strCategory;
                 new_category_item.getElementsByClassName("category-item_link")[0].innerHTML = categorie[i].strCategory;
                 category_list.appendChild(new_category_item);
             }
 
+            //Aggiunta di Piatti Consigliati per Categoria
+
+            var categories_container = document.getElementById("categories-container");
+            var category_container_layout = document.getElementById("category-container");
+
+            var start = getRandomInt(categorie.length)
+            for (var i = start; i < start + 5; i++) {
+                var index = i % categorie.length;
+                var categoria = categorie[index].strCategory;
+                getRicetteByCategoria(categoria).then((data) => {
+                    ricette = data.ricette;
+                    categoria = data.categoria;
+                    var new_category_container = category_container_layout.cloneNode(true);
+                    new_category_container.classList.remove("d-none");
+                    new_category_container.getElementsByClassName("category-name")[0].innerHTML = categoria;
+
+                    for (var i = 0; i < Math.min(10, ricette.length); i++) {
+                        var new_category_card = new_category_container.getElementsByClassName("category-card")[0].cloneNode(true);
+                        new_category_card.classList.remove("d-none");
+                        new_category_card.href = "pages/ricetta.html?id=" + ricette[i].idMeal;
+                        new_category_card.getElementsByClassName("card_img")[0].src = ricette[i].strMealThumb;
+                        new_category_card.getElementsByClassName("card_name")[0].innerHTML = ricette[i].strMeal;
+                        new_category_container.getElementsByClassName("category-slider")[0].appendChild(new_category_card);
+                        categories_container.appendChild(new_category_container);
+                    }
+                })
+            }
+
+
         })
 
-
+        //Ricette Carousel 
         ricetteRandom(6).then((ricette) => {
             var i = 0;
             for (var ricetta of ricette) {
@@ -187,6 +267,8 @@
             carousel_button_layout.remove();
             carousel_item_layout.remove();
         });
+
+
 
 
 
