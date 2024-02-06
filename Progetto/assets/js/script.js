@@ -46,7 +46,7 @@ scrollers.forEach((scroller) => {
 
 })
 
-/* Scroll when Search Bar is Selected */
+/* Scroll when Search Bar is Selected - For Home Page*/
 
 function scrollToHere(element) {
     let element_y = element.getBoundingClientRect().top + window.scrollY; //Relative to the document, not the viewport
@@ -64,6 +64,26 @@ async function showRandomMeals() {
     }
 }
 
+/* Save Recipe Modal - from https://getbootstrap.com/docs/5.3/components/modal/#varying-modal-content */
+const saveRecipeModal = document.getElementById('saveRecipeModal')
+if (saveRecipeModal) {
+    saveRecipeModal.addEventListener('show.bs.modal', event => {
+        
+    // !!! if not logged in event.preventDefault() + show del modal di Login
+
+    // Button that triggered the modal
+    const button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    const recipe_name = button.getAttribute('data-bs-recipe')
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+
+    // Update the modal's content.
+    const modalBodyLabel = saveRecipeModal.querySelector('.modal-recipe-label')
+
+    modalBodyLabel.textContent = recipe_name;
+  })
+}
 
 
 

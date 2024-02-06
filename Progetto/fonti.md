@@ -50,3 +50,6 @@ Explaination:
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 
+### Input Type Date Default Value
+
+https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today

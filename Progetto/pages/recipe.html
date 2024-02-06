@@ -65,7 +65,7 @@
   </nav>
 
   <!-- Recipe -->
-  <section class="container-xxl my-4 mx-auto px-4 px-md-5">
+  <main class="container-xxl my-4 mx-auto px-4 px-md-5 bg-white rounded-5 py-5 shadow-lg mb-5">
     <!-- Recipe Preview -->
     <div class="row align-items-end gap-4">
       <div class="col-lg">
@@ -108,8 +108,8 @@
       </div>
       <div class="col-lg order-first order-lg-0">
         <!-- Image -->
-        <img id="recipe_image" class="recipe-image | rounded-5" src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg"
-          alt="Sticky Toffee Pudding Ultimate">
+        <img id="recipe_image" class="recipe-image | rounded-5"
+          src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg" alt="Sticky Toffee Pudding Ultimate">
       </div>
     </div>
     <!-- Recipe Details -->
@@ -174,14 +174,135 @@
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
   <!-- Reviews -->
   <section class="container-xxl my-4 mx-auto px-md-5">
     <h3>REVIEWS</h3>
     <div class="w-100 d-flex flex-column align-items-center">
+      <!-- Write a Review Form -->
+      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
+        <div class="row">
+          <div class="col-1">
+            <div class="card-body">
+              <div class="bg-primary rounded-5" style="width:fit-content">
+                <img src="../assets/img/anon.png" alt="Profile Picture">
+              </div>
+            </div>
+          </div>
+          <div class="col-11">
+            <div class="card-body">
+              <form action="recipe.html" name="review_form">
+                <div class="row pe-4">
+                  <input name="content" id="review_content"
+                    class="w-100 border-0 border-bottom border-2 border-black ps-1" type="text"
+                    placeholder="Leave a review on this recipe..." onclick="showReviewForm()">
+                </div>
+                <div class="review-form-more | d-none">
+                  <div class="row mt-4 mb-3">
+                    <div class="col-md-4 d-flex flex-column ps-0">
+                      <div class="d-flex align-items-center">
+                        <label class="mb-0" for="review_taste">Taste:</label>
+                        <input class="form-control m-0 border-0" type="number" name="taste" id="review_taste" min="1"
+                          max="5" style="width: fit-content" onchange="voteTaste(this.value)" required>
+                      </div>
+                      <div class="review-taste-input | review-score" style="cursor:pointer"
+                        onmouseover="voteTaste(event.target.getAttribute('data-value'))">
+                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="1">
+                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="2">
+                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="3">
+                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="4">
+                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="5">
+                      </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column ps-0">
+                      <div class="d-flex align-items-center">
+                        <label class="mb-0" for="review_difficulty">Difficulty:</label>
+                        <input class="form-control m-0 border-0" type="number" name="difficulty" id="review_difficulty"
+                          min="1" max="5" style="width: fit-content" onchange="voteDifficulty(this.value)" required>
+                      </div>
+                      <div class="review-difficulty-input | review-score" style="cursor:pointer"
+                        onmouseover="voteDifficulty(event.target.getAttribute('data-value'))">
+                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="1">
+                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="2">
+                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="3">
+                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="4">
+                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="5">
+                      </div>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column ps-0">
+                      <label class="mb-0" for="review_difficulty">Preparation Date</label>
+                      <input class="form-control border border-2 border-black fs-5" type="date" name="date"
+                        id="review_difficulty" required>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end gap-3">
+                    <button class="btn btn-outline-secondary" type="button" onclick="closeReviewForm()">Cancel</button>
+                    <input class="btn btn-primary border-0" type="submit" value="Publish"
+                      onclick="return validateAndPublishReview()">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Review Card -->
-      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
+      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card-body">
+              <!-- Username & Picture -->
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-primary rounded-5" style="width:fit-content">
+                  <img src="../assets/img/anon.png" alt="Profile Picture">
+                </div>
+                <p class="card-text">Filippo</p>
+              </div>
+              <!-- Taste -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Taste:
+                </p>
+                <div class="review-score">
+                  <img src="../assets/img/star.png" alt="Difficulty Score">
+                  <img src="../assets/img/star.png" alt="Difficulty Score">
+                  <img src="../assets/img/star.png" alt="Difficulty Score">
+                  <img src="../assets/img/star.png" alt="Difficulty Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
+                </div>
+              </div>
+              <!-- Difficulty -->
+              <div class>
+                <p class="card-text my-0 pt-3">
+                  Difficulty:
+                </p>
+                <div class="review-score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <!-- Review Date -->
+              <p class="text-secondary mb-2">24-10-2023</p>
+              <!-- Review Content -->
+              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
+                custom
+                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
+                joy I invite together in this kind of creation.
+                The fun and genuine joy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
         <div class="row">
           <div class="col-md-3">
             <div class="card-body">
@@ -235,7 +356,7 @@
           </div>
         </div>
       </div>
-      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
+      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
         <div class="row">
           <div class="col-md-3">
             <div class="card-body">
@@ -289,61 +410,7 @@
           </div>
         </div>
       </div>
-      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-body">
-              <!-- Username & Picture -->
-              <div class="d-flex align-items-center gap-2">
-                <div class="bg-primary rounded-5" style="width:fit-content">
-                  <img src="../assets/img/anon.png" alt="Profile Picture">
-                </div>
-                <p class="card-text">Filippo</p>
-              </div>
-              <!-- Taste -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Taste:
-                </p>
-                <div class="review-score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
-                </div>
-              </div>
-              <!-- Difficulty -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Difficulty:
-                </p>
-                <div class="review-score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <!-- Review Date -->
-              <p class="text-secondary mb-2">24-10-2023</p>
-              <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
-                custom
-                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
-                joy I invite together in this kind of creation.
-                The fun and genuine joy.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card m-3 p-3 rounded-5 shadow border-0" style="max-width: 900px;">
+      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
         <div class="row">
           <div class="col-md-3">
             <div class="card-body">
@@ -431,7 +498,12 @@
 
 
   <script src="../assets/js/lib.js"></script>
+  <script src="../assets/js/recipe.js"></script>
   <script src="../assets/js/script.js"></script>
+  <script>
+    //Load today's date as default
+    document.review_form.date.valueAsDate = new Date();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
