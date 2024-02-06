@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prova di HTML</title>
+    <title>Ricettario Universitario</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../img/logo.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +50,7 @@
         </div>
     </nav>
 
+    <!-- SOTTOMENU -->
     <div class="container-fluid my-1">
         <ul class="nav justify-content-center gap-3 fs-5">
             <li class="nav-item dropdown">
@@ -81,10 +82,26 @@
     </div>
     <hr class="mt-0">
 
+    <!-- RICETTA-->
     <div class="container my-5">
-        <h1 id="ricetta_nome" class="font-protest">SPAGHETTI</h1>
-        <img id="ricetta_img" class="stretched-img w-100"
-            src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" alt="">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1 id="ricetta_nome" class="font-protest">TITOLO DELLA RICETTA</h1>
+            <div class="d-flex">
+                <div data-bs-target="#reviewModal" data-bs-toggle="modal">
+                    <i class="fa fa-pencil-square-o fs-1 me-2" style="cursor: pointer" aria-hidden="true"
+                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Lascia la tua recensione"></i>
+                </div>
+                <div>
+                    <i id="salva-ricetta" class="d-none fa fa-heart fs-1 text-secondary" aria-hidden="true"
+                        style="cursor: pointer" onclick="toggleSalvaRicetta()" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-title="Salva la ricetta"></i>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <img id="ricetta_img" class="stretched-img w-75"
+                src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg" alt="">
+        </div>
         <div class="m-5">
             <h3 class="text-center">INGREDIENTI</h3>
             <div id="ricetta_ingredienti-container" class="my-5 row justify-content-around">
@@ -112,7 +129,47 @@
                     Serve in hot bowls and hand round Parmesan cheese, for sprinkling on top.</p>
             </div>
         </div>
+        <div class="m-5">
+            <h3 class="text-center">RECENSIONI</h3>
+            <div id="recensioni_container" class="mt-4">
+                <div class="card my-2 d-none">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="recensione-data m-0">mm-dd-yyyy</p>
+                            <p class="recensione-autore m-0 fw-bold">Nome Cognome</p>
+                        </div>
+                        <div>
+                            <div class="recensione-gusto">
+                                <span>Gusto:</span>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                            <div class="recensione-difficolta">
+                                <span>Difficoltà:</span>
+                                <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p class="recensione-testo">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                Debitis expedita tenetur quis
+                                suscipit molestiae hic delectus vel repudiandae consequatur asperiores?</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 
 
     <!-- CONSIGLI -->
@@ -121,7 +178,7 @@
         <!-- 10 PIATTI PER LA STESSA CATEGORIA -->
         <div class="mx-5">
             <h4 class="my-3">Altre Ricette della Categoria "<span id="nome-categoria">NomeCategoria</span>"</h4>
-            <div id="category-slider" class="overflow-x-auto d-flex gap-1">
+            <div id="category-slider" class="overflow-x-scroll d-flex gap-1">
                 <a class="category-card text-decoration-none d-none" href="pages/ricetta.html?id=000">
                     <div class="card flex-shrink-0" style="width: 16rem;">
                         <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
@@ -134,7 +191,7 @@
         <!-- 10 PIATTI PER LA STESSA AREA -->
         <div class="mx-5">
             <h4 class="my-3">Altre Ricette dell'Area "<span id="nome-area">NomeArea</span>"</h4>
-            <div id="area-slider" class="overflow-x-auto d-flex gap-1">
+            <div id="area-slider" class="overflow-x-scroll d-flex gap-1">
                 <a class="area-card text-decoration-none d-none" href="pages/ricetta.html?id=000">
                     <div class="card flex-shrink-0" style="width: 16rem;">
                         <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
@@ -145,6 +202,84 @@
             </div>
         </div>
     </div>
+
+
+
+    <!-- Modal REVIEW -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">LASCIA UNA RECENSIONE</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- FORM DI RECENSIONE -->
+                    <div class="container-sm mt-1">
+                        <form name="recensione" method="GET" onsubmit="event.preventDefault(); return recensisci();">
+                            <div class="mb-3">
+                                <textarea class="w-100" name="testo" id="testo" rows="5"
+                                    style="resize: none"></textarea>
+                            </div>
+                            <div class="row align-items-end mb-3">
+                                <div class="col-6">
+                                    <label for="gusto">Gusto:</label>
+                                    <input type="range" class="form-range" id="gusto" name="gusto" min="1" max="5"
+                                        step="1">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-star text-warning" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="gusto">Difficoltà:</label>
+                                    <input type="range" class="form-range my-0" id="difficolta" name="difficolta"
+                                        min="1" max="5" step="1">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <i class="fa fa-cutlery text-danger" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-cutlery text-danger" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-cutlery text-danger" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-cutlery text-danger" aria-hidden="true"></i>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-cutlery text-danger" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 d-flex justify-content-center">
+                                <label for="data">Data di Preparazione:</label>
+                                <input class="ms-3" type="date" name="data" id="data" required>
+                            </div>
+                            <button type="submit" class="btn btn-dark">Salva</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="../script.js"></script>
     <script>
@@ -184,7 +319,7 @@
             getRicetteByCategoria(categoria).then((data) => {
                 var ricette = data.ricette;
 
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < Math.min(10, ricette.length); i++) {
                     var new_category_card = category_card_layout.cloneNode(true);
                     new_category_card.classList.remove("d-none");
                     new_category_card.href = "pages/ricetta.html?id=" + ricette[i].idMeal;
@@ -202,7 +337,7 @@
             getRicetteByArea(area).then((data) => {
                 var ricette = data.ricette;
 
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < Math.min(10, ricette.length); i++) {
                     var new_area_card = category_card_layout.cloneNode(true);
                     new_area_card.classList.remove("d-none");
                     new_area_card.href = "pages/ricetta.html?id=" + ricette[i].idMeal;
@@ -211,10 +346,125 @@
                     area_container.appendChild(new_area_card);
                 }
             })
-
-
-
         });
+
+        // CHECK SE LOGGATO
+        var utente_loggato = localStorage.getItem("utente_loggato");
+        var utente_corrente = getUtenteByEmail(utente_loggato);
+
+        if (utente_loggato) {
+            //Un utente è attualmente loggato
+            document.getElementById("salva-ricetta").classList.remove("d-none");
+            var id_corrente_in_ricettario = utente_corrente.ricettario.find((el) => el.id == id);
+            var salva_ricetta = document.getElementById("salva-ricetta");
+            if (id_corrente_in_ricettario) {
+                salva_ricetta.classList.remove("text-secondary");
+                salva_ricetta.classList.add("text-danger");
+            }
+
+        }
+
+
+        // Controllo di Recensioni per il Piatto
+        var recensioni_container = document.getElementById("recensioni_container");
+        var recensione_layout = recensioni_container.firstElementChild;
+
+        var recensioni_string = localStorage.getItem("recensioni");
+        var recensioni = JSON.parse(recensioni_string);
+
+        for (var i = 0; i < recensioni.recensioni.length; i++) {
+            var recensione = recensioni.recensioni[i];
+            if (recensione.idRicetta == id) {
+                //La recensione è relativa alla ricetta corrente
+                var nuova_recensione = recensione_layout.cloneNode(true);
+                nuova_recensione.classList.remove("d-none");
+
+                nuova_recensione.getElementsByClassName("recensione-data")[0].innerHTML = recensione.data;
+                nuova_recensione.getElementsByClassName("recensione-autore")[0].innerHTML = recensione.autore;
+                nuova_recensione.getElementsByClassName("recensione-testo")[0].innerHTML = recensione.testo;
+                
+                var gusto_container = nuova_recensione.getElementsByClassName("recensione-gusto")[0];
+                var icone_gusto = gusto_container.getElementsByTagName("i");
+                for (var j = 0; j < recensione.gusto; j++) {
+                    icone_gusto[j].classList.add("text-warning");
+                }
+                
+                var difficolta_container = nuova_recensione.getElementsByClassName("recensione-difficolta")[0];
+                var icone_difficolta = difficolta_container.getElementsByTagName("i");
+                for (var j = 0; j < recensione.difficolta; j++) {
+                    icone_difficolta[j].classList.add("text-danger");
+                }
+
+                recensioni_container.appendChild(nuova_recensione);
+            }
+        }
+
+
+
+
+
+        function toggleSalvaRicetta() {
+            var salva_ricetta = document.getElementById("salva-ricetta");
+
+            if (salva_ricetta.classList.contains("text-danger")) {
+                //Rimozione Ricetta
+                salva_ricetta.classList.add("text-secondary");
+                salva_ricetta.classList.remove("text-danger");
+                var utente_corrente = getUtenteByEmail(utente_loggato);
+                for (var i = 0; i < utente_corrente.ricettario.length; i++) {
+                    if (utente_corrente.ricettario[i].id == id) {
+                        console.log("Trovato nel ricettario");
+                        utente_corrente.ricettario.splice(i, 1);
+                    }
+                }
+                console.log(utente_corrente);
+                updateUtente(utente_corrente);
+
+            } else {
+                //Aggiunta Ricetta
+                salva_ricetta.classList.remove("text-secondary");
+                salva_ricetta.classList.add("text-danger");
+
+                var utente_corrente = getUtenteByEmail(utente_loggato);
+                utente_corrente.ricettario.push({
+                    id: id,
+                    commento: '',
+                });
+                updateUtente(utente_corrente);
+            }
+
+        }
+
+        function recensisci() {
+
+            //Registrazione dell'Utente
+
+            var nuova_recensione = {
+                autore: utente_corrente.nome + " " + utente_corrente.cognome,
+                idRicetta: id,
+                testo: document.getElementById('testo').value,
+                gusto: document.getElementById('gusto').value,
+                difficolta: document.getElementById('difficolta').value,
+                data: document.getElementById('data').value,
+            }
+
+            var recensioni_string = localStorage.getItem("recensioni");
+            var recensioni_correnti;
+            if (!recensioni_string) {
+                recensioni_correnti = {
+                    recensioni: [],
+                }
+            } else {
+                recensioni_correnti = JSON.parse(recensioni_string);
+            }
+
+            recensioni_correnti.recensioni.push(nuova_recensione);
+
+            localStorage.setItem("recensioni", JSON.stringify(recensioni_correnti));
+
+            location.reload();
+            return false;
+        }
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -223,6 +473,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+    <script>
+
+
+        // ENABLE TOOLTIPS (BOOTSTRAP)
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 
 </body>
 

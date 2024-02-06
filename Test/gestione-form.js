@@ -4,7 +4,6 @@ function elencoParametri(idElemento) {
     // console.log(parametri)
     for (var p of parametri) {
         corpo.innerHTML += "<p>" + p[0] + "->" + p[1] + "</p>"
-
     }
 }
 
@@ -85,12 +84,13 @@ function controllaCampiERegistra() {
     //Registrazione dell'Utente
 
     var nuovo_utente = {
-        email: document.getElementById('email').value,        
+        email: document.getElementById('email').value,
         password: document.getElementById('password').value,
         nome: document.getElementById('nome').value,
         cognome: document.getElementById('cognome').value,
         genere: document.getElementById('gender').value,
         dataNascita: document.getElementById('date').value,
+        ricettario: [],
     }
 
     var utenti_string = localStorage.getItem("utenti");
@@ -109,4 +109,39 @@ function controllaCampiERegistra() {
     localStorage.setItem("utente_loggato", nuovo_utente.email);
 
     return true;
+}
+
+function controllaCampiELogin() {
+    //Login dell'Utente, se l'utente esiste
+
+    var utente_inserito = document.login.email.value;
+    var password_inserita = document.login.password.value;
+
+    console.log(utente_inserito);
+    console.log(password_inserita);
+
+    var utenti_string = localStorage.getItem("utenti");
+    if (!utenti_string) {
+        return false;
+    }
+
+    var utenti_correnti = JSON.parse(utenti_string);
+
+    for (var utente of utenti_correnti.utenti) {
+        console.log(utente.email == utente_inserito);
+        console.log(utente.password == password_inserita);
+        if (utente.email == utente_inserito && utente.password == password_inserita) {
+            //Credenziali valide
+            localStorage.setItem("utente_loggato", utente.email);
+            var loginModal = document.getElementById('loginModal');
+            var modal = bootstrap.Modal.getInstance(loginModal)
+            modal.hide();
+            location.reload();
+        } else {
+            document.getElementById("errore-login").classList.remove("d-none");
+        }
+    }
+
+    return false;
+
 }

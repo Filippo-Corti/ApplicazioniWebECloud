@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prova di HTML</title>
+    <title>Ricettario Universitario</title>
     <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,6 +48,7 @@
                     </form>
                     <button id="login-trigger" class="btn btn-dark ms-3" type="submit" data-bs-toggle="modal"
                         data-bs-target="#loginModal">Login</button>
+                    <button id="logout-trigger" class="btn btn-dark ms-3 d-none" onclick="logout()">Logout</button>
                 </div>
             </div>
         </div>
@@ -74,14 +75,17 @@
                     aria-expanded="false">
                     Aree
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Area 1</a></li>
-                    <li><a class="dropdown-item" href="#">Area 2</a></li>
-                    <li><a class="dropdown-item" href="#">Area 3</a></li>
+                <ul id="area-list" class="dropdown-menu overflow-y-scroll" style="max-height: 200px;">
+                    <li class="area-item d-none">
+                        <a class="area-item_link dropdown-item" href="#">
+                            Area Fittizia
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#" aria-disabled="true">Ricette Salvate</a>
+                <a id="ricette-salvate" class="nav-link disabled text-black" href="pages/ricettario.html"
+                    aria-disabled="true">Ricette Salvate</a>
             </li>
         </ul>
     </div>
@@ -97,7 +101,7 @@
             <div id="carousel-items" class="carousel-inner">
                 <div class="carousel-item d-none">
                     <a class="carousel-item_link" href="pages/ricetta.html?id=0000">
-                        <img src="" class="carousel-item_img d-block w-100 stretched-img" alt="...">
+                        <img src="" class="carousel-item_img d-block w-75 stretched-img" alt="...">
                         <div class="carousel-caption d-none d-md-block text-dark">
                             <h4 class="carousel-item_title fw-bold mb-4 bg-white mx-auto bg-opacity-75"
                                 style="max-width: fit-content;">Piatto</h4>
@@ -122,7 +126,7 @@
         <!-- 10 PIATTI PER UNA CATEGORIA -->
         <div id="category-container" class="m-lg-5 m-3 d-none">
             <h4 class="category-name my-3 font-protest">CATEGORIA</h4>
-            <div class="category-slider overflow-x-auto d-flex gap-1">
+            <div class="category-slider overflow-x-scroll d-flex gap-1">
                 <a class="category-card text-decoration-none d-none" href="pages/ricetta.html?id=000">
                     <div class="card flex-shrink-0" style="width: 16rem;">
                         <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
@@ -145,7 +149,11 @@
                 <div class="modal-body">
                     <!-- FORM DI LOGIN -->
                     <div class="container-sm mt-4">
-                        <form method="POST" onsubmit="return controllaCampi();">
+                        <a href="pages/registrazione.html">
+                            <p>Non hai un account? Clicca qua per registrarti</p>
+                        </a>
+                        <p id="errore-login" class="text-danger d-none">Credenziali non valide</p>
+                        <form name="login" method="GET" onsubmit="return controllaCampiELogin();">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Indirizzo Email</label>
                                 <input name="email" id="email" class="form-control" type="email" required>
@@ -167,10 +175,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
             </div>
         </div>
     </div>
@@ -179,6 +183,8 @@
     <script src="gestione-form.js"></script>
 
     <script>
+
+
 
         //Categorie e Consigliati
         getCategorie().then((categorie) => {
@@ -223,9 +229,24 @@
                     }
                 })
             }
-
-
         })
+
+        getAree().then((aree) => {
+            //Elaborazione delle Aree Nel Menu
+
+            var area_list = document.getElementById("area-list");
+            var area_item_layout = area_list.firstElementChild;
+
+
+            for (var i = 0; i < aree.length; i++) {
+                var new_area_item = area_item_layout.cloneNode(true);
+                new_area_item.classList.remove("d-none");
+                new_area_item.getElementsByClassName("area-item_link")[0].href = "pages/risultati.html?area=" + aree[i].strArea;
+                new_area_item.getElementsByClassName("area-item_link")[0].innerHTML = aree[i].strArea;
+                area_list.appendChild(new_area_item);
+            }
+        });
+
 
         //Ricette Carousel 
         ricetteRandom(6).then((ricette) => {
@@ -268,6 +289,16 @@
             carousel_item_layout.remove();
         });
 
+
+        // CHECK SE LOGGATO
+        var utente_loggato = localStorage.getItem("utente_loggato");
+
+        if (utente_loggato) {
+            //Un utente è attualmente loggato
+            document.getElementById("login-trigger").classList.add("d-none");
+            document.getElementById("logout-trigger").classList.remove("d-none");
+            document.getElementById("ricette-salvate").classList.remove("disabled");
+        }
 
 
 

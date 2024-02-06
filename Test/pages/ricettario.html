@@ -81,50 +81,26 @@
     </div>
     <hr class="mt-0">
 
-    <!-- RISULTATI -->
-    <div class="search-element container my-5">
-        <h2 class="font-protest">RISULTATI DELLA RICERCA "<span id="parola-cercata">Parola Cercata</span>":</h2>
+    <!-- RICETTE SALVATE -->
+    <div class="container my-5">
+        <h2 class="font-protest">LE TUE RICETTE:</h2>
         <div class="mx-5">
-            <div id="results-container" class="row justify-content-center gap-1">
-                <!-- RISULTATI DELLA RICERCA -->
-                <div class="card flex-shrink-0 d-none" style="width: 16rem;">
-                    <a class="card_link text-decoration-none" href="ricetta.html?id=000">
-                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
-                            class="card_img card-img-top" alt="...">
-                        <h5 class="card_name card-title text-center my-3 text-dark">Spaghetti</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="category-element container my-5">
-        <h2 class="font-protest">RICETTE DELLA CATEGORIA "<span id="categoria-cercata">Categoria</span>":</h2>
-        <div class="mx-5">
-            <div id="category-container" class="row justify-content-center gap-1">
-                <!-- PIATTI -->
-                <div class="card flex-shrink-0 d-none" style="width: 16rem;">
-                    <a class="card_link text-decoration-none" href="ricetta.html?id=000">
-                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
-                            class="card_img card-img-top" alt="...">
-                        <h5 class="card_name card-title text-center my-3 text-dark">Spaghetti</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="area-element container my-5">
-        <h2 class="font-protest">RICETTE DELL'AREA"<span id="area-cercata">Area</span>":</h2>
-        <div class="mx-5">
-            <div id="area-container" class="row justify-content-center gap-1">
-                <!-- PIATTI -->
-                <div class="card flex-shrink-0 d-none" style="width: 16rem;">
-                    <a class="card_link text-decoration-none" href="ricetta.html?id=000">
-                        <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
-                            class="card_img card-img-top" alt="...">
-                        <h5 class="card_name card-title text-center my-3 text-dark">Spaghetti</h5>
-                    </a>
+            <div id="saved-recipes-container" class="d-flex flex-column justify-content-center gap-4">
+                <div class="row d-none">
+                    <div class="col-5 card flex-shrink-0" style="width: 16rem;">
+                        <a class="card_link text-decoration-none" href="ricetta.html?id=000">
+                            <img src="https://www.themealdb.com/images/media/meals/sutysw1468247559.jpg"
+                                class="card_img card-img-top" alt="...">
+                            <h5 class="card_name card-title text-center my-3 text-dark">Spaghetti</h5>
+                        </a>
+                    </div>
+                    <div class="col-7 d-flex flex-column justify-content-center">
+                        <h4>Nota:</h4>
+                        <textarea class="w-100 h-100" name="nota" style="resize: none"></textarea>
+                        <div class="salva-nota text-end mt-1" onclick="salvaNota(id, this.previousElementSibling)">
+                            <button class="btn btn-dark" style="width: fit-content">Save</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,49 +108,55 @@
 
 
     <script src="../script.js"></script>
+    <script src="../gestione-form.js"></script>
     <script>
-        var parametri = new URLSearchParams(window.location.search);
-        var keyword = parametri.get("search");
-        var categoria = parametri.get("category");
-        var area = parametri.get("area");
 
-        if (keyword) {
-            document.getElementsByClassName("search-element")[0].style.display = "block";
-            document.getElementById("parola-cercata").innerHTML = keyword;
-            ricetteSearch(keyword).then((results) => {
-                var results_container = document.getElementById("results-container");
-                posizionaRicetteInContainer(results_container, results);
-            })
-        }
-        if (categoria) {
-            document.getElementsByClassName("category-element")[0].style.display = "block";
-            document.getElementById("categoria-cercata").innerHTML = categoria;
-            getRicetteByCategoria(categoria).then((results) => {
-                var results_container = document.getElementById("category-container");
-                posizionaRicetteInContainer(results_container, results.ricette);
-            })
-        }
-        if (area) {
-            document.getElementsByClassName("area-element")[0].style.display = "block";
-            document.getElementById("area-cercata").innerHTML = area;
-            getRicetteByArea(area).then((results) => {
-                var results_container = document.getElementById("area-container");
-                posizionaRicetteInContainer(results_container, results.ricette);
-            })
-        }
+        var container = document.getElementById("saved-recipes-container");
 
-        function posizionaRicetteInContainer(results_container, results) {
-            var result_card_layout = results_container.firstElementChild;
+        var email_loggato = localStorage.getItem("utente_loggato");
+        var utente = getUtenteByEmail(email_loggato);
 
-            for (var i = 0; i < results.length; i++) {
-                var new_result_card = result_card_layout.cloneNode(true);
-                var id = results[i].idMeal;
-                new_result_card.classList.remove("d-none");
-                new_result_card.getElementsByClassName("card_link")[0].href = "ricetta.html?id=" + id;
-                new_result_card.getElementsByClassName("card_img")[0].src = results[i].strMealThumb;
-                new_result_card.getElementsByClassName("card_name")[0].innerHTML = results[i].strMeal;
-                results_container.appendChild(new_result_card);
+        var ricette_salvate = utente.ricettario;
+        mostraRicetteSalvate(ricette_salvate);
+
+        async function mostraRicetteSalvate(ricette_salvate) {
+            for (var ricetta_salvata of ricette_salvate) {
+                var id = ricetta_salvata.id;
+                await getDettagliRicetta(id).then((ricetta) => {
+                    posizionaRicetteInContainer(container, ricetta)
+                })
             }
+        }
+
+        function posizionaRicetteInContainer(results_container, result) {
+            var result_card_layout = results_container.firstElementChild;
+            var new_result_card = result_card_layout.cloneNode(true);
+            var id = result.idMeal;
+            new_result_card.classList.remove("d-none");
+            new_result_card.getElementsByClassName("card_link")[0].href = "ricetta.html?id=" + result.idMeal;
+            new_result_card.getElementsByClassName("card_img")[0].src = result.strMealThumb;
+            new_result_card.getElementsByClassName("card_name")[0].innerHTML = result.strMeal;
+            new_result_card.getElementsByClassName("salva-nota")[0].setAttribute("onclick","salvaNota(" + result.idMeal + ", this.previousElementSibling)");
+            for (var ricetta_salvata of ricette_salvate) {
+                var id = ricetta_salvata.id;
+                var commento = ricetta_salvata.commento;
+                if (id == result.idMeal) {
+                    new_result_card.getElementsByTagName("textarea")[0].value = commento;
+                }
+            }
+            results_container.appendChild(new_result_card);
+        }
+
+
+        function salvaNota(id, area) {
+            var commento = area.value;
+
+            for (var ricetta_salvata of ricette_salvate) {
+                if (ricetta_salvata.id == id) {
+                    ricetta_salvata.commento = commento;
+                }
+            }
+            updateUtente(utente);
 
         }
 

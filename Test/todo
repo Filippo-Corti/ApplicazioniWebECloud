@@ -1,41 +1,11 @@
-1. Pagina di Registrazione
-2. Pagina di Login
-3. Pagina di Profilo Utente (modifica dei dati inseriti nella registrazione + possibilità di cancellare l'account)
-4. Ricettario dell'Utente ("Ricette Salvate") con possibilità di salvare le ricette (inserendo una nota privata) 
-5. Recensione della Ricetta (data di preparazione + voto gusto + voto difficolta)
+Pagina di Profilo Utente (modifica dei dati inseriti nella registrazione + possibilità di cancellare l'account)
+
+Sistemare azione loggato/non loggato
+Sistemare i collegamenti
+
+Documentazione
+
 
 PAGINE HTML:
-- Registrazione
-- Login
 - Profilo Utente
-- Ricettario
-+ Scheda della Ricetta deve essere aggiunto il cuore per salvare la ricetta
-+ Scheda della Ricetta deve essere aggiunto il pulsante per scrivere la recensione
-+ Scheda della Ricetta deve essere aggiunto le recensioni + gusto medio e difficoltà media
-
-utenti [
-    {
-        email: a@b.com,
-        password: 12345678,
-        nome: A,
-        cognome: B,
-    },
-    {
-        email: b@b.com,
-        password: 12345678,
-        nome: A,
-        cognome: B,
-    },
-    {
-        email: a@b.com,
-        password: 12345678,
-        nome: A,
-        cognome: B,
-    },
-    {
-        email: a@b.com,
-        password: 12345678,
-        nome: A,
-        cognome: B,
-    },
-]
+- 
