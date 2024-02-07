@@ -24,60 +24,82 @@
     <div class="d-none background-grid-row"></div>
   </div>
 
-  <!-- Header & Nav -->
-  <nav class="navbar navbar-expand-lg " aria-label="Offcanvas navbar large">
-    <div class="container-xxl pt-4 pt-md-5 px-3">
-      <!-- Logo -->
-      <div class="logo | d-flex align-items-baseline gap-1">
-        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
-        <h1 class="h-0 text-primary">PGRC</h1>
-      </div>
-      <!-- Mobile Menu Button-->
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <!-- Header -->
+  <header>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+      <div class="container-xxl pt-4 pt-md-5 px-3">
+        <!-- Logo -->
+        <div>
+          <a class="logo | d-flex align-items-baseline gap-1" href="../index.html">
+            <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+            <h1 class="h-0 text-primary">PGRC</h1>
+          </a>
         </div>
-        <div class="offcanvas-body justify-content-end">
-          <ul class="navbar-nav align-items-center gap-2">
-            <li class="nav-item">
-              <h5 class="text-center border-top border-bottom py-4 d-lg-none">
-                SIGN UP for more functionalities!
-              </h5>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-outline-secondary fs-4">
-                SIGN UP
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-primary fs-4">
-                LOGIN
-              </button>
-            </li>
-          </ul>
+        <!-- Mobile Menu Button-->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body justify-content-end">
+            <ul class="navbar-nav align-items-center gap-2">
+              <li class="nav-item logged-out-only">
+                <h5 class="text-center border-top border-bottom py-4 d-lg-none">
+                  SIGN UP for more functionalities!
+                </h5>
+              </li>
+              <li class="nav-item logged-out-only">
+                <a href="../pages/signup.html">
+                  <button class="btn btn-outline-secondary fs-4">
+                    SIGN UP
+                  </button>
+                </a>
+              </li>
+              <li class="nav-item logged-out-only">
+                <button class="btn btn-primary fs-4" data-bs-toggle="modal" data-bs-target="#loginModal">
+                  LOG IN
+                </button>
+              </li>
+              <li class="nav-item logged-in-only">
+                <a href="../pages/profile.html">
+                  <button class="btn btn-outline-secondary fs-4 d-flex align-items-center gap-2 py-2">
+                    <!-- Username & Picture -->
+                    <p class="username card-text bg-transparent mb-0">Username</p>
+                    <div class="bg-primary rounded-5" style="width:fit-content">
+                      <img src="../assets/img/anon.png" alt="Profile Picture">
+                    </div>
+                  </button>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
   <!-- Recipe -->
   <main class="container-xxl my-4 mx-auto px-4 px-md-5 bg-white rounded-5 py-5 shadow-lg mb-5 position-relative">
-    <div class="recipe-save m-5" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Save Recipe" style="left:0"></div>
     <!-- Recipe Preview -->
     <div class="row align-items-end gap-4">
       <div class="col-lg">
         <!-- Stats -->
         <div class="d-lg-block d-flex flex-column align-items-center">
+          <div class="recipe-save ms-0" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
+            data-bs-recipe="Lamb Pilaf (Plov)" style="position: relative;">
+            <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Save Recipe">
+            </div>
+          </div>
           <div class="row">
             <div class="col flex-grow-0">
               <img width="24" src="../assets/img/star.png" alt="Taste Score">
             </div>
             <div class="col">
-              <h4>Taste: <span class="ms-1">3.7</span>/5</h4>
+              <h4>Taste: <span class="ms-1">0.0</span>/5</h4>
             </div>
           </div>
           <div class="row">
@@ -85,7 +107,7 @@
               <img width="24" class="tint-danger" src="../assets/img/chef.png" alt="Difficulty Score">
             </div>
             <div class="col">
-              <h4>Difficulty: <span class="ms-1">4.2</span>/5</h4>
+              <h4>Difficulty: <span class="ms-1">0.0</span>/5</h4>
             </div>
           </div>
           <div class="row">
@@ -93,24 +115,24 @@
               <img width="24" src="../assets/img/comment.png" alt="Number of Reviews">
             </div>
             <div class="col">
-              <h4>Reviews: <span class="ms-1">6</span></h4>
+              <h4>Reviews: <span class="ms-1">0</span></h4>
             </div>
           </div>
         </div>
         <!-- Title & Tags -->
         <div>
-          <h1 class="display-2 my-3">Sticky Toffee Pudding Ultimate</h1>
+          <h1 class="display-2 my-3">Recipe Name Goes Here</h1>
           <div>
-            <button class="btn btn-success my-1 fs-5">Indian</button>
-            <button class="btn btn-info my-1 fs-5">Seafood</button>
-            <button class="btn btn-danger my-1 fs-5">Chicken</button>
+            <a class="btn btn-success my-1 fs-5" href="#">Area</a>
+            <a class="btn btn-info my-1 fs-5" href="#">Category</a>
+            <a class="btn btn-danger my-1 fs-5" href="#">Ingredient?</a>
           </div>
         </div>
       </div>
       <div class="col-lg order-first order-lg-0">
         <!-- Image -->
         <img id="recipe_image" class="recipe-image | rounded-5"
-          src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg" alt="Sticky Toffee Pudding Ultimate">
+          src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg" alt="Recipe Image">
       </div>
     </div>
     <!-- Recipe Details -->
@@ -119,56 +141,21 @@
       <div class="col-lg-3 border-lg-end border-black border-opacity-25 pt-5">
         <h3 class="mb-3">INGREDIENTS</h3>
         <div>
+          <!-- Ingredient -->
           <div class="row justify-content-center align-items-center">
             <img class="col-3" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png"
-              alt="Medjool Dates">
-            <p class="col fs-5 text-decoration-underline">Medjool dates</p>
-            <p class="col-3 text-secondary fs-5">255g</p>
-          </div>
-          <div class="row justify-content-center align-items-center">
-            <img class="col-3" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png"
-              alt="Medjool Dates">
-            <p class="col fs-5 text-decoration-underline">Medjool dates</p>
-            <p class="col-3 text-secondary fs-5">255g</p>
-          </div>
-          <div class="row justify-content-center align-items-center">
-            <img class="col-3" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png"
-              alt="Medjool Dates">
-            <p class="col fs-5 text-decoration-underline">Medjool dates</p>
-            <p class="col-3 text-secondary fs-5">255g</p>
+              alt="Ingredient Name">
+            <p class="col fs-5 text-decoration-underline px-0 mb-0"><a href="#">Ingredient Name</a></p>
+            <p class="col-2 text-secondary fs-5 px-0 mb-0">255g</p>
           </div>
         </div>
       </div>
       <!-- Recipe Instructions -->
       <div class="col-md pt-5">
         <div class="mt-5">
+          <!-- Instruction Step -->
           <div>
             <p class="fs-5 text-secondary mb-1">STEP 1</p>
-            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
-            </p>
-          </div>
-          <div>
-            <p class="fs-5 text-secondary mb-1">STEP 2</p>
-            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
-            </p>
-          </div>
-          <div>
-            <p class="fs-5 text-secondary mb-1">STEP 3</p>
-            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
-            </p>
-          </div>
-          <div>
-            <p class="fs-5 text-secondary mb-1">STEP 4</p>
-            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
-            </p>
-          </div>
-          <div>
-            <p class="fs-5 text-secondary mb-1">STEP 5</p>
-            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
-            </p>
-          </div>
-          <div>
-            <p class="fs-5 text-secondary mb-1">STEP 6</p>
             <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
             </p>
           </div>
@@ -182,7 +169,7 @@
     <h3>REVIEWS</h3>
     <div class="w-100 d-flex flex-column align-items-center">
       <!-- Write a Review Form -->
-      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
+      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100 logged-in-only" style="max-width: 900px;">
         <div class="row">
           <div class="col-1">
             <div class="card-body">
@@ -249,7 +236,7 @@
         </div>
       </div>
       <!-- Review Card -->
-      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
+      <div class="review-card | card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
         <div class="row">
           <div class="col-md-3">
             <div class="card-body">
@@ -258,7 +245,7 @@
                 <div class="bg-primary rounded-5" style="width:fit-content">
                   <img src="../assets/img/anon.png" alt="Profile Picture">
                 </div>
-                <p class="card-text">Filippo</p>
+                <p class="card-text">Username</p>
               </div>
               <!-- Taste -->
               <div class>
@@ -266,10 +253,10 @@
                   Taste:
                 </p>
                 <div class="review-score">
-                  <img src="../assets/img/star.png" alt="Difficulty Score">
-                  <img src="../assets/img/star.png" alt="Difficulty Score">
-                  <img src="../assets/img/star.png" alt="Difficulty Score">
-                  <img src="../assets/img/star.png" alt="Difficulty Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
+                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
                   <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
                 </div>
               </div>
@@ -279,9 +266,9 @@
                   Difficulty:
                 </p>
                 <div class="review-score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
+                  <img src="../assets/img/chef.png" alt="Taste Score">
                   <img src="../assets/img/chef.png" alt="Taste Score">
                   <img src="../assets/img/chef.png" alt="Taste Score">
                 </div>
@@ -291,183 +278,21 @@
           <div class="col-md-9">
             <div class="card-body">
               <!-- Review Date -->
-              <p class="text-secondary mb-2">24-10-2023</p>
+              <p class="text-secondary mb-2">mm-dd-yyyy</p>
               <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
-                custom
-                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
-                joy I invite together in this kind of creation.
-                The fun and genuine joy.
+              <p class="card-text fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quisquam ratione iure laboriosam ipsam, nesciunt pariatur ullam eius saepe blanditiis.
               </p>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-body">
-              <!-- Username & Picture -->
-              <div class="d-flex align-items-center gap-2">
-                <div class="bg-primary rounded-5" style="width:fit-content">
-                  <img src="../assets/img/anon.png" alt="Profile Picture">
-                </div>
-                <p class="card-text">Filippo</p>
-              </div>
-              <!-- Taste -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Taste:
-                </p>
-                <div class="review-score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
-                </div>
-              </div>
-              <!-- Difficulty -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Difficulty:
-                </p>
-                <div class="review-score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <!-- Review Date -->
-              <p class="text-secondary mb-2">24-10-2023</p>
-              <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
-                custom
-                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
-                joy I invite together in this kind of creation.
-                The fun and genuine joy.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-body">
-              <!-- Username & Picture -->
-              <div class="d-flex align-items-center gap-2">
-                <div class="bg-primary rounded-5" style="width:fit-content">
-                  <img src="../assets/img/anon.png" alt="Profile Picture">
-                </div>
-                <p class="card-text">Filippo</p>
-              </div>
-              <!-- Taste -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Taste:
-                </p>
-                <div class="review-score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
-                </div>
-              </div>
-              <!-- Difficulty -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Difficulty:
-                </p>
-                <div class="review-score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <!-- Review Date -->
-              <p class="text-secondary mb-2">24-10-2023</p>
-              <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
-                custom
-                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
-                joy I invite together in this kind of creation.
-                The fun and genuine joy.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-body">
-              <!-- Username & Picture -->
-              <div class="d-flex align-items-center gap-2">
-                <div class="bg-primary rounded-5" style="width:fit-content">
-                  <img src="../assets/img/anon.png" alt="Profile Picture">
-                </div>
-                <p class="card-text">Filippo</p>
-              </div>
-              <!-- Taste -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Taste:
-                </p>
-                <div class="review-score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img src="../assets/img/star.png" alt="Taste Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Taste Score">
-                </div>
-              </div>
-              <!-- Difficulty -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Difficulty:
-                </p>
-                <div class="review-score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img class="tint-primary" src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <!-- Review Date -->
-              <p class="text-secondary mb-2">24-10-2023</p>
-              <!-- Review Content -->
-              <p class="card-text fs-5">My first and only mala order on Etsy, and I’m beyond delighted! I requested a
-                custom
-                mala based on two stones I was called to invite together in this kind of creation. The fun and genuine
-                joy I invite together in this kind of creation.
-                The fun and genuine joy.
-              </p>
-            </div>
+        <div class="review-delete" data-bs-toggle="modal" data-bs-target="#deleteReviewModal"
+          data-bs-recipe="Recipe Name">
+          <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Review">
           </div>
         </div>
       </div>
     </div>
   </section>
-
 
   <!-- Footer -->
   <footer class="border-top border-black border-opacity-25">
@@ -497,6 +322,105 @@
     </div>
   </footer>
 
+  <!-- Modals -->
+
+  <!-- Login Modal -->
+  <modal class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="Modal For Login" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3 rounded-5">
+        <div class="modal-header border-0 row align-items-baseline">
+          <div class="line | col-3 bg-primary rounded-5 ms-1 d-none d-md-block"></div>
+          <h1 class="col-md-3 modal-title fs-4 text-center" id="exampleModalLabel">LOG IN</h1>
+          <div class="line | col bg-primary rounded-5 me-3 d-none d-md-block"></div>
+          <button type="button" class="col-1 btn-close mb-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-1">
+          <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
+            <p>Credentials are wrong! Try again</p>
+          </div>
+          <form method="GET" action="recipe.html" onsubmit="return checkCredentialsAndLogin(this)">
+            <div class="col-12">
+              <div class="d-flex flex-column mt-2">
+                <label class="fs-5 text-dark" for="email">Email</label>
+                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email"
+                  autocomplete="username" required>
+              </div>
+              <div class="d-flex flex-column my-3 position-relative">
+                <label class="fs-5 text-dark" for="password">Password</label>
+                <img style="cursor: pointer;" class="position-absolute top-0 end-0" src="../assets/img/view.png"
+                  alt="Show Password" width="25" onclick="toggleShowPassword()">
+                <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password"
+                  id="password" autocomplete="current-password" required>
+              </div>
+              <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer d-block border-0 text-center pt-0">
+          <p class="text-secondary mt-0 pt-0">Don't have an account? <a class="text-decoration-underline"
+              href="signup.html">Register
+              here</a></p>
+        </div>
+      </div>
+    </div>
+  </modal>
+
+  <!-- Save Recipe Modal -->
+  <modal class="modal fade" id="saveRecipeModal" tabindex="-1" aria-labelledby="Modal to Save Recipe"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3 rounded-5">
+        <div class="modal-header border-0 row align-items-baseline">
+          <div class="line | col-1 bg-primary col rounded-5 ms-1 d-none d-md-block"></div>
+          <h1 class="col-md-6 modal-title fs-4 text-center" id="exampleModalLabel">READY TO SAVE?</h1>
+          <div class="line | col bg-primary col rounded-5 me-3 d-none d-md-block"></div>
+          <button type="button" class="col-1 btn-close mb-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-1">
+          <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
+            <p>Credentials are wrong! Try again</p>
+          </div>
+          <form method="GET" action="index.html" onsubmit="return saveRecipe(this)">
+            <div class="col-12">
+              <div class="card-text py-2 px-1 mb-1 position-relative">
+                <h5 class="text-black fs-6">Do you wanto to leave a note for <span
+                    class="modal-recipe-label | text-primary">Recipe Name</span>?</h5>
+                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"></textarea>
+              </div>
+              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Save</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer d-block border-0 text-center pt-0">
+          <p class="text-secondary mt-0 pt-0">Saved recipes appear in your Cookbook!</p>
+        </div>
+      </div>
+    </div>
+  </modal>
+
+  <!-- Delete Review Modal -->
+  <modal class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="Modal to Delete Review"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3 rounded-5">
+        <div class="modal-header border-0 row align-items-baseline">
+          <div class="line | col-1 bg-primary rounded-5 ms-1 d-none d-md-block"></div>
+          <h1 class="col-6 modal-title fs-4 text-center" id="exampleModalLabel">ARE YOU SURE?</h1>
+          <div class="line | col bg-primary rounded-5 me-3 d-none d-md-block"></div>
+          <button type="button" class="col-1 btn-close mb-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-4 pb-1 fs-5 text-black">
+          <p>Do you really want to delete your review about <span class="modal-recipe-label | text-primary">Recipe
+              Name</span></span>?</p>
+          <div class="d-flex justify-content-center gap-3 mx-3">
+            <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2">Cancel</button>
+            <button type="button" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Delete</button>
+          </div>
+          <p class="fs-6 text-danger text-center">Mind that this operation is irreversibile</p>
+        </div>
+      </div>
+    </div>
+  </modal>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -504,13 +428,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
-    <script src="../assets/js/api.js"></script>
-    <script src="../assets/js/recipe.js"></script>
-    <script src="../assets/js/utils.js"></script>
-    <script>
-      //Load today's date as default
-      document.review_form.date.valueAsDate = new Date();
-    </script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/recipe.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script>
+    //Load today's date as default
+    document.review_form.date.valueAsDate = new Date();
+  </script>
 </body>
 
 </html>

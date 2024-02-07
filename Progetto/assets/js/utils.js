@@ -63,6 +63,11 @@ if (saveRecipeModal) {
     saveRecipeModal.addEventListener('show.bs.modal', event => {
 
         // !!! if not logged in event.preventDefault() + show del modal di Login
+        if (!logged_in) {
+            event.preventDefault();
+            const loginModal = new bootstrap.Modal('#loginModal')
+            loginModal.show();
+        }
 
         // Button that triggered the modal
         const button = event.relatedTarget
@@ -77,6 +82,26 @@ if (saveRecipeModal) {
         modalBodyLabel.textContent = recipe_name;
     })
 }
+
+/* Delete Review Modal - from https://getbootstrap.com/docs/5.3/components/modal/#varying-modal-content */
+const deleteReviewModal = document.getElementById('deleteReviewModal')
+if (deleteReviewModal) {
+    deleteReviewModal.addEventListener('show.bs.modal', event => {
+
+        // Button that triggered the modal
+        const button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        const recipe_name = button.getAttribute('data-bs-recipe')
+        // If necessary, you could initiate an Ajax request here
+        // and then do the updating in a callback.
+
+        // Update the modal's content.
+        const modalBodyLabel = deleteReviewModal.querySelector('.modal-recipe-label')
+
+        modalBodyLabel.textContent = recipe_name;
+    })
+}
+
 
 /* Login Modal */
 function checkCredentialsAndLogin(form) {

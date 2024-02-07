@@ -73,6 +73,11 @@ a {
     margin-bottom: 12rem;
 }
 
+.scale-on-hover:hover {
+    transition: transform 200ms ease-in-out;
+    transform: scale(1.03);
+}
+
 @media (min-width: 992px) {
 
     /* Large */
@@ -155,12 +160,8 @@ a {
 
 .recipe-card {
     container-type: inline-size;
-    transition: transform 200ms ease-in-out;
 }
 
-.recipe-card:hover {
-    transform: scale(1.03);
-}
 
 .recipe-save,
 .review-delete {
@@ -184,6 +185,11 @@ a {
     width: 35px;
     height: 35px;
     background-image: url("../img/bin.png");
+    display: none;
+}
+
+.review-card[data-my-review] .review-delete{
+    display: block;
 }
 
 .recipe-card[data-favourite] .recipe-save,

@@ -91,7 +91,7 @@
       </div>
       <!-- Sarch Bar -->
       <div class="py-3 py-lg-5 my-2 py-lg-5 w-100">
-        <form class="w-100" action="#">
+        <form class="w-100" action="pages/search.html">
           <div class="search-input position-relative bg-white rounded-5 border border-1 border-secondary fs-3">
             <div class="d-flex flex-column flex-md-row w-100">
               <input type="text" class="w-100 ps-4 rounded-5 border-0 form-control fs-3 my-1 my-lg-3" name="search"
@@ -139,7 +139,7 @@
       <div class="flex-grow-1 recipe-card-group d-flex flex-column">
         <div class="d-flex gap-3 my-2">
           <!-- Recipe Card -->
-          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100" data-favourite>
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover" data-favourite>
             <a class="card border-0 position-relative" href="pages/recipe.html?id=00000">
               <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
                 class="recipe-image | card-img-top" alt="Recipe Name">
@@ -163,12 +163,12 @@
                   <h4 class="card-title fs-3">Recipe Name</h4>
                 </div>
               </div>
-              <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
-                data-bs-recipe="Lamb Pilaf (Plov)">
-                <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
-                </div>
-              </div>
             </a>
+            <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
+              data-bs-recipe="Lamb Pilaf (Plov)">
+              <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
+              </div>
+            </div>
           </div>
           <!-- Recipe Card -->
         </div>
@@ -198,7 +198,7 @@
       <div class="flex-grow-1 recipe-card-group d-flex flex-column">
         <div class="d-flex gap-3 my-2">
           <!-- Recipe Card -->
-          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100" data-favourite>
+          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover">
             <a class="card border-0 position-relative" href="pages/recipe.html?id=00000">
               <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
                 class="recipe-image | card-img-top" alt="Recipe Name">
@@ -222,12 +222,12 @@
                   <h4 class="card-title fs-3">Recipe Name</h4>
                 </div>
               </div>
-              <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
-                data-bs-recipe="Lamb Pilaf (Plov)">
-                <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
-                </div>
-              </div>
             </a>
+            <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
+              data-bs-recipe="Lamb Pilaf (Plov)">
+              <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
+              </div>
+            </div>
           </div>
           <!-- Recipe Card -->
         </div>
@@ -244,7 +244,7 @@
 
 
   <!-- Footer -->
-  <footer class="border-top border-black border-opacity-25 bg-white bg-opacity-75">
+  <footer class="border-top border-black border-opacity-25">
     <div class="container-xxl d-flex flex-column flex-md-row py-5 mx-auto px-3 px-md-5 justify-content-between">
       <!-- Logo -->
       <div>
@@ -308,8 +308,9 @@
           </form>
         </div>
         <div class="modal-footer d-block border-0 text-center pt-0">
-          <p class="text-secondary mt-0 pt-0">Don't have an account? <span class="text-decoration-underline">Register
-              here</span></p>
+          <p class="text-secondary mt-0 pt-0">Don't have an account? <a class="text-decoration-underline"
+              href="pages/signup.html">Register
+              here</a></p>
         </div>
       </div>
     </div>
