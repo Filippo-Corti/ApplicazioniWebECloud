@@ -1,12 +1,3 @@
-function elencoParametri(idElemento) {
-    var corpo = document.getElementById(idElemento)
-    var parametri = new URLSearchParams(window.location.search);
-    // console.log(parametri)
-    for (var p of parametri) {
-        corpo.innerHTML += "<p>" + p[0] + "->" + p[1] + "</p>"
-    }
-}
-
 function mostraPassword(elemento1, elemento2, tasto) {
     tasto = document.getElementById('tasto');
     if (elemento1.type == 'text') {
@@ -43,6 +34,7 @@ function controllaCampi() {
     var nome = document.getElementById('nome');
     var cognome = document.getElementById('cognome');
 
+    //Controllo che psw siano uguali
     if (password.value != password2.value) {
         password.classList.add('border-danger')
         password2.classList.add('border-danger')
@@ -52,6 +44,7 @@ function controllaCampi() {
         password2.classList.remove('border-danger')
     }
 
+    //Controllo che password sia lunga almeno 8 
     if (password.value.length < 8) {
         password.classList.add('border-danger')
         controllo = false;
@@ -59,6 +52,7 @@ function controllaCampi() {
         password.classList.remove('border-danger')
     }
 
+    //Controllo che nome sia lungo almeno 3
     if (nome.value.length < 3) {
         nome.classList.add('border-danger')
         controllo = false;
@@ -66,6 +60,7 @@ function controllaCampi() {
         nome.classList.remove('border-danger')
     }
 
+    //Controllo che cognome sia lungo almeno 3
     if (cognome.value.length < 3) {
         cognome.classList.add('border-danger')
         controllo = false;
@@ -81,6 +76,7 @@ function controllaCampiERegistra() {
         //Dati di Registrazione Non Validi
         return false;
     }
+
     //Registrazione dell'Utente
 
     var nuovo_utente = {
@@ -110,8 +106,6 @@ function controllaCampiERegistra() {
 
     return true;
 }
-
-
 
 function controllaCampiEModificaAccount() {
     if (!controllaCampi()) {
@@ -154,6 +148,8 @@ function controllaCampiEModificaAccount() {
 function controllaCampiELogin() {
     //Login dell'Utente, se l'utente esiste
 
+    var href = location.href;
+
     var utente_inserito = document.login.email.value;
     var password_inserita = document.login.password.value;
 
@@ -176,7 +172,7 @@ function controllaCampiELogin() {
             var loginModal = document.getElementById('loginModal');
             var modal = bootstrap.Modal.getInstance(loginModal)
             modal.hide();
-            location.reload();
+            location.href = href;
         } else {
             document.getElementById("errore-login").classList.remove("d-none");
         }

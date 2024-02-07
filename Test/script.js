@@ -34,7 +34,6 @@ async function ricetteRandom(n) {
     return risultato;
 }
 
-
 async function ricetteSearch(keyword) {
     var ricette;
     await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + keyword)
@@ -137,7 +136,6 @@ function updateUtente(utente) {
     localStorage.setItem("utenti", JSON.stringify(utenti));
 }
 
-
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -149,8 +147,8 @@ function logout() {
     location.reload();
 }
 
- //Categorie e Consigliati
- getCategorie().then((categorie) => {
+//Categorie e Aree all'interno del Sottomenu
+getCategorie().then((categorie) => {
 
     //Elaborazione delle Categorie Nel Menu
 
@@ -160,10 +158,15 @@ function logout() {
     for (var i = 0; i < categorie.length; i++) {
         var new_category_item = category_item_layout.cloneNode(true);
         new_category_item.classList.remove("d-none");
-        new_category_item.getElementsByClassName("category-item_link")[0].href = "pages/risultati.html?category=" + categorie[i].strCategory;
+        if (location.href.includes("pages")) {
+            new_category_item.getElementsByClassName("category-item_link")[0].href = "risultati.html?category=" + categorie[i].strCategory;
+        } else {
+            new_category_item.getElementsByClassName("category-item_link")[0].href = "pages/risultati.html?category=" + categorie[i].strCategory;
+        }
         new_category_item.getElementsByClassName("category-item_link")[0].innerHTML = categorie[i].strCategory;
         category_list.appendChild(new_category_item);
     }
+
 });
 
 getAree().then((aree) => {
@@ -176,7 +179,11 @@ getAree().then((aree) => {
     for (var i = 0; i < aree.length; i++) {
         var new_area_item = area_item_layout.cloneNode(true);
         new_area_item.classList.remove("d-none");
-        new_area_item.getElementsByClassName("area-item_link")[0].href = "pages/risultati.html?area=" + aree[i].strArea;
+        if (location.href.includes("pages")) {
+            new_area_item.getElementsByClassName("area-item_link")[0].href = "risultati.html?area=" + aree[i].strArea;
+        } else {
+            new_area_item.getElementsByClassName("area-item_link")[0].href = "pages/risultati.html?area=" + aree[i].strArea;
+        }
         new_area_item.getElementsByClassName("area-item_link")[0].innerHTML = aree[i].strArea;
         area_list.appendChild(new_area_item);
     }
