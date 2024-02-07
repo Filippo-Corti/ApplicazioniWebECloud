@@ -111,6 +111,46 @@ function controllaCampiERegistra() {
     return true;
 }
 
+
+
+function controllaCampiEModificaAccount() {
+    if (!controllaCampi()) {
+        //Dati di Registrazione Non Validi
+        return false;
+    }
+
+    //Modifica dei Dati dell'Utente
+
+    var utente_aggiornato = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+        nome: document.getElementById('nome').value,
+        cognome: document.getElementById('cognome').value,
+        genere: document.getElementById('gender').value,
+        dataNascita: document.getElementById('date').value,
+    }
+
+    var utenti_string = localStorage.getItem("utenti");
+    var utenti_correnti = JSON.parse(utenti_string);
+
+    for (var i = 0; i < utenti_correnti.utenti.length; i++) {
+        if (utenti_correnti.utenti[i].email == utente_aggiornato.email) {
+            console.log("Trovato tra gli utenti");
+            //Copio il ricettario 
+            utente_aggiornato.ricettario = utenti_correnti.utenti[i].ricettario;
+            //Elimino dagli utenti la versione vecchia
+            utenti_correnti.utenti.splice(i, 1);
+        }
+    }
+    //Inserisco tra gli utenti la versione nuova
+    utenti_correnti.utenti.push(utente_aggiornato);
+
+    localStorage.setItem("utenti", JSON.stringify(utenti_correnti));
+    localStorage.setItem("utente_loggato", utente_aggiornato.email);
+
+    return true;
+}
+
 function controllaCampiELogin() {
     //Login dell'Utente, se l'utente esiste
 

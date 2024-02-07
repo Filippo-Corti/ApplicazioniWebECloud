@@ -30,13 +30,14 @@
         </div>
     </nav>
 
-    <!-- FORM DI REGISTRAZIONE -->
+    <!-- FORM DI MODIFICA DEI DATI  -->
     <div class="container-sm mt-4">
-        <h1 class="font-protest text-center mb-3">REGISTRAZIONE</h1>
-        <form method="GET" action="../index.html" onsubmit="return controllaCampiERegistra();">
+        <h1 class="font-protest text-center mb-3">MODIFICA DATI ACCOUNT - <span id="nome-account">Nome Account</span>
+        </h1>
+        <form method="GET" action="../index.html" onsubmit="return controllaCampiEModificaAccount();">
             <div class="mb-3">
                 <label for="email" class="form-label">Indirizzo Email</label>
-                <input name="email" id="email" class="form-control" type="email" required>
+                <input name="email" id="email" class="form-control" type="email" required disabled>
             </div>
             <div class="row">
                 <div class="col-md-6 col-12 mb-3">
@@ -79,13 +80,53 @@
                     <input name="date" id="date" class="form-control" type="date" required>
                 </div>
             </div>
-            <button type="reset" class="btn btn-danger">Resetta</button>
-            <button type="submit" class="btn btn-dark">Registrati</button>
+            <button type="submit" class="btn btn-dark">Aggiorna Dati</button>
+        </form>
+    </div>
+
+    <!-- FORM DI CANCELLAZIONE DELL'ACCOUNT -->
+    <div class="container-fluid text-center fs-6 mt-5 pt-5">
+        <form action="../index.html">
+            <button class="btn btn-outline-danger" onclick="return cancellaAccountCorrente()">Clicca qui per cancellare
+                il tuo
+                account</button>
         </form>
     </div>
 
     <script src="../script.js"></script>
     <script src="../gestione-form.js"></script>
+    <script>
+
+        var email_loggato = localStorage.getItem("utente_loggato");
+        var utente = getUtenteByEmail(email_loggato);
+
+        document.getElementById("nome-account").innerHTML = utente.nome + " " + utente.cognome;
+        document.getElementById("email").value = utente.email;
+        document.getElementById("password").value = utente.password;
+        document.getElementById("password2").value = utente.password;
+        document.getElementById("nome").value = utente.nome;
+        document.getElementById("cognome").value = utente.cognome;
+        document.getElementById("gender").value = utente.genere;
+        document.getElementById("date").value = utente.dataNascita;
+
+        function cancellaAccountCorrente() {
+            var utenti_string = localStorage.getItem("utenti");
+            var utenti_correnti = JSON.parse(utenti_string);
+
+            console.log(utenti_correnti);
+
+            for (var i = 0; i < utenti_correnti.utenti.length; i++) {
+                if (utenti_correnti.utenti[i].email == email_loggato) {
+                    console.log("Trovato tra gli utenti");
+                    utenti_correnti.utenti.splice(i, 1);
+                }
+            }
+            localStorage.setItem("utenti", JSON.stringify(utenti_correnti));
+            logout();
+            return true; //Torna all'home page
+        }
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>

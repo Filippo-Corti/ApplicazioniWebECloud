@@ -142,8 +142,43 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+/* FUNZIONI PER TUTTE LE PAGINE */
+
 function logout() {
     localStorage.removeItem("utente_loggato");
     location.reload();
 }
+
+ //Categorie e Consigliati
+ getCategorie().then((categorie) => {
+
+    //Elaborazione delle Categorie Nel Menu
+
+    var category_list = document.getElementById("category-list");
+    var category_item_layout = category_list.firstElementChild;
+
+    for (var i = 0; i < categorie.length; i++) {
+        var new_category_item = category_item_layout.cloneNode(true);
+        new_category_item.classList.remove("d-none");
+        new_category_item.getElementsByClassName("category-item_link")[0].href = "pages/risultati.html?category=" + categorie[i].strCategory;
+        new_category_item.getElementsByClassName("category-item_link")[0].innerHTML = categorie[i].strCategory;
+        category_list.appendChild(new_category_item);
+    }
+});
+
+getAree().then((aree) => {
+    //Elaborazione delle Aree Nel Menu
+
+    var area_list = document.getElementById("area-list");
+    var area_item_layout = area_list.firstElementChild;
+
+
+    for (var i = 0; i < aree.length; i++) {
+        var new_area_item = area_item_layout.cloneNode(true);
+        new_area_item.classList.remove("d-none");
+        new_area_item.getElementsByClassName("area-item_link")[0].href = "pages/risultati.html?area=" + aree[i].strArea;
+        new_area_item.getElementsByClassName("area-item_link")[0].innerHTML = aree[i].strArea;
+        area_list.appendChild(new_area_item);
+    }
+});
 

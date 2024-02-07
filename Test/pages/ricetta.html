@@ -22,29 +22,29 @@
     <!-- NAVIGATION -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="../index.html">
                 <img width="70" src="../img/logo.png" alt="">
+                <span class="nav-link active fs-3 font-protest" aria-current="page">Ricettario
+                    Universitario</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active fs-3 font-protest" aria-current="page" href="#">Ricettario
-                            Universitario</a>
-                    </li>
-                </ul>
-                <div class="d-flex justify-content-center">
-                    <form class="d-flex w-75" role="search">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="Cerca una Ricetta">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <div class="navbar-nav d-flex justify-content-center align-items-center gap-2 gap-lg-0">
+                    <form class="d-flex w-75" role="search" action="risultati.html">
+                        <input type="text" class="form-control" id="search" name="search"
+                            placeholder="Cerca una Ricetta">
                         <button class="btn btn-dark ms-1" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </form>
-                    <button class="btn btn-dark ms-3" type="submit">Login</button>
+                    <button id="login-trigger" class="btn btn-dark ms-3" type="submit" data-bs-toggle="modal"
+                        data-bs-target="#loginModal">Login</button>
+                    <button id="logout-trigger" class="btn btn-dark ms-3 d-none" style="width: fit-content"
+                        onclick="logout()">Logout</button>
                 </div>
             </div>
         </div>
@@ -58,10 +58,12 @@
                     aria-expanded="false">
                     Categorie
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Categoria 1</a></li>
-                    <li><a class="dropdown-item" href="#">Categoria 2</a></li>
-                    <li><a class="dropdown-item" href="#">Categoria 3</a></li>
+                <ul id="category-list" class="dropdown-menu">
+                    <li class="category-item d-none">
+                        <a class="category-item_link dropdown-item" href="#">
+                            Categoria Fittizia
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -69,18 +71,22 @@
                     aria-expanded="false">
                     Aree
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Area 1</a></li>
-                    <li><a class="dropdown-item" href="#">Area 2</a></li>
-                    <li><a class="dropdown-item" href="#">Area 3</a></li>
+                <ul id="area-list" class="dropdown-menu overflow-y-scroll" style="max-height: 200px;">
+                    <li class="area-item d-none">
+                        <a class="area-item_link dropdown-item" href="#">
+                            Area Fittizia
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Ricette Salvate</a>
+                <a id="ricette-salvate" class="nav-link disabled" href="ricettario.html"
+                    aria-disabled="true">Ricette Salvate</a>
             </li>
         </ul>
     </div>
     <hr class="mt-0">
+
 
     <!-- RICETTA-->
     <div class="container my-5">
@@ -170,8 +176,6 @@
 
     </div>
 
-
-
     <!-- CONSIGLI -->
     <div class="container my-5">
         <h2 class="font-protest">SCELTI PER VOI</h2>
@@ -203,7 +207,54 @@
         </div>
     </div>
 
+    <!-- FOOTER x Modifica Account -->
+    <footer id="footer" class="container-fluid my-4 text-center d-none">
+        <p>
+            Modifica o Elimina il tuo Account a <a class="text-decoration-underline" href="account.html">questo
+                link</a>
+        </p>
+    </footer>
 
+    <!-- Modal LOGIN -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">LOGIN</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- FORM DI LOGIN -->
+                    <div class="container-sm mt-4">
+                        <a href="pages/registrazione.html">
+                            <p>Non hai un account? Clicca qua per registrarti</p>
+                        </a>
+                        <p id="errore-login" class="text-danger d-none">Credenziali non valide</p>
+                        <form name="login" method="GET" onsubmit="return controllaCampiELogin();">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Indirizzo Email</label>
+                                <input name="email" id="email" class="form-control" type="email" required>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col-md-6 col-12 mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input name="password" id="password" class="form-control" type="password"
+                                        oninput="controllaLunghezza(event.srcElement,8)" required>
+                                </div>
+                                <div class="col-md-6 col-12 mb-3">
+                                    <button id="tasto" class="btn btn-primary" style="width:170px"
+                                        onclick="mostraPassword(document.getElementById('password'),null,getElementById('tasto')); return false;">Mostra
+                                        password</button>
+                                </div>
+                            </div>
+                            <button type="reset" class="btn btn-danger">Resetta</button>
+                            <button type="submit" class="btn btn-dark">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal REVIEW -->
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
@@ -279,8 +330,6 @@
         </div>
     </div>
 
-
-
     <script src="../script.js"></script>
     <script>
 
@@ -322,7 +371,7 @@
                 for (var i = 0; i < Math.min(10, ricette.length); i++) {
                     var new_category_card = category_card_layout.cloneNode(true);
                     new_category_card.classList.remove("d-none");
-                    new_category_card.href = "pages/ricetta.html?id=" + ricette[i].idMeal;
+                    new_category_card.href = "ricetta.html?id=" + ricette[i].idMeal;
                     new_category_card.getElementsByClassName("card_img")[0].src = ricette[i].strMealThumb;
                     new_category_card.getElementsByClassName("card_name")[0].innerHTML = ricette[i].strMeal;
                     category_container.appendChild(new_category_card);
@@ -340,7 +389,7 @@
                 for (var i = 0; i < Math.min(10, ricette.length); i++) {
                     var new_area_card = category_card_layout.cloneNode(true);
                     new_area_card.classList.remove("d-none");
-                    new_area_card.href = "pages/ricetta.html?id=" + ricette[i].idMeal;
+                    new_area_card.href = "ricetta.html?id=" + ricette[i].idMeal;
                     new_area_card.getElementsByClassName("card_img")[0].src = ricette[i].strMealThumb;
                     new_area_card.getElementsByClassName("card_name")[0].innerHTML = ricette[i].strMeal;
                     area_container.appendChild(new_area_card);
@@ -355,6 +404,11 @@
         if (utente_loggato) {
             //Un utente è attualmente loggato
             document.getElementById("salva-ricetta").classList.remove("d-none");
+            document.getElementById("login-trigger").classList.add("d-none");
+            document.getElementById("logout-trigger").classList.remove("d-none");
+            document.getElementById("ricette-salvate").classList.remove("disabled");
+            document.getElementById("ricette-salvate").classList.add("text-black");
+            document.getElementById("footer").classList.remove("d-none");
             var id_corrente_in_ricettario = utente_corrente.ricettario.find((el) => el.id == id);
             var salva_ricetta = document.getElementById("salva-ricetta");
             if (id_corrente_in_ricettario) {
@@ -382,13 +436,13 @@
                 nuova_recensione.getElementsByClassName("recensione-data")[0].innerHTML = recensione.data;
                 nuova_recensione.getElementsByClassName("recensione-autore")[0].innerHTML = recensione.autore;
                 nuova_recensione.getElementsByClassName("recensione-testo")[0].innerHTML = recensione.testo;
-                
+
                 var gusto_container = nuova_recensione.getElementsByClassName("recensione-gusto")[0];
                 var icone_gusto = gusto_container.getElementsByTagName("i");
                 for (var j = 0; j < recensione.gusto; j++) {
                     icone_gusto[j].classList.add("text-warning");
                 }
-                
+
                 var difficolta_container = nuova_recensione.getElementsByClassName("recensione-difficolta")[0];
                 var icone_difficolta = difficolta_container.getElementsByTagName("i");
                 for (var j = 0; j < recensione.difficolta; j++) {

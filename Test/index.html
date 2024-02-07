@@ -23,22 +23,18 @@
     <!-- NAVIGATION -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="#">
                 <img width="70" src="img/logo.png" alt="">
+                <span class="nav-link active fs-3 font-protest" aria-current="page">Ricettario
+                    Universitario</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active fs-3 font-protest" aria-current="page" href="#">Ricettario
-                            Universitario</a>
-                    </li>
-                </ul>
-                <div class="d-flex justify-content-center">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <div class="navbar-nav d-flex justify-content-center align-items-center gap-2 gap-lg-0">
                     <form class="d-flex w-75" role="search" action="pages/risultati.html">
                         <input type="text" class="form-control" id="search" name="search"
                             placeholder="Cerca una Ricetta">
@@ -48,7 +44,7 @@
                     </form>
                     <button id="login-trigger" class="btn btn-dark ms-3" type="submit" data-bs-toggle="modal"
                         data-bs-target="#loginModal">Login</button>
-                    <button id="logout-trigger" class="btn btn-dark ms-3 d-none" onclick="logout()">Logout</button>
+                    <button id="logout-trigger" class="btn btn-dark ms-3 d-none" style="width: fit-content" onclick="logout()">Logout</button>
                 </div>
             </div>
         </div>
@@ -84,7 +80,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a id="ricette-salvate" class="nav-link disabled text-black" href="pages/ricettario.html"
+                <a id="ricette-salvate" class="nav-link disabled" href="pages/ricettario.html"
                     aria-disabled="true">Ricette Salvate</a>
             </li>
         </ul>
@@ -109,18 +105,20 @@
                     </a>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev"
+                style="filter: invert(100%)">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next"
+                style="filter: invert(100%)">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
     </div>
 
-    <!-- 10 PIATTI A CASO PER TUTTE LE CATEGORIE -->
+    <!-- 10 PIATTI A CASO PER 5 CATEGORIE -->
     <div id="categories-container" class="container my-5">
         <h2 class="font-protest">SCELTI PER VOI</h2>
         <!-- 10 PIATTI PER UNA CATEGORIA -->
@@ -137,6 +135,14 @@
             </div>
         </div>
     </div>
+
+    <!-- FOOTER x Modifica Account -->
+    <footer id="footer" class="container-fluid my-4 text-center d-none">
+        <p>
+            Modifica o Elimina il tuo Account a <a class="text-decoration-underline" href="pages/account.html">questo
+                link</a>
+        </p>
+    </footer>
 
     <!-- Modal LOGIN -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
@@ -184,24 +190,8 @@
 
     <script>
 
-
-
         //Categorie e Consigliati
         getCategorie().then((categorie) => {
-
-            //Elaborazione delle Categorie Nel Menu
-
-            var category_list = document.getElementById("category-list");
-            var category_item_layout = category_list.firstElementChild;
-
-            for (var i = 0; i < categorie.length; i++) {
-                var new_category_item = category_item_layout.cloneNode(true);
-                new_category_item.classList.remove("d-none");
-                new_category_item.getElementsByClassName("category-item_link")[0].href = "pages/risultati.html?category=" + categorie[i].strCategory;
-                new_category_item.getElementsByClassName("category-item_link")[0].innerHTML = categorie[i].strCategory;
-                category_list.appendChild(new_category_item);
-            }
-
             //Aggiunta di Piatti Consigliati per Categoria
 
             var categories_container = document.getElementById("categories-container");
@@ -230,22 +220,6 @@
                 })
             }
         })
-
-        getAree().then((aree) => {
-            //Elaborazione delle Aree Nel Menu
-
-            var area_list = document.getElementById("area-list");
-            var area_item_layout = area_list.firstElementChild;
-
-
-            for (var i = 0; i < aree.length; i++) {
-                var new_area_item = area_item_layout.cloneNode(true);
-                new_area_item.classList.remove("d-none");
-                new_area_item.getElementsByClassName("area-item_link")[0].href = "pages/risultati.html?area=" + aree[i].strArea;
-                new_area_item.getElementsByClassName("area-item_link")[0].innerHTML = aree[i].strArea;
-                area_list.appendChild(new_area_item);
-            }
-        });
 
 
         //Ricette Carousel 
@@ -298,6 +272,8 @@
             document.getElementById("login-trigger").classList.add("d-none");
             document.getElementById("logout-trigger").classList.remove("d-none");
             document.getElementById("ricette-salvate").classList.remove("disabled");
+            document.getElementById("ricette-salvate").classList.add("text-black");
+            document.getElementById("footer").classList.remove("d-none");
         }
 
 
