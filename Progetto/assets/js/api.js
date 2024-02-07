@@ -1,3 +1,8 @@
+/* --------------------------------------------------------------- 
+Api.js contains the scripts that interact with the API https://www.themealdb.com/api.php
+It is imported in every .html page.
+--------------------------------------------------------------- */
+
 const optionsGET = {
     method: 'GET',
     headers: {

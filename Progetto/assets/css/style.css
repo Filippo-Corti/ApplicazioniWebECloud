@@ -148,8 +148,8 @@ input[disabled] {
     container-type: inline-size;
 }
 
-.recipe-card .recipe-save,
-.review-card .review-delete {
+.recipe-save,
+.review-delete {
     position: absolute;
     top: 0;
     right: 0;
@@ -160,19 +160,20 @@ input[disabled] {
     z-index: 999;
 }
 
-.recipe-card .recipe-save {
+.recipe-save {
     width: 48px;
     height: 48px;
     background-image: url("../img/heart_outline.png");
 }
 
-.review-card .review-delete {
+.review-delete {
     width: 35px;
     height: 35px;
     background-image: url("../img/bin.png");
 }
 
-.recipe-card[data-favourite] .recipe-save {
+.recipe-card[data-favourite] .recipe-save,
+.recipe-save:hover {
     background-image: url("../img/heart_full.png");
 }
 

@@ -1,3 +1,11 @@
+/* --------------------------------------------------------------- 
+Form-Control.js contains the scripts that deal with validation of the
+Registration Form.
+It is imported in signup.html and profile.html.
+IMPORTANT: it's not related to the Login Form, which scripts are
+contained in utils.js, as they are needed everywhere.
+--------------------------------------------------------------- */
+
 /* Multi-Part Form Sliding & Validation */
 
 let form = document.querySelector("form");
@@ -57,18 +65,6 @@ function goBack() {
     form_step_count.innerHTML = "Step 1 of 2";
     second_line.classList.remove("bg-primary");
     first_line.classList.add("bg-primary");
-}
-
-//Toggle Password Visibiliy
-function toggleShowPassword() {
-    let password_fields = document.querySelectorAll(".toggle-visibility");
-
-    for (let password_field of password_fields) {
-        if (password_field.type == "password")
-            password_field.type = "text";
-        else
-            password_field.type = "password";
-    }
 }
 
 //Tag Selection - Toggle Tag

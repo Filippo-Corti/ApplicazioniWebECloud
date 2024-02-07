@@ -82,31 +82,37 @@
         <div class="col-12">
           <div class="d-flex flex-column mt-4">
             <label class="fs-5 text-dark" for="email">Email</label>
-            <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email" required>
+            <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email" autocomplete="username" required>
             <div class="invalid-feedback">Your Email doesn't look correct</div>
           </div>
           <div class="d-flex flex-column my-3">
             <label class="fs-5 text-dark" for="username">Username</label>
-            <input class="form-control rounded-2 p-2 border-2" type="text" name="username" id="username" pattern=".{3,}">
+            <input class="form-control rounded-2 p-2 border-2" type="text" name="username" id="username"
+              pattern=".{3,}">
             <div class="invalid-feedback">Your Username should be at least 3 characters long</div>
           </div>
           <div class="d-flex flex-column my-3 position-relative">
             <label class="fs-5 text-dark" for="password">Password</label>
-            <img style="cursor: pointer;" class="position-absolute top-0 end-0" src="../assets/img/view.png" alt="Show Password" width="25" onclick="toggleShowPassword()">
-            <p class="text-secondary fs-6 mb-2 line-height-sm">Password must be at least 8 characters long and include a letter, a
+            <img style="cursor: pointer;" class="position-absolute top-0 end-0" src="../assets/img/view.png"
+              alt="Show Password" width="25" onclick="toggleShowPassword()">
+            <p class="text-secondary fs-6 mb-2 line-height-sm">Password must be at least 8 characters long and include a
+              letter, a
               number and a special character.</p>
-            <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password" id="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
+            <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password" autocomplete="new-password" 
+              id="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
             <div class="invalid-feedback">Your Password doesn't match requirements</div>
           </div>
           <div class="d-flex flex-column my-3">
             <label class="fs-5 text-dark" for="password_confirm">Confirm Password</label>
-            <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" id="password_confirm" required>
+            <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" id="password_confirm" autocomplete="new-password" 
+              required>
             <div class="invalid-feedback">Your Passwords are different</div>
           </div>
           <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2 text-secondary mt-5">
             <label class="line-height-sm" style="max-width: 17ch">I agree with <span
                 class="text-decoration-underline">Terms and Conditions</span></label>
-            <input class="form-check-input" style="width: 40px; height: 40px;" type="checkbox" id="accept_conditions" required>
+            <input class="form-check-input" style="width: 40px; height: 40px;" type="checkbox" id="accept_conditions"
+              required>
           </div>
           <div class="my-3 pt-4 px-2">
             <button class="btn btn-primary w-100 fs-5" role="continue"
@@ -120,7 +126,8 @@
             <label class="fs-4" for="preferences">Tell us about what you like:</label>
             <input class="rounded-2 p-2" type="text" id="preferences" oninput="searchTags(this.value)">
             <div class="m-3 overflow-hidden" style="max-height: 400px">
-              <div class="custom-scrollbar overflow-y-auto overflow-x-hidden d-flex flex-column gap-2" style="max-height: 100%;">
+              <div class="custom-scrollbar overflow-y-auto overflow-x-hidden d-flex flex-column gap-2"
+                style="max-height: 100%;">
                 <div class="row gap-2 mx-3">
                   <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
                     onclick="toggleState(this)">
@@ -460,15 +467,15 @@
   </footer>
 
 
-  <script src="../assets/js/lib.js"></script>
-  <script src="../assets/js/form-control.js"></script>
-  <script src="../assets/js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/form-control.js"></script>
+  <script src="../assets/js/utils.js"></script>
 </body>
 
 </html>
