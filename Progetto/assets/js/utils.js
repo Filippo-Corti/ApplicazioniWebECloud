@@ -6,34 +6,50 @@ It is imported in every .html page.
 --------------------------------------------------------------- */
 
 
-/* Build GRID: */
+buildBackground();
 
-let grid_container = document.querySelector(".background-grid");
-let grid_col = document.querySelector(".background-grid-col");
-const COL_SIZE = 90; //px
-const COLS = document.body.clientWidth / COL_SIZE;
-let grid_row = document.querySelector(".background-grid-row");
-const ROW_SIZE = COL_SIZE;
-const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
-
-let remove_lateral_cols = (document.body.clientWidth > 1420);
-
-for (let i = 1 + ((remove_lateral_cols) ? 1 : 0); i < COLS - ((remove_lateral_cols) ? 2 : 0); i++) {
-    let new_col = grid_col.cloneNode(true);
-    new_col.classList.remove("d-none");
-    new_col.style.left = COL_SIZE * i + "px";
-    grid_container.appendChild(new_col);
+/* Check Logged In / Logged Out */
+let logged_in = true;
+let logged_in_elements = document.querySelectorAll(".logged-in-only");
+let logged_out_elements = document.querySelectorAll(".logged-out-only");
+for (let el of logged_in_elements) {
+    if (logged_in) 
+        el.classList.remove("logged-in-only"); //Show
+}
+for (let el of logged_out_elements) {
+    if (logged_in) 
+        el.style.display = "none"; //Hide
 }
 
-for (let i = 1; i < ROWS + 1; i++) {
-    let new_row = grid_row.cloneNode(true);
-    new_row.classList.remove("d-none");
-    new_row.style.top = ROW_SIZE * i - 50 + "px";
-    grid_container.appendChild(new_row);
+
+/* Build GRID: */
+function buildBackground() {
+    let grid_container = document.querySelector(".background-grid");
+    let grid_col = document.querySelector(".background-grid-col");
+    const COL_SIZE = 90; //px
+    const COLS = document.body.clientWidth / COL_SIZE;
+    let grid_row = document.querySelector(".background-grid-row");
+    const ROW_SIZE = COL_SIZE;
+    const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
+    
+    let remove_lateral_cols = (document.body.clientWidth > 1420);
+    
+    for (let i = 1 + ((remove_lateral_cols) ? 1 : 0); i < COLS - ((remove_lateral_cols) ? 2 : 0); i++) {
+        let new_col = grid_col.cloneNode(true);
+        new_col.classList.remove("d-none");
+        new_col.style.left = COL_SIZE * i + "px";
+        grid_container.appendChild(new_col);
+    }
+    
+    for (let i = 1; i < ROWS + 1; i++) {
+        let new_row = grid_row.cloneNode(true);
+        new_row.classList.remove("d-none");
+        new_row.style.top = ROW_SIZE * i - 50 + "px";
+        grid_container.appendChild(new_row);
+    }
 }
 
 /* Background Stripe Blur */
-
 let background_stripe = document.querySelector(".background-stripe");
 
 document.addEventListener("scroll", (event) => {
@@ -101,8 +117,6 @@ function toggleShowPassword() {
 /* Enable Bootstrap Tooltips - from https://getbootstrap.com/docs/5.3/components/tooltips/#enable-tooltips */
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-
 
 
 /* ESEMPIO x API !!!

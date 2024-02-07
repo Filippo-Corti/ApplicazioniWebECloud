@@ -24,51 +24,93 @@
         <div class="d-none background-grid-row"></div>
     </div>
 
-    <!-- Header & Nav -->
-    <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
-        <div class="container-xxl pt-4 pt-md-5 px-3">
-            <!-- Logo -->
-            <div class="logo | d-flex align-items-baseline gap-1">
-                <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
-                <h1 class="h-0 text-primary">PGRC</h1>
-            </div>
-            <!-- Mobile Menu Button-->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <!-- Header -->
+    <header>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+            <div class="container-xxl pt-4 pt-md-5 px-3">
+                <!-- Logo -->
+                <div>
+                    <a class="logo | d-flex align-items-baseline gap-1" href="../index.html">
+                        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+                        <h1 class="h-0 text-primary">PGRC</h1>
+                    </a>
                 </div>
-                <div class="offcanvas-body justify-content-end">
-                    <ul class="navbar-nav align-items-center gap-2">
-                        <li class="nav-item">
-                            <h5 class="text-center border-top border-bottom py-4 d-lg-none">
-                                SIGN UP for more functionalities!
-                            </h5>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-outline-secondary fs-4">
-                                SIGN UP
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn btn-primary fs-4">
-                                LOG IN
-                            </button>
-                        </li>
-                    </ul>
+                <!-- Mobile Menu Button-->
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header justify-content-end px-5 mt-3 pb-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body justify-content-end">
+                        <ul class="navbar-nav align-items-center gap-2">
+                            <li class="nav-item logged-out-only">
+                                <h5 class="text-center border-top border-bottom py-4 d-lg-none">
+                                    SIGN UP for more functionalities!
+                                </h5>
+                            </li>
+                            <li class="nav-item logged-out-only">
+                                <a href="../pages/signup.html">
+                                    <button class="btn btn-outline-secondary fs-4">
+                                        SIGN UP
+                                    </button>
+                                </a>
+                            </li>
+                            <li class="nav-item logged-out-only">
+                                <button class="btn btn-primary fs-4" data-bs-toggle="modal"
+                                    data-bs-target="#loginModal">
+                                    LOG IN
+                                </button>
+                            </li>
+                            <li class="nav-item logged-in-only">
+                                <a href="../pages/profile.html">
+                                    <button class="btn btn-outline-secondary fs-4 d-flex align-items-center gap-2 py-2">
+                                        <!-- Username & Picture -->
+                                        <p class="username card-text bg-transparent mb-0">Username</p>
+                                        <div class="bg-primary rounded-5" style="width:fit-content">
+                                            <img src="../assets/img/anon.png" alt="Profile Picture">
+                                        </div>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
+
+    <!-- Fallback if Logged Out -->
+    <div class="container text-center logged-out-only mt-5">
+        <ul class="navbar-nav align-items-center gap-2">
+            <li class="nav-item">
+                <h2 class="text-center border-top border-bottom py-4">
+                    SIGN UP for more functionalities!
+                </h2>
+            </li>
+            <li class="nav-item">
+                <a href="../pages/signup.html">
+                    <button class="btn btn-outline-secondary fs-4">
+                        SIGN UP
+                    </button>
+                </a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary fs-4" data-bs-toggle="modal"
+                    data-bs-target="#loginModal">
+                    LOG IN
+                </button>
+            </li>
+    </div>
 
     <!-- Main -->
-    <main class="container my-5 py-4 px-2 px-md-1 py-md-5 mx-auto d-flex flex-column flex-lg-row">
+    <main class="container my-5 py-4 px-2 px-md-1 py-md-5 mx-auto d-flex flex-column flex-lg-row logged-in-only">
 
-        <!-- Side Menu -->
+        <!-- Side Nav -->
         <div class="bg-white rounded-lg-5 rounded-top-5 mx-lg-3 shadow px-2 py-lg-5 py-2 h-100">
             <nav>
                 <div class="bg-primary rounded-4 p-2 mx-auto d-none d-lg-block" style="width:fit-content">
@@ -111,8 +153,10 @@
                 </ul>
             </nav>
         </div>
+
         <!-- Content Tabs -->
         <div class="tab-content bg-white rounded-bottom-5 rounded-lg-5 mx-auto shadow py-3 px-2 p-xl-4 w-100">
+            <!-- Your Cookbook -->
             <div id="cookbook" class="tab-pane px-4 py-3 active" role="tabpanel">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1>Your Cookbook</h1>
@@ -122,8 +166,8 @@
                             Sort by
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item fs-5" href="#">Difficulty (Easiest First)</a></li>
-                            <li><a class="dropdown-item fs-5" href="#">Taste (Tastiest First)</a></li>
+                            <li><button class="dropdown-item fs-5" href="#">Difficulty (Easiest First)</button></li>
+                            <li><button class="dropdown-item fs-5" href="#">Taste (Tastiest First)</button></li>
                         </ul>
                     </div>
                 </div>
@@ -550,8 +594,9 @@
                     <div
                         class="d-flex flex-column mt-4 border-bottom border-black pb-3 border-opacity-50 position-relative">
                         <label class="fs-5 text-secondary" for="email">Email</label>
-                        <input class="editable | form-control rounded-2 border-2 fs-4 text-black p-0" type="email" autocomplete="username"
-                            name="email" id="email" value="corti.filippo03@gmail.com" disabled required>
+                        <input class="editable | form-control rounded-2 border-2 fs-4 text-black p-0" type="email"
+                            autocomplete="username" name="email" id="email" value="corti.filippo03@gmail.com" disabled
+                            required>
                         <div class="invalid-feedback">Your Email doesn't look correct</div>
                         <div class="edit-button | position-absolute" style="cursor:pointer; top: 40%; right: 4%"
                             onclick="enableEdit(this)">
@@ -598,7 +643,8 @@
                         <div class="visible-on-edit d-none mt-1">
                             <label class="fs-5 text-secondary" for="password_confirm">Confirm New Password</label>
                             <input class="toggle-visibility | form-control rounded-2 border-2 fs-4 text-black p-0"
-                                type="password" autocomplete="new-password" id="password_confirm" value="Filippo123!" required>
+                                type="password" autocomplete="new-password" id="password_confirm" value="Filippo123!"
+                                required>
                             <div class="invalid-feedback">Your Passwords are different</div>
                         </div>
                         <button class="save-button | btn btn-outline-secondary rounded-5 mt-1 ms-auto d-none"
@@ -1061,6 +1107,7 @@
                 </div>
             </div>
         </div>
+
     </main>
 
     <!-- Footer -->
@@ -1090,6 +1137,53 @@
         </div>
         </div>
     </footer>
+
+
+
+    <!-- Modals -->
+
+    <!-- Login Modal -->
+    <modal class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="Modal For Login" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3 rounded-5">
+                <div class="modal-header border-0 row align-items-baseline">
+                    <div class="line | col-3 bg-primary col rounded-5 ms-1 d-none d-md-block"></div>
+                    <h1 class="col-md-3 modal-title fs-4 text-center" id="exampleModalLabel">LOG IN</h1>
+                    <div class="line | col bg-primary col rounded-5 me-3 d-none d-md-block"></div>
+                    <button type="button" class="col-1 btn-close mb-auto" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-1">
+                    <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
+                        <p>Credentials are wrong! Try again</p>
+                    </div>
+                    <form method="GET" action="profile.html" onsubmit="return checkCredentialsAndLogin(this)">
+                        <div class="col-12">
+                            <div class="d-flex flex-column mt-2">
+                                <label class="fs-5 text-dark" for="email">Email</label>
+                                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email"
+                                    autocomplete="username" required>
+                            </div>
+                            <div class="d-flex flex-column my-3 position-relative">
+                                <label class="fs-5 text-dark" for="password">Password</label>
+                                <img style="cursor: pointer;" class="position-absolute top-0 end-0"
+                                    src="../assets/img/view.png" alt="Show Password" width="25"
+                                    onclick="toggleShowPassword()">
+                                <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password"
+                                    name="password" id="password" autocomplete="current-password" required>
+                            </div>
+                            <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-block border-0 text-center pt-0">
+                    <p class="text-secondary mt-0 pt-0">Don't have an account? <span
+                            class="text-decoration-underline">Register
+                            here</span></p>
+                </div>
+            </div>
+        </div>
+    </modal>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

@@ -17,6 +17,15 @@ input[disabled] {
     background-color: transparent !important; 
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logged-in-only {
+    display: none !important;
+}
+
 
 .offcanvas {
     --bs-offcanvas-width: 300px;
@@ -146,6 +155,11 @@ input[disabled] {
 
 .recipe-card {
     container-type: inline-size;
+    transition: transform 200ms ease-in-out;
+}
+
+.recipe-card:hover {
+    transform: scale(1.03);
 }
 
 .recipe-save,
@@ -252,6 +266,7 @@ input[disabled] {
 }
 
 /* Search Bar Results */
+
 .search-input:has(.search-result:nth-of-type(1)) {
     /* Change to 2 !!! Because 1 is the mockup */
     border-radius: var(--bs-border-radius-xxl) var(--bs-border-radius-xxl) 0 0 !important;
@@ -267,9 +282,34 @@ input[disabled] {
     border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
 }
 
+.search-result:hover {
+    background-color: rgba(0, 0, 0, 0.05)
+}
+
 .search-result img {
     width: 76px;
 }
+
+.search-result[data-type="recipe"] img {
+    visibility: visible !important;
+}
+
+.search-result[data-type="recipe"] .search-result-title {
+        color: rgb(var(--bs-black-rgb))!important;
+}   
+
+.search-result[data-type="category"] .search-result-title {
+        color: rgb(var(--bs-success-rgb))!important;
+}   
+
+.search-result[data-type="area"] .search-result-title {
+        color: rgb(var(--bs-info-rgb))!important;
+}   
+
+.search-result[data-type="ingredient"] .search-result-title {
+        color: rgb(var(--bs-danger-rgb))!important;
+}   
+
 
 /* Registration Form */
 
