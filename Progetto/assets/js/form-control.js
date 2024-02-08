@@ -2,7 +2,7 @@
 Form-Control.js contains the scripts that deal with validation of the
 Registration Form.
 It is imported in signup.html and profile.html.
-IMPORTANT: it's not related to the Login Form, which scripts are
+IMPORTANT: it's not related to the Login Form, whose scripts are
 contained in utils.js, as they are needed everywhere.
 --------------------------------------------------------------- */
 
