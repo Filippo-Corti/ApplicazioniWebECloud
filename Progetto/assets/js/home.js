@@ -21,12 +21,61 @@ function scrollToHere(element) {
 
 /* Position main Scrollers to the Center */
 
-let scrollers = document.querySelectorAll(".scroll-to-center");
-scrollers.forEach((scroller) => {
-    let scroll_to = (scroller.scrollWidth - scroller.clientWidth) / 2;
-    scroller.scroll({
-        top: 0,
-        left: scroll_to,
-    });
+function centerScrollers() {
+    let scrollers = document.querySelectorAll(".scroll-to-center");
+    scrollers.forEach((scroller) => {
+        let scroll_to = (scroller.scrollWidth - scroller.clientWidth) / 2;
+        scroller.scroll({
+            top: 0,
+            left: scroll_to,
+        });
+    })
+}
 
+
+
+let container = document.querySelector("#recipe-suggestions-random");
+for (var i = 0; i < 10; i++) {
+    
+
+let dynamic_card1 = buildDynamicElement("recipe-card", {
+    href: "pages/recipe.html?id=" + 12345,
+    image: "https://www.themealdb.com/images/media/meals/oe8rg51699014028.jpg",
+    taste: 3.5,
+    difficulty: 4.7,
+    reviews: 3,
+    area: "Italian" + " Cuisine",
+    name: "Nome del Piatto 1",
+});
+
+let dynamic_card2 = buildDynamicElement("recipe-card", {
+    href: "pages/recipe.html?id=" + 12345,
+    image: "https://www.themealdb.com/images/media/meals/oe8rg51699014028.jpg",
+    taste: 3.5,
+    difficulty: 4.7,
+    reviews: 3,
+    area: "Italian" + " Cuisine",
+    name: "Nome del Piatto 2",
+});
+
+let dynamic_card3 = buildDynamicElement("recipe-card", {
+    href: "pages/recipe.html?id=" + 12345,
+    image: "https://www.themealdb.com/images/media/meals/oe8rg51699014028.jpg",
+    taste: 3.5,
+    difficulty: 4.7,
+    reviews: 3,
+    area: "Italian" + " Cuisine",
+    name: "Nome del Piatto 3",
+});
+
+let dynamic_card_group = buildDynamicElement("recipe-card-group", {
+    row1: getElementHTML(dynamic_card1) + getElementHTML(dynamic_card2),
+    row2: getElementHTML(dynamic_card3),
 })
+
+container.appendChild(dynamic_card_group);
+}
+
+centerScrollers();
+
+

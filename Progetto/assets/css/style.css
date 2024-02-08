@@ -296,7 +296,7 @@ a {
     width: 76px;
 }
 
-.search-result[data-type="recipe"] img {
+.search-result :not([data-type="area"]) img {
     visibility: visible !important;
 }
 

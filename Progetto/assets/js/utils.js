@@ -13,11 +13,11 @@ let logged_in = true;
 let logged_in_elements = document.querySelectorAll(".logged-in-only");
 let logged_out_elements = document.querySelectorAll(".logged-out-only");
 for (let el of logged_in_elements) {
-    if (logged_in) 
+    if (logged_in)
         el.classList.remove("logged-in-only"); //Show
 }
 for (let el of logged_out_elements) {
-    if (logged_in) 
+    if (logged_in)
         el.style.display = "none"; //Hide
 }
 
@@ -31,16 +31,16 @@ function buildBackground() {
     let grid_row = document.querySelector(".background-grid-row");
     const ROW_SIZE = COL_SIZE;
     const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
-    
+
     let remove_lateral_cols = (document.body.clientWidth > 1420);
-    
+
     for (let i = 1 + ((remove_lateral_cols) ? 1 : 0); i < COLS - ((remove_lateral_cols) ? 2 : 0); i++) {
         let new_col = grid_col.cloneNode(true);
         new_col.classList.remove("d-none");
         new_col.style.left = COL_SIZE * i + "px";
         grid_container.appendChild(new_col);
     }
-    
+
     for (let i = 1; i < ROWS + 1; i++) {
         let new_row = grid_row.cloneNode(true);
         new_row.classList.remove("d-none");
@@ -141,8 +141,14 @@ function toggleShowPassword() {
 
 /* Enable Bootstrap Tooltips - from https://getbootstrap.com/docs/5.3/components/tooltips/#enable-tooltips */
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+const tooltipList = [];
+for (let tooltipTrigger of tooltipTriggerList) {
+    enableTooltip(tooltipTrigger);
+}
 
+function enableTooltip(tooltipTriggerEl) {
+    tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl));
+}
 
 /* ESEMPIO x API !!!
 async function showRandomMeals() {
@@ -152,5 +158,42 @@ async function showRandomMeals() {
     }
 }
 */
+
+function getElementHTML(element) {
+    return element.querySelector("*").outerHTML;
+}
+
+
+function buildDynamicElement(templateId, data) {
+    let template = document.querySelector("template#" + templateId);
+    let new_element = template.content.cloneNode(true);
+
+    let slots = new_element.querySelectorAll("[data-template-type]");
+
+    //Fill in the slots
+    for (let slot of slots) {
+        let value = data[slot.getAttribute("data-template-value")];
+        switch (slot.getAttribute("data-template-type")) {
+            case "content":
+                slot.textContent = value;
+                break;
+            case "attribute":
+                slot.setAttribute(slot.getAttribute("data-template-attribute"), value);
+                break;
+            case "element":
+                slot.innerHTML = value;
+                break;
+        }
+    }
+
+    //Activate eventual tooltips
+    var tooltipTriggerList = new_element.querySelectorAll('[data-bs-toggle="tooltip"]')
+    for (let tooltipTrigger of tooltipTriggerList) {
+        enableTooltip(tooltipTrigger);
+    }
+
+    return new_element;
+
+}
 
 

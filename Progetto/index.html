@@ -132,52 +132,9 @@
     </div>
 
     <!-- Recipe Slider -->
-    <div class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-scroll gap-3 p-3 flex-shrink-0"
+    <div id="recipe-suggestions-interests"
+      class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-scroll gap-3 p-3 flex-shrink-0"
       style="width: fit-content; max-width: 100%;">
-
-      <!-- Recipe Card Group of 3-->
-      <div class="flex-grow-1 recipe-card-group d-flex flex-column">
-        <div class="d-flex gap-3 my-2">
-          <!-- Recipe Card -->
-          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover" data-favourite>
-            <a class="card border-0 position-relative" href="pages/recipe.html?id=00000">
-              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
-                class="recipe-image | card-img-top" alt="Recipe Name">
-              <div class="card-body">
-                <div class="card-text row gap-2 justify-content-center mb-2">
-                  <div class="col-3 d-flex align-items-center gap-2">
-                    <img width="20" src="assets/img/star.png" alt="Taste Score">
-                    <span>0.0</span>
-                  </div>
-                  <div class="col-3 d-flex align-items-center gap-2">
-                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
-                    <span>0.0</span>
-                  </div>
-                  <div class="col-3 d-flex align-items-center gap-2">
-                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
-                    <span>0.0</span>
-                  </div>
-                </div>
-                <div class="mt-4">
-                  <h5 class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
-                  <h4 class="card-title fs-3">Recipe Name</h4>
-                </div>
-              </div>
-            </a>
-            <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
-              data-bs-recipe="Lamb Pilaf (Plov)">
-              <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
-              </div>
-            </div>
-          </div>
-          <!-- Recipe Card -->
-        </div>
-        <div class="my-2">
-          <!-- Recipe Card -->
-        </div>
-      </div>
-
-      <!-- Recipe Card Group of 3-->
 
     </div>
 
@@ -191,57 +148,13 @@
     </div>
 
     <!-- Recipe Slider -->
-    <div class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-scroll gap-3 p-3 flex-shrink-0"
+    <div id="recipe-suggestions-random"
+      class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-scroll gap-3 p-3 flex-shrink-0"
       style="width: fit-content; max-width: 100%;">
-
-      <!-- Recipe Card Group of 3-->
-      <div class="flex-grow-1 recipe-card-group d-flex flex-column">
-        <div class="d-flex gap-3 my-2">
-          <!-- Recipe Card -->
-          <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover">
-            <a class="card border-0 position-relative" href="pages/recipe.html?id=00000">
-              <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
-                class="recipe-image | card-img-top" alt="Recipe Name">
-              <div class="card-body">
-                <div class="card-text row gap-2 justify-content-center mb-2">
-                  <div class="col-3 d-flex align-items-center gap-2">
-                    <img width="20" src="assets/img/star.png" alt="Taste Score">
-                    <span>0.0</span>
-                  </div>
-                  <div class="col-3 d-flex align-items-center gap-2">
-                    <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Taste Score">
-                    <span>0.0</span>
-                  </div>
-                  <div class="col-3 d-flex align-items-center gap-2">
-                    <img width="20" src="assets/img/comment.png" alt="Taste Score">
-                    <span>0.0</span>
-                  </div>
-                </div>
-                <div class="mt-4">
-                  <h5 class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
-                  <h4 class="card-title fs-3">Recipe Name</h4>
-                </div>
-              </div>
-            </a>
-            <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
-              data-bs-recipe="Lamb Pilaf (Plov)">
-              <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
-              </div>
-            </div>
-          </div>
-          <!-- Recipe Card -->
-        </div>
-        <div class="my-2">
-          <!-- Recipe Card -->
-        </div>
-      </div>
-
-      <!-- Recipe Card Group of 3-->
 
     </div>
 
   </section>
-
 
   <!-- Footer -->
   <footer class="border-top border-black border-opacity-25">
@@ -348,6 +261,58 @@
       </div>
     </div>
   </modal>
+
+  <!-- Templates -->
+
+  <!-- Recipe Card -->
+  <template id="recipe-card">
+    <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover">
+      <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
+        class="card border-0 position-relative" href="pages/recipe.html?id=00000">
+        <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
+          src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg" class="recipe-image | card-img-top">
+        <div class="card-body">
+          <div class="card-text row gap-2 justify-content-center mb-2">
+            <div class="col-3 d-flex align-items-center gap-2">
+              <img width="20" src="assets/img/star.png" alt="Taste Score">
+              <span data-template-type="content" data-template-value="taste">0.0</span>
+            </div>
+            <div class="col-3 d-flex align-items-center gap-2">
+              <img class="tint-danger" width="20" src="assets/img/chef.png" alt="Difficulty Score">
+              <span data-template-type="content" data-template-value="difficulty">0.0</span>
+            </div>
+            <div class="col-3 d-flex align-items-center gap-2">
+              <img width="20" src="assets/img/comment.png" alt="Number of Reviews">
+              <span data-template-type="content" data-template-value="reviews">0</span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <h5 data-template-type="content" data-template-value="area"
+              class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
+            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3">Recipe Name</h4>
+          </div>
+        </div>
+      </a>
+      <div data-template-type="attribute" data-template-attribute="data-bs-recipe" data-template-value="name"
+        class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal" data-bs-recipe="Lamb Pilaf (Plov)">
+        <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Recipe Card Group of 3-->
+  <template id="recipe-card-group">
+    <div class="flex-grow-1 recipe-card-group d-flex flex-column">
+      <div data-template-type="element" data-template-value="row1" class="recipe-card-group-row d-flex gap-3 my-2">
+        <!-- Recipe Card -->
+        <!-- Recipe Card -->
+      </div>
+      <div data-template-type="element" data-template-value="row2" class="my-2">
+        <!-- Recipe Card -->
+      </div>
+    </div>
+  </template>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

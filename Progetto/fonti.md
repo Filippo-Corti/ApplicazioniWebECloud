@@ -57,3 +57,8 @@ https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-
 ### Autocomplete in Forms
 
 https://www.chromium.org/developers/design-documents/create-amazing-password-forms/
+
+### Template Tag for Dynamic Elements Creation
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template?retiredLocale=it
+https://caniuse.com/?search=template

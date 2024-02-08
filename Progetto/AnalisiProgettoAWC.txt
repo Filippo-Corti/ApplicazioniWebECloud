@@ -55,6 +55,63 @@ Fonti:
 https://lingtalfi.com/bootstrap4-color-generator
 https://getbootstrap.com/docs/5.3/examples/navbars-offcanvas
 
+-------------------------------------------------------------
+
+EMAIL: CHECK IF EMAIL && CHECK IF UNIQUE
+USERNAME: CHECK CHARSET?
+PASSWORD: CHECK LENGTH + CHARACTERS + == TO PASSWORD2
+CHECKBOX: CHECK IF CHECKED
+
+-------------------------------------------------------------
+
+Allo Startup (Home Page) vengono caricate:
+
+- Tutte le categorie
+- Tutte le aree
+- Tutti gli ingredienti
+
+- Tutte le ricette basate sui propri interessi, ovvero:
+	- Ricette delle categorie piaciute
+	- Ricette delle aree piaciute
+	- Ricette con gli ingredienti piaciuti
+	- Ricette salvate nel ricettario
+- 15 ricette a caso, con random.php
+
+Mentre le cose sopra vengono aggiornate solo se:
+	- Ho aggiornato i miei interessi
+	- Ho fatto logout (in questo caso si cancellano)
+	- Ho fatto login (in questo caso si caricano)
+	- Non ci sono nel local Storage (vale per categorie, aree e ingredienti)
+le 15 ricette a caso vengono ricaricate tutte le volte
+
+Per far sembrare i consigliati casuali, li posiziono in maniera random nello slider ogni volta
+
+Tutte queste vengono salvate in un json application_data,
+memorizzando sempre
+> Per le ricette solo
+	- strMeal
+	- strMealThumbn
+	- idMeal
+> Per le categorie
+	- strCategory
+	- strCategoryDescription
+> Per le aree 
+	- strArea
+> Per gli ingredienti
+	- strIngredient	
+	- strDescription
+
+Dopodiché:
+	1 Se apro una ricetta richiedo esplicitamente tutti i suoi dati
+	2 Se faccio una ricerca:
+		- Sto digitando la prima lettera? 
+			Allora uso l'API apposita e carico RicetteCercate in memoria
+		- Guardo tra le Aree, Categorie e Ingredienti e RicetteCercate
+	3 Se clicco sul risultato della ricerca che è una ricetta, vedi punto 1
+	4 Se clicco sul risultato della ricerca che è una delle altre 3 cose, vado alla pagina dei risultati
+	5 Se faccio invio nella ricerca vado ancora alla pagina dei risultati
+	
+
 
 
 
