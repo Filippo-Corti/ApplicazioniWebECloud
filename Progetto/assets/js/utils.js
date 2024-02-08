@@ -1,12 +1,12 @@
 /* --------------------------------------------------------------- 
-Utils.js contains scripts that are generally useful for any page. 
-Scripts are about the application background, the modals, the
-tooltips and the dynamic creation of HTML elements.
+Utils.js contains scripts used generally around the website, mainly
+regarding elements creation and interaction.
 It is imported in every .html page.
 --------------------------------------------------------------- */
 
 let logged_in = true;
 const tooltipList = [];
+let search_results = document.querySelectorAll(".search-results");
 
 buildBackground();
 loadPageBasedOnLogState();
@@ -204,6 +204,70 @@ function buildDynamicElement(templateId, data) {
 
     return new_element;
 
+}
+
+//Enables edit of the sibling with class "editable"
+function enableEdit(clicked_element) {
+
+    let editable_element = clicked_element.parentNode.querySelector(".editable");
+
+    editable_element.disabled = false;
+}
+
+//Disables edit of the sibling with class "editable"
+function disableEdit(clicked_element) {
+    let editable_element = clicked_element.parentNode.querySelector(".editable");
+    //Check validity of field
+    if (!editable_element.checkValidity()) {
+        editable_element.classList.add("is-invalid");
+        return;
+    } 
+    editable_element.classList.remove("is-invalid");
+    editable_element.disabled = true;
+    //Save edit in local storage 
+}
+
+//Checks Passwords, then calls disableEdit
+function confirmPasswordEdit(clicked_element) {
+    let password = clicked_element.parentNode.querySelector("input#password");
+    let password_confirm= clicked_element.parentNode.querySelector("input#password_confirm");
+    if (password.value !== password_confirm.value) {
+        password_confirm.classList.remove("is-valid");
+        password_confirm.classList.add("is-invalid");
+        return;
+    }
+    if (password.type == "text") 
+        toggleShowPassword();
+    disableEdit(clicked_element);
+}
+
+// Hide Results when anything is clicked
+function hideSearchResults() {
+    for (let result of search_results) {
+        result.remove();
+    }
+}
+
+// Scroll when Search Bar is Selected
+function scrollToHere(element) {
+    let element_y = element.getBoundingClientRect().top + window.scrollY; //Relative to the document, not the viewport
+    window.scroll({
+        top: element_y - 100,
+        left: 0,
+        behaviour: "smooth",
+    });
+}
+
+// Position main Scrollers to the Center 
+function centerScrollers() {
+    let scrollers = document.querySelectorAll(".scroll-to-center");
+    scrollers.forEach((scroller) => {
+        let scroll_to = (scroller.scrollWidth - scroller.clientWidth) / 2;
+        scroller.scroll({
+            top: 0,
+            left: scroll_to,
+        });
+    })
 }
 
 
