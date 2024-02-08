@@ -322,53 +322,44 @@
     crossorigin="anonymous"></script>
   <script src="assets/js/api.js"></script>
   <script src="assets/js/utils.js"></script>
+  <script src="assets/js/storage.js"></script>
   <script type="module">
-  </script>
-  <script>
 
-    let container = document.querySelector("#recipe-suggestions-random");
-    for (var i = 0; i < 10; i++) {
-        
-    
-    let dynamic_card1 = buildDynamicElement("recipe-card", {
-        href: "pages/recipe.html?id=" + 12345,
-        image: "https://www.themealdb.com/images/media/meals/oe8rg51699014028.jpg",
-        taste: 3.5,
-        difficulty: 4.7,
-        reviews: 3,
-        area: "Italian" + " Cuisine",
-        name: "Nome del Piatto 1",
-    });
-    
-    let dynamic_card2 = buildDynamicElement("recipe-card", {
-        href: "pages/recipe.html?id=" + 12345,
-        image: "https://www.themealdb.com/images/media/meals/oe8rg51699014028.jpg",
-        taste: 3.5,
-        difficulty: 4.7,
-        reviews: 3,
-        area: "Italian" + " Cuisine",
-        name: "Nome del Piatto 2",
-    });
-    
-    let dynamic_card3 = buildDynamicElement("recipe-card", {
-        href: "pages/recipe.html?id=" + 12345,
-        image: "https://www.themealdb.com/images/media/meals/oe8rg51699014028.jpg",
-        taste: 3.5,
-        difficulty: 4.7,
-        reviews: 3,
-        area: "Italian" + " Cuisine",
-        name: "Nome del Piatto 3",
-    });
-    
-    let dynamic_card_group = buildDynamicElement("recipe-card-group", {
-        row1: getElementHTML(dynamic_card1) + getElementHTML(dynamic_card2),
-        row2: getElementHTML(dynamic_card3),
-    })
-    
-    container.appendChild(dynamic_card_group);
+    clearStorage();
+    await loadRandomRecipesIntoStorage(15);
+
+    let random_recipes = getFromStorage("random_recipes");
+    let random_recipes_container = document.querySelector("#recipe-suggestions-random");
+
+    for (let i = 0; i < random_recipes.length;) {
+      let recipes = [];
+      //Get 3 Recipes
+      for (let j = 0; j < 3; j++, i++) {
+        let recipe = random_recipes[i];
+        recipes.push(
+          buildDynamicElement("recipe-card", {
+            href: "pages/recipe.html?id=" + recipe.id,
+            image: recipe.image,
+            taste: 0.0,
+            difficulty: 0.0,
+            reviews: 0,
+            area: recipe.area + " Cuisine",
+            name: recipe.name,
+          }));
+      }
+      //Place them in the page
+      let dynamic_card_group = buildDynamicElement("recipe-card-group", {
+        row1: getElementHTML(recipes[0]) + getElementHTML(recipes[1]),
+        row2: getElementHTML(recipes[2]),
+      })
+
+      random_recipes_container.appendChild(dynamic_card_group);
     }
-    
+
     centerScrollers();
+    loadCategoriesIntoStorage();
+    loadAreasIntoStorage();
+    loadIngredientsIntoStorage();
   </script>
 </body>
 
