@@ -127,7 +127,7 @@ function extractIngredients(meal) {
         if (ingredient && measure) {
             ingredients.push(
                 {
-                    ingredient: ingredient,
+                    name: ingredient,
                     measure: measure
                 }
             );

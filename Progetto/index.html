@@ -266,7 +266,7 @@
 
   <!-- Recipe Card -->
   <template id="recipe-card">
-    <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover">
+    <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover" data-template-type="attribute" data-template-attribute="data-favourite" data-template-value="favourite" data-favourite="false">
       <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
         class="card border-0 position-relative h-100" href="pages/recipe.html?id=00000">
         <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
@@ -345,6 +345,7 @@
             reviews: 0,
             area: recipe.area + " Cuisine",
             name: recipe.name,
+            favourite: false, // !!!
           }));
       }
       //Place them in the page

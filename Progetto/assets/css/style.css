@@ -188,11 +188,11 @@ a {
     display: none;
 }
 
-.review-card[data-my-review] .review-delete{
+.review-card[data-my-review="true"] .review-delete{
     display: block;
 }
 
-.recipe-card[data-favourite] .recipe-save,
+.recipe-card[data-favourite="true"] .recipe-save,
 .recipe-save:hover {
     background-image: url("../img/heart_full.png");
 }

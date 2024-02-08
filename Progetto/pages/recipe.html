@@ -83,85 +83,8 @@
   </header>
 
   <!-- Recipe -->
-  <main class="container-xxl my-4 mx-auto px-4 px-md-5 bg-white rounded-5 py-5 shadow-lg mb-5 position-relative">
-    <!-- Recipe Preview -->
-    <div class="row align-items-end gap-4">
-      <div class="col-lg">
-        <!-- Stats -->
-        <div class="d-lg-block d-flex flex-column align-items-center">
-          <div class="recipe-save ms-0" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
-            data-bs-recipe="Lamb Pilaf (Plov)" style="position: relative;">
-            <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Save Recipe">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col flex-grow-0">
-              <img width="24" src="../assets/img/star.png" alt="Taste Score">
-            </div>
-            <div class="col">
-              <h4>Taste: <span class="ms-1">0.0</span>/5</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col flex-grow-0">
-              <img width="24" class="tint-danger" src="../assets/img/chef.png" alt="Difficulty Score">
-            </div>
-            <div class="col">
-              <h4>Difficulty: <span class="ms-1">0.0</span>/5</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col flex-grow-0">
-              <img width="24" src="../assets/img/comment.png" alt="Number of Reviews">
-            </div>
-            <div class="col">
-              <h4>Reviews: <span class="ms-1">0</span></h4>
-            </div>
-          </div>
-        </div>
-        <!-- Title & Tags -->
-        <div>
-          <h1 class="display-2 my-3">Recipe Name Goes Here</h1>
-          <div>
-            <a class="btn btn-success my-1 fs-5" href="#">Area</a>
-            <a class="btn btn-info my-1 fs-5" href="#">Category</a>
-            <a class="btn btn-danger my-1 fs-5" href="#">Ingredient?</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg order-first order-lg-0">
-        <!-- Image -->
-        <img id="recipe_image" class="recipe-image | rounded-5"
-          src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg" alt="Recipe Image">
-      </div>
-    </div>
-    <!-- Recipe Details -->
-    <div class="row gap-4 mt-5 border-top border-black border-opacity-25">
-      <!-- Recipe Ingredients -->
-      <div class="col-lg-3 border-lg-end border-black border-opacity-25 pt-5">
-        <h3 class="mb-3">INGREDIENTS</h3>
-        <div>
-          <!-- Ingredient -->
-          <div class="row justify-content-center align-items-center">
-            <img class="col-3" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png"
-              alt="Ingredient Name">
-            <p class="col fs-5 text-decoration-underline px-0 mb-0"><a href="#">Ingredient Name</a></p>
-            <p class="col-2 text-secondary fs-5 px-0 mb-0">255g</p>
-          </div>
-        </div>
-      </div>
-      <!-- Recipe Instructions -->
-      <div class="col-md pt-5">
-        <div class="mt-5">
-          <!-- Instruction Step -->
-          <div>
-            <p class="fs-5 text-secondary mb-1">STEP 1</p>
-            <p class="fs-5">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water over.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <main id="recipe_container"
+    class="container-xxl my-4 mx-auto px-4 px-md-5 bg-white rounded-5 py-5 shadow-lg mb-5 position-relative">
   </main>
 
   <!-- Reviews -->
@@ -219,9 +142,9 @@
                       </div>
                     </div>
                     <div class="col-md-4 d-flex flex-column ps-0">
-                      <label class="mb-0" for="review_difficulty">Preparation Date</label>
+                      <label class="mb-0" for="preparation_date">Preparation Date</label>
                       <input class="form-control border border-2 border-black fs-5" type="date" name="date"
-                        id="review_difficulty" required>
+                        id="preparation_date" required>
                     </div>
                   </div>
                   <div class="d-flex justify-content-end gap-3">
@@ -236,7 +159,8 @@
         </div>
       </div>
       <!-- Review Card -->
-      <div class="review-card | card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;">
+      <div class="review-card | card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;"
+        data-my-review="false">
         <div class="row">
           <div class="col-md-3">
             <div class="card-body">
@@ -280,7 +204,8 @@
               <!-- Review Date -->
               <p class="text-secondary mb-2">mm-dd-yyyy</p>
               <!-- Review Content -->
-              <p class="card-text fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quisquam ratione iure laboriosam ipsam, nesciunt pariatur ullam eius saepe blanditiis.
+              <p class="card-text fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quisquam ratione
+                iure laboriosam ipsam, nesciunt pariatur ullam eius saepe blanditiis.
               </p>
             </div>
           </div>
@@ -422,6 +347,109 @@
     </div>
   </modal>
 
+  <!-- Templates -->
+
+  <!-- Recipe-->
+  <template id="recipe">
+    <div>
+      <!-- Recipe Preview -->
+      <div class="row align-items-end gap-4">
+        <div class="col-lg">
+          <!-- Stats -->
+          <div class="d-lg-block d-flex flex-column align-items-center">
+            <div data-template-type="attribute" data-template-attribute="data-bs-recipe" data-template-value="name"
+              class="recipe-save ms-0" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
+              data-bs-recipe="Lamb Pilaf (Plov)" style="position: relative;">
+              <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Save Recipe">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col flex-grow-0">
+                <img width="24" src="../assets/img/star.png" alt="Taste Score">
+              </div>
+              <div class="col">
+                <h4>Taste: <span class="ms-1" data-template-type="content" data-template-value="taste">0.0</span>/5</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col flex-grow-0">
+                <img width="24" class="tint-danger" src="../assets/img/chef.png" alt="Difficulty Score">
+              </div>
+              <div class="col">
+                <h4>Difficulty: <span class="ms-1" data-template-type="content"
+                    data-template-value="difficulty">0.0</span>/5</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col flex-grow-0">
+                <img width="24" src="../assets/img/comment.png" alt="Number of Reviews">
+              </div>
+              <div class="col">
+                <h4>Reviews: <span class="ms-1" data-template-type="content" data-template-value="reviews">0</span></h4>
+              </div>
+            </div>
+          </div>
+          <!-- Title & Tags -->
+          <div>
+            <h1 class="display-2 my-3 d-flex align-items-end" data-template-type="content" data-template-value="name" style="min-height: 2em">
+              Recipe Name Goes Here</h1>
+            <div>
+              <a data-template-type="attribute" data-template-attribute="href" data-template-value="area_href"
+                class="btn btn-success my-1 fs-5" href="#">
+                <span data-template-type="content" data-template-value="area">Area</span>
+              </a>
+              <a data-template-type="attribute" data-template-attribute="href" data-template-value="category_href"
+                class="btn btn-info my-1 fs-5" href="#">
+                <span data-template-type="content" data-template-value="category">Category</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg order-first order-lg-0">
+          <!-- Image -->
+          <img id="recipe_image" class="recipe-image | rounded-5" data-template-type="attribute"
+            data-template-attribute="src" data-template-value="image"
+            src="https://www.themealdb.com/images/media/meals/xrptpq1483909204.jpg">
+        </div>
+      </div>
+      <!-- Recipe Details -->
+      <div class="row gap-4 mt-5 border-top border-black border-opacity-25">
+        <!-- Recipe Ingredients -->
+        <div class="col-lg-4 border-lg-end border-black border-opacity-25 pt-5">
+          <h3 class="mb-3">INGREDIENTS</h3>
+          <div id="ingredients_container" data-template-type="element" data-template-value="ingredients">
+            <!-- Ingredients -->
+          </div>
+        </div>
+        <!-- Recipe Instructions -->
+        <div class="col-md pt-5">
+          <div class="mt-5">
+            <!-- Instruction Step -->
+            <div>
+              <p class="fs-5 text-secondary mb-1">INSTRUCTIONS</p>
+              <p class="fs-5" data-template-type="element" data-template-value="instructions" style="white-space: normal;">Stone and chop the dates quite small, put them in a bowl, then pour the boiling water
+                over.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Ingredient Item -->
+  <template id="ingredient">
+    <div class="row justify-content-center align-items-center">
+      <img data-template-type="attribute" data-template-attribute="src" data-template-value="image" class="col-2" src="https://www.themealdb.com/images/ingredients/Medjool%20dates.png">
+      <div class="col">
+        <a data-template-type="attribute" data-template-attribute="href" data-template-value="href" href="#" style="height: 2em">
+          <p data-template-type="content" data-template-value="name" class="fs-5 text-decoration-underline px-0 mb-0">Ingredient Name</p>
+        </a>
+      </div>
+      <p data-template-type="content" data-template-value="measure" class="col-4 text-secondary fs-5 px-0 mb-0">255g</p>
+    </div>
+  </template>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
@@ -431,9 +459,37 @@
   <script src="../assets/js/api.js"></script>
   <script src="../assets/js/form-control.js"></script>
   <script src="../assets/js/utils.js"></script>
-  <script>
+  <script type="module">
     //Load today's date as default
     document.review_form.date.valueAsDate = new Date();
+
+    let recipe_container = document.querySelector("#recipe_container");
+    let recipe_data = await getDetailsById(getURLParam("id"));
+
+    let ingredients_data = extractIngredients(recipe_data);
+    let ingredients_elements = ingredients_data.map((ingr) => buildDynamicElement("ingredient", {
+      name: ingr.name,
+      measure: ingr.measure,
+      image: "https://www.themealdb.com/images/ingredients/" + ingr.name + ".png",
+      href: "",
+    })).map(getElementHTML);
+
+    let recipe_element = buildDynamicElement("recipe", {
+      name: recipe_data.strMeal,
+      category: recipe_data.strCategory,
+      category_href: "",
+      area: recipe_data.strArea,
+      area_href: "",
+      instructions: recipe_data.strInstructions.replaceAll("\r\n", "<br />"),
+      image: recipe_data.strMealThumb,
+      ingredients: ingredients_elements.join(''),
+    });
+
+    recipe_container.appendChild(recipe_element);
+
+
+
+
   </script>
 </body>
 
