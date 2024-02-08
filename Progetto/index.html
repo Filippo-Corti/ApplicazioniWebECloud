@@ -268,7 +268,7 @@
   <template id="recipe-card">
     <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover">
       <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
-        class="card border-0 position-relative" href="pages/recipe.html?id=00000">
+        class="card border-0 position-relative h-100" href="pages/recipe.html?id=00000">
         <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
           src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg" class="recipe-image | card-img-top">
         <div class="card-body">
@@ -326,7 +326,7 @@
   <script type="module">
 
     clearStorage();
-    await loadRandomRecipesIntoStorage(15);
+    await loadRandomRecipesIntoStorage(12);
 
     let random_recipes = getFromStorage("random_recipes");
     let random_recipes_container = document.querySelector("#recipe-suggestions-random");
@@ -334,7 +334,7 @@
     for (let i = 0; i < random_recipes.length;) {
       let recipes = [];
       //Get 3 Recipes
-      for (let j = 0; j < 3; j++, i++) {
+      for (let j = 0; j < 3 && i < random_recipes.length; j++, i++) {
         let recipe = random_recipes[i];
         recipes.push(
           buildDynamicElement("recipe-card", {
@@ -351,8 +351,7 @@
       let dynamic_card_group = buildDynamicElement("recipe-card-group", {
         row1: getElementHTML(recipes[0]) + getElementHTML(recipes[1]),
         row2: getElementHTML(recipes[2]),
-      })
-
+      });
       random_recipes_container.appendChild(dynamic_card_group);
     }
 

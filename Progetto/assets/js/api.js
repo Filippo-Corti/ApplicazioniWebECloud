@@ -55,7 +55,7 @@ async function getRandomRecipes(n) {
             .then((meal) => meals.add(meal.meals[0]))
             .catch(err => console.error(err));
     }
-    return meals
+    return meals;
 }
 
 //Returns a list of all the Categories, with some details

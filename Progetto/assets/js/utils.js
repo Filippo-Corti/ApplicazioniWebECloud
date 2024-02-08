@@ -170,7 +170,9 @@ function toggleShowPassword() {
 
 //Get HTML of a Document Fragment 
 function getElementHTML(element) {
-    return element.querySelector("*").outerHTML;
+    if (element)
+        return element.querySelector("*").outerHTML;
+    return "";
 }
 
 //Build a Dynamic Element based on a Template and some Data, then return it
