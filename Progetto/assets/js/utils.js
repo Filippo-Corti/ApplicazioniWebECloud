@@ -1,29 +1,39 @@
 /* --------------------------------------------------------------- 
 Utils.js contains scripts that are generally useful for any page. 
-Scripts are about the application background, the modals and the
-tooltips.
+Scripts are about the application background, the modals, the
+tooltips and the dynamic creation of HTML elements.
 It is imported in every .html page.
 --------------------------------------------------------------- */
 
+let logged_in = true;
+const tooltipList = [];
 
 buildBackground();
+loadPageBasedOnLogState();
+initializeBootstrapComponentsAndEvents();
 
-/* Check Logged In / Logged Out */
-let logged_in = true;
-let logged_in_elements = document.querySelectorAll(".logged-in-only");
-let logged_out_elements = document.querySelectorAll(".logged-out-only");
-for (let el of logged_in_elements) {
-    if (logged_in)
-        el.classList.remove("logged-in-only"); //Show
+// Check Logged In / Logged Out
+function loadPageBasedOnLogState() {
+    let logged_in_elements = document.querySelectorAll(".logged-in-only");
+    let logged_out_elements = document.querySelectorAll(".logged-out-only");
+    for (let el of logged_in_elements) {
+        if (logged_in)
+            el.classList.remove("logged-in-only"); //Show
+    }
+    for (let el of logged_out_elements) {
+        if (logged_in)
+            el.style.display = "none"; //Hide
+    }
 }
-for (let el of logged_out_elements) {
-    if (logged_in)
-        el.style.display = "none"; //Hide
-}
 
-
-/* Build GRID: */
+// Build Background Grid & Initialize Stripe Events
 function buildBackground() {
+    buildBackgroundGrid();
+    initializeStripe();
+}
+
+// Build Background Grid
+function buildBackgroundGrid() {
     let grid_container = document.querySelector(".background-grid");
     let grid_col = document.querySelector(".background-grid-col");
     const COL_SIZE = 90; //px
@@ -49,61 +59,82 @@ function buildBackground() {
     }
 }
 
-/* Background Stripe Blur */
-let background_stripe = document.querySelector(".background-stripe");
-
-document.addEventListener("scroll", (event) => {
-    let currentScrollPercentage = window.scrollY / (document.body.scrollHeight - window.screen.height);
-    background_stripe.style.filter = "blur(" + 10000 * currentScrollPercentage + "px)";
-})
-
-/* Save Recipe Modal - from https://getbootstrap.com/docs/5.3/components/modal/#varying-modal-content */
-const saveRecipeModal = document.getElementById('saveRecipeModal')
-if (saveRecipeModal) {
-    saveRecipeModal.addEventListener('show.bs.modal', event => {
-
-        // !!! if not logged in event.preventDefault() + show del modal di Login
-        if (!logged_in) {
-            event.preventDefault();
-            const loginModal = new bootstrap.Modal('#loginModal')
-            loginModal.show();
-        }
-
-        // Button that triggered the modal
-        const button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        const recipe_name = button.getAttribute('data-bs-recipe')
-        // If necessary, you could initiate an Ajax request here
-        // and then do the updating in a callback.
-
-        // Update the modal's content.
-        const modalBodyLabel = saveRecipeModal.querySelector('.modal-recipe-label')
-
-        modalBodyLabel.textContent = recipe_name;
+// Initialize Stripe Events
+function initializeStripe() {
+    let background_stripe = document.querySelector(".background-stripe");
+    document.addEventListener("scroll", (event) => {
+        let currentScrollPercentage = window.scrollY / (document.body.scrollHeight - window.screen.height);
+        background_stripe.style.filter = "blur(" + 10000 * currentScrollPercentage + "px)";
     })
 }
 
-/* Delete Review Modal - from https://getbootstrap.com/docs/5.3/components/modal/#varying-modal-content */
-const deleteReviewModal = document.getElementById('deleteReviewModal')
-if (deleteReviewModal) {
-    deleteReviewModal.addEventListener('show.bs.modal', event => {
-
-        // Button that triggered the modal
-        const button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        const recipe_name = button.getAttribute('data-bs-recipe')
-        // If necessary, you could initiate an Ajax request here
-        // and then do the updating in a callback.
-
-        // Update the modal's content.
-        const modalBodyLabel = deleteReviewModal.querySelector('.modal-recipe-label')
-
-        modalBodyLabel.textContent = recipe_name;
-    })
+// Initialize Modals, Tooltips and other Bootstrap components needed
+function initializeBootstrapComponentsAndEvents() {
+    initializeModalEvents();
+    initializeTooltips();
 }
 
+// Initialize Custom Events for Modals - from https://getbootstrap.com/docs/5.3/components/modal/#varying-modal-content
+function initializeModalEvents() {
+    // Save Recipe Modal 
+    const saveRecipeModal = document.getElementById('saveRecipeModal')
+    if (saveRecipeModal) {
+        saveRecipeModal.addEventListener('show.bs.modal', event => {
 
-/* Login Modal */
+            // !!! if not logged in event.preventDefault() + show del modal di Login
+            if (!logged_in) {
+                event.preventDefault();
+                const loginModal = new bootstrap.Modal('#loginModal')
+                loginModal.show();
+            }
+
+            // Button that triggered the modal
+            const button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            const recipe_name = button.getAttribute('data-bs-recipe')
+            // If necessary, you could initiate an Ajax request here
+            // and then do the updating in a callback.
+
+            // Update the modal's content.
+            const modalBodyLabel = saveRecipeModal.querySelector('.modal-recipe-label')
+
+            modalBodyLabel.textContent = recipe_name;
+        })
+    }
+
+    // Delete Review Modal
+    const deleteReviewModal = document.getElementById('deleteReviewModal')
+    if (deleteReviewModal) {
+        deleteReviewModal.addEventListener('show.bs.modal', event => {
+
+            // Button that triggered the modal
+            const button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            const recipe_name = button.getAttribute('data-bs-recipe')
+            // If necessary, you could initiate an Ajax request here
+            // and then do the updating in a callback.
+
+            // Update the modal's content.
+            const modalBodyLabel = deleteReviewModal.querySelector('.modal-recipe-label')
+
+            modalBodyLabel.textContent = recipe_name;
+        })
+    }
+}
+
+// Enable Bootstrap Tooltips - from https://getbootstrap.com/docs/5.3/components/tooltips/#enable-tooltips 
+function initializeTooltips() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    for (let tooltipTrigger of tooltipTriggerList) {
+        enableTooltip(tooltipTrigger);
+    }
+}
+
+function enableTooltip(tooltipTriggerEl) {
+    tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl));
+}
+
+// Submit for Login Modal
 function checkCredentialsAndLogin(form) {
     let email = form.querySelector("input[type='email']");
     let password = form.querySelector("input[type='password']");
@@ -125,7 +156,7 @@ function checkCredentialsAndLogin(form) {
     }
 }
 
-/* Toggle Password Visibility for Forms */
+// Toggle Password Visibility for Forms 
 function toggleShowPassword() {
     let password_fields = document.querySelectorAll(".toggle-visibility");
 
@@ -137,33 +168,12 @@ function toggleShowPassword() {
     }
 }
 
-
-
-/* Enable Bootstrap Tooltips - from https://getbootstrap.com/docs/5.3/components/tooltips/#enable-tooltips */
-const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [];
-for (let tooltipTrigger of tooltipTriggerList) {
-    enableTooltip(tooltipTrigger);
-}
-
-function enableTooltip(tooltipTriggerEl) {
-    tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl));
-}
-
-/* ESEMPIO x API !!!
-async function showRandomMeals() {
-    let meals = await fetchRandomMeals(6);
-    for (let meal of meals) {
-        console.log(extractIngredients(meal))
-    }
-}
-*/
-
+//Get HTML of a Document Fragment 
 function getElementHTML(element) {
     return element.querySelector("*").outerHTML;
 }
 
-
+//Build a Dynamic Element based on a Template and some Data, then return it
 function buildDynamicElement(templateId, data) {
     let template = document.querySelector("template#" + templateId);
     let new_element = template.content.cloneNode(true);

@@ -6,13 +6,10 @@ IMPORTANT: it's not related to the Login Form, which scripts are
 contained in utils.js, as they are needed everywhere.
 --------------------------------------------------------------- */
 
-/* Multi-Part Form Sliding & Validation */
-
 let form = document.querySelector("form");
 let form_content = form?.querySelector(".form-content");
 let form_part_1 = form_content?.firstElementChild;
 let form_part_2 = form_content?.lastElementChild;
-
 let form_step_count = document.querySelector("#form-step-count");
 let first_line = document.querySelectorAll(".line")[0];
 let second_line = document.querySelectorAll(".line")[1];

@@ -1,4 +1,6 @@
-/* Edit Reviews */
+/* --------------------------------------------------------------- 
+Profile.js contains scripts used in the profile page.
+--------------------------------------------------------------- */
 
 //Enables edit of the sibling with class "editable"
 function enableEdit(clicked_element) {

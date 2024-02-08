@@ -1,10 +1,16 @@
-/* Review Submit Form Control */
+/* --------------------------------------------------------------- 
+Recipe.js contains scripts used in the recipe page, mainly about
+the Review Form.
+--------------------------------------------------------------- */
+
 let form = document.review_form;
 let taste_stars = document.querySelectorAll(".review-taste-input>img");
 let taste_input = form.taste;
 let difficulty_stars = document.querySelectorAll(".review-difficulty-input>img");
 let difficulty_input = form.difficulty;
 
+
+// Interaction with the Taste Input of the Review Form
 function voteTaste(vote) {
     if (!vote)
         return;
@@ -19,6 +25,7 @@ function voteTaste(vote) {
     taste_input.value = vote;
 }
 
+// Interaction with the Difficulty Input of the Review Form
 function voteDifficulty(vote) {
     if (!vote)
         return;
@@ -33,6 +40,7 @@ function voteDifficulty(vote) {
     difficulty_input.value = vote;
 }
 
+// Review Submit Form Control
 function validateAndPublishReview() {
     let form_ok = true;
     let inputs = form.querySelectorAll("input");
@@ -65,10 +73,12 @@ function validateAndPublishReview() {
     return form_ok;
 }
 
+//Show Review Form 
 function showReviewForm() {
     form.querySelector(".review-form-more").classList.remove("d-none");
 }
 
+//Hide Review Form 
 function closeReviewForm() {
     form.querySelector(".review-form-more").classList.add("d-none");
 }

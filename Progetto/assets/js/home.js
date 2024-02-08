@@ -1,15 +1,17 @@
-/* Hide Results when anything is clicked */
+/* --------------------------------------------------------------- 
+Home.js contains scripts used in the home and search pages.
+--------------------------------------------------------------- */
 
 let results = document.querySelectorAll(".search-results");
 
+// Hide Results when anything is clicked
 function hideSearchResults() {
     for (let result of results) {
         result.remove();
     }
 }
 
-/* Scroll when Search Bar is Selected*/
-
+// Scroll when Search Bar is Selected
 function scrollToHere(element) {
     let element_y = element.getBoundingClientRect().top + window.scrollY; //Relative to the document, not the viewport
     window.scroll({
@@ -19,8 +21,7 @@ function scrollToHere(element) {
     });
 }
 
-/* Position main Scrollers to the Center */
-
+// Position main Scrollers to the Center 
 function centerScrollers() {
     let scrollers = document.querySelectorAll(".scroll-to-center");
     scrollers.forEach((scroller) => {
@@ -31,8 +32,6 @@ function centerScrollers() {
         });
     })
 }
-
-
 
 let container = document.querySelector("#recipe-suggestions-random");
 for (var i = 0; i < 10; i++) {
