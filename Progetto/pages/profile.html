@@ -504,6 +504,41 @@
         </div>
     </modal>
 
+    <!-- Save Recipe Modal -->
+    <modal class="modal fade" id="saveRecipeModal" tabindex="-1" aria-labelledby="Modal to Save Recipe"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3 rounded-5">
+                <div class="modal-header border-0 row align-items-baseline">
+                    <div class="line | col-1 bg-primary col rounded-5 ms-1 d-none d-md-block"></div>
+                    <h1 class="col-md-6 modal-title fs-4 text-center" id="exampleModalLabel">READY TO SAVE?</h1>
+                    <div class="line | col bg-primary col rounded-5 me-3 d-none d-md-block"></div>
+                    <button type="button" class="col-1 btn-close mb-auto" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-1">
+                    <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
+                        <p>Credentials are wrong! Try again</p>
+                    </div>
+                    <form method="GET" action="index.html" onsubmit="return saveRecipe(this)">
+                        <div class="col-12">
+                            <div class="card-text py-2 px-1 mb-1 position-relative">
+                                <h5 class="text-black fs-6">Do you wanto to leave a note for <span
+                                        class="modal-recipe-label | text-primary">Recipe Name</span>?</h5>
+                                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id=""
+                                    rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-block border-0 text-center pt-0">
+                    <p class="text-secondary mt-0 pt-0">Saved recipes appear in your Cookbook!</p>
+                </div>
+            </div>
+        </div>
+    </modal>
+
     <!-- Delete Review Modal -->
     <modal class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="Modal to Delete Review"
         aria-hidden="true">
