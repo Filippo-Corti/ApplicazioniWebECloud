@@ -6,7 +6,6 @@ It is imported in every .html page.
 
 let logged_in = true;
 const tooltipList = [];
-let search_results = document.querySelectorAll(".search-results");
 
 buildBackground();
 loadPageBasedOnLogState();
@@ -245,6 +244,7 @@ function confirmPasswordEdit(clicked_element) {
 
 // Hide Results when anything is clicked
 function hideSearchResults() {
+    let search_results = document.querySelectorAll(".search-result");
     for (let result of search_results) {
         result.remove();
     }
@@ -276,5 +276,88 @@ function centerScrollers() {
 function getURLParam(name) {
     return new URLSearchParams(window.location.search).get(name);
 }
+
+//Elaborate Search Results for Search Bar and return them
+async function getSearchResults(keyword, href_prefix) {
+    if (keyword.length == 0) {
+        return;
+    }
+
+    if (keyword.length == 1) {
+        await loadSearchResultsIntoStorage(keyword);
+    }
+
+    keyword = keyword.toLowerCase();
+
+    let matching_recipes = getFromStorage("search_results")?.filter((recipe) => recipe.name.toLowerCase().startsWith(keyword));
+    let matching_categories = getFromStorage("categories").filter((category) => category.name.toLowerCase().startsWith(keyword));
+    let matching_areas = getFromStorage("areas").filter((area) => area.name.toLowerCase().startsWith(keyword));
+    let matching_ingredients = getFromStorage("ingredients").filter((ingredient) => ingredient.name.toLowerCase().startsWith(keyword));
+
+    let to_show = []; //Max: 2 Categories, 2 Areas, 3 Recipes, 1 Ingredient
+    let i = 0;
+
+    for (let j = 0; i < 2 && j < matching_categories.length; i++, j++) {
+        to_show.push({
+            type: "category",
+            name: matching_categories[j].name + " (Category)",
+            description: matching_categories[j].description,
+            image: "https://www.themealdb.com/images/category/" + matching_categories[j].name + ".png",
+            href: href_prefix + "search.html?category=" + matching_categories[j].name,
+        });
+    }
+
+    for (let j = 0; i < 4 && j < matching_areas.length; i++, j++) {
+        to_show.push({
+            type: "area",
+            name: matching_areas[j].name + " (Area)",
+            description: "",
+            image: "",
+            href: href_prefix + "search.html?area=" + matching_areas[j].name,
+        });
+    }
+
+    for (let j = 0; i < 7 && j < matching_recipes.length; i++, j++) {
+        to_show.push({
+            type: "recipe",
+            name: matching_recipes[j].name,
+            description: "",
+            image: matching_recipes[j].image,
+            href: href_prefix + "recipe.html?id=" + matching_recipes[j].id,
+        });
+    }
+
+    for (let j = 0; i < 8 && j < matching_ingredients.length; i++, j++) {
+        to_show.push({
+            type: "ingredient",
+            name: matching_ingredients[j].name + " (Ingredient)",
+            description: matching_ingredients[j].description,
+            image:  "https://www.themealdb.com/images/ingredients/" + matching_ingredients[j].name + ".png",
+            href: href_prefix + "search.html?ingredient=" + matching_ingredients[j].name,
+         });
+    }
+
+    return to_show;
+    
+}
+
+async function showSearchResults(keyword, href_prefix) {
+    let results = await getSearchResults(keyword, href_prefix);
+    if (!results)
+        return;
+
+    let container = document.querySelector("#search_results");
+
+
+    container.innerHTML = ""; //Reset old results
+
+
+    for (let result of results) {
+        let result_element = buildDynamicElement("search-result", result);
+        container.appendChild(result_element);
+    }
+}
+
+
 
 

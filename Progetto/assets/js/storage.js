@@ -10,6 +10,17 @@ function clearStorage() {
     sessionStorage.clear();
 }
 
+//Get 'name' from Local or Session Storage
+function getFromStorage(name) {
+    let results = localStorage.getItem(name);
+    if (results)
+        return JSON.parse(results);
+    results = sessionStorage.getItem(name);
+    if (results)
+        return JSON.parse(results);
+    return null;
+}
+
 //Load Categories from the API and put them into the Local Storage, if they aren't already there
 async function loadCategoriesIntoStorage() {
     let results = await getAllCategories();
@@ -81,13 +92,19 @@ async function loadRandomRecipesIntoStorage(n) {
     localStorage.setItem("random_recipes", JSON.stringify(random_recipes));
 }
 
-//Get 'name' from Local or Session Storage
-function getFromStorage(name) {
-    let results = localStorage.getItem(name);
-    if (results)
-        return JSON.parse(results);
-    results = sessionStorage.getItem(name);
-    if (results)
-        return JSON.parse(results);
-    return null;
+async function loadSearchResultsIntoStorage(first_Letter) {
+    let results = await searchByFirstLetter(first_Letter);
+    if (!results)
+        return;
+    let recipes = [];
+    for (let recipe of results) {
+        recipes.push({
+            id: recipe.idMeal,
+            name: recipe.strMeal,
+            image: recipe.strMealThumb,
+            area: recipe.strArea,
+        });
+    }
+    localStorage.setItem("search_results", JSON.stringify(recipes));
 }
+

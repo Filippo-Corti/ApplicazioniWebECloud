@@ -14,7 +14,7 @@ textarea {
 input[disabled] {
     border: 0;
     border-radius: 0 !important;
-    background-color: transparent !important; 
+    background-color: transparent !important;
 }
 
 a {
@@ -76,6 +76,12 @@ a {
 .scale-on-hover:hover {
     transition: transform 200ms ease-in-out;
     transform: scale(1.03);
+}
+
+.truncate-one-line {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (min-width: 992px) {
@@ -188,7 +194,7 @@ a {
     display: none;
 }
 
-.review-card[data-my-review="true"] .review-delete{
+.review-card[data-my-review="true"] .review-delete {
     display: block;
 }
 
@@ -274,7 +280,6 @@ a {
 /* Search Bar Results */
 
 .search-input:has(.search-result:nth-of-type(1)) {
-    /* Change to 2 !!! Because 1 is the mockup */
     border-radius: var(--bs-border-radius-xxl) var(--bs-border-radius-xxl) 0 0 !important;
 }
 
@@ -282,6 +287,10 @@ a {
     box-sizing: content-box;
     transform: translateX(-1px);
     z-index: 999;
+}
+
+.search-results:has(.search-result:nth-of-type(1)) {
+    display: block !important;
 }
 
 .search-results>.search-result:last-of-type {
@@ -292,29 +301,25 @@ a {
     background-color: rgba(0, 0, 0, 0.05)
 }
 
-.search-result img {
+.search-result_image {
     width: 76px;
 }
 
-.search-result :not([data-type="area"]) img {
-    visibility: visible !important;
+.search-result[data-type="recipe"] .search-result-title {
+    color: rgb(var(--bs-black-rgb)) !important;
 }
 
-.search-result[data-type="recipe"] .search-result-title {
-        color: rgb(var(--bs-black-rgb))!important;
-}   
-
 .search-result[data-type="category"] .search-result-title {
-        color: rgb(var(--bs-success-rgb))!important;
-}   
+    color: rgb(var(--bs-success-rgb)) !important;
+}
 
 .search-result[data-type="area"] .search-result-title {
-        color: rgb(var(--bs-info-rgb))!important;
-}   
+    color: rgb(var(--bs-info-rgb)) !important;
+}
 
 .search-result[data-type="ingredient"] .search-result-title {
-        color: rgb(var(--bs-danger-rgb))!important;
-}   
+    color: rgb(var(--bs-danger-rgb)) !important;
+}
 
 
 /* Registration Form */
@@ -432,6 +437,6 @@ input[type="checkbox"]:checked {
     display: none !important;
 }
 
-.editable:not([disabled]) ~ .visible-on-edit {
-    display: block !important; 
+.editable:not([disabled])~.visible-on-edit {
+    display: block !important;
 }

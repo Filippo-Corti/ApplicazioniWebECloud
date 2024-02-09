@@ -89,33 +89,20 @@
           What are you cooking today?
         </h1>
       </div>
-      <!-- Sarch Bar -->
+      <!-- Search Bar -->
       <div class="py-3 py-lg-5 my-2 py-lg-5 w-100">
         <form class="w-100" action="pages/search.html">
           <div class="search-input position-relative bg-white rounded-5 border border-1 border-secondary fs-3">
             <div class="d-flex flex-column flex-md-row w-100">
               <input type="text" class="w-100 ps-4 rounded-5 border-0 form-control fs-3 my-1 my-lg-3" name="search"
-                id="search" placeholder='Try with "English Breakfast" ...' onfocus="scrollToHere(this)">
+                id="search" placeholder='Try with "English Breakfast" ...' onfocus="scrollToHere(this)" oninput="showSearchResults(this.value, 'pages/')" autocomplete="off">
               <button class="btn btn-outline-secondary my-2 fs-4 mx-auto mx-md-2"
                 style="border-radius: 1.5rem;">Search</button>
             </div>
             <!-- Search Results-->
-            <div
-              class="search-results | w-100 bg-white position-absolute border-secondary border-start border-end border-bottom pb-4 rounded-bottom-5">
-              <!-- Search Result Card-->
-              <div class="search-result">
-                <a class="ps-4 border-top py-3 d-flex gap-4 align-items-center" data-type="recipe"
-                  href="pages/recipe.html?id=00000">
-                  <div>
-                    <img class="invisible" src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg"
-                      alt="English Breakfast">
-                  </div>
-                  <div>
-                    <p class="search-result-title fs-4 mb-0">Result Title</p>
-                    <p class="fs-5 my-0 opacity-75 d-none d-md-block">Some more info about the result</p>
-                  </div>
-                </a>
-              </div>
+            <div id="search_results"
+              class="search-results | w-100 bg-white position-absolute border-secondary border-start border-end border-bottom pb-4 rounded-bottom-5 d-none">
+              <!-- Search Result Cards -->
             </div>
           </div>
         </form>
@@ -314,6 +301,22 @@
     </div>
   </template>
 
+  <!-- Search Result Card -->
+  <template id="search-result">
+    <div data-template-type="attribute" data-template-attribute="data-type" data-template-value="type" class="search-result" data-type="recipe" >
+      <a data-template-type="attribute" data-template-attribute="href" data-template-value="href" class="ps-4 border-top py-3 d-flex gap-4 align-items-center"
+        href="pages/recipe.html?id=00000">
+        <div class="search-result_image">
+          <img data-template-type="attribute" data-template-attribute="src" data-template-value="image" class="" src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg" width="76">
+        </div>
+        <div class="overflow-hidden">
+          <p data-template-type="content" data-template-value="name" class="search-result-title fs-4 mb-0">Result Title</p>
+          <p data-template-type="content" data-template-value="description" class="truncate-one-line fs-5 my-0 opacity-75 d-none d-md-block" >Some more info about the result</p>
+        </div>
+      </a>
+    </div>
+  </template>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
@@ -325,7 +328,7 @@
   <script src="assets/js/storage.js"></script>
   <script type="module">
 
-    clearStorage();
+    //clearStorage();
     await loadRandomRecipesIntoStorage(12);
 
     let random_recipes = getFromStorage("random_recipes");
@@ -360,6 +363,8 @@
     loadCategoriesIntoStorage();
     loadAreasIntoStorage();
     loadIngredientsIntoStorage();
+
+
   </script>
 </body>
 

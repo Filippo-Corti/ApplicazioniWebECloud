@@ -87,92 +87,34 @@
     <!-- Search & Results-->
     <main class="container-xxl d-flex flex-column align-items-stretch my-3 px-3 px-md-5">
 
-        <!-- Sarch Bar -->
+
+        <!-- Search Bar -->
         <div class="py-3 py-lg-5 my-2 py-lg-5 w-100">
-            <form class="w-100" action="#">
+            <form class="w-100" action="search.html">
                 <div class="search-input position-relative bg-white rounded-5 border border-1 border-secondary fs-3">
                     <div class="d-flex flex-column flex-md-row w-100">
                         <input type="text" class="w-100 ps-4 rounded-5 border-0 form-control fs-3 my-1 my-lg-3"
                             name="search" id="search" placeholder='Try with "English Breakfast" ...'
-                            onfocus="scrollToHere(this)">
+                            onfocus="scrollToHere(this)" oninput="showSearchResults(this.value, '')" autocomplete="off">
                         <button class="btn btn-outline-secondary my-2 fs-4 mx-auto mx-md-2"
                             style="border-radius: 1.5rem;">Search</button>
                     </div>
                     <!-- Search Results-->
-                    <div
-                        class="search-results | w-100 bg-white position-absolute border-secondary border-start border-end border-bottom pb-4 rounded-bottom-5">
-                        <!-- Search Result Card-->
-                        <div class="search-result">
-                            <a class="ps-4 border-top py-3 d-flex gap-4 align-items-center" data-type="recipe"
-                                href="pages/recipe.html?id=00000">
-                                <div>
-                                    <img class="invisible"
-                                        src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg"
-                                        alt="English Breakfast">
-                                </div>
-                                <div>
-                                    <p class="search-result-title fs-4 mb-0">Result Title</p>
-                                    <p class="fs-5 my-0 opacity-75 d-none d-md-block">Some more info about the result
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
+                    <div id="search_results"
+                        class="search-results | w-100 bg-white position-absolute border-secondary border-start border-end border-bottom pb-4 rounded-bottom-5 d-none">
+                        <!-- Search Result Cards -->
                     </div>
                 </div>
             </form>
         </div>
 
         <!-- Results -->
-        <div class="row p-lg-3 justify-content-center">
+        <div id="recipe-results" class="row p-lg-3 justify-content-center">
 
             <div class="container-xxl">
-                <h2 class="py-2">6 Results for the search "keyword"</h2>
+                <h2 class="keyword py-2">6 Results for the search "keyword"</h2>
             </div>
-
-            <!-- Recipe Card Group of 3-->
-            <div class="col-6 recipe-card-group d-flex flex-column">
-                <div class="d-flex gap-3 my-2">
-                    <!-- Recipe Card -->
-                    <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover" data-favourite>
-                        <a class="card border-0 position-relative" href="recipe.html?id=00000">
-                            <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
-                                class="recipe-image | card-img-top" alt="Recipe Name">
-                            <div class="card-body">
-                                <div class="card-text row gap-2 justify-content-center mb-2">
-                                    <div class="col-3 d-flex align-items-center gap-2">
-                                        <img width="20" src="../assets/img/star.png" alt="Taste Score">
-                                        <span>0.0</span>
-                                    </div>
-                                    <div class="col-3 d-flex align-items-center gap-2">
-                                        <img class="tint-danger" width="20" src="../assets/img/chef.png"
-                                            alt="Taste Score">
-                                        <span>0.0</span>
-                                    </div>
-                                    <div class="col-3 d-flex align-items-center gap-2">
-                                        <img width="20" src="../assets/img/comment.png" alt="Taste Score">
-                                        <span>0.0</span>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <h5 class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
-                                    <h4 class="card-title fs-3">Recipe Name</h4>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
-                            data-bs-recipe="Lamb Pilaf (Plov)">
-                            <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top"
-                                data-bs-title="Save Recipe">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Recipe Card -->
-                </div>
-                <div class="my-2">
-                    <!-- Recipe Card -->
-                </div>
-            </div>
-
+            <!-- Recipe Result Cards -->
         </div>
 
     </main>
@@ -285,6 +227,82 @@
         </div>
     </modal>
 
+    <!-- Templates -->
+
+    <!-- Recipe Card -->
+    <template id="recipe-card">
+        <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover"
+            data-template-type="attribute" data-template-attribute="data-favourite" data-template-value="favourite"
+            data-favourite="false">
+            <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
+                class="card border-0 position-relative h-100" href="recipe.html?id=00000">
+                <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
+                    src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                    class="recipe-image | card-img-top">
+                <div class="card-body">
+                    <div class="card-text row gap-2 justify-content-center mb-2">
+                        <div class="col-3 d-flex align-items-center gap-2">
+                            <img width="20" src="../assets/img/star.png" alt="Taste Score">
+                            <span data-template-type="content" data-template-value="taste">0.0</span>
+                        </div>
+                        <div class="col-3 d-flex align-items-center gap-2">
+                            <img class="tint-danger" width="20" src="../assets/img/chef.png" alt="Difficulty Score">
+                            <span data-template-type="content" data-template-value="difficulty">0.0</span>
+                        </div>
+                        <div class="col-3 d-flex align-items-center gap-2">
+                            <img width="20" src="../assets/img/comment.png" alt="Number of Reviews">
+                            <span data-template-type="content" data-template-value="reviews">0</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h5 data-template-type="content" data-template-value="area"
+                            class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
+                        <h4 data-template-type="content" data-template-value="name" class="card-title fs-3">Recipe Name
+                        </h4>
+                    </div>
+                </div>
+            </a>
+            <div data-template-type="attribute" data-template-attribute="data-bs-recipe" data-template-value="name"
+                class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
+                data-bs-recipe="Lamb Pilaf (Plov)">
+                <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Recipe Card Group of 2-->
+    <template id="recipe-card-group">
+        <div class="flex-grow-1 recipe-card-group d-flex flex-column">
+            <div data-template-type="element" data-template-value="row1"
+                class="recipe-card-group-row d-flex gap-3 my-2">
+                <!-- Recipe Card -->
+                <!-- Recipe Card -->
+            </div>
+        </div>
+    </template>
+
+    <!-- Search Result Card -->
+    <template id="search-result">
+        <div data-template-type="attribute" data-template-attribute="data-type" data-template-value="type"
+            class="search-result" data-type="recipe">
+            <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
+                class="ps-4 border-top py-3 d-flex gap-4 align-items-center" href="recipe.html?id=00000">
+                <div class="search-result_image">
+                    <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
+                        class="" src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg" width="76">
+                </div>
+                <div class="overflow-hidden">
+                    <p data-template-type="content" data-template-value="name" class="search-result-title fs-4 mb-0">
+                        Result Title</p>
+                    <p data-template-type="content" data-template-value="description"
+                        class="truncate-one-line fs-5 my-0 opacity-75 d-none d-md-block">Some more info about the result
+                    </p>
+                </div>
+            </a>
+        </div>
+    </template>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -295,6 +313,62 @@
     <script src="../assets/js/api.js"></script>
     <script src="../assets/js/form-control.js"></script>
     <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/storage.js"></script>
+    <script type="module">
+
+        let keyword = getURLParam("search");
+        let category = getURLParam("category");
+        let area = getURLParam("area");
+        let ingredient = getURLParam("ingredient");
+        let search_title = document.querySelector(".keyword");
+        let recipes_container = document.querySelector("#recipe-results");
+        let found_recipes;
+
+        if (keyword) {
+            document.getElementById("search").value = keyword;
+            found_recipes = await searchByName(keyword);
+            search_title.textContent = found_recipes.length + ' Results for the search "' + keyword + '"';
+        } else if (category) {
+            document.getElementById("search").value = category;
+            found_recipes = await searchByCategory(category);
+            search_title.textContent = found_recipes.length + ' Results for the category "' + category + '"';
+        } else if (area) {
+            document.getElementById("search").value = area;
+            found_recipes = await searchByArea(area);
+            search_title.textContent = found_recipes.length + ' Results for the area "' + area + '"';
+        } else if (ingredient) {
+            document.getElementById("search").value = ingredient;
+            found_recipes = await searchByIngredient(ingredient);
+            search_title.textContent = found_recipes.length + ' Recipes with the ingredient "' + ingredient + '"';
+        }
+
+        for (let i = 0; i < found_recipes.length;) {
+            let recipes = [];
+            //Get 3 Recipes
+            for (let j = 0; j < 2 && i < found_recipes.length; j++, i++) {
+                let recipe = found_recipes[i];
+                console.log(recipe);
+                recipes.push(
+                    buildDynamicElement("recipe-card", {
+                        href: "recipe.html?id=" + recipe.idMeal,
+                        image: recipe.strMealThumb,
+                        taste: 0.0,
+                        difficulty: 0.0,
+                        reviews: 0,
+                        area: recipe.strArea + " Cuisine",
+                        name: recipe.strMeal,
+                        favourite: false, // !!!
+                    }));
+            }
+            console.log(recipes);
+            //Place them in the page
+            let dynamic_card_group = buildDynamicElement("recipe-card-group", {
+                row1: getElementHTML(recipes[0]) + getElementHTML(recipes[1]),
+            });
+            recipes_container.appendChild(dynamic_card_group);
+        }
+
+    </script>
 </body>
 
 </html>

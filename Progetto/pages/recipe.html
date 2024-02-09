@@ -472,15 +472,15 @@
       name: ingr.name,
       measure: ingr.measure,
       image: "https://www.themealdb.com/images/ingredients/" + ingr.name + ".png",
-      href: "",
+      href: "search.html?ingredient=" + ingr.name,
     })).map(getElementHTML);
 
     let recipe_element = buildDynamicElement("recipe", {
       name: recipe_data.strMeal,
       category: recipe_data.strCategory,
-      category_href: "",
+      category_href: "search.html?category=" + recipe_data.strCategory,
       area: recipe_data.strArea,
-      area_href: "",
+      area_href: "search.html?area=" + recipe_data.strArea,
       instructions: recipe_data.strInstructions.replaceAll("\r\n", "<br>"),
       image: recipe_data.strMealThumb,
       ingredients: ingredients_elements.join(''),
