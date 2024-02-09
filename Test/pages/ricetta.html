@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricettario Universitario</title>
+    <title>PGRC</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../img/logo.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +24,7 @@
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-3" href="../index.html">
                 <img width="70" src="../img/logo.png" alt="">
-                <span class="nav-link active fs-3 font-protest" aria-current="page">Ricettario
-                    Universitario</span>
+                <span class="nav-link active fs-3 font-protest" aria-current="page">PGRC</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -80,8 +79,8 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a id="ricette-salvate" class="nav-link disabled" href="ricettario.html"
-                    aria-disabled="true">Ricette Salvate</a>
+                <a id="ricette-salvate" class="nav-link disabled" href="ricettario.html" aria-disabled="true">Ricette
+                    Salvate</a>
             </li>
         </ul>
     </div>
@@ -168,6 +167,11 @@
                                 Debitis expedita tenetur quis
                                 suscipit molestiae hic delectus vel repudiandae consequatur asperiores?</p>
                         </blockquote>
+                        <div class="recensione-elimina text-end mt-1 d-none">
+                            <button class="btn btn-dark"
+                                onclick="eliminaRecensione(this)">Elimina
+                                Recensione</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -225,7 +229,7 @@
                 <div class="modal-body">
                     <!-- FORM DI LOGIN -->
                     <div class="container-sm mt-4">
-                        <a href="pages/registrazione.html">
+                        <a href="registrazione.html">
                             <p>Non hai un account? Clicca qua per registrarti</p>
                         </a>
                         <p id="errore-login" class="text-danger d-none">Credenziali non valide</p>
@@ -449,6 +453,11 @@
                     icone_difficolta[j].classList.add("text-danger");
                 }
 
+                if (utente_corrente && recensione.autore == utente_corrente.nome + " " + utente_corrente.cognome) {
+                    //Recensione dell'utente loggato
+                    nuova_recensione.getElementsByClassName("recensione-elimina")[0].classList.remove("d-none");
+                }
+
                 recensioni_container.appendChild(nuova_recensione);
             }
         }
@@ -515,6 +524,25 @@
 
             location.reload();
             return false;
+        }
+
+        function eliminaRecensione(premuto) {
+            var testo_recensione = premuto.parentElement.parentElement.getElementsByClassName('recensione-testo')[0];
+            var recensioni_string = localStorage.getItem("recensioni");
+            var recensioni = JSON.parse(recensioni_string);
+
+            for (var i = 0; i < recensioni.recensioni.length; i++) {
+                var recensione = recensioni.recensioni[i];
+                if (recensione.idRicetta == id && recensione.autore == utente_corrente.nome + " " + utente_corrente.cognome && recensione.testo == testo_recensione.innerHTML) {
+                    console.log("Recensione trovata");
+                    recensioni.recensioni.splice(i, 1);
+                }
+            }
+
+            localStorage.setItem("recensioni", JSON.stringify(recensioni));
+
+            location.reload();
+
         }
 
     </script>
