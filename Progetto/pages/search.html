@@ -355,7 +355,7 @@
                         taste: 0.0,
                         difficulty: 0.0,
                         reviews: 0,
-                        area: recipe.strArea + " Cuisine",
+                        area: (recipe.strArea) ? recipe.strArea + " Cuisine" : " ",
                         name: recipe.strMeal,
                         favourite: false, // !!!
                     }));
