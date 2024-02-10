@@ -48,14 +48,14 @@ async function getDetailsById(id) {
 
 //Returns N random Recipes (with Full Details), they are all guaranteed to be different
 async function getRandomRecipes(n) {
-    let meals = new Set()
+    let meals = new Map()
     while (meals.size < n) {
         await fetch("https://www.themealdb.com/api/json/v1/1/random.php", optionsGET)
             .then(response => response.json())
-            .then((meal) => meals.add(meal.meals[0]))
+            .then((meal) => meals.set(meal.meals[0].idMeal, meal.meals[0]))
             .catch(err => console.error(err));
     }
-    return meals;
+    return meals.values();
 }
 
 //Returns a list of all the Categories, with some details
