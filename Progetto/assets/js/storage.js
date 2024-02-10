@@ -144,15 +144,18 @@ function checkCredentials(email, password) {
     return false;
 }
 
+//Set email to the currently logged user
 function loginUser(email) {
     sessionStorage.setItem("current_user", email);
     location.reload();
 }
 
+//Return true if a user is currently logged
 function isAnyUserLoggedIn() {
     return getFromStorage("current_user");
 }
 
+//Return user data of the user whose email is email
 function getUserByEmail(email) {
     let users = getFromStorage("users");
     if (users) {
@@ -161,10 +164,41 @@ function getUserByEmail(email) {
     return null;
 }
 
+//Return user data of the logged user
 function getLoggedUserData() {
     let user = getFromStorage("current_user");
     if (user) {
         return getUserByEmail(user);
     }  
     return null;
+}
+
+//Update user data in Storage
+function updateUser(new_user_data) {
+    let users = getFromStorage("users");
+    if (users) {
+        for (let user of users) {
+            if (user.email == new_user_data.email) 
+                users[users.indexOf(user)] = new_user_data;
+        }
+    }
+    console.log(users);
+    localStorage.setItem("users", JSON.stringify(users));
+}
+
+//Log currently logged user out
+function logout() {
+    sessionStorage.removeItem("current_user");
+    location.reload();
+}
+
+//Delete currently logged user's account
+function deleteLoggedAccount() {
+    let user = getLoggedUserData();
+    let users = getFromStorage("users");
+    if (users) {
+        users = users.filter((u) => u.email != user.email);
+    }
+    localStorage.setItem("users", JSON.stringify(users));
+    logout();
 }

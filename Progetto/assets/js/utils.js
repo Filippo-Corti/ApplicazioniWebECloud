@@ -328,6 +328,7 @@ function isAMatch(name, keyword) {
     return name.toLowerCase().startsWith(keyword.toLowerCase()) || name.toLowerCase().includes(" " + keyword.toLowerCase());
 }
 
+//Show results below the search bar
 async function showSearchResults(keyword, href_prefix) {
     let results = await getSearchResults(keyword, href_prefix);
     if (!results)
@@ -343,6 +344,68 @@ async function showSearchResults(keyword, href_prefix) {
         let result_element = buildDynamicElement("search-result", result);
         container.appendChild(result_element);
     }
+}
+
+//Show all the tags
+function fillInTags() {
+    let areas = getFromStorage("areas");
+    let areas_container = document.querySelector("#preferences_area_container");
+    for (let area of areas) {
+        areas_container.appendChild(buildDynamicElement("preferences_area_tag", { name: area.name }));
+    }
+
+    let categories = getFromStorage("categories");
+    let categories_container = document.querySelector("#preferences_category_container");
+    for (let category of categories) {
+        categories_container.appendChild(buildDynamicElement("preferences_category_tag", { name: category.name }));
+    }
+
+
+    let ingredients = getFromStorage("ingredients");
+    let ingredients_container = document.querySelector("#preferences_ingredient_container");
+    for (let ingredient of ingredients) {
+        ingredients_container.appendChild(buildDynamicElement("preferences_ingredient_tag", { name: ingredient.name }));
+    }
+}
+
+//Toggles the Tag and stores/removes it from the stored data of the correct user
+function toggleStateAndUpdateStorage(tag) {
+    //Graphic Changes
+    toggleState(tag);
+    //Storage Changes
+    let user = getLoggedUserData();
+    let tag_value = tag.querySelector("input").value;
+
+    if (tag.querySelector("input[type='checkbox']").checked) {
+        //Add Tag
+        if (tag.classList.contains("tag-area")) {
+            //Green Button = Area
+            user.interests.areas.push(tag_value);
+        } else if (tag.classList.contains("tag-category")) {
+            //Blue Button = Category
+            user.interests.categories.push(tag_value);
+        } else if (tag.classList.contains("tag-ingredient")) {
+            //Red Button = Ingredient
+            user.interests.ingredients.push(tag_value);
+        }
+    } else {
+        //Remove Tag
+        if (tag.classList.contains("tag-area")) {
+            //Green Button = Area
+            user.interests.areas = user.interests.areas.filter((a) => a != tag_value);
+        } else if (tag.classList.contains("tag-category")) {
+            //Blue Button = Category
+            user.interests.categories = user.interests.categories.filter((c) => c != tag_value);
+        } else if (tag.classList.contains("tag-ingredient")) {
+            //Red Button = Ingredient
+            user.interests.ingredients = user.interests.ingredients.filter((i) => i != tag_value);
+        }
+    }
+
+    console.log(user);
+
+    updateUser(user);
+
 }
 
 

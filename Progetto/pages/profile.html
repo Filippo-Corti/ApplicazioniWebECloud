@@ -379,48 +379,19 @@
                             <div class="custom-scrollbar overflow-y-auto overflow-x-hidden d-flex flex-column gap-2"
                                 style="max-height: 100%;">
                                 <!-- Favourite Area Tags -->
-                                <div class="row gap-2 mx-3">
-                                    <!-- Favourite Area Tag -->
-                                    <span
-                                        class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
-                                        onclick="toggleState(this)">
-                                        <input class="d-none" type="checkbox" name="preferences[area_name]"
-                                            value="Italian">
-                                        <span>Area Tag</span>
-                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
-                                            alt="Deselect Tag">
-                                    </span>
+                                <div id="preferences_area_container" class="row gap-2 mx-3">
                                 </div>
                                 <!-- Favourite Category Tags -->
-                                <div class="row gap-2 mx-3">
-                                    <!-- Favourite Category Tag -->
-                                    <span
-                                        class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
-                                        onclick="toggleState(this)">
-                                        <input class="d-none" type="checkbox" name="preferences[category_name]"
-                                            value="Breakfast">
-                                        <span>Category Tag</span>
-                                        <img class="d-none" width="12" src="../assets/img/close.png" alt="Deselect Tag">
-                                    </span>
+                                <div id="preferences_category_container" class="row gap-2 mx-3">
                                 </div>
                                 <!-- Favourite Ingredient Tags -->
-                                <div class="row gap-2 mx-3">
-                                    <!-- Favourite Ingredient Tag -->
-                                    <span
-                                        class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                                        onclick="toggleState(this)">
-                                        <input class="d-none" type="checkbox" name="preferences[area_chicken]"
-                                            value="Chicken">
-                                        <span>Ingredient Tag</span>
-                                        <img class="d-none" width="12" src="../assets/img/close-white.png"
-                                            alt="Deselect Tag">
-                                    </span>
+                                <div id="preferences_ingredient_container" class="row gap-2 mx-3">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="fs-5 text-secondary text-center mt-4">
-                        <span style="cursor: pointer" class="text-decoration-underline" onclick="">Log out</span> <br>
+                        <span style="cursor: pointer" class="text-decoration-underline" onclick="logout()">Log out</span> <br>
                         Do you want to delete your account? <span style="cursor: pointer"
                             class="text-decoration-underline" data-bs-toggle="modal"
                             data-bs-target="#deleteAccountModal">click here</span>
@@ -476,20 +447,20 @@
                     <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
                         <p>Credentials are wrong! Try again</p>
                     </div>
-                    <form method="GET" action="profile.html" onsubmit="return checkCredentialsAndLogin(this)">
+                    <form method="GET" action="../index.html" onsubmit="return checkCredentialsAndLogin(this)">
                         <div class="col-12">
                             <div class="d-flex flex-column mt-2">
-                                <label class="fs-5 text-dark" for="email">Email</label>
-                                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email"
-                                    autocomplete="username" required>
+                                <label class="fs-5 text-dark" for="login_email">Email</label>
+                                <input class="form-control rounded-2 p-2 border-2" type="email" name="email"
+                                    id="login_email" autocomplete="username" required>
                             </div>
                             <div class="d-flex flex-column my-3 position-relative">
-                                <label class="fs-5 text-dark" for="password">Password</label>
+                                <label class="fs-5 text-dark" for="login_password">Password</label>
                                 <img style="cursor: pointer;" class="position-absolute top-0 end-0"
                                     src="../assets/img/view.png" alt="Show Password" width="25"
                                     onclick="toggleShowPassword()">
                                 <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password"
-                                    name="password" id="password" autocomplete="current-password" required>
+                                    name="password" id="login_password" autocomplete="current-password" required>
                             </div>
                             <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
                         </div>
@@ -581,14 +552,47 @@
                     <p class="fs-6 ">All your reviews will be marked as anonymous and you won't be able to edit them
                         anymore.</p>
                     <div class="d-flex justify-content-center gap-3 mx-3">
-                        <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2">Cancel</button>
-                        <button type="button" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Delete</button>
+                        <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                        <button type="button" class="w-100 btn btn-primary fs-5 mt-3 mb-2" onclick="deleteLoggedAccount()">Delete</button>
                     </div>
                     <p class="fs-6 text-danger text-center">Mind that this operation is irreversibile</p>
                 </div>
             </div>
         </div>
     </modal>
+
+    <!-- Templates -->
+
+    <template id="preferences_area_tag">
+        <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
+            onclick="toggleStateAndUpdateStorage(this)">
+            <input data-template-type="attribute" data-template-attribute="value" data-template-value="name"
+                class="d-none" type="checkbox" name="preferences_area" value="Area">
+            <span data-template-type="content" data-template-value="name">Area</span>
+            <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
+        </span>
+    </template>
+
+    <template id="preferences_category_tag">
+        <span class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
+            onclick="toggleStateAndUpdateStorage(this)">
+            <input data-template-type="attribute" data-template-attribute="value" data-template-value="name"
+                class="d-none" type="checkbox" name="preferences_category" value="Category">
+            <span data-template-type="content" data-template-value="name">Category</span>
+            <img class="d-none" width="12" src="../assets/img/close.png" alt="Deselect Tag">
+        </span>
+    </template>
+
+    <template id="preferences_ingredient_tag">
+        <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+            onclick="toggleStateAndUpdateStorage(this)">
+            <input data-template-type="attribute" data-template-attribute="value" data-template-value="name"
+                class="d-none" type="checkbox" name="preferences_ingredient" value="Ingredient">
+            <span data-template-type="content" data-template-value="name">Ingredient</span>
+            <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
+        </span>
+    </template>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -600,6 +604,29 @@
     <script src="../assets/js/storage.js"></script>
     <script src="../assets/js/form-control.js"></script>
     <script src="../assets/js/utils.js"></script>
+    <script>
+        let logged_user = getLoggedUserData();
+        updateProfileTab();
+
+        function updateProfileTab() {
+            document.querySelector("input#email").value = logged_user.email;
+            document.querySelector("input#username").value = logged_user.username;
+            document.querySelector("input#password").value = logged_user.password;
+            fillInTags();
+            //Toggle Tags
+            logged_user.interests.areas.forEach(area_name => {
+                toggleState(document.querySelector("input[name='preferences_area'][value='" + area_name + "']").parentElement);
+            });
+            logged_user.interests.categories.forEach(category_name => {
+                toggleState(document.querySelector("input[name='preferences_category'][value='" + category_name + "']").parentElement);
+            });
+            logged_user.interests.ingredients.forEach(ingredient_name => {
+                toggleState(document.querySelector("input[name='preferences_ingredient'][value='" + ingredient_name + "']").parentElement);
+            });
+        }
+
+
+    </script>
 </body>
 
 </html>

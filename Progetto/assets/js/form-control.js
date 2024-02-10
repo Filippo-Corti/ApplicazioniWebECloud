@@ -74,8 +74,7 @@ function goBack() {
 //Tag Selection - Toggle Tag
 function toggleState(tag) {
     let checkbox = tag.querySelector("input[type='checkbox']");
-    let img = tag.querySelector("img");
-
+    let img = tag.querySelector("img")
     if (tag.classList.contains("tag-area")) {
         //Green Button
         tag.classList.toggle("btn-outline-success");
@@ -91,6 +90,7 @@ function toggleState(tag) {
     }
     img.classList.toggle("d-none");
     checkbox.checked = !checkbox.checked;
+
 }
 
 //Tag Selection - Show Searched Tags 

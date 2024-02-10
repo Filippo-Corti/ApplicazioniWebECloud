@@ -263,19 +263,19 @@
           <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
             <p>Credentials are wrong! Try again</p>
           </div>
-          <form method="GET" action="recipe.html" onsubmit="return checkCredentialsAndLogin(this)">
+          <form method="GET" action="../index.html" onsubmit="return checkCredentialsAndLogin(this)">
             <div class="col-12">
               <div class="d-flex flex-column mt-2">
-                <label class="fs-5 text-dark" for="email">Email</label>
-                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email"
+                <label class="fs-5 text-dark" for="login_email">Email</label>
+                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="login_email"
                   autocomplete="username" required>
               </div>
               <div class="d-flex flex-column my-3 position-relative">
-                <label class="fs-5 text-dark" for="password">Password</label>
+                <label class="fs-5 text-dark" for="login_password">Password</label>
                 <img style="cursor: pointer;" class="position-absolute top-0 end-0" src="../assets/img/view.png"
                   alt="Show Password" width="25" onclick="toggleShowPassword()">
                 <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password"
-                  id="password" autocomplete="current-password" required>
+                  id="login_password" autocomplete="current-password" required>
               </div>
               <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
             </div>
