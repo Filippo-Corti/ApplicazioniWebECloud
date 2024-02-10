@@ -197,17 +197,28 @@ function enableEdit(clicked_element) {
     editable_element.disabled = false;
 }
 
-//Disables edit of the sibling with class "editable"
-function disableEdit(clicked_element) {
-    let editable_element = clicked_element.parentNode.querySelector(".editable");
+//Disables edit of the element, if new value is valid.
+function disableEdit(editable_element) {
     //Check validity of field
     if (!editable_element.checkValidity()) {
         editable_element.classList.add("is-invalid");
-        return;
+        return false;
     }
     editable_element.classList.remove("is-invalid");
     editable_element.disabled = true;
-    //Save edit in local storage 
+    return true;
+}
+
+//Save edit in local storage and Disable field 
+function saveAndDisableEdit(clicked_element) {
+    let editable_element = clicked_element.parentNode.querySelector(".editable");
+    if (disableEdit(editable_element)) {
+        //Valid Edit
+        let field = editable_element.name;
+        let user = getLoggedUserData();
+        user[field] = editable_element.value;
+        updateUser(user);
+    } 
 }
 
 //Checks Passwords, then calls disableEdit
@@ -217,11 +228,24 @@ function confirmPasswordEdit(clicked_element) {
     if (password.value !== password_confirm.value) {
         password_confirm.classList.remove("is-valid");
         password_confirm.classList.add("is-invalid");
-        return;
+        return false;
     }
     if (password.type == "text")
         toggleShowPassword();
-    disableEdit(clicked_element);
+    disableEdit(clicked_element.parentNode.querySelector(".editable"));
+    return true;
+}
+
+//Save edit in local storage and Disable Password field 
+function saveAndConfirmPasswordEdit(clicked_element) {
+    let editable_element = clicked_element.parentNode.querySelector(".editable");
+    if (confirmPasswordEdit(clicked_element)) {
+        //Valid Edit
+        let field = editable_element.name;
+        let user = getLoggedUserData();
+        user[field] = editable_element.value;
+        updateUser(user);
+    } 
 }
 
 // Hide Results when anything is clicked

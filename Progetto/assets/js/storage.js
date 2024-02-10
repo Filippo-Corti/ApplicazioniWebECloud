@@ -175,6 +175,9 @@ function getLoggedUserData() {
 
 //Update user data in Storage
 function updateUser(new_user_data) {
+    if (!new_user_data.username) {
+        new_user_data.username = new_user_data.email.substring(0, new_user_data.email.indexOf('@'));
+    }
     let users = getFromStorage("users");
     if (users) {
         for (let user of users) {
@@ -182,7 +185,6 @@ function updateUser(new_user_data) {
                 users[users.indexOf(user)] = new_user_data;
         }
     }
-    console.log(users);
     localStorage.setItem("users", JSON.stringify(users));
 }
 
