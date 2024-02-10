@@ -87,7 +87,7 @@
       <div class="line | col rounded-5 d-none d-md-block"></div>
     </div>
     <!-- Sign Up Form -->
-    <form class="m-lg-3 overflow-x-hidden" method="GET" action="../index.html">
+    <form class="m-lg-3 overflow-x-hidden" method="GET" action="../index.html" onsubmit="return registerNewUser(this)">
       <div class="form-content | d-flex">
         <!-- Step 1 -->
         <div class="col-12">
@@ -95,7 +95,7 @@
             <label class="fs-5 text-dark" for="email">Email</label>
             <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email"
               autocomplete="username" required>
-            <div class="invalid-feedback">Your Email doesn't look correct</div>
+            <div class="invalid-feedback">Your Email is either incorrect or already taken</div>
           </div>
           <div class="d-flex flex-column my-3">
             <label class="fs-5 text-dark" for="username">Username</label>
@@ -109,10 +109,10 @@
               alt="Show Password" width="25" onclick="toggleShowPassword()">
             <p class="text-secondary fs-6 mb-2 line-height-sm">Password must be at least 8 characters long and include a
               letter, a
-              number and a special character.</p>
+              number and a special character (@, $, !, %, *, #, ? or &).</p>
             <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password"
-              autocomplete="new-password" id="password"
-              pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required>
+              autocomplete="new-password" id="password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{8,}$"
+              required>
             <div class="invalid-feedback">Your Password doesn't match requirements</div>
           </div>
           <div class="d-flex flex-column my-3">
@@ -141,299 +141,11 @@
             <div class="m-3 overflow-hidden" style="max-height: 400px">
               <div class="custom-scrollbar overflow-y-auto overflow-x-hidden d-flex flex-column gap-2"
                 style="max-height: 100%;">
-                <div class="row gap-2 mx-3">
-                  <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
+                <div id="preferences_area_container" class="row gap-2 mx-3">
                 </div>
-                <div class="row gap-2 mx-3">
-                  <span class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[category_breakfast]" value="Breakfast">
-                    <span>Breakfast</span>
-                    <img class="d-none" width="12" src="../assets/img/close.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
+                <div id="preferences_category_container" class="row gap-2 mx-3">
                 </div>
-                <div class="row gap-2 mx-3">
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_chicken]" value="Chicken">
-                    <span>Chicken</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
-                  <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
-                    onclick="toggleState(this)">
-                    <input class="d-none" type="checkbox" name="preferences[area_italian]" value="Italian">
-                    <span>Italian</span>
-                    <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
-                  </span>
+                <div id="preferences_ingredient_container" class="row gap-2 mx-3">
                 </div>
               </div>
             </div>
@@ -498,16 +210,16 @@
           <form method="GET" action="../index.html" onsubmit="return checkCredentialsAndLogin(this)">
             <div class="col-12">
               <div class="d-flex flex-column mt-2">
-                <label class="fs-5 text-dark" for="email">Email</label>
-                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email"
+                <label class="fs-5 text-dark" for="login_email">Email</label>
+                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="login_email"
                   autocomplete="username" required>
               </div>
               <div class="d-flex flex-column my-3 position-relative">
-                <label class="fs-5 text-dark" for="password">Password</label>
+                <label class="fs-5 text-dark" for="login_password">Password</label>
                 <img style="cursor: pointer;" class="position-absolute top-0 end-0" src="../assets/img/view.png"
                   alt="Show Password" width="25" onclick="toggleShowPassword()">
                 <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password"
-                  id="password" autocomplete="current-password" required>
+                  id="login_password" autocomplete="current-password" required>
               </div>
               <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
             </div>
@@ -522,6 +234,37 @@
     </div>
   </modal>
 
+  <!-- Templates-->
+
+  <template id="preferences_area_tag">
+    <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
+      onclick="toggleState(this)">
+      <input data-template-type="attribute" data-template-attribute="value" data-template-value="name" class="d-none"
+        type="checkbox" name="preferences_area" value="Area">
+      <span data-template-type="content" data-template-value="name">Area</span>
+      <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
+    </span>
+  </template>
+
+  <template id="preferences_category_tag">
+    <span class="tag tag-category | btn btn-outline-info fs-5 d-flex align-items-center gap-2"
+      onclick="toggleState(this)">
+      <input data-template-type="attribute" data-template-attribute="value" data-template-value="name" class="d-none"
+        type="checkbox" name="preferences_category" value="Category">
+      <span data-template-type="content" data-template-value="name">Category</span>
+      <img class="d-none" width="12" src="../assets/img/close.png" alt="Deselect Tag">
+    </span>
+  </template>
+
+  <template id="preferences_ingredient_tag">
+    <span class="tag tag-ingredient | btn btn-outline-danger fs-5 d-flex align-items-center gap-2"
+      onclick="toggleState(this)">
+      <input data-template-type="attribute" data-template-attribute="value" data-template-value="name" class="d-none"
+        type="checkbox" name="preferences_ingredient" value="Ingredient">
+      <span data-template-type="content" data-template-value="name">Ingredient</span>
+      <img class="d-none" width="12" src="../assets/img/close-white.png" alt="Deselect Tag">
+    </span>
+  </template>
 
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -530,9 +273,33 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
-  <script src="../assets/js/api.js"></script>
-  <script src="../assets/js/form-control.js"></script>
-  <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/storage.js"></script>
+    <script src="../assets/js/form-control.js"></script>
+    <script src="../assets/js/utils.js"></script>
+  <script type="module">
+
+    let areas = getFromStorage("areas");
+    let areas_container = document.querySelector("#preferences_area_container");
+    for (let area of areas) {
+      areas_container.appendChild(buildDynamicElement("preferences_area_tag", {name: area.name}));
+    }
+
+    let categories = getFromStorage("categories");
+    let categories_container = document.querySelector("#preferences_category_container");
+    for (let category of categories) {
+      categories_container.appendChild(buildDynamicElement("preferences_category_tag", {name: category.name}));
+    }
+
+
+    let ingredients = getFromStorage("ingredients");
+    let ingredients_container = document.querySelector("#preferences_ingredient_container");
+    for (let ingredient of ingredients) {
+      ingredients_container.appendChild(buildDynamicElement("preferences_ingredient_tag", {name: ingredient.name}));
+    }
+
+
+  </script>
 </body>
 
 </html>

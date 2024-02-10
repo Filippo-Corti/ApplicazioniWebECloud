@@ -192,16 +192,16 @@
           <form method="GET" action="index.html" onsubmit="return checkCredentialsAndLogin(this)">
             <div class="col-12">
               <div class="d-flex flex-column mt-2">
-                <label class="fs-5 text-dark" for="email">Email</label>
-                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="email"
+                <label class="fs-5 text-dark" for="login_email">Email</label>
+                <input class="form-control rounded-2 p-2 border-2" type="email" name="email" id="login_email"
                   autocomplete="username" required>
               </div>
               <div class="d-flex flex-column my-3 position-relative">
-                <label class="fs-5 text-dark" for="password">Password</label>
+                <label class="fs-5 text-dark" for="login_password">Password</label>
                 <img style="cursor: pointer;" class="position-absolute top-0 end-0" src="assets/img/view.png"
                   alt="Show Password" width="25" onclick="toggleShowPassword()">
                 <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password"
-                  id="password" autocomplete="current-password" required>
+                  id="login_password" autocomplete="current-password" required>
               </div>
               <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
             </div>
@@ -236,7 +236,7 @@
               <div class="card-text py-2 px-1 mb-1 position-relative">
                 <h5 class="text-black fs-6">Do you wanto to leave a note for <span
                     class="modal-recipe-label | text-primary">Recipe Name</span>?</h5>
-                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"></textarea>
+                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="note" name="note" rows="4"></textarea>
               </div>
               <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Save</button>
             </div>
@@ -324,8 +324,9 @@
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
   <script src="assets/js/api.js"></script>
-  <script src="assets/js/utils.js"></script>
   <script src="assets/js/storage.js"></script>
+  <script src="assets/js/form-control.js"></script>
+  <script src="assets/js/utils.js"></script>
   <script type="module">
 
     //clearStorage();

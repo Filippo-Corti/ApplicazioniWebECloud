@@ -36,7 +36,13 @@ function validateAndContinueForm() {
 
     //More specific Validations
 
-    //Missing Check for Already Used Email !!!!
+    let email = form_content.querySelector("input#email");
+    if (isEmailTaken(email.value)) {
+        email.classList.remove("is-valid");
+        email.classList.add("is-invalid");
+        form_ok = false;
+    }
+
     let password = form_content.querySelector("input#password");
     let password_confirm = form_content.querySelector("input#password_confirm");
     if (password.value !== password_confirm.value) {
@@ -171,6 +177,48 @@ function showReviewForm() {
 //Hide Review Form 
 function closeReviewForm() {
     form.querySelector(".review-form-more").classList.add("d-none");
+}
+
+function registerNewUser(form) {
+    let form_data = new FormData(form);
+
+    let new_user = {
+        email: form_data.get("email"),
+        username: (form_data.get("username")) ? form_data.get("username") : form_data.get("email").substring(0, form_data.get("email").indexOf('@')),
+        password: form_data.get("password"),
+        interests: {
+            areas: form_data.getAll("preferences_area"),
+            categories: form_data.getAll("preferences_category"),
+            ingredients: form_data.getAll("preferences_ingredient"),
+        },
+        cookbook: [],
+    }
+
+    registerNewUserIntoStorage(new_user);
+    return true;
+}
+
+// Submit for Login Modal
+function checkCredentialsAndLogin(form) {
+    let email = form.querySelector("input#login_email");
+    let password = form.querySelector("input#login_password");
+    email.classList.remove("is-invalid");
+    password.classList.remove("is-invalid");
+
+    if (checkCredentials(email.value, password.value)) {
+        //Ok
+        loginUser(email.value);
+        return true;
+    } else {
+        //Not ok
+        document.querySelector(".invalid-credentials").classList.remove("d-none");
+        //if username not found
+        email.classList.add("is-invalid");
+        //always
+        password.classList.add("is-invalid");
+
+        return false;
+    }
 }
 
 

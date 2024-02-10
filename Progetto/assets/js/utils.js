@@ -4,7 +4,7 @@ regarding elements creation and interaction.
 It is imported in every .html page.
 --------------------------------------------------------------- */
 
-let logged_in = true;
+let logged_in = isAnyUserLoggedIn();
 const tooltipList = [];
 
 buildBackground();
@@ -22,6 +22,9 @@ function loadPageBasedOnLogState() {
     for (let el of logged_out_elements) {
         if (logged_in)
             el.style.display = "none"; //Hide
+    }
+    if (logged_in) {
+        document.querySelector(".username").textContent = getLoggedUserData().username;
     }
 }
 
@@ -133,27 +136,6 @@ function enableTooltip(tooltipTriggerEl) {
     tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl));
 }
 
-// Submit for Login Modal
-function checkCredentialsAndLogin(form) {
-    let email = form.querySelector("input[type='email']");
-    let password = form.querySelector("input[type='password']");
-    email.classList.remove("is-invalid");
-    password.classList.remove("is-invalid");
-
-    if (email.value === "corti.filippo03@gmail.com" && password.value === "1234") {
-        //Ok
-        return true;
-    } else {
-        //Not ok
-        document.querySelector(".invalid-credentials").classList.remove("d-none");
-        //if username not found
-        email.classList.add("is-invalid");
-        //always
-        password.classList.add("is-invalid");
-
-        return false;
-    }
-}
 
 // Toggle Password Visibility for Forms 
 function toggleShowPassword() {
@@ -222,7 +204,7 @@ function disableEdit(clicked_element) {
     if (!editable_element.checkValidity()) {
         editable_element.classList.add("is-invalid");
         return;
-    } 
+    }
     editable_element.classList.remove("is-invalid");
     editable_element.disabled = true;
     //Save edit in local storage 
@@ -231,13 +213,13 @@ function disableEdit(clicked_element) {
 //Checks Passwords, then calls disableEdit
 function confirmPasswordEdit(clicked_element) {
     let password = clicked_element.parentNode.querySelector("input#password");
-    let password_confirm= clicked_element.parentNode.querySelector("input#password_confirm");
+    let password_confirm = clicked_element.parentNode.querySelector("input#password_confirm");
     if (password.value !== password_confirm.value) {
         password_confirm.classList.remove("is-valid");
         password_confirm.classList.add("is-invalid");
         return;
     }
-    if (password.type == "text") 
+    if (password.type == "text")
         toggleShowPassword();
     disableEdit(clicked_element);
 }
@@ -289,10 +271,10 @@ async function getSearchResults(keyword, href_prefix) {
 
     keyword = keyword.toLowerCase();
 
-    let matching_recipes = getFromStorage("search_results")?.filter((recipe) => recipe.name.toLowerCase().startsWith(keyword));
-    let matching_categories = getFromStorage("categories").filter((category) => category.name.toLowerCase().startsWith(keyword));
-    let matching_areas = getFromStorage("areas").filter((area) => area.name.toLowerCase().startsWith(keyword));
-    let matching_ingredients = getFromStorage("ingredients").filter((ingredient) => ingredient.name.toLowerCase().startsWith(keyword));
+    let matching_recipes = getFromStorage("search_results")?.filter((recipe) => isAMatch(recipe.name, keyword));
+    let matching_categories = getFromStorage("categories").filter((category) => isAMatch(category.name, keyword));
+    let matching_areas = getFromStorage("areas").filter((area) => isAMatch(area.name, keyword));
+    let matching_ingredients = getFromStorage("ingredients").filter((ingredient) => isAMatch(ingredient.name, keyword));
 
     let to_show = []; //Max: 2 Categories, 2 Areas, 3 Recipes, 1 Ingredient
     let i = 0;
@@ -332,13 +314,18 @@ async function getSearchResults(keyword, href_prefix) {
             type: "ingredient",
             name: matching_ingredients[j].name + " (Ingredient)",
             description: matching_ingredients[j].description,
-            image:  "https://www.themealdb.com/images/ingredients/" + matching_ingredients[j].name + ".png",
+            image: "https://www.themealdb.com/images/ingredients/" + matching_ingredients[j].name + ".png",
             href: href_prefix + "search.html?ingredient=" + matching_ingredients[j].name,
-         });
+        });
     }
 
     return to_show;
-    
+
+}
+
+//Return true if keyword is a match word for name
+function isAMatch(name, keyword) {
+    return name.toLowerCase().startsWith(keyword.toLowerCase()) || name.toLowerCase().includes(" " + keyword.toLowerCase());
 }
 
 async function showSearchResults(keyword, href_prefix) {

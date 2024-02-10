@@ -13,11 +13,20 @@ function clearStorage() {
 //Get 'name' from Local or Session Storage
 function getFromStorage(name) {
     let results = localStorage.getItem(name);
-    if (results)
-        return JSON.parse(results);
+    if (results) {
+        try {
+            return JSON.parse(results);
+        } catch (e) {
+            return results;
+        }
+    }
     results = sessionStorage.getItem(name);
     if (results)
-        return JSON.parse(results);
+        try {
+            return JSON.parse(results);
+        } catch (e) {
+            return results;
+        }
     return null;
 }
 
@@ -108,3 +117,54 @@ async function loadSearchResultsIntoStorage(first_Letter) {
     localStorage.setItem("search_results", JSON.stringify(recipes));
 }
 
+//Check whether the email is already in use
+function isEmailTaken(email) {
+    let users = getFromStorage("users");
+    if (users) {
+        return users.filter((user) => user.email === email).length !== 0;
+    }
+    return false;
+}
+
+function registerNewUserIntoStorage(user) {
+    let users = getFromStorage("users");
+    if (!users) {
+        users = [];
+    }
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
+}
+
+//Check whether the credentials correspond to an existing user
+function checkCredentials(email, password) {
+    let users = getFromStorage("users");
+    if (users) {
+        return users.filter((user) => user.email === email && user.password === password).length !== 0;
+    }
+    return false;
+}
+
+function loginUser(email) {
+    sessionStorage.setItem("current_user", email);
+    location.reload();
+}
+
+function isAnyUserLoggedIn() {
+    return getFromStorage("current_user");
+}
+
+function getUserByEmail(email) {
+    let users = getFromStorage("users");
+    if (users) {
+        return users.filter((user) => user.email === email)[0];
+    }
+    return null;
+}
+
+function getLoggedUserData() {
+    let user = getFromStorage("current_user");
+    if (user) {
+        return getUserByEmail(user);
+    }  
+    return null;
+}

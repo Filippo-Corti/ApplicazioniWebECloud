@@ -111,6 +111,25 @@ Dopodiché:
 	4 Se clicco sul risultato della ricerca che è una delle altre 3 cose, vado alla pagina dei risultati
 	5 Se faccio invio nella ricerca vado ancora alla pagina dei risultati
 	
+---------------------------------------------------------------------------
+
+PER GLI UTENTI:
+
+Nel local storage ho un array users, dove ogni utente ha
+	- email
+	- username (se non impostato = email prima della @)
+	- password (!!! per il momento non cifrata)
+	- interests:
+		- areas (array di string)
+		- categories (array di string)
+		- ingredients (array di string)
+	- cookbook (array di coppie id - note)
+
+Verificare in fase di registrazione che l'email non sia già in uso
+
+Nel login verificare credenziali
+
+Mantenere nel Session Storage current_user (la sua email)
 
 
 

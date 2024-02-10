@@ -265,7 +265,8 @@ a {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent
+    background: hsla(0, 0%, 0%, 0.05);
+    border-radius: 1rem;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
