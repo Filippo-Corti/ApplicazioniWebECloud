@@ -426,12 +426,13 @@ function toggleStateAndUpdateStorage(tag) {
         }
     }
 
-    console.log(user);
-
     updateUser(user);
-
+    loadSuggestedRecipesIntoStorage(true);
 }
 
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5); 
+}
 
 
 

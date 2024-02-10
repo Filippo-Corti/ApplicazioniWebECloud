@@ -62,3 +62,7 @@ https://www.chromium.org/developers/design-documents/create-amazing-password-for
 
 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template?retiredLocale=it
 https://caniuse.com/?search=template
+
+### Array Shuffle
+
+https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/

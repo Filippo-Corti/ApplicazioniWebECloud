@@ -32,56 +32,54 @@ function getFromStorage(name) {
 
 //Load Categories from the API and put them into the Local Storage, if they aren't already there
 async function loadCategoriesIntoStorage() {
-    let results = await getAllCategories();
-    let categories = [];
-    for (let category of results) {
-        categories.push({
-            name: category.strCategory,
-            description: category.strCategoryDescription,
-        });
-    }
-
     let categories_in_storage = localStorage.getItem("categories");
 
     if (!categories_in_storage) {
         //Categories aren't already in storage
+        let results = await getAllCategories();
+        let categories = [];
+        for (let category of results) {
+            categories.push({
+                name: category.strCategory,
+                description: category.strCategoryDescription,
+            });
+        }
         localStorage.setItem("categories", JSON.stringify(categories));
     }
 }
 
 //Load Ares from the API and put them into the Local Storage, if they aren't already there
 async function loadAreasIntoStorage() {
-    let results = await getAllAreas();
-    let areas = [];
-    for (let area of results) {
-        areas.push({
-            name: area.strArea,
-        });
-    }
-
     let areas_in_storage = localStorage.getItem("areas");
 
     if (!areas_in_storage) {
         //Ares aren't already in storage
+        let results = await getAllAreas();
+        let areas = [];
+        for (let area of results) {
+            areas.push({
+                name: area.strArea,
+            });
+        }
+
         localStorage.setItem("areas", JSON.stringify(areas));
     }
 }
 
 //Load Ingredients from the API and put them into the Local Storage, if they aren't already there
 async function loadIngredientsIntoStorage() {
-    let results = await getAllIngredients();
-    let ingredients = [];
-    for (let ingredient of results) {
-        ingredients.push({
-            name: ingredient.strIngredient,
-            description: ingredient.strDescription,
-        });
-    }
-
     let ingredients_in_storage = localStorage.getItem("ingredients");
 
     if (!ingredients_in_storage) {
         //Ingredients aren't already in storage
+        let results = await getAllIngredients();
+        let ingredients = [];
+        for (let ingredient of results) {
+            ingredients.push({
+                name: ingredient.strIngredient,
+                description: ingredient.strDescription,
+            });
+        }
         localStorage.setItem("ingredients", JSON.stringify(ingredients));
     }
 }
@@ -101,6 +99,7 @@ async function loadRandomRecipesIntoStorage(n) {
     localStorage.setItem("random_recipes", JSON.stringify(random_recipes));
 }
 
+//Load search results into the Session Storage, based on the first typed letter of the keyword
 async function loadSearchResultsIntoStorage(first_Letter) {
     let results = await searchByFirstLetter(first_Letter);
     if (!results)
@@ -114,7 +113,39 @@ async function loadSearchResultsIntoStorage(first_Letter) {
             area: recipe.strArea,
         });
     }
-    localStorage.setItem("search_results", JSON.stringify(recipes));
+    sessionStorage.setItem("search_results", JSON.stringify(recipes));
+}
+
+//Load recipes based on logged user's interests into the Session Storage, if they aren't already there or if force_reload = true
+async function loadSuggestedRecipesIntoStorage(force_reload) {
+    let suggested_recipes = localStorage.getItem("suggested_recipes");
+    if (!suggested_recipes || force_reload) {
+        let interests = getLoggedUserData().interests;
+        let recipes = [];
+        for (let area of interests.areas) {
+            recipes.push(... await searchByArea(area));
+        }
+        for (let category of interests.categories) {
+            recipes.push(... await searchByCategory(category));
+        }
+        for (let ingredient of interests.ingredients) {
+            recipes.push(... await searchByIngredient(ingredient));
+        }
+        recipes = await addAreaToRecipes(recipes);
+        let corrected_recipes = [];
+        for (let recipe of recipes) {
+            corrected_recipes.push({
+                id: recipe.idMeal,
+                name: recipe.strMeal,
+                image: recipe.strMealThumb,
+                area: recipe.area,
+            });
+        }
+
+        sessionStorage.setItem("suggested_recipes", JSON.stringify(corrected_recipes));
+    } else {
+        console.log("No need");
+    }
 }
 
 //Check whether the email is already in use
@@ -147,6 +178,7 @@ function checkCredentials(email, password) {
 //Set email to the currently logged user
 function loginUser(email) {
     sessionStorage.setItem("current_user", email);
+    loadSuggestedRecipesIntoStorage();
     location.reload();
 }
 
@@ -169,7 +201,7 @@ function getLoggedUserData() {
     let user = getFromStorage("current_user");
     if (user) {
         return getUserByEmail(user);
-    }  
+    }
     return null;
 }
 
@@ -191,6 +223,7 @@ function updateUser(new_user_data) {
 //Log currently logged user out
 function logout() {
     sessionStorage.removeItem("current_user");
+    localStorage.removeItem("suggested_recipes");
     location.reload();
 }
 

@@ -95,7 +95,8 @@
           <div class="search-input position-relative bg-white rounded-5 border border-1 border-secondary fs-3">
             <div class="d-flex flex-column flex-md-row w-100">
               <input type="text" class="w-100 ps-4 rounded-5 border-0 form-control fs-3 my-1 my-lg-3" name="search"
-                id="search" placeholder='Try with "English Breakfast" ...' onfocus="scrollToHere(this)" oninput="showSearchResults(this.value, 'pages/')" autocomplete="off">
+                id="search" placeholder='Try with "English Breakfast" ...' onfocus="scrollToHere(this)"
+                oninput="showSearchResults(this.value, 'pages/')" autocomplete="off">
               <button class="btn btn-outline-secondary my-2 fs-4 mx-auto mx-md-2"
                 style="border-radius: 1.5rem;">Search</button>
             </div>
@@ -236,7 +237,8 @@
               <div class="card-text py-2 px-1 mb-1 position-relative">
                 <h5 class="text-black fs-6">Do you wanto to leave a note for <span
                     class="modal-recipe-label | text-primary">Recipe Name</span>?</h5>
-                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="note" name="note" rows="4"></textarea>
+                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="note" name="note"
+                  rows="4"></textarea>
               </div>
               <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Save</button>
             </div>
@@ -253,7 +255,8 @@
 
   <!-- Recipe Card -->
   <template id="recipe-card">
-    <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover" data-template-type="attribute" data-template-attribute="data-favourite" data-template-value="favourite" data-favourite="false">
+    <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover" data-template-type="attribute"
+      data-template-attribute="data-favourite" data-template-value="favourite" data-favourite="false">
       <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
         class="card border-0 position-relative h-100" href="pages/recipe.html?id=00000">
         <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
@@ -273,9 +276,9 @@
               <span data-template-type="content" data-template-value="reviews">0</span>
             </div>
           </div>
-          <div class="mt-4">
+          <div class="pt-4 d-flex flex-column justify-content-end">
             <h5 data-template-type="content" data-template-value="area"
-              class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
+              class="card-title text-primary text-uppercase fs-5 d-none">Area Cuisine</h5>
             <h4 data-template-type="content" data-template-value="name" class="card-title fs-3">Recipe Name</h4>
           </div>
         </div>
@@ -303,15 +306,19 @@
 
   <!-- Search Result Card -->
   <template id="search-result">
-    <div data-template-type="attribute" data-template-attribute="data-type" data-template-value="type" class="search-result" data-type="recipe" >
-      <a data-template-type="attribute" data-template-attribute="href" data-template-value="href" class="ps-4 border-top py-3 d-flex gap-4 align-items-center"
-        href="pages/recipe.html?id=00000">
+    <div data-template-type="attribute" data-template-attribute="data-type" data-template-value="type"
+      class="search-result" data-type="recipe">
+      <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
+        class="ps-4 border-top py-3 d-flex gap-4 align-items-center" href="pages/recipe.html?id=00000">
         <div class="search-result_image">
-          <img data-template-type="attribute" data-template-attribute="src" data-template-value="image" class="" src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg" width="76">
+          <img data-template-type="attribute" data-template-attribute="src" data-template-value="image" class=""
+            src="https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg" width="76">
         </div>
         <div class="overflow-hidden">
-          <p data-template-type="content" data-template-value="name" class="search-result-title fs-4 mb-0">Result Title</p>
-          <p data-template-type="content" data-template-value="description" class="truncate-one-line fs-5 my-0 opacity-75 d-none d-md-block" >Some more info about the result</p>
+          <p data-template-type="content" data-template-value="name" class="search-result-title fs-4 mb-0">Result Title
+          </p>
+          <p data-template-type="content" data-template-value="description"
+            class="truncate-one-line fs-5 my-0 opacity-75 d-none d-md-block">Some more info about the result</p>
         </div>
       </a>
     </div>
@@ -330,40 +337,52 @@
   <script type="module">
 
     //clearStorage();
-    await loadRandomRecipesIntoStorage(12);
 
+    if (logged_in) {
+      await loadSuggestedRecipesIntoStorage(false);
+      let suggested_recipes = shuffle(getFromStorage("suggested_recipes"));
+      let selected_recipes = suggested_recipes.slice(0, Math.min(30, suggested_recipes.length));
+      let suggested_recipes_container = document.querySelector("#recipe-suggestions-interests");
+      placeRecipesInGrid(suggested_recipes.slice(0, 30), suggested_recipes_container);
+      centerScrollers();
+    }
+
+    await loadRandomRecipesIntoStorage(12);
     let random_recipes = getFromStorage("random_recipes");
     let random_recipes_container = document.querySelector("#recipe-suggestions-random");
-
-    for (let i = 0; i < random_recipes.length;) {
-      let recipes = [];
-      //Get 3 Recipes
-      for (let j = 0; j < 3 && i < random_recipes.length; j++, i++) {
-        let recipe = random_recipes[i];
-        recipes.push(
-          buildDynamicElement("recipe-card", {
-            href: "pages/recipe.html?id=" + recipe.id,
-            image: recipe.image,
-            taste: 0.0,
-            difficulty: 0.0,
-            reviews: 0,
-            area: recipe.area + " Cuisine",
-            name: recipe.name,
-            favourite: false, // !!!
-          }));
-      }
-      //Place them in the page
-      let dynamic_card_group = buildDynamicElement("recipe-card-group", {
-        row1: getElementHTML(recipes[0]) + getElementHTML(recipes[1]),
-        row2: getElementHTML(recipes[2]),
-      });
-      random_recipes_container.appendChild(dynamic_card_group);
-    }
+    placeRecipesInGrid(random_recipes, random_recipes_container);
 
     centerScrollers();
     loadCategoriesIntoStorage();
     loadAreasIntoStorage();
     loadIngredientsIntoStorage();
+
+    function placeRecipesInGrid(recipes, container) {
+      for (let i = 0; i < recipes.length;) {
+        let curr_recipes = [];
+        //Get 3 Recipes
+        for (let j = 0; j < 3 && i < recipes.length; j++, i++) {
+          let recipe = recipes[i];
+          curr_recipes.push(
+            buildDynamicElement("recipe-card", {
+              href: "pages/recipe.html?id=" + recipe.id,
+              image: recipe.image,
+              taste: 0.0,
+              difficulty: 0.0,
+              reviews: 0,
+              area: recipe.area + " Cuisine",
+              name: recipe.name,
+              favourite: false, // !!!
+            }));
+        }
+        //Place them in the page
+        let dynamic_card_group = buildDynamicElement("recipe-card-group", {
+          row1: getElementHTML(curr_recipes[0]) + getElementHTML(curr_recipes[1]),
+          row2: getElementHTML(curr_recipes[2]),
+        });
+        container.appendChild(dynamic_card_group);
+      }
+    }
 
 
   </script>

@@ -136,4 +136,16 @@ function extractIngredients(meal) {
     return ingredients;
 }
 
+//Finds the area of each recipe in recipes and updates the list with a area field
+async function addAreaToRecipes(recipes) {
+    /*let results = [];
+    for (let recipe of recipes) {
+        let full_details = await getDetailsById((recipe.idMeal) ? recipe.idMeal : recipe.id);
+        recipe.area = full_details.strArea;
+        results.push(recipe);
+    }
+    return results;*/
+    return recipes;
+}
+
 
