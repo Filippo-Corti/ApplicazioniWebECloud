@@ -31,7 +31,7 @@ Color Primary Override to Orange (#EF4C01)
 }
 
 .bg-primary {
-    background-color: #EF4C01 !important;
+    background-color: rgb(239, 76, 1, var(--bs-bg-opacity)) !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -175,7 +175,7 @@ Color Primary Override to Navy Blue (#2E4765)
 }
 
 .bg-secondary {
-    background-color: #2E4765 !important;
+    background-color: rgb(46, 71, 101, var(--bs-bg-opacity)) !important;
 }
 
 a.bg-secondary:hover, a.bg-secondary:focus,

@@ -112,7 +112,7 @@
         <div id="recipe-results" class="row p-lg-3 justify-content-center">
 
             <div class="container-xxl">
-                <h2 class="keyword py-2">6 Results for the search "keyword"</h2>
+                <h2 class="keyword py-2">Sorry, 0 Results were found for current research</h2>
             </div>
             <!-- Recipe Result Cards -->
         </div>
@@ -327,22 +327,26 @@
         if (keyword) {
             document.getElementById("search").value = keyword;
             found_recipes = await searchByName(keyword);
-            search_title.textContent = found_recipes.length + ' Results for the search "' + keyword + '"';
+            if (found_recipes)
+                search_title.textContent = found_recipes.length + ' Results for the search "' + keyword + '"';
         } else if (category) {
             document.getElementById("search").value = category;
             found_recipes = await searchByCategory(category);
-            search_title.textContent = found_recipes.length + ' Results for the category "' + category + '"';
+            if (found_recipes)
+                search_title.textContent = found_recipes.length + ' Results for the category "' + category + '"';
         } else if (area) {
             document.getElementById("search").value = area;
             found_recipes = await searchByArea(area);
-            search_title.textContent = found_recipes.length + ' Results for the area "' + area + '"';
+            if (found_recipes)
+                search_title.textContent = found_recipes.length + ' Results for the area "' + area + '"';
         } else if (ingredient) {
             document.getElementById("search").value = ingredient;
             found_recipes = await searchByIngredient(ingredient);
-            search_title.textContent = found_recipes.length + ' Recipes with the ingredient "' + ingredient + '"';
+            if (found_recipes)
+                search_title.textContent = found_recipes.length + ' Recipes with the ingredient "' + ingredient + '"';
         }
 
-        for (let i = 0; i < found_recipes.length;) {
+        for (let i = 0; i < found_recipes?.length;) {
             let recipes = [];
             //Get 3 Recipes
             for (let j = 0; j < 2 && i < found_recipes.length; j++, i++) {

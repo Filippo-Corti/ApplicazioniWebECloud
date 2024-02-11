@@ -121,7 +121,7 @@
 
     <!-- Recipe Slider -->
     <div id="recipe-suggestions-interests"
-      class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-auto gap-3 p-3 flex-shrink-0"
+      class="scroller scroll-to-center custom-scrollbar | d-flex overflow-x-auto gap-3 p-3 flex-shrink-0 mx-auto"
       style="width: fit-content; max-width: 100%;">
 
     </div>
@@ -276,10 +276,11 @@
               <span data-template-type="content" data-template-value="reviews">0</span>
             </div>
           </div>
-          <div class="pt-4 d-flex flex-column justify-content-end">
+          <hr>
+          <div class="py-2 d-flex flex-column justify-content-end">
             <h5 data-template-type="content" data-template-value="area"
               class="card-title text-primary text-uppercase fs-5 d-none">Area Cuisine</h5>
-            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3">Recipe Name</h4>
+            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3 text-center px-2">Recipe Name</h4>
           </div>
         </div>
       </a>
@@ -375,6 +376,8 @@
               favourite: false, // !!!
             }));
         }
+        //Make sure longest name goes alone
+        curr_recipes.sort((a, b) => a.querySelector("h4.card-title").textContent.length - b.querySelector("h4.card-title").textContent.length);
         //Place them in the page
         let dynamic_card_group = buildDynamicElement("recipe-card-group", {
           row1: getElementHTML(curr_recipes[0]) + getElementHTML(curr_recipes[1]),

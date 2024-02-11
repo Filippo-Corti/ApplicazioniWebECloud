@@ -223,6 +223,15 @@ a {
         justify-content: start !important;
         padding-left: 0.5rem;
         margin-bottom: 1.6rem;
+    }  
+
+    .recipe-card hr {
+        display: none;
+    }
+
+    .recipe-card .card-title {
+        text-align: start !important;
+        margin-top: 1.5rem;
     }
 
 }

@@ -131,7 +131,7 @@ async function loadSuggestedRecipesIntoStorage(force_reload) {
         for (let ingredient of interests.ingredients) {
             recipes.push(... await searchByIngredient(ingredient));
         }
-        recipes = await addAreaToRecipes(recipes);
+        //recipes = await addAreaToRecipes(recipes);
         let corrected_recipes = [];
         for (let recipe of recipes) {
             corrected_recipes.push({
