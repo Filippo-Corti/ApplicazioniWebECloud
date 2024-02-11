@@ -141,7 +141,6 @@ async function loadSuggestedRecipesIntoStorage(force_reload) {
                 area: recipe.area,
             });
         }
-
         sessionStorage.setItem("suggested_recipes", JSON.stringify(corrected_recipes));
     } else {
         console.log("No need");
@@ -267,4 +266,19 @@ function isInCookbook(id) {
     if (user)
         return user.cookbook.filter((r) => r.id == id).length != 0;
     return false;
+}
+
+//Load new review into the Local Storage
+function addReviewToStorage(review) {
+    let reviews = getFromStorage("reviews");
+    if (!reviews)
+        reviews = {};
+    if (!reviews[review.recipe_id])
+        reviews[review.recipe_id] = [];
+
+    reviews[review.recipe_id].push(review);
+
+    console.log(JSON.stringify(reviews));
+
+    localStorage.setItem("reviews", JSON.stringify(reviews));
 }

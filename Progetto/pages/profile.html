@@ -526,7 +526,8 @@
                         <div class="col-7 mt-4">
                             <h5 data-template-type="content" data-template-value="area"
                                 class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
-                            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3 mt-0">Recipe
+                            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3 mt-0">
+                                Recipe
                                 Name </h4>
                         </div>
                         <div class="col-5 row gap-2 justify-content-end mb-2">
@@ -542,14 +543,15 @@
                     </div>
                     <div class="card-text py-2 px-1 mb-1 position-relative" onclick="event.preventDefault();">
                         <h5 class="text-secondary fs-5">Your Note:</h5>
-                        <textarea data-template-type="value"
-                            data-template-value="note" class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2 fs-5" name="note"
-                            rows="4" disabled></textarea>
+                        <textarea data-template-type="value" data-template-value="note"
+                            class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2 fs-5" name="note" rows="4"
+                            disabled></textarea>
                         <div class="edit-button | position-absolute" style="cursor:pointer; top: 30%; right: 4%;"
                             onclick="enableEdit(this);">
                             <img width="24" src="../assets/img/edit.png" alt="Edit Note">
                         </div>
-                        <button type="button" class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none bg-white"
+                        <button type="button"
+                            class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none bg-white"
                             style="cursor:pointer; bottom: 12%; right: 4%" onclick="saveAndDisableEdit(this)">
                             Save
                         </button>
@@ -558,8 +560,7 @@
             </a>
             <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
                 data-bs-recipe="Lamb Pilaf (Plov)" onclick="removeRecipe(this);">
-                <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-title="Save Recipe">
+                <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
                 </div>
             </div>
         </div>
@@ -607,8 +608,10 @@
     <script src="../assets/js/utils.js"></script>
     <script type="module">
         let logged_user = getLoggedUserData();
-        fillCookbookTab();
-        updateProfileTab();
+        if (logged_user) {
+            fillCookbookTab();
+            updateProfileTab();
+        }
 
         function fillCookbookTab() {
             let saved_recipes = logged_user.cookbook;

@@ -131,6 +131,20 @@ Nel login verificare credenziali
 
 Mantenere nel Session Storage current_user (la sua email)
 
+---------------------------------------------------------------------------
+
+PER LE REVIEW:
+
+Vengono memorizzate in una mappa con key = recipe_id e value array di recensioni.
+
+Ogni recensione è:
+- recipe_id (poi valutare se necessario) => sì è necessario
+- email utente che l'ha creata
+- content
+- taste
+- difficulty
+- date
+
 
 
 

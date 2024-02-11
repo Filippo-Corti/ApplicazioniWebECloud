@@ -90,7 +90,7 @@
   <!-- Reviews -->
   <section class="container-xxl my-4 mx-auto px-md-5">
     <h3>REVIEWS</h3>
-    <div class="w-100 d-flex flex-column align-items-center">
+    <div id="reviews_container" class="w-100 d-flex flex-column align-items-center">
       <!-- Write a Review Form -->
       <div class="card m-3 p-3 rounded-5 shadow border-0 w-100 logged-in-only" style="max-width: 900px;">
         <div class="row">
@@ -103,7 +103,7 @@
           </div>
           <div class="col-11">
             <div class="card-body">
-              <form action="recipe.html" name="review_form">
+              <form action="recipe.html" name="review_form" onsubmit="return validateAndPublishReview(this)">
                 <div class="row pe-4">
                   <input name="content" id="review_content"
                     class="w-100 border-0 border-bottom border-2 border-black ps-1" type="text"
@@ -147,10 +147,10 @@
                         id="preparation_date" required>
                     </div>
                   </div>
+                  <input class="keep-param" type="hidden" name="id" value="">
                   <div class="d-flex justify-content-end gap-3">
                     <button class="btn btn-outline-secondary" type="button" onclick="closeReviewForm()">Cancel</button>
-                    <input class="btn btn-primary border-0" type="submit" value="Publish"
-                      onclick="return validateAndPublishReview()">
+                    <input class="btn btn-primary border-0" type="submit" value="Publish">
                   </div>
                 </div>
               </form>
@@ -159,63 +159,6 @@
         </div>
       </div>
       <!-- Review Card -->
-      <div class="review-card | card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;"
-        data-my-review="false">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card-body">
-              <!-- Username & Picture -->
-              <div class="d-flex align-items-center gap-2">
-                <div class="bg-primary rounded-5" style="width:fit-content">
-                  <img src="../assets/img/anon.png" alt="Profile Picture">
-                </div>
-                <p class="card-text">Username</p>
-              </div>
-              <!-- Taste -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Taste:
-                </p>
-                <div class="review-score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
-                  <img class="tint-black" src="../assets/img/star.png" alt="Difficulty Score">
-                </div>
-              </div>
-              <!-- Difficulty -->
-              <div class>
-                <p class="card-text my-0 pt-3">
-                  Difficulty:
-                </p>
-                <div class="review-score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                  <img src="../assets/img/chef.png" alt="Taste Score">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="card-body">
-              <!-- Review Date -->
-              <p class="text-secondary mb-2">mm-dd-yyyy</p>
-              <!-- Review Content -->
-              <p class="card-text fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quisquam ratione
-                iure laboriosam ipsam, nesciunt pariatur ullam eius saepe blanditiis.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="review-delete" data-bs-toggle="modal" data-bs-target="#deleteReviewModal"
-          data-bs-recipe="Recipe Name">
-          <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Review">
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -315,7 +258,8 @@
                   rows="4"></textarea>
                 <input class="d-none" type="text" id="recipe_id" name="recipe_id">
               </div>
-              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal" aria-label="Close">Save</button>
+              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal"
+                aria-label="Close">Save</button>
             </div>
           </form>
         </div>
@@ -359,8 +303,8 @@
       <div class="row align-items-end gap-4">
         <div class="col-lg">
           <!-- Stats -->
-          <div class="recipe-card d-lg-block d-flex flex-column align-items-center" data-template-type="attribute" data-template-attribute="data-favourite"
-          data-template-value="favourite" data-favourite="false">
+          <div class="recipe-card d-lg-block d-flex flex-column align-items-center" data-template-type="attribute"
+            data-template-attribute="data-favourite" data-template-value="favourite" data-favourite="false">
             <div data-template-type="attribute" data-template-attribute="data-bs-recipe" data-template-value="name"
               class="recipe-save ms-0" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
               data-bs-recipe="Lamb Pilaf (Plov)" style="position: relative;">
@@ -460,6 +404,82 @@
     </div>
   </template>
 
+  <!-- Review Card -->
+  <template id="review_card">
+    <div class="review-card | card m-3 p-3 rounded-5 shadow border-0 w-100" style="max-width: 900px;"
+      data-template-type="attribute" data-template-attribute="data-my-review" data-template-value="my_review"
+      data-my-review="false">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card-body">
+            <!-- Username & Picture -->
+            <div class="d-flex align-items-center gap-2">
+              <div class="bg-primary rounded-5" style="width:fit-content">
+                <img src="../assets/img/anon.png" alt="Profile Picture">
+              </div>
+              <p data-template-type="content" data-template-value="author" class="card-text">Username</p>
+            </div>
+            <!-- Taste -->
+            <div data-template-type="element" data-template-value="taste">
+            </div>
+            <!-- Difficulty -->
+            <div data-template-type="element" data-template-value="difficulty">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <!-- Review Date -->
+            <p class="text-secondary mb-2">
+              <span data-template-type="content" data-template-value="date">mm-dd-yyyy</span>
+              <span data-template-type="content" data-template-value="timestamp" class="d-none"></span>
+            </p>
+            <!-- Review Content -->
+            <p data-template-type="content" data-template-value="content" class="card-text fs-5">Lorem ipsum dolor sit
+              amet
+              consectetur adipisicing elit. Sunt quisquam ratione
+              iure laboriosam ipsam, nesciunt pariatur ullam eius saepe blanditiis.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="review-delete" data-template-type="attribute" data-template-attribute="data-bs-recipe"
+        data-template-value="recipe" data-bs-toggle="modal" data-bs-target="#deleteReviewModal"
+        data-bs-recipe="Recipe Name">
+        <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Review">
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Taste Score -->
+  <template id="taste_score">
+    <p class="card-text my-0 pt-3">
+      Taste:
+    </p>
+    <div class="review-score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="1" src="../assets/img/star.png" alt="Taste Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="2" src="../assets/img/star.png" alt="Taste Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="3" src="../assets/img/star.png" alt="Taste Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="4" src="../assets/img/star.png" alt="Taste Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="5" src="../assets/img/star.png" alt="Taste Score">
+    </div>
+  </template>
+
+  <!-- Difficulty Score -->
+  <template id="difficulty_score">
+    <p class="card-text my-0 pt-3">
+      Difficulty:
+    </p>
+    <div class="review-score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="1" src="../assets/img/chef.png" alt="Difficulty Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="2" src="../assets/img/chef.png" alt="Difficulty Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="3" src="../assets/img/chef.png" alt="Difficulty Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="4" src="../assets/img/chef.png" alt="Difficulty Score">
+      <img data-template-type="attribute" data-template-attribute="class" data-template-value="5" src="../assets/img/chef.png" alt="Difficulty Score">
+    </div>
+  </template>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
@@ -471,11 +491,15 @@
   <script src="../assets/js/form-control.js"></script>
   <script src="../assets/js/utils.js"></script>
   <script type="module">
+
+    let id = getURLParam("id");
+
     //Load today's date as default
     document.review_form.date.valueAsDate = new Date();
 
+    //Fill Recipe Card
     let recipe_container = document.querySelector("#recipe_container");
-    let recipe_data = await getDetailsById(getURLParam("id"));
+    let recipe_data = await getDetailsById(id);
     document.querySelector("head>title").textContent += recipe_data.strMeal;
 
     let ingredients_data = extractIngredients(recipe_data);
@@ -500,10 +524,37 @@
 
     recipe_container.appendChild(recipe_element);
 
-    
-    let keep_param_on_login = document.querySelector("input.keep-param");
-    keep_param_on_login.value = getURLParam("id");
+    let keep_param_on_login = document.querySelectorAll("input.keep-param");
+    keep_param_on_login.forEach((el) => el.value = id);
 
+    //Add Reviews to the Page
+    let reviews = getFromStorage("reviews")[id];
+    let reviews_container = document.querySelector("#reviews_container");
+
+    reviews.forEach((review) => {
+      
+      let taste_template_data = {};
+      let difficulty_template_data = {};
+      for (let i = 1; i <= 5; i++) {
+          if (review.taste < i)
+            taste_template_data[i] = "tint-black";
+          if (review.difficulty >= i)
+            difficulty_template_data[i] = "tint-primary";
+      }
+
+      reviews_container.appendChild(buildDynamicElement("review_card", {
+        my_review: (review.author == getFromStorage("current_user")) ? "true" : "false",
+        author: getUserByEmail(review.author).username,
+        date: new Date(review.timestamp).toDateString(),
+        timestamp: review.timestamp,
+        content: review.content,
+        recipe: recipe_data.strMeal,
+        taste: getElementHTML(buildDynamicElement("taste_score", taste_template_data)),
+        difficulty: getElementHTML(buildDynamicElement("difficulty_score", difficulty_template_data)),
+      }));
+    });
+
+    console.log(reviews);
 
   </script>
 </body>

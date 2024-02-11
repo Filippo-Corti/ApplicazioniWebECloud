@@ -137,7 +137,7 @@ function voteDifficulty(vote) {
 }
 
 // Review Submit Form Control
-function validateAndPublishReview() {
+function validateAndPublishReview(form) {
     let form_ok = true;
     let inputs = form.querySelectorAll("input");
 
@@ -165,6 +165,21 @@ function validateAndPublishReview() {
     }
 
     //if (form_ok) add review to local storage !!!
+    if (form_ok) {
+
+        let form_data = new FormData(form);
+
+        let new_review = {
+            recipe_id: form_data.get("id"),
+            author: getFromStorage("current_user"),
+            content: form_data.get("content"),
+            taste: form_data.get("taste"),
+            difficulty: form_data.get("difficulty"),
+            timestamp: date_value,
+        };
+
+        addReviewToStorage(new_review);
+    }
 
     return form_ok;
 }
@@ -220,6 +235,7 @@ function checkCredentialsAndLogin(form) {
     }
 }
 
+//Get recipe note data and save in cookbook
 function saveRecipe(form) {
     let form_data = new FormData(form);
 
