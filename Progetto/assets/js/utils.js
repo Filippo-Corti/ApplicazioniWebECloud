@@ -42,14 +42,12 @@ function buildBackgroundGrid() {
     const COLS = document.body.clientWidth / COL_SIZE;
     let grid_row = document.querySelector(".background-grid-row");
     const ROW_SIZE = COL_SIZE;
-    const ROWS = document.body.scrollHeight / ROW_SIZE + 1;
+    const ROWS = window.innerHeight / ROW_SIZE + 2;
 
-    let remove_lateral_cols = (document.body.clientWidth > 1420);
-
-    for (let i = 1 + ((remove_lateral_cols) ? 1 : 0); i < COLS - ((remove_lateral_cols) ? 2 : 0); i++) {
+    for (let i = 1; i < COLS; i++) {
         let new_col = grid_col.cloneNode(true);
         new_col.classList.remove("d-none");
-        new_col.style.left = COL_SIZE * i + "px";
+        new_col.style.left = COL_SIZE * i - 50 + "px";
         grid_container.appendChild(new_col);
     }
 
@@ -83,7 +81,7 @@ function initializeModalEvents() {
     if (saveRecipeModal) {
         saveRecipeModal.addEventListener('show.bs.modal', event => {
 
-            // !!! if not logged in event.preventDefault() + show del modal di Login
+            //if not logged in event.preventDefault() + show del modal di Login
             if (!logged_in) {
                 event.preventDefault();
                 const loginModal = new bootstrap.Modal('#loginModal')
@@ -92,15 +90,32 @@ function initializeModalEvents() {
 
             // Button that triggered the modal
             const button = event.relatedTarget
-            // Extract info from data-bs-* attributes
+
+            // Extract info from data-* attributes
             const recipe_name = button.getAttribute('data-bs-recipe')
-            // If necessary, you could initiate an Ajax request here
-            // and then do the updating in a callback.
+            const recipe_href = button.parentNode.querySelector("a")?.href;
+            let recipe_id;
+            if (recipe_href) {
+                recipe_id = recipe_href.substring(recipe_href.indexOf("id=") + 3);
+            } else {
+                recipe_id = getURLParam("id");
+            }
+
+
+            //if the recipe is in the cookbook just remove it 
+            if (button.parentNode.getAttribute("data-favourite") == "true") {
+                button.parentNode.setAttribute("data-favourite", "false");
+                removeFromCookbook(recipe_id);
+                event.preventDefault();
+                return;
+            }
 
             // Update the modal's content.
             const modalBodyLabel = saveRecipeModal.querySelector('.modal-recipe-label')
+            const modalRecipeId = saveRecipeModal.querySelector('input#recipe_id')
 
             modalBodyLabel.textContent = recipe_name;
+            modalRecipeId.value = recipe_id;
         })
     }
 
@@ -113,8 +128,6 @@ function initializeModalEvents() {
             const button = event.relatedTarget
             // Extract info from data-bs-* attributes
             const recipe_name = button.getAttribute('data-bs-recipe')
-            // If necessary, you could initiate an Ajax request here
-            // and then do the updating in a callback.
 
             // Update the modal's content.
             const modalBodyLabel = deleteReviewModal.querySelector('.modal-recipe-label')
@@ -176,6 +189,9 @@ function buildDynamicElement(templateId, data) {
             case "element":
                 slot.innerHTML = value;
                 break;
+            case "value":
+                slot.value = value;
+                break;
         }
     }
 
@@ -191,9 +207,7 @@ function buildDynamicElement(templateId, data) {
 
 //Enables edit of the sibling with class "editable"
 function enableEdit(clicked_element) {
-
     let editable_element = clicked_element.parentNode.querySelector(".editable");
-
     editable_element.disabled = false;
 }
 
@@ -209,17 +223,29 @@ function disableEdit(editable_element) {
     return true;
 }
 
-//Save edit in local storage and Disable field 
+//Save edit in local storage and disable field 
 function saveAndDisableEdit(clicked_element) {
     let editable_element = clicked_element.parentNode.querySelector(".editable");
     if (disableEdit(editable_element)) {
         //Valid Edit
         let field = editable_element.name;
         let user = getLoggedUserData();
-        user[field] = editable_element.value;
+        if (field == "note") {
+            //Save Note 
+            let recipe_href = clicked_element.parentNode.parentNode.parentNode.href;
+            let recipe_id = recipe_href.substring(recipe_href.indexOf("id=") + 3);
+            for (let saved_recipe of user.cookbook) {
+                if (saved_recipe.id == recipe_id)
+                    user.cookbook[user.cookbook.indexOf(saved_recipe)].note = editable_element.value;
+            }
+        } else {
+            //Save a standard field
+            user[field] = editable_element.value;
+        }
         updateUser(user);
-    } 
+    }
 }
+
 
 //Checks Passwords, then calls disableEdit
 function confirmPasswordEdit(clicked_element) {
@@ -245,7 +271,7 @@ function saveAndConfirmPasswordEdit(clicked_element) {
         let user = getLoggedUserData();
         user[field] = editable_element.value;
         updateUser(user);
-    } 
+    }
 }
 
 // Hide Results when anything is clicked
@@ -431,8 +457,12 @@ function toggleStateAndUpdateStorage(tag) {
 }
 
 function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5); 
+    return array.sort(() => Math.random() - 0.5);
 }
 
-
+//Remove recipe and its tooltip from the view (The deletion from the storage is executed in the save recipe modal code, because it's needed everywhere, whereas this is only needed in the profile page)
+function removeRecipe(el) {
+    el.parentElement.remove();
+    bootstrap.Tooltip.getInstance(el.firstElementChild).dispose();
+}
 

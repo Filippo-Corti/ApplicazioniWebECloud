@@ -239,8 +239,9 @@
                     class="modal-recipe-label | text-primary">Recipe Name</span>?</h5>
                 <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="note" name="note"
                   rows="4"></textarea>
+                <input class="d-none" type="text" id="recipe_id" name="recipe_id">
               </div>
-              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Save</button>
+              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal" aria-label="Close">Save</button>
             </div>
           </form>
         </div>
@@ -280,7 +281,8 @@
           <div class="py-2 d-flex flex-column justify-content-end">
             <h5 data-template-type="content" data-template-value="area"
               class="card-title text-primary text-uppercase fs-5 d-none">Area Cuisine</h5>
-            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3 text-center px-2">Recipe Name</h4>
+            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3 text-center px-2">Recipe
+              Name</h4>
           </div>
         </div>
       </a>
@@ -373,7 +375,7 @@
               reviews: 0,
               area: recipe.area + " Cuisine",
               name: recipe.name,
-              favourite: false, // !!!
+              favourite: isInCookbook(recipe.id),
             }));
         }
         //Make sure longest name goes alone

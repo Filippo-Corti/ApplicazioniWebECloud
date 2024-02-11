@@ -213,7 +213,7 @@ function updateUser(new_user_data) {
     let users = getFromStorage("users");
     if (users) {
         for (let user of users) {
-            if (user.email == new_user_data.email) 
+            if (user.email == new_user_data.email)
                 users[users.indexOf(user)] = new_user_data;
         }
     }
@@ -236,4 +236,35 @@ function deleteLoggedAccount() {
     }
     localStorage.setItem("users", JSON.stringify(users));
     logout();
+}
+
+//Add recipe to currently logged user's cookbook or updates it if it's already in it
+function addToCookbook(recipe) {
+    let user = getLoggedUserData();
+    if (user.cookbook.filter((r) => r.id == recipe.id).length == 0) {
+        //Recipe is not currently in the cookbook
+        user.cookbook.push(recipe);
+    } else {
+        //Recipe is currently in the cookbook - we can update the note
+        for (let r of user.cookbook) {
+            if (r.id == recipe.id)
+                user.cookbook[user.cookbook.indexOf(r)] = recipe;
+        }
+    }
+    updateUser(user);
+}
+
+//Remove recipe from currently logged user's cookbook 
+function removeFromCookbook(id) {
+    let user = getLoggedUserData();
+    user.cookbook = user.cookbook.filter((r) => r.id != id);
+    updateUser(user);
+}
+
+//Return true if the recipe with id = id is in the currently logged user's cookbook
+function isInCookbook(id) {
+    let user = getLoggedUserData();
+    if (user)
+        return user.cookbook.filter((r) => r.id == id).length != 0;
+    return false;
 }

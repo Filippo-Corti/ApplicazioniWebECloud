@@ -213,10 +213,11 @@
                             <div class="card-text py-2 px-1 mb-1 position-relative">
                                 <h5 class="text-black fs-6">Do you wanto to leave a note for <span
                                         class="modal-recipe-label | text-primary">Recipe Name</span>?</h5>
-                                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id=""
-                                    rows="4"></textarea>
+                                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="note"
+                                    name="note" rows="4"></textarea>
+                                <input class="d-none" type="text" id="recipe_id" name="recipe_id">
                             </div>
-                            <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Save</button>
+                            <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal" aria-label="Close">Save</button>
                         </div>
                     </form>
                 </div>
@@ -351,7 +352,6 @@
             //Get 3 Recipes
             for (let j = 0; j < 2 && i < found_recipes.length; j++, i++) {
                 let recipe = found_recipes[i];
-                console.log(recipe);
                 recipes.push(
                     buildDynamicElement("recipe-card", {
                         href: "recipe.html?id=" + recipe.idMeal,
@@ -361,10 +361,9 @@
                         reviews: 0,
                         area: (recipe.strArea) ? recipe.strArea + " Cuisine" : " ",
                         name: recipe.strMeal,
-                        favourite: false, // !!!
+                        favourite: isInCookbook(recipe.idMeal),
                     }));
             }
-            console.log(recipes);
             //Place them in the page
             let dynamic_card_group = buildDynamicElement("recipe-card-group", {
                 row1: getElementHTML(recipes[0]) + getElementHTML(recipes[1]),

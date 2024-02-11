@@ -221,4 +221,33 @@ function checkCredentialsAndLogin(form) {
     }
 }
 
+function saveRecipe(form) {
+    let form_data = new FormData(form);
+
+    let saved_recipe = {
+        id: form_data.get("recipe_id"),
+        note: form_data.get("note"),
+    };
+
+    addToCookbook(saved_recipe);
+
+    //Update icon for the cards
+    let recipe_hrefs = document.querySelectorAll("[href*='id=" + form_data.get("recipe_id") + "']");
+    recipe_hrefs.forEach((href) => {
+        let card = href.parentNode;
+        card.setAttribute("data-favourite", "true");
+    });
+    //Update icon for the recipe page
+    if (getURLParam("id")) {
+        document.querySelector("[data-favourite]").setAttribute("data-favourite", "true");
+    }
+
+    //Empty the form note
+    form.querySelector("#note").value = "";
+
+    //Prevent reload
+    return false;
+}
+
+
 

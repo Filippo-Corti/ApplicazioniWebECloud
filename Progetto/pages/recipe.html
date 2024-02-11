@@ -310,9 +310,11 @@
               <div class="card-text py-2 px-1 mb-1 position-relative">
                 <h5 class="text-black fs-6">Do you wanto to leave a note for <span
                     class="modal-recipe-label | text-primary">Recipe Name</span>?</h5>
-                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"></textarea>
+                <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="note" name="note"
+                  rows="4"></textarea>
+                <input class="d-none" type="text" id="recipe_id" name="recipe_id">
               </div>
-              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Save</button>
+              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal" aria-label="Close">Save</button>
             </div>
           </form>
         </div>
@@ -356,7 +358,8 @@
       <div class="row align-items-end gap-4">
         <div class="col-lg">
           <!-- Stats -->
-          <div class="d-lg-block d-flex flex-column align-items-center">
+          <div class="recipe-card d-lg-block d-flex flex-column align-items-center" data-template-type="attribute" data-template-attribute="data-favourite"
+          data-template-value="favourite" data-favourite="false">
             <div data-template-type="attribute" data-template-attribute="data-bs-recipe" data-template-value="name"
               class="recipe-save ms-0" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
               data-bs-recipe="Lamb Pilaf (Plov)" style="position: relative;">
@@ -491,6 +494,7 @@
       instructions: recipe_data.strInstructions.replaceAll("\r\n", "<br>"),
       image: recipe_data.strMealThumb,
       ingredients: ingredients_elements.join(''),
+      favourite: isInCookbook(recipe_data.idMeal),
     });
 
     recipe_container.appendChild(recipe_element);

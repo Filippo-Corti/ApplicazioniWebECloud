@@ -173,53 +173,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="py-3 d-flex flex-column gap-3">
-                    <!-- Saved Recipe Card -->
-                    <div class="recipe-card | rounded-5 overflow-hidden shadow w-100" data-favourite>
-                        <div class="card border-0">
-                            <img src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
-                                class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
-                            <div class="card-body">
-                                <div class="row pe-4 ps-1 align-items-baseline">
-                                    <div class="col-7 mt-4">
-                                        <h5 class="card-title text-primary text-uppercase fs-6">Area Cuisine</h5>
-                                        <h4 class="card-title fs-4">Recipe Name </h4>
-                                    </div>
-                                    <div class="col-5 row gap-2 justify-content-end mb-2">
-                                        <div class="col d-flex align-items-center gap-2">
-                                            <img width="20" src="../assets/img/star.png" alt="Taste Score">
-                                            <span>0.0</span>
-                                        </div>
-                                        <div class="col d-flex align-items-center gap-2">
-                                            <img class="tint-danger" width="20" src="../assets/img/chef.png"
-                                                alt="Taste Score">
-                                            <span>0.0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-text py-2 px-1 mb-1 position-relative">
-                                    <h5 class="text-secondary fs-6">Your Note:</h5>
-                                    <textarea class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2" id="" rows="4"
-                                        disabled></textarea>
-                                    <div class="edit-button | position-absolute"
-                                        style="cursor:pointer; top: 30%; right: 4%" onclick="enableEdit(this)">
-                                        <img width="24" src="../assets/img/edit.png" alt="Edit Note">
-                                    </div>
-                                    <button
-                                        class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none"
-                                        style="cursor:pointer; bottom: 12%; right: 4%" onclick="disableEdit(this)">
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
-                                data-bs-recipe="Lamb Pilaf (Plov)">
-                                <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    data-bs-title="Save Recipe">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div id="saved_recipes_container" class="py-3 d-flex flex-column gap-3">
                 </div>
                 <div class="fs-5 text-secondary text-center mt-2">
                     Looking for new recipes? <br>
@@ -313,8 +267,9 @@
                     <div
                         class="d-flex flex-column mt-4 border-bottom border-black pb-3 border-opacity-50 position-relative">
                         <label class="fs-5 text-secondary" for="email">Email</label>
-                        <input class="form-control rounded-2 border-2 fs-4 text-black p-0 text-body-secondary" type="email"
-                            autocomplete="username" name="email" id="email" value="your@email.com" disabled required>
+                        <input class="form-control rounded-2 border-2 fs-4 text-black p-0 text-body-secondary"
+                            type="email" autocomplete="username" name="email" id="email" value="your@email.com" disabled
+                            required>
                     </div>
                     <div
                         class="d-flex flex-column mt-4 border-bottom border-black pb-3 border-opacity-50 position-relative">
@@ -382,7 +337,8 @@
                         </div>
                     </div>
                     <div class="fs-5 text-secondary text-center mt-4">
-                        <span style="cursor: pointer" class="text-decoration-underline" onclick="logout()">Log out</span> <br>
+                        <span style="cursor: pointer" class="text-decoration-underline" onclick="logout()">Log
+                            out</span> <br>
                         Do you want to delete your account? <span style="cursor: pointer"
                             class="text-decoration-underline" data-bs-toggle="modal"
                             data-bs-target="#deleteAccountModal">click here</span>
@@ -543,9 +499,10 @@
                     <p class="fs-6 ">All your reviews will be marked as anonymous and you won't be able to edit them
                         anymore.</p>
                     <div class="d-flex justify-content-center gap-3 mx-3">
-                        <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2" data-bs-dismiss="modal"
-                        aria-label="Close">Cancel</button>
-                        <button type="button" class="w-100 btn btn-primary fs-5 mt-3 mb-2" onclick="deleteLoggedAccount()">Delete</button>
+                        <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2"
+                            data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                        <button type="button" class="w-100 btn btn-primary fs-5 mt-3 mb-2"
+                            onclick="deleteLoggedAccount()">Delete</button>
                     </div>
                     <p class="fs-6 text-danger text-center">Mind that this operation is irreversibile</p>
                 </div>
@@ -554,6 +511,59 @@
     </modal>
 
     <!-- Templates -->
+
+    <!-- Saved Recipe Card -->
+    <template id="saved_recipe_card">
+        <div class="recipe-card | rounded-5 overflow-hidden shadow w-100" data-template-type="attribute"
+            data-template-attribute="data-favourite" data-template-value="favourite" data-favourite="true">
+            <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
+                class="card border-0" href="pages/recipe.html?id=00000">
+                <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
+                    src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg"
+                    class="recipe-image | card-img-top" alt="Lamb Pilaf (Plov)">
+                <div class="card-body">
+                    <div class="row pe-4 ps-1 align-items-baseline">
+                        <div class="col-7 mt-4">
+                            <h5 data-template-type="content" data-template-value="area"
+                                class="card-title text-primary text-uppercase fs-5">Area Cuisine</h5>
+                            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3 mt-0">Recipe
+                                Name </h4>
+                        </div>
+                        <div class="col-5 row gap-2 justify-content-end mb-2">
+                            <div class="col d-flex align-items-center gap-2">
+                                <img width="20" src="../assets/img/star.png" alt="Taste Score">
+                                <span data-template-type="content" data-template-value="taste">0.0</span>
+                            </div>
+                            <div class="col d-flex align-items-center gap-2">
+                                <img class="tint-danger" width="20" src="../assets/img/chef.png" alt="Taste Score">
+                                <span data-template-type="content" data-template-value="difficulty">0.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-text py-2 px-1 mb-1 position-relative" onclick="event.preventDefault();">
+                        <h5 class="text-secondary fs-5">Your Note:</h5>
+                        <textarea data-template-type="value"
+                            data-template-value="note" class="editable | w-100 rounded-5 border-2 ps-3 pe-5 py-2 fs-5" name="note"
+                            rows="4" disabled></textarea>
+                        <div class="edit-button | position-absolute" style="cursor:pointer; top: 30%; right: 4%;"
+                            onclick="enableEdit(this);">
+                            <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                        </div>
+                        <button type="button" class="save-button | position-absolute btn btn-outline-secondary rounded-5 d-none bg-white"
+                            style="cursor:pointer; bottom: 12%; right: 4%" onclick="saveAndDisableEdit(this)">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </a>
+            <div class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal"
+                data-bs-recipe="Lamb Pilaf (Plov)" onclick="removeRecipe(this);">
+                <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="Save Recipe">
+                </div>
+            </div>
+        </div>
+    </template>
 
     <template id="preferences_area_tag">
         <span class="tag tag-area | btn btn-outline-success fs-5 d-flex align-items-center gap-2"
@@ -595,9 +605,28 @@
     <script src="../assets/js/storage.js"></script>
     <script src="../assets/js/form-control.js"></script>
     <script src="../assets/js/utils.js"></script>
-    <script>
+    <script type="module">
         let logged_user = getLoggedUserData();
+        fillCookbookTab();
         updateProfileTab();
+
+        function fillCookbookTab() {
+            let saved_recipes = logged_user.cookbook;
+            let container = document.querySelector("#saved_recipes_container");
+            saved_recipes.forEach(async (saved_recipe) => {
+                let recipe = await getDetailsById(saved_recipe.id);
+                container.appendChild(buildDynamicElement("saved_recipe_card", {
+                    href: "recipe.html?id=" + recipe.idMeal,
+                    image: recipe.strMealThumb,
+                    taste: 0.0,
+                    difficulty: 0.0,
+                    area: recipe.strArea + " Cuisine",
+                    name: recipe.strMeal,
+                    favourite: true,
+                    note: saved_recipe.note,
+                }))
+            })
+        }
 
         function updateProfileTab() {
             document.querySelector("input#email").value = logged_user.email;
@@ -616,6 +645,7 @@
                 toggleState(document.querySelector("input[name='preferences_ingredient'][value='" + ingredient_name + "']").parentElement);
             });
         }
+
 
 
     </script>

@@ -443,6 +443,10 @@ input[type="checkbox"]:checked {
     display: block !important;
 }
 
+.save-button:hover {
+    background-color: var(--clr-secondary) !important;
+}
+
 .editable:not([disabled])~.edit-button {
     display: none !important;
 }
