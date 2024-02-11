@@ -263,7 +263,7 @@
           <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
             <p>Credentials are wrong! Try again</p>
           </div>
-          <form method="GET" action="../index.html" onsubmit="return checkCredentialsAndLogin(this)">
+          <form method="GET" action="#" onsubmit="return checkCredentialsAndLogin(this)">
             <div class="col-12">
               <div class="d-flex flex-column mt-2">
                 <label class="fs-5 text-dark" for="login_email">Email</label>
@@ -277,6 +277,7 @@
                 <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password" name="password"
                   id="login_password" autocomplete="current-password" required>
               </div>
+              <input class="keep-param" type="hidden" name="id" value="">
               <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
             </div>
           </form>
@@ -498,6 +499,10 @@
     });
 
     recipe_container.appendChild(recipe_element);
+
+    
+    let keep_param_on_login = document.querySelector("input.keep-param");
+    keep_param_on_login.value = getURLParam("id");
 
 
   </script>

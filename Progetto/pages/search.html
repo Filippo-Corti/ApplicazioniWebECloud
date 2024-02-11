@@ -164,7 +164,7 @@
                     <div class="invalid-credentials | d-none text-center text-danger fs-6 mt-2">
                         <p>Credentials are wrong! Try again</p>
                     </div>
-                    <form method="GET" action="../index.html" onsubmit="return checkCredentialsAndLogin(this)">
+                    <form method="GET" action="search.html" onsubmit="return checkCredentialsAndLogin(this);">
                         <div class="col-12">
                             <div class="d-flex flex-column mt-2">
                                 <label class="fs-5 text-dark" for="login_email">Email</label>
@@ -179,6 +179,7 @@
                                 <input class="toggle-visibility | form-control rounded-2 p-2 border-2" type="password"
                                     name="password" id="login_password" autocomplete="current-password" required>
                             </div>
+                            <input class="keep-param" type="hidden" name="" value="">
                             <button type="submit" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Log In</button>
                         </div>
                     </form>
@@ -217,7 +218,8 @@
                                     name="note" rows="4"></textarea>
                                 <input class="d-none" type="text" id="recipe_id" name="recipe_id">
                             </div>
-                            <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal" aria-label="Close">Save</button>
+                            <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal"
+                                aria-label="Close">Save</button>
                         </div>
                     </form>
                 </div>
@@ -322,6 +324,7 @@
         let ingredient = getURLParam("ingredient");
         let search_title = document.querySelector(".keyword");
         let recipes_container = document.querySelector("#recipe-results");
+        let keep_param_on_login = document.querySelector("input.keep-param");
         let found_recipes;
 
         if (keyword) {
@@ -329,22 +332,27 @@
             found_recipes = await searchByName(keyword);
             if (found_recipes)
                 search_title.textContent = found_recipes.length + ' Results for the search "' + keyword + '"';
+            keep_param_on_login.name = "search";
         } else if (category) {
             document.getElementById("search").value = category;
             found_recipes = await searchByCategory(category);
             if (found_recipes)
                 search_title.textContent = found_recipes.length + ' Results for the category "' + category + '"';
+            keep_param_on_login.name = "category";
         } else if (area) {
             document.getElementById("search").value = area;
             found_recipes = await searchByArea(area);
             if (found_recipes)
                 search_title.textContent = found_recipes.length + ' Results for the area "' + area + '"';
+            keep_param_on_login.name = "area";
         } else if (ingredient) {
             document.getElementById("search").value = ingredient;
             found_recipes = await searchByIngredient(ingredient);
             if (found_recipes)
                 search_title.textContent = found_recipes.length + ' Recipes with the ingredient "' + ingredient + '"';
+            keep_param_on_login.name = "ingredient";
         }
+        keep_param_on_login.value = document.getElementById("search").value;
 
         for (let i = 0; i < found_recipes?.length;) {
             let recipes = [];

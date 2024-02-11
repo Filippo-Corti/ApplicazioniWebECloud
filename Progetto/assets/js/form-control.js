@@ -216,7 +216,6 @@ function checkCredentialsAndLogin(form) {
         email.classList.add("is-invalid");
         //always
         password.classList.add("is-invalid");
-
         return false;
     }
 }
