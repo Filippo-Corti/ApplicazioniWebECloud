@@ -364,7 +364,7 @@ async function getSearchResults(keyword, href_prefix) {
             type: "ingredient",
             name: matching_ingredients[j].name + " (Ingredient)",
             description: matching_ingredients[j].description,
-            image: "https://www.themealdb.com/images/ingredients/" + matching_ingredients[j].name + ".png",
+            image: "https://www.themealdb.com/images/ingredients/" + matching_ingredients[j].name + "-Small.png",
             href: href_prefix + "search.html?ingredient=" + matching_ingredients[j].name,
         });
     }

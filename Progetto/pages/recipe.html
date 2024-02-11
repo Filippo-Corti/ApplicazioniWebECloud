@@ -481,7 +481,7 @@
     let ingredients_elements = ingredients_data.map((ingr) => buildDynamicElement("ingredient", {
       name: ingr.name,
       measure: ingr.measure,
-      image: "https://www.themealdb.com/images/ingredients/" + ingr.name + ".png",
+      image: "https://www.themealdb.com/images/ingredients/" + ingr.name + "-Small.png",
       href: "search.html?ingredient=" + ingr.name,
     })).map(getElementHTML);
 

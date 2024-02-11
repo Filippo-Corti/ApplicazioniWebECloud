@@ -18,6 +18,8 @@ async function searchByName(keyword) {
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
+    if (!meals)
+        return [];
     return meals;
 }
 
@@ -30,6 +32,8 @@ async function searchByFirstLetter(first_letter) {
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
+    if (!meals)
+        return [];
     return meals;
 }
 
@@ -95,6 +99,8 @@ async function searchByIngredient(ingredient) {
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
+    if (!meals)
+        return [];
     return meals;
 }
 
@@ -105,6 +111,8 @@ async function searchByCategory(category) {
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
+    if (!meals)
+        return [];
     return meals;
 }
 
@@ -115,6 +123,8 @@ async function searchByArea(area) {
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
+    if (!meals)
+        return [];
     return meals;
 }
 
