@@ -126,13 +126,20 @@ function initializeModalEvents() {
 
             // Button that triggered the modal
             const button = event.relatedTarget
+
             // Extract info from data-bs-* attributes
             const recipe_name = button.getAttribute('data-bs-recipe')
+            const timestamp = button.parentNode.querySelector("[data-template-value='timestamp']").textContent
+            const recipe_id = button.parentNode.querySelector("[data-template-value='recipe_id']").textContent
 
             // Update the modal's content.
             const modalBodyLabel = deleteReviewModal.querySelector('.modal-recipe-label')
+            const deleteButton = deleteReviewModal.querySelector("button.delete-review")
 
             modalBodyLabel.textContent = recipe_name;
+            deleteButton.setAttribute("data-author", getFromStorage("current_user"));
+            deleteButton.setAttribute("data-timestamp", timestamp);
+            deleteButton.setAttribute("data-id", recipe_id);
         })
     }
 }
@@ -329,7 +336,7 @@ async function getSearchResults(keyword, href_prefix) {
     let to_show = []; //Max: 2 Categories, 2 Areas, 3 Recipes, 1 Ingredient
     let i = 0;
 
-    for (let j = 0; i < 2 && j < matching_categories.length; i++, j++) {
+    for (let j = 0; i < 2 && j < matching_categories?.length; i++, j++) {
         to_show.push({
             type: "category",
             name: matching_categories[j].name + " (Category)",
@@ -339,7 +346,7 @@ async function getSearchResults(keyword, href_prefix) {
         });
     }
 
-    for (let j = 0; i < 4 && j < matching_areas.length; i++, j++) {
+    for (let j = 0; i < 4 && j < matching_areas?.length; i++, j++) {
         to_show.push({
             type: "area",
             name: matching_areas[j].name + " (Area)",
@@ -349,7 +356,7 @@ async function getSearchResults(keyword, href_prefix) {
         });
     }
 
-    for (let j = 0; i < 7 && j < matching_recipes.length; i++, j++) {
+    for (let j = 0; i < 7 && j < matching_recipes?.length; i++, j++) {
         to_show.push({
             type: "recipe",
             name: matching_recipes[j].name,
@@ -359,7 +366,7 @@ async function getSearchResults(keyword, href_prefix) {
         });
     }
 
-    for (let j = 0; i < 8 && j < matching_ingredients.length; i++, j++) {
+    for (let j = 0; i < 8 && j < matching_ingredients?.length; i++, j++) {
         to_show.push({
             type: "ingredient",
             name: matching_ingredients[j].name + " (Ingredient)",
@@ -466,3 +473,12 @@ function removeRecipe(el) {
     bootstrap.Tooltip.getInstance(el.firstElementChild).dispose();
 }
 
+//Delete Review and reload the page, to show the update occurred
+function deleteReview(target) {
+    let email = target.getAttribute("data-author");
+    let timestamp = target.getAttribute("data-timestamp");
+    let id = target.getAttribute("data-id")
+
+    removeReviewFromStorage(id, email, timestamp);
+    location.reload();
+}

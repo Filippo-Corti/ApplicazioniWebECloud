@@ -94,14 +94,14 @@
       <!-- Write a Review Form -->
       <div class="card m-3 p-3 rounded-5 shadow border-0 w-100 logged-in-only" style="max-width: 900px;">
         <div class="row">
-          <div class="col-1">
+          <div class="col-md-1">
             <div class="card-body">
               <div class="bg-primary rounded-5" style="width:fit-content">
                 <img src="../assets/img/anon.png" alt="Profile Picture">
               </div>
             </div>
           </div>
-          <div class="col-11">
+          <div class="col-md-11">
             <div class="card-body">
               <form action="recipe.html" name="review_form" onsubmit="return validateAndPublishReview(this)">
                 <div class="row pe-4">
@@ -286,7 +286,7 @@
               Name</span></span>?</p>
           <div class="d-flex justify-content-center gap-3 mx-3">
             <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2">Cancel</button>
-            <button type="button" class="w-100 btn btn-primary fs-5 mt-3 mb-2">Delete</button>
+            <button type="button" class="delete-review | w-100 btn btn-primary fs-5 mt-3 mb-2" onclick="deleteReview(this)">Delete</button>
           </div>
           <p class="fs-6 text-danger text-center">Mind that this operation is irreversibile</p>
         </div>
@@ -433,6 +433,7 @@
             <p class="text-secondary mb-2">
               <span data-template-type="content" data-template-value="date">mm-dd-yyyy</span>
               <span data-template-type="content" data-template-value="timestamp" class="d-none"></span>
+              <span data-template-type="content" data-template-value="recipe_id" class="d-none"></span>
             </p>
             <!-- Review Content -->
             <p data-template-type="content" data-template-value="content" class="card-text fs-5">Lorem ipsum dolor sit
@@ -454,29 +455,43 @@
 
   <!-- Taste Score -->
   <template id="taste_score">
-    <p class="card-text my-0 pt-3">
-      Taste:
-    </p>
-    <div class="review-score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="1" src="../assets/img/star.png" alt="Taste Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="2" src="../assets/img/star.png" alt="Taste Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="3" src="../assets/img/star.png" alt="Taste Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="4" src="../assets/img/star.png" alt="Taste Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="5" src="../assets/img/star.png" alt="Taste Score">
+    <div>
+      <p class="card-text my-0 pt-3">
+        Taste:
+      </p>
+      <div class="review-score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="1"
+          src="../assets/img/star.png" alt="Taste Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="2"
+          src="../assets/img/star.png" alt="Taste Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="3"
+          src="../assets/img/star.png" alt="Taste Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="4"
+          src="../assets/img/star.png" alt="Taste Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="5"
+          src="../assets/img/star.png" alt="Taste Score">
+      </div>
     </div>
   </template>
 
   <!-- Difficulty Score -->
   <template id="difficulty_score">
-    <p class="card-text my-0 pt-3">
-      Difficulty:
-    </p>
-    <div class="review-score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="1" src="../assets/img/chef.png" alt="Difficulty Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="2" src="../assets/img/chef.png" alt="Difficulty Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="3" src="../assets/img/chef.png" alt="Difficulty Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="4" src="../assets/img/chef.png" alt="Difficulty Score">
-      <img data-template-type="attribute" data-template-attribute="class" data-template-value="5" src="../assets/img/chef.png" alt="Difficulty Score">
+    <div>
+      <p class="card-text my-0 pt-3">
+        Difficulty:
+      </p>
+      <div class="review-score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="1"
+          src="../assets/img/chef.png" alt="Difficulty Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="2"
+          src="../assets/img/chef.png" alt="Difficulty Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="3"
+          src="../assets/img/chef.png" alt="Difficulty Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="4"
+          src="../assets/img/chef.png" alt="Difficulty Score">
+        <img data-template-type="attribute" data-template-attribute="class" data-template-value="5"
+          src="../assets/img/chef.png" alt="Difficulty Score">
+      </div>
     </div>
   </template>
 
@@ -510,6 +525,7 @@
       href: "search.html?ingredient=" + ingr.name,
     })).map(getElementHTML);
 
+    let recipe_stats = getRecipeReviewStats(id);
     let recipe_element = buildDynamicElement("recipe", {
       name: recipe_data.strMeal,
       category: recipe_data.strCategory,
@@ -520,6 +536,9 @@
       image: recipe_data.strMealThumb,
       ingredients: ingredients_elements.join(''),
       favourite: isInCookbook(recipe_data.idMeal),
+      difficulty: recipe_stats.difficulty,
+      taste: recipe_stats.taste,
+      reviews: recipe_stats.reviews,
     });
 
     recipe_container.appendChild(recipe_element);
@@ -531,15 +550,15 @@
     let reviews = getFromStorage("reviews")[id];
     let reviews_container = document.querySelector("#reviews_container");
 
-    reviews.forEach((review) => {
-      
+    reviews?.forEach((review) => {
+
       let taste_template_data = {};
       let difficulty_template_data = {};
       for (let i = 1; i <= 5; i++) {
-          if (review.taste < i)
-            taste_template_data[i] = "tint-black";
-          if (review.difficulty >= i)
-            difficulty_template_data[i] = "tint-primary";
+        if (review.taste < i)
+          taste_template_data[i] = "tint-black";
+        if (review.difficulty >= i)
+          difficulty_template_data[i] = "tint-primary";
       }
 
       reviews_container.appendChild(buildDynamicElement("review_card", {
@@ -549,12 +568,12 @@
         timestamp: review.timestamp,
         content: review.content,
         recipe: recipe_data.strMeal,
+        recipe_id: recipe_data.idMeal,
         taste: getElementHTML(buildDynamicElement("taste_score", taste_template_data)),
         difficulty: getElementHTML(buildDynamicElement("difficulty_score", difficulty_template_data)),
       }));
     });
 
-    console.log(reviews);
 
   </script>
 </body>

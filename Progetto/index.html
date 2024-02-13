@@ -241,7 +241,8 @@
                   rows="4"></textarea>
                 <input class="d-none" type="text" id="recipe_id" name="recipe_id">
               </div>
-              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal" aria-label="Close">Save</button>
+              <button type="submit" class="w-100 btn btn-primary fs-5 mt-3 mb-2" data-bs-dismiss="modal"
+                aria-label="Close">Save</button>
             </div>
           </form>
         </div>
@@ -337,6 +338,7 @@
   <script src="assets/js/storage.js"></script>
   <script src="assets/js/form-control.js"></script>
   <script src="assets/js/utils.js"></script>
+  <script type="module" src="assets/js/test-data.js"></script>
   <script type="module">
 
     //clearStorage();
@@ -366,13 +368,14 @@
         //Get 3 Recipes
         for (let j = 0; j < 3 && i < recipes.length; j++, i++) {
           let recipe = recipes[i];
+          let recipe_stats = getRecipeReviewStats(recipe.id);
           curr_recipes.push(
             buildDynamicElement("recipe-card", {
               href: "pages/recipe.html?id=" + recipe.id,
               image: recipe.image,
-              taste: 0.0,
-              difficulty: 0.0,
-              reviews: 0,
+              difficulty: recipe_stats.difficulty,
+              taste: recipe_stats.taste,
+              reviews: recipe_stats.reviews,
               area: recipe.area + " Cuisine",
               name: recipe.name,
               favourite: isInCookbook(recipe.id),

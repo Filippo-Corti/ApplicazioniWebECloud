@@ -210,6 +210,7 @@ function registerNewUser(form) {
     }
 
     registerNewUserIntoStorage(new_user);
+    loginUser(new_user.email);
     return true;
 }
 

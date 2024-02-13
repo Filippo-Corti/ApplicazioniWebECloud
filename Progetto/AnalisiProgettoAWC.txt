@@ -143,7 +143,7 @@ Ogni recensione è:
 - content
 - taste
 - difficulty
-- date
+- timestamp (better than date for uniqueness)
 
 
 

@@ -118,7 +118,7 @@ async function loadSearchResultsIntoStorage(first_Letter) {
 
 //Load recipes based on logged user's interests into the Session Storage, if they aren't already there or if force_reload = true
 async function loadSuggestedRecipesIntoStorage(force_reload) {
-    let suggested_recipes = localStorage.getItem("suggested_recipes");
+    let suggested_recipes = getFromStorage("suggested_recipes");
     if (!suggested_recipes || force_reload) {
         let interests = getLoggedUserData().interests;
         let recipes = [];
@@ -278,7 +278,35 @@ function addReviewToStorage(review) {
 
     reviews[review.recipe_id].push(review);
 
-    console.log(JSON.stringify(reviews));
-
     localStorage.setItem("reviews", JSON.stringify(reviews));
+}
+
+//Remove the review with the specified data from the Local Storage
+function removeReviewFromStorage(id, email, timestamp) {
+    let reviews = getFromStorage("reviews");
+    console.log(id, email, timestamp);
+    reviews[id] = reviews[id].filter((review) => review.email != email && review.timestamp != timestamp);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+}
+
+//Return average taste score, average difficulty score and number of reviews of the identified recipe
+function getRecipeReviewStats(id) {
+    let reviews = getFromStorage("reviews");
+    if (reviews) {
+        let related_reviews = reviews[id];
+        if (related_reviews && related_reviews.length > 0) {
+            return {
+                taste: (related_reviews.map((review) => parseInt(review.taste)).reduce((a, b) => a + b, 0) / related_reviews.length).toFixed(1),
+                difficulty: (related_reviews.map((review) => parseInt(review.difficulty)).reduce((a, b) => a + b, 0) / related_reviews.length).toFixed(1),
+                reviews: related_reviews.length,
+            }
+        }
+    } else {
+        localStorage.setItem("reviews", JSON.stringify({}));
+    }
+    return {
+        taste: '-',
+        difficulty: '-',
+        reviews: 0,
+    }
 }

@@ -359,13 +359,14 @@
             //Get 3 Recipes
             for (let j = 0; j < 2 && i < found_recipes.length; j++, i++) {
                 let recipe = found_recipes[i];
+                let recipe_stats = getRecipeReviewStats(recipe.idMeal);
                 recipes.push(
                     buildDynamicElement("recipe-card", {
                         href: "recipe.html?id=" + recipe.idMeal,
                         image: recipe.strMealThumb,
-                        taste: 0.0,
-                        difficulty: 0.0,
-                        reviews: 0,
+                        difficulty: recipe_stats.difficulty,
+                        taste: recipe_stats.taste,
+                        reviews: recipe_stats.reviews,
                         area: (recipe.strArea) ? recipe.strArea + " Cuisine" : " ",
                         name: recipe.strMeal,
                         favourite: isInCookbook(recipe.idMeal),
