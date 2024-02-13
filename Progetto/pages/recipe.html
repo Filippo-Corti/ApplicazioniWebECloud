@@ -286,7 +286,8 @@
               Name</span></span>?</p>
           <div class="d-flex justify-content-center gap-3 mx-3">
             <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2">Cancel</button>
-            <button type="button" class="delete-review | w-100 btn btn-primary fs-5 mt-3 mb-2" onclick="deleteReview(this)">Delete</button>
+            <button type="button" class="delete-review | w-100 btn btn-primary fs-5 mt-3 mb-2"
+              onclick="deleteReview(this)">Delete</button>
           </div>
           <p class="fs-6 text-danger text-center">Mind that this operation is irreversibile</p>
         </div>
@@ -549,6 +550,10 @@
     //Add Reviews to the Page
     let reviews = getFromStorage("reviews")[id];
     let reviews_container = document.querySelector("#reviews_container");
+
+    reviews = Array.from(reviews).sort((r1, r2) => {
+      return r2.timestamp - r1.timestamp;
+    });
 
     reviews?.forEach((review) => {
 
