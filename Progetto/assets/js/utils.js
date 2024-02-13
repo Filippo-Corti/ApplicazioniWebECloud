@@ -5,7 +5,7 @@ It is imported in every .html page.
 --------------------------------------------------------------- */
 
 let logged_in = isAnyUserLoggedIn();
-const tooltipList = [];
+let tooltipList = [];
 
 buildBackground();
 loadPageBasedOnLogState();

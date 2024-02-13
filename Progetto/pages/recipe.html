@@ -551,33 +551,36 @@
     let reviews = getFromStorage("reviews")[id];
     let reviews_container = document.querySelector("#reviews_container");
 
-    reviews = Array.from(reviews).sort((r1, r2) => {
-      return r2.timestamp - r1.timestamp;
-    });
+    if (reviews) {
+      reviews = Array.from(reviews).sort((r1, r2) => {
+        return r2.timestamp - r1.timestamp;
+      });
 
-    reviews?.forEach((review) => {
+      reviews.forEach((review) => {
 
-      let taste_template_data = {};
-      let difficulty_template_data = {};
-      for (let i = 1; i <= 5; i++) {
-        if (review.taste < i)
-          taste_template_data[i] = "tint-black";
-        if (review.difficulty >= i)
-          difficulty_template_data[i] = "tint-primary";
-      }
+        let taste_template_data = {};
+        let difficulty_template_data = {};
+        for (let i = 1; i <= 5; i++) {
+          if (review.taste < i)
+            taste_template_data[i] = "tint-black";
+          if (review.difficulty >= i)
+            difficulty_template_data[i] = "tint-primary";
+        }
 
-      reviews_container.appendChild(buildDynamicElement("review_card", {
-        my_review: (review.author == getFromStorage("current_user")) ? "true" : "false",
-        author: getUserByEmail(review.author).username,
-        date: new Date(review.timestamp).toDateString(),
-        timestamp: review.timestamp,
-        content: review.content,
-        recipe: recipe_data.strMeal,
-        recipe_id: recipe_data.idMeal,
-        taste: getElementHTML(buildDynamicElement("taste_score", taste_template_data)),
-        difficulty: getElementHTML(buildDynamicElement("difficulty_score", difficulty_template_data)),
-      }));
-    });
+        reviews_container.appendChild(buildDynamicElement("review_card", {
+          my_review: (review.author == getFromStorage("current_user")) ? "true" : "false",
+          author: getUserByEmail(review.author).username,
+          date: new Date(review.timestamp).toDateString(),
+          timestamp: review.timestamp,
+          content: review.content,
+          recipe: recipe_data.strMeal,
+          recipe_id: recipe_data.idMeal,
+          taste: getElementHTML(buildDynamicElement("taste_score", taste_template_data)),
+          difficulty: getElementHTML(buildDynamicElement("difficulty_score", difficulty_template_data)),
+        }));
+      });
+    }
+
 
 
   </script>

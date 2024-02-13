@@ -32,7 +32,7 @@ function getFromStorage(name) {
 
 //Load Categories from the API and put them into the Local Storage, if they aren't already there
 async function loadCategoriesIntoStorage() {
-    let categories_in_storage = localStorage.getItem("categories");
+    let categories_in_storage = getFromStorage("categories");
 
     if (!categories_in_storage) {
         //Categories aren't already in storage
@@ -50,7 +50,7 @@ async function loadCategoriesIntoStorage() {
 
 //Load Ares from the API and put them into the Local Storage, if they aren't already there
 async function loadAreasIntoStorage() {
-    let areas_in_storage = localStorage.getItem("areas");
+    let areas_in_storage = getFromStorage("areas");
 
     if (!areas_in_storage) {
         //Ares aren't already in storage
@@ -68,7 +68,7 @@ async function loadAreasIntoStorage() {
 
 //Load Ingredients from the API and put them into the Local Storage, if they aren't already there
 async function loadIngredientsIntoStorage() {
-    let ingredients_in_storage = localStorage.getItem("ingredients");
+    let ingredients_in_storage = getFromStorage("ingredients");
 
     if (!ingredients_in_storage) {
         //Ingredients aren't already in storage
@@ -141,6 +141,12 @@ async function loadSuggestedRecipesIntoStorage(force_reload) {
                 area: recipe.area,
             });
         }
+        //Avoid duplicates
+        console.log(corrected_recipes);
+        let jsonObject = corrected_recipes.map(JSON.stringify);
+        let uniqueSet = new Set(jsonObject);
+        corrected_recipes = Array.from(uniqueSet).map(JSON.parse);
+        console.log(corrected_recipes);
         sessionStorage.setItem("suggested_recipes", JSON.stringify(corrected_recipes));
     } else {
         console.log("No need");

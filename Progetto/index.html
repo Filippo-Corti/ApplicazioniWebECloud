@@ -351,16 +351,22 @@
       placeRecipesInGrid(suggested_recipes.slice(0, 30), suggested_recipes_container);
       centerScrollers();
     }
+    console.log("done with recommendation");
 
     await loadRandomRecipesIntoStorage(12);
     let random_recipes = getFromStorage("random_recipes");
     let random_recipes_container = document.querySelector("#recipe-suggestions-random");
     placeRecipesInGrid(random_recipes, random_recipes_container);
+    console.log("done with randoms");
 
     centerScrollers();
-    loadCategoriesIntoStorage();
-    loadAreasIntoStorage();
-    loadIngredientsIntoStorage();
+    
+    await loadCategoriesIntoStorage();
+    console.log("done with categories");
+    await loadAreasIntoStorage();
+    console.log("done with areas");
+    await loadIngredientsIntoStorage();
+    console.log("done with ingredients");
 
     function placeRecipesInGrid(recipes, container) {
       for (let i = 0; i < recipes.length;) {
