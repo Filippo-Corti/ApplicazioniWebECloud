@@ -168,8 +168,8 @@
                             Sort by
                         </button>
                         <ul class="dropdown-menu">
-                            <li><button class="dropdown-item fs-5" onclick="">Difficulty (Easiest First)</button></li>
-                            <li><button class="dropdown-item fs-5" onclick="">Taste (Tastiest First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortRecipesByDifficulty()">Difficulty (Easiest First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortRecipesByTaste()">Taste (Tastiest First)</button></li>
                         </ul>
                     </div>
                 </div>
@@ -190,9 +190,8 @@
                             Sort by
                         </button>
                         <ul class="dropdown-menu">
-                            <li><button class="dropdown-item fs-5" onclick="">Date (Latest First)</button></li>
-                            <li><button class="dropdown-item fs-5" onclick="">Difficulty (Easiest First)</button></li>
-                            <li><button class="dropdown-item fs-5" onclick="">Taste (Tastiest First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortReviewsByDate(true)">Date (Latest First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortReviewsByDate(false)">Date (Oldest First)</button></li>
                         </ul>
                     </div>
                 </div>

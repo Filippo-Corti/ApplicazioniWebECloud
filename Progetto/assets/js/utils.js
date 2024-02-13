@@ -482,3 +482,52 @@ function deleteReview(target) {
     removeReviewFromStorage(id, email, timestamp);
     location.reload();
 }
+
+//Sort recipes by average difficulty, from hardest to easiest
+function sortRecipesByDifficulty() {
+    let container = document.querySelector("#saved_recipes_container");
+    let recipes = container.querySelectorAll(".recipe-card");
+
+    recipes.forEach((r) => r.remove());
+    recipes = Array.from(recipes).sort((r1, r2) => {
+        let v1 = r1.querySelector("[data-template-value='difficulty']").textContent;
+        let v2 = r2.querySelector("[data-template-value='difficulty']").textContent;
+        if (v1 == '-') v1 = 0;
+        if (v2 == '-') v2 = 0;
+        return v2 - v1;
+    });
+
+    recipes.forEach((r) => container.appendChild(r));
+}
+
+//Sort recipes by average taste, from tastiest to worst
+function sortRecipesByTaste() {
+    let container = document.querySelector("#saved_recipes_container");
+    let recipes = container.querySelectorAll(".recipe-card");
+
+    recipes.forEach((r) => r.remove());
+    recipes = Array.from(recipes).sort((r1, r2) => {
+        let v1 = r1.querySelector("[data-template-value='taste']").textContent;
+        let v2 = r2.querySelector("[data-template-value='taste']").textContent;
+        if (v1 == '-') v1 = 0;
+        if (v2 == '-') v2 = 0;
+        return v2 - v1;
+    });
+
+    recipes.forEach((r) => container.appendChild(r));
+}
+
+//Sort reviews by date, in the specified order
+function sortReviewsByDate(latest_first) {
+    let container = document.querySelector("#reviews_container");
+    let reviews = container.querySelectorAll(".review-card");
+
+    reviews.forEach((r) => r.remove());
+    reviews = Array.from(reviews).sort((r1, r2) => {
+        let v1 = r1.querySelector("[data-template-value='timestamp']").textContent;
+        let v2 = r2.querySelector("[data-template-value='timestamp']").textContent;
+        return (latest_first) ? v2 - v1 : v1 - v2;
+    });
+
+    reviews.forEach((r) => container.appendChild(r));
+}
