@@ -1,4 +1,4 @@
-let r = []
+/*let r = []
 for (let i = 97; i <= 122; i++) {
     let meals = await searchByFirstLetter(String.fromCharCode(i));
     for (let meal of meals) {
@@ -6,7 +6,7 @@ for (let i = 97; i <= 122; i++) {
     }
     console.log(i);
 }
-console.log(r.sort((a, b) => a - b));
+console.log(r.sort((a, b) => a - b));*/
 
 // Id's go from 52764 to 53083, skipping some numbers
 
