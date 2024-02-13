@@ -360,12 +360,12 @@
     console.log("done with randoms");
 
     centerScrollers();
-    
+
     await loadCategoriesIntoStorage();
     console.log("done with categories");
     await loadAreasIntoStorage();
     console.log("done with areas");
-    await loadIngredientsIntoStorage();
+    //await loadIngredientsIntoStorage(); !!!
     console.log("done with ingredients");
 
     function placeRecipesInGrid(recipes, container) {

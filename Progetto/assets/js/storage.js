@@ -34,6 +34,7 @@ function getFromStorage(name) {
 async function loadCategoriesIntoStorage() {
     let categories_in_storage = getFromStorage("categories");
 
+
     if (!categories_in_storage) {
         //Categories aren't already in storage
         let results = await getAllCategories();
@@ -45,6 +46,8 @@ async function loadCategoriesIntoStorage() {
             });
         }
         localStorage.setItem("categories", JSON.stringify(categories));
+    } else {
+        console.log("Cached");
     }
 }
 
@@ -63,6 +66,8 @@ async function loadAreasIntoStorage() {
         }
 
         localStorage.setItem("areas", JSON.stringify(areas));
+    } else {
+        console.log("Cached");
     }
 }
 
@@ -81,6 +86,8 @@ async function loadIngredientsIntoStorage() {
             });
         }
         localStorage.setItem("ingredients", JSON.stringify(ingredients));
+    } else {
+        console.log("Cached");
     }
 }
 
