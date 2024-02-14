@@ -91,19 +91,26 @@ async function loadIngredientsIntoStorage() {
     }
 }
 
-//Load N Random recipes from the API and put them into the Local Storage. It overrides any previous recipes. It puts only some essential detail of every recipe
+//Load N Random recipes from the API and put them into the Local Storage. It overrides any previous recipes only if the previous recipes are over a minute old. It puts only some essential detail of every recipe
 async function loadRandomRecipesIntoStorage(n) {
-    let results = await getRandomRecipes(n);
-    let random_recipes = [];
-    for (let recipe of results) {
-        random_recipes.push({
-            id: recipe.idMeal,
-            name: recipe.strMeal,
-            image: recipe.strMealThumb,
-            area: recipe.strArea,
-        });
+    let now = new Date().getTime();
+    let recipes_in_storage = getFromStorage("random_recipes");
+    if (!recipes_in_storage || now - recipes_in_storage.timestamp > 60000) { //60000ms = 60s = 1min
+        let results = await getRandomRecipes(n);
+        let random_recipes = {
+            timestamp: now,
+            recipes: [],
+        };
+        for (let recipe of results) {
+            random_recipes.recipes.push({
+                id: recipe.idMeal,
+                name: recipe.strMeal,
+                image: recipe.strMealThumb,
+                area: recipe.strArea,
+            });
+        }
+        localStorage.setItem("random_recipes", JSON.stringify(random_recipes));
     }
-    localStorage.setItem("random_recipes", JSON.stringify(random_recipes));
 }
 
 //Load search results into the Session Storage, based on the first typed letter of the keyword

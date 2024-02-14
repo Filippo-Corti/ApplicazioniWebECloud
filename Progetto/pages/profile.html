@@ -168,8 +168,10 @@
                             Sort by
                         </button>
                         <ul class="dropdown-menu">
-                            <li><button class="dropdown-item fs-5" onclick="sortRecipesByDifficulty()">Difficulty (Easiest First)</button></li>
-                            <li><button class="dropdown-item fs-5" onclick="sortRecipesByTaste()">Taste (Tastiest First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortRecipesByDifficulty()">Difficulty
+                                    (Easiest First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortRecipesByTaste()">Taste (Tastiest
+                                    First)</button></li>
                         </ul>
                     </div>
                 </div>
@@ -190,8 +192,10 @@
                             Sort by
                         </button>
                         <ul class="dropdown-menu">
-                            <li><button class="dropdown-item fs-5" onclick="sortReviewsByDate(true)">Date (Latest First)</button></li>
-                            <li><button class="dropdown-item fs-5" onclick="sortReviewsByDate(false)">Date (Oldest First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortReviewsByDate(true)">Date (Latest
+                                    First)</button></li>
+                            <li><button class="dropdown-item fs-5" onclick="sortReviewsByDate(false)">Date (Oldest
+                                    First)</button></li>
                         </ul>
                     </div>
                 </div>
@@ -519,7 +523,8 @@
                     <div class="card-body">
                         <!-- Recipe Name -->
                         <div class="d-flex align-items-center gap-2">
-                            <a data-template-type="attribute" data-template-attribute="href" data-template-value="href" href="">
+                            <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
+                                href="">
                                 <p data-template-type="content" data-template-value="recipe"
                                     class="card-text fs-5 text-secondary text-decoration-underline">Recipe Name</p>
                             </a>
@@ -649,6 +654,27 @@
             updateProfileTab();
         }
 
+        let tags_loaded = false;
+
+        const profile_button_tab = document.querySelector('button#profile-tab')
+        profile_button_tab.addEventListener('shown.bs.tab', event => {
+            if (!tags_loaded) {
+                fillInTags();
+                //Toggle Tags
+                logged_user.interests.areas.forEach(area_name => {
+                    toggleState(document.querySelector("input[name='preferences_area'][value='" + area_name + "']").parentElement);
+                });
+                logged_user.interests.categories.forEach(category_name => {
+                    toggleState(document.querySelector("input[name='preferences_category'][value='" + category_name + "']").parentElement);
+                });
+                logged_user.interests.ingredients.forEach(ingredient_name => {
+                    toggleState(document.querySelector("input[name='preferences_ingredient'][value='" + ingredient_name + "']").parentElement);
+                });
+                tags_loaded = true;
+            }
+        })
+
+
         function fillCookbookTab() {
             let saved_recipes = logged_user.cookbook;
             let container = document.querySelector("#saved_recipes_container");
@@ -705,17 +731,6 @@
             document.querySelector("input#username").value = logged_user.username;
             document.querySelector("input#password").value = logged_user.password;
             document.querySelector("input#password_confirm").value = logged_user.password;
-            fillInTags();
-            //Toggle Tags
-            logged_user.interests.areas.forEach(area_name => {
-                toggleState(document.querySelector("input[name='preferences_area'][value='" + area_name + "']").parentElement);
-            });
-            logged_user.interests.categories.forEach(category_name => {
-                toggleState(document.querySelector("input[name='preferences_category'][value='" + category_name + "']").parentElement);
-            });
-            logged_user.interests.ingredients.forEach(ingredient_name => {
-                toggleState(document.querySelector("input[name='preferences_ingredient'][value='" + ingredient_name + "']").parentElement);
-            });
         }
 
 

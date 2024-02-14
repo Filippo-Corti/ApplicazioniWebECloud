@@ -331,7 +331,7 @@ async function getSearchResults(keyword, href_prefix) {
     let matching_recipes = getFromStorage("search_results")?.filter((recipe) => isAMatch(recipe.name, keyword));
     let matching_categories = getFromStorage("categories").filter((category) => isAMatch(category.name, keyword));
     let matching_areas = getFromStorage("areas").filter((area) => isAMatch(area.name, keyword));
-    //let matching_ingredients = getFromStorage("ingredients").filter((ingredient) => isAMatch(ingredient.name, keyword));
+    let matching_ingredients = getFromStorage("ingredients").filter((ingredient) => isAMatch(ingredient.name, keyword));
 
     let to_show = []; //Max: 2 Categories, 2 Areas, 3 Recipes, 1 Ingredient
     let i = 0;

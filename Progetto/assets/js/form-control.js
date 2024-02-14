@@ -61,6 +61,7 @@ function continueForm() {
     form_step_count.innerHTML = "Step 2 of 2";
     first_line.classList.remove("bg-primary");
     second_line.classList.add("bg-primary");
+    fillInTags();
 }
 
 //Go back to Step 1

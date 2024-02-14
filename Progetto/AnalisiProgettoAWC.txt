@@ -145,8 +145,20 @@ Ogni recensione è:
 - difficulty
 - timestamp (better than date for uniqueness)
 
+---------------------------------------------------------------------------
+What is left to do:
 
-
+- Reorder code inside every <script> of the pages
+- Add random meals next to the reviews of the page
+- Simplify input for the review score
+- Make sure that deleting a review keeps you in the same reviews tab (URL param)
+- Add a button to empty the input in selecting favourite tags
+- Fix code for instructions, cause there's no need to do multiple steps 
+- Increase horizontal scrollbar sizes
+- Make sure everything works fine on mobile
+- Maybe show more recipes in the hero section for smaller screen sizes
+- Make Reset Data button work, emptying the storage and reloading the page
+- Make Load Demo Data work, adding some AI generated data to fill recipes with reviews
 
 
 
