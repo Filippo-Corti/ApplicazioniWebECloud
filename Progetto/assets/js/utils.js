@@ -4,12 +4,13 @@ regarding elements creation and interaction.
 It is imported in every .html page.
 --------------------------------------------------------------- */
 
+//Page Load
 let logged_in = isAnyUserLoggedIn();
-let tooltipList = [];
-
 buildBackground();
 loadPageBasedOnLogState();
 initializeBootstrapComponentsAndEvents();
+
+/* -------------- General Utility -------------- */
 
 // Check Logged In / Logged Out
 function loadPageBasedOnLogState() {
@@ -27,6 +28,42 @@ function loadPageBasedOnLogState() {
         document.querySelector(".username").textContent = getLoggedUserData().username;
     }
 }
+
+// Toggle Password Visibility for Forms 
+function toggleShowPassword() {
+    let password_fields = document.querySelectorAll(".toggle-visibility");
+
+    for (let password_field of password_fields) {
+        if (password_field.type == "password")
+            password_field.type = "text";
+        else
+            password_field.type = "password";
+    }
+}
+
+// Position main Scrollers to the Center 
+function centerScrollers() {
+    let scrollers = document.querySelectorAll(".scroll-to-center");
+    scrollers.forEach((scroller) => {
+        let scroll_to = (scroller.scrollWidth - scroller.clientWidth) / 2;
+        scroller.scroll({
+            top: 0,
+            left: scroll_to,
+        });
+    })
+}
+
+//Return the Param 'name' in the URL of the window
+function getURLParam(name) {
+    return new URLSearchParams(window.location.search).get(name);
+}
+
+//Shuffle array
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5); //50% chance of being >0
+}
+
+/* -------------- Background Building -------------- */
 
 // Build Background Grid & Initialize Stripe Events
 function buildBackground() {
@@ -67,6 +104,8 @@ function initializeStripe() {
         background_stripe.style.filter = "blur(" + 10000 * currentScrollPercentage + "px)";
     })
 }
+
+/* -------------- Bootstrap Elements -------------- */
 
 // Initialize Modals, Tooltips and other Bootstrap components needed
 function initializeBootstrapComponentsAndEvents() {
@@ -129,8 +168,8 @@ function initializeModalEvents() {
 
             // Extract info from data-bs-* attributes
             const recipe_name = button.getAttribute('data-bs-recipe')
-            const timestamp = button.parentNode.querySelector("[data-template-value='timestamp']").textContent
-            const recipe_id = button.parentNode.querySelector("[data-template-value='recipe_id']").textContent
+            const timestamp = button.parentNode.querySelector("[data-template-value='timestamp']").getAttribute("data-timestamp")
+            const recipe_id = button.parentNode.querySelector("[data-template-value='recipe_id']").getAttribute("data-recipe_id")
 
             // Update the modal's content.
             const modalBodyLabel = deleteReviewModal.querySelector('.modal-recipe-label')
@@ -152,22 +191,12 @@ function initializeTooltips() {
     }
 }
 
+//Create Tooltip instance
 function enableTooltip(tooltipTriggerEl) {
-    tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl));
+    new bootstrap.Tooltip(tooltipTriggerEl);
 }
 
-
-// Toggle Password Visibility for Forms 
-function toggleShowPassword() {
-    let password_fields = document.querySelectorAll(".toggle-visibility");
-
-    for (let password_field of password_fields) {
-        if (password_field.type == "password")
-            password_field.type = "text";
-        else
-            password_field.type = "password";
-    }
-}
+/* -------------- Dynamic Elements Creation -------------- */
 
 //Get HTML of a Document Fragment 
 function getElementHTML(element) {
@@ -212,13 +241,15 @@ function buildDynamicElement(templateId, data) {
 
 }
 
-//Enables edit of the sibling with class "editable"
+/* -------------- Editable Inputs -------------- */
+
+//Enable edit of the sibling with class "editable"
 function enableEdit(clicked_element) {
     let editable_element = clicked_element.parentNode.querySelector(".editable");
     editable_element.disabled = false;
 }
 
-//Disables edit of the element, if new value is valid.
+//Disable edit of the element, if new value is valid.
 function disableEdit(editable_element) {
     //Check validity of field
     if (!editable_element.checkValidity()) {
@@ -253,7 +284,6 @@ function saveAndDisableEdit(clicked_element) {
     }
 }
 
-
 //Checks Passwords, then calls disableEdit
 function confirmPasswordEdit(clicked_element) {
     let password = clicked_element.parentNode.querySelector("input#password");
@@ -281,13 +311,7 @@ function saveAndConfirmPasswordEdit(clicked_element) {
     }
 }
 
-// Hide Results when anything is clicked
-function hideSearchResults() {
-    let search_results = document.querySelectorAll(".search-result");
-    for (let result of search_results) {
-        result.remove();
-    }
-}
+/* -------------- Search Bar & Search Results -------------- */
 
 // Scroll when Search Bar is Selected
 function scrollToHere(element) {
@@ -299,21 +323,12 @@ function scrollToHere(element) {
     });
 }
 
-// Position main Scrollers to the Center 
-function centerScrollers() {
-    let scrollers = document.querySelectorAll(".scroll-to-center");
-    scrollers.forEach((scroller) => {
-        let scroll_to = (scroller.scrollWidth - scroller.clientWidth) / 2;
-        scroller.scroll({
-            top: 0,
-            left: scroll_to,
-        });
-    })
-}
-
-//Return the Param 'name' in the URL of the window
-function getURLParam(name) {
-    return new URLSearchParams(window.location.search).get(name);
+// Hide Results when anything is clicked
+function hideSearchResults() {
+    let search_results = document.querySelectorAll(".search-result");
+    for (let result of search_results) {
+        result.remove();
+    }
 }
 
 //Elaborate Search Results for Search Bar and return them
@@ -403,6 +418,8 @@ async function showSearchResults(keyword, href_prefix) {
     }
 }
 
+/* -------------- Interests Tags -------------- */
+
 //Show all the tags
 function fillInTags() {
     let areas = getFromStorage("areas");
@@ -463,9 +480,7 @@ function toggleStateAndUpdateStorage(tag) {
     loadSuggestedRecipesIntoStorage(true);
 }
 
-function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
-}
+/* -------------- Delete Recipe or Reviews -------------- */
 
 //Remove recipe and its tooltip from the view (The deletion from the storage is executed in the save recipe modal code, because it's needed everywhere, whereas this is only needed in the profile page)
 function removeRecipe(el) {
@@ -473,15 +488,29 @@ function removeRecipe(el) {
     bootstrap.Tooltip.getInstance(el.firstElementChild).dispose();
 }
 
-//Delete Review and reload the page, to show the update occurred
+//Delete Review and remove it from the view
 function deleteReview(target) {
     let email = target.getAttribute("data-author");
     let timestamp = target.getAttribute("data-timestamp");
     let id = target.getAttribute("data-id")
-
     removeReviewFromStorage(id, email, timestamp);
-    location.reload();
+
+    console.log(email, timestamp, id);
+
+    let reviews = Array.from(document.querySelectorAll(".review-card")).filter((r) => {
+        return r.querySelector("[data-email]").getAttribute("data-email") == email && r.querySelector("[data-timestamp]").getAttribute("data-timestamp") == timestamp
+    });
+
+    console.log(Array.from(document.querySelectorAll(".review-card")));
+    console.log(reviews);
+
+    reviews[0].remove();
+    bootstrap.Tooltip.getInstance(reviews[0].querySelector("[data-bs-toggle='tooltip']")).dispose();
+
+
 }
+
+/* -------------- Cards Sorting -------------- */
 
 //Sort recipes by average difficulty, from hardest to easiest
 function sortRecipesByDifficulty() {

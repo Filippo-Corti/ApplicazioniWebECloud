@@ -338,12 +338,20 @@
   <script src="assets/js/storage.js"></script>
   <script src="assets/js/form-control.js"></script>
   <script src="assets/js/utils.js"></script>
-  <script type="module" src="assets/js/test-data.js"></script>
   <script type="module">
 
-    //clearStorage();
-
+    //Page Load
     if (logged_in) {
+      placeSuggestedRecipes();
+    }
+    placeRandomRecipes();
+    loadCategoriesIntoStorage();
+    loadAreasIntoStorage();
+    loadIngredientsIntoStorage();
+
+
+    //Load and Show 30 Suggested Recipes
+    async function placeSuggestedRecipes() {
       await loadSuggestedRecipesIntoStorage(false);
       let suggested_recipes = shuffle(getFromStorage("suggested_recipes"));
       let selected_recipes = suggested_recipes.slice(0, Math.min(30, suggested_recipes.length));
@@ -352,16 +360,16 @@
       centerScrollers();
     }
 
-    await loadRandomRecipesIntoStorage(15);
-    let random_recipes = getFromStorage("random_recipes").recipes;
-    let random_recipes_container = document.querySelector("#recipe-suggestions-random");
-    placeRecipesInGrid(random_recipes, random_recipes_container);
-    centerScrollers();
+    //Load and Show 15 Random Recipes
+    async function placeRandomRecipes() {
+      await loadRandomRecipesIntoStorage(15);
+      let random_recipes = shuffle(getFromStorage("random_recipes").recipes);
+      let random_recipes_container = document.querySelector("#recipe-suggestions-random");
+      placeRecipesInGrid(random_recipes, random_recipes_container);
+      centerScrollers();
+    }
 
-    loadCategoriesIntoStorage();
-    loadAreasIntoStorage();
-    loadIngredientsIntoStorage();
-
+    //Position recipes in container
     function placeRecipesInGrid(recipes, container) {
       for (let i = 0; i < recipes.length;) {
         let curr_recipes = [];

@@ -422,7 +422,7 @@
                     <div class="d-flex justify-content-center gap-3 mx-3">
                         <button type="button" class="w-100 btn btn-outline-secondary fs-5 mt-3 mb-2">Cancel</button>
                         <button type="button" class="delete-review | w-100 btn btn-primary fs-5 mt-3 mb-2"
-                            onclick="deleteReview(this)">Delete</button>
+                            onclick="deleteReview(this)" data-bs-dismiss="modal" aria-label="Close">Delete</button>
                     </div>
                     <p class="fs-6 text-danger text-center">Mind that this operation is irreversibile</p>
                 </div>
@@ -542,8 +542,6 @@
                         <!-- Review Date -->
                         <p class="text-secondary mb-2" data-template-type="content" data-template-value="date">
                             mm-dd-yyyy</p>
-                        <span data-template-type="content" data-template-value="timestamp" class="d-none"></span>
-                        <span data-template-type="content" data-template-value="recipe_id" class="d-none"></span>
                         <!-- Review Content -->
                         <p data-template-type="content" data-template-value="content" class="card-text fs-5">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo molestias autem
@@ -551,6 +549,13 @@
                         </p>
                     </div>
                 </div>
+                <!-- Review Metadata -->
+                <span data-template-type="attribute" data-template-attribute="data-timestamp"
+                    data-template-value="timestamp" class="d-none"></span>
+                <span data-template-type="attribute" data-template-attribute="data-recipe_id"
+                    data-template-value="recipe_id" class="d-none"></span>
+                <span data-template-type="attribute" data-template-attribute="data-email" data-template-value="email"
+                    class="d-none"></span>
             </div>
             <div class="review-delete" data-template-type="attribute" data-template-attribute="data-bs-recipe"
                 data-template-value="recipe" data-bs-toggle="modal" data-bs-target="#deleteReviewModal"
@@ -647,34 +652,44 @@
     <script src="../assets/js/form-control.js"></script>
     <script src="../assets/js/utils.js"></script>
     <script type="module">
+
+        //Page Load
         let logged_user = getLoggedUserData();
         if (logged_user) {
+            //Load Tabs
             fillCookbookTab();
             fillReviewsTab();
             updateProfileTab();
+            //Select Tab
+            let tab = getURLParam("tab");
+            if (!tab)
+                tab = "cookbook";
+            document.querySelector("#" + tab + "-tab").click();
         }
 
+        //Load Tags separately, to avoid unnecessary element nodes
         let tags_loaded = false;
-
         const profile_button_tab = document.querySelector('button#profile-tab')
         profile_button_tab.addEventListener('shown.bs.tab', event => {
-            if (!tags_loaded) {
-                fillInTags();
-                //Toggle Tags
-                logged_user.interests.areas.forEach(area_name => {
-                    toggleState(document.querySelector("input[name='preferences_area'][value='" + area_name + "']").parentElement);
-                });
-                logged_user.interests.categories.forEach(category_name => {
-                    toggleState(document.querySelector("input[name='preferences_category'][value='" + category_name + "']").parentElement);
-                });
-                logged_user.interests.ingredients.forEach(ingredient_name => {
-                    toggleState(document.querySelector("input[name='preferences_ingredient'][value='" + ingredient_name + "']").parentElement);
-                });
-                tags_loaded = true;
-            }
+            if (tags_loaded)
+                return;
+            //Build and Place Tags
+            fillInTags();
+            tags_loaded = true;
+            //Toggle User selected Tags
+            logged_user.interests.areas.forEach(area_name => {
+                toggleState(document.querySelector("input[name='preferences_area'][value='" + area_name + "']").parentElement);
+            });
+            logged_user.interests.categories.forEach(category_name => {
+                toggleState(document.querySelector("input[name='preferences_category'][value='" + category_name + "']").parentElement);
+            });
+            logged_user.interests.ingredients.forEach(ingredient_name => {
+                toggleState(document.querySelector("input[name='preferences_ingredient'][value='" + ingredient_name + "']").parentElement);
+            });
         })
 
 
+        //Build and Place Recipes and Notes
         function fillCookbookTab() {
             let saved_recipes = logged_user.cookbook;
             let container = document.querySelector("#saved_recipes_container");
@@ -694,14 +709,16 @@
             })
         }
 
+        //Build and Place personal Reviews
         function fillReviewsTab() {
             let reviews = getFromStorage("reviews");
             let container = document.querySelector("#reviews_container");
+            //Get all reviews
             Object.entries(reviews).forEach((entry) => {
                 let id = entry[0];
                 let my_reviews = entry[1].filter((review) => review.author == logged_user.email);
+                //Place only user's reviews
                 my_reviews.forEach(async (review) => {
-
                     let taste_template_data = {};
                     let difficulty_template_data = {};
                     for (let i = 1; i <= 5; i++) {
@@ -710,9 +727,9 @@
                         if (review.difficulty >= i)
                             difficulty_template_data[i] = "tint-primary";
                     }
-
                     let recipe = await getDetailsById(review.recipe_id);
                     container.appendChild(buildDynamicElement("review_card", {
+                        email: logged_user.email,
                         href: "recipe.html?id=" + recipe.idMeal,
                         date: new Date(review.timestamp).toDateString(),
                         timestamp: review.timestamp,
@@ -726,6 +743,7 @@
             });
         }
 
+        //Update Profile Tab with user data (it doesn't load the tags yet)
         function updateProfileTab() {
             document.querySelector("input#email").value = logged_user.email;
             document.querySelector("input#username").value = logged_user.username;

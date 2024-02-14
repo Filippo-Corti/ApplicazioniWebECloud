@@ -4,6 +4,8 @@ and some utility functions related to them
 It is imported in every .html page.
 --------------------------------------------------------------- */
 
+/* -------------- API Fetch Operations -------------- */
+
 //Returns the Recipes (with Full Details) whose name matches the keyword
 async function searchByName(keyword) {
     let meals;
@@ -121,6 +123,8 @@ async function searchByArea(area) {
     return meals;
 }
 
+/* -------------- General API Utility -------------- */
+
 //Returns the list of Ingredients, with Measures, for meal
 function extractIngredients(meal) {
     let ingredients = [];
@@ -139,7 +143,7 @@ function extractIngredients(meal) {
     return ingredients;
 }
 
-//Finds the area of each recipe in recipes and updates the list with a area field
+//Finds the area of each recipe in recipes and updates the list with a area field (currently not in use due to too many requests error)
 async function addAreaToRecipes(recipes) {
     let results = [];
     for (let recipe of recipes) {

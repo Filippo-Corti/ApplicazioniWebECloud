@@ -17,6 +17,8 @@ let taste_input = form.taste;
 let difficulty_stars = document.querySelectorAll(".review-difficulty-input>img");
 let difficulty_input = form.difficulty;
 
+/* -------------- Registration Form -------------- */
+
 //Validate Fields of Step 1 + Go to Step 2
 function validateAndContinueForm() {
     let form_ok = true;
@@ -72,6 +74,29 @@ function goBack() {
     first_line.classList.add("bg-primary");
 }
 
+//Register new user into storage and automatically login
+function registerNewUser(form) {
+    let form_data = new FormData(form);
+
+    let new_user = {
+        email: form_data.get("email"),
+        username: (form_data.get("username")) ? form_data.get("username") : form_data.get("email").substring(0, form_data.get("email").indexOf('@')),
+        password: form_data.get("password"),
+        interests: {
+            areas: form_data.getAll("preferences_area"),
+            categories: form_data.getAll("preferences_category"),
+            ingredients: form_data.getAll("preferences_ingredient"),
+        },
+        cookbook: [],
+    }
+
+    registerNewUserIntoStorage(new_user);
+    loginUser(new_user.email);
+    return true;
+}
+
+/* -------------- Interests Tags -------------- */
+
 //Tag Selection - Toggle Tag
 function toggleState(tag) {
     let checkbox = tag.querySelector("input[type='checkbox']");
@@ -107,6 +132,9 @@ function searchTags(keyword) {
         }
     }
 }
+
+/* -------------- Review Form -------------- */
+
 // Interaction with the Taste Input of the Review Form
 function voteTaste(vote) {
     if (!vote)
@@ -157,7 +185,8 @@ function validateAndPublishReview(form) {
     //Check if date is not in the future
     let date = form.date;
     let date_value = Date.parse(date.value);
-    let now = Date.now();
+    let today = new Date(new Date().toDateString()).getTime(); //Today in ms at midnight
+    let now = new Date().getTime(); //Now in ms
 
     if (date_value > now) {
         form_ok = false;
@@ -176,7 +205,7 @@ function validateAndPublishReview(form) {
             content: form_data.get("content"),
             taste: form_data.get("taste"),
             difficulty: form_data.get("difficulty"),
-            timestamp: date_value,
+            timestamp: date_value + (now - today), //Sets the offset to now
         };
 
         addReviewToStorage(new_review);
@@ -195,25 +224,7 @@ function closeReviewForm() {
     form.querySelector(".review-form-more").classList.add("d-none");
 }
 
-function registerNewUser(form) {
-    let form_data = new FormData(form);
-
-    let new_user = {
-        email: form_data.get("email"),
-        username: (form_data.get("username")) ? form_data.get("username") : form_data.get("email").substring(0, form_data.get("email").indexOf('@')),
-        password: form_data.get("password"),
-        interests: {
-            areas: form_data.getAll("preferences_area"),
-            categories: form_data.getAll("preferences_category"),
-            ingredients: form_data.getAll("preferences_ingredient"),
-        },
-        cookbook: [],
-    }
-
-    registerNewUserIntoStorage(new_user);
-    loginUser(new_user.email);
-    return true;
-}
+/* -------------- Login Form -------------- */
 
 // Submit for Login Modal
 function checkCredentialsAndLogin(form) {
@@ -236,6 +247,8 @@ function checkCredentialsAndLogin(form) {
         return false;
     }
 }
+
+/* -------------- Save Recipe Form -------------- */
 
 //Get recipe note data and save in cookbook
 function saveRecipe(form) {

@@ -4,6 +4,8 @@ Local Storage of the Browser.
 It is imported in every .html page.
 --------------------------------------------------------------- */
 
+/* -------------- General Utility -------------- */
+
 //Empty the Local and Session Storage
 function clearStorage() {
     localStorage.clear();
@@ -29,6 +31,8 @@ function getFromStorage(name) {
         }
     return null;
 }
+
+/* -------------- Load API Data into Storage  -------------- */
 
 //Load Categories from the API and put them into the Local Storage, if they aren't already there
 async function loadCategoriesIntoStorage() {
@@ -167,6 +171,8 @@ async function loadSuggestedRecipesIntoStorage(force_reload) {
     }
 }
 
+/* -------------- Users Management  -------------- */
+
 //Check whether the email is already in use
 function isEmailTaken(email) {
     let users = getFromStorage("users");
@@ -257,6 +263,8 @@ function deleteLoggedAccount() {
     logout();
 }
 
+/* -------------- Cookbooks Management  -------------- */
+
 //Add recipe to currently logged user's cookbook or updates it if it's already in it
 function addToCookbook(recipe) {
     let user = getLoggedUserData();
@@ -287,6 +295,8 @@ function isInCookbook(id) {
         return user.cookbook.filter((r) => r.id == id).length != 0;
     return false;
 }
+
+/* -------------- Reviews Management  -------------- */
 
 //Load new review into the Local Storage
 function addReviewToStorage(review) {

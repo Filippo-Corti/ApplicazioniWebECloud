@@ -318,65 +318,78 @@
     <script src="../assets/js/utils.js"></script>
     <script type="module">
 
+        //Page Load
         let keyword = getURLParam("search");
         let category = getURLParam("category");
         let area = getURLParam("area");
         let ingredient = getURLParam("ingredient");
-        let search_title = document.querySelector(".keyword");
         let recipes_container = document.querySelector("#recipe-results");
-        let keep_param_on_login = document.querySelector("input.keep-param");
-        let found_recipes;
-
-        if (keyword) {
-            document.getElementById("search").value = keyword;
-            found_recipes = await searchByName(keyword);
-            if (found_recipes)
-                search_title.textContent = found_recipes.length + ' Results for the search "' + keyword + '"';
-            keep_param_on_login.name = "search";
-        } else if (category) {
-            document.getElementById("search").value = category;
-            found_recipes = await searchByCategory(category);
-            if (found_recipes)
-                search_title.textContent = found_recipes.length + ' Results for the category "' + category + '"';
-            keep_param_on_login.name = "category";
-        } else if (area) {
-            document.getElementById("search").value = area;
-            found_recipes = await searchByArea(area);
-            if (found_recipes)
-                search_title.textContent = found_recipes.length + ' Results for the area "' + area + '"';
-            keep_param_on_login.name = "area";
-        } else if (ingredient) {
-            document.getElementById("search").value = ingredient;
-            found_recipes = await searchByIngredient(ingredient);
-            if (found_recipes)
-                search_title.textContent = found_recipes.length + ' Recipes with the ingredient "' + ingredient + '"';
-            keep_param_on_login.name = "ingredient";
+        let results = await getSearchResults();
+        if (results) {
+            placeRecipesInGrid(results, recipes_container);
         }
-        keep_param_on_login.value = document.getElementById("search").value;
 
-        for (let i = 0; i < found_recipes?.length;) {
-            let recipes = [];
-            //Get 3 Recipes
-            for (let j = 0; j < 2 && i < found_recipes.length; j++, i++) {
-                let recipe = found_recipes[i];
-                let recipe_stats = getRecipeReviewStats(recipe.idMeal);
-                recipes.push(
-                    buildDynamicElement("recipe-card", {
-                        href: "recipe.html?id=" + recipe.idMeal,
-                        image: recipe.strMealThumb,
-                        difficulty: recipe_stats.difficulty,
-                        taste: recipe_stats.taste,
-                        reviews: recipe_stats.reviews,
-                        area: (recipe.strArea) ? recipe.strArea + " Cuisine" : " ",
-                        name: recipe.strMeal,
-                        favourite: isInCookbook(recipe.idMeal),
-                    }));
+        //Get results based on URL Params 
+        async function getSearchResults() {
+            let search_title = document.querySelector(".keyword");
+            let keep_param_on_login = document.querySelector("input.keep-param"); //To keep the parameter in URL when page is reloaded after login form is submitted
+            let found_recipes;
+
+            if (keyword) {
+                document.getElementById("search").value = keyword;
+                found_recipes = await searchByName(keyword);
+                if (found_recipes)
+                    search_title.textContent = found_recipes.length + ' Results for the search "' + keyword + '"';
+                keep_param_on_login.name = "search";
+            } else if (category) {
+                document.getElementById("search").value = category;
+                found_recipes = await searchByCategory(category);
+                if (found_recipes)
+                    search_title.textContent = found_recipes.length + ' Results for the category "' + category + '"';
+                keep_param_on_login.name = "category";
+            } else if (area) {
+                document.getElementById("search").value = area;
+                found_recipes = await searchByArea(area);
+                if (found_recipes)
+                    search_title.textContent = found_recipes.length + ' Results for the area "' + area + '"';
+                keep_param_on_login.name = "area";
+            } else if (ingredient) {
+                document.getElementById("search").value = ingredient;
+                found_recipes = await searchByIngredient(ingredient);
+                if (found_recipes)
+                    search_title.textContent = found_recipes.length + ' Recipes with the ingredient "' + ingredient + '"';
+                keep_param_on_login.name = "ingredient";
             }
-            //Place them in the page
-            let dynamic_card_group = buildDynamicElement("recipe-card-group", {
-                row1: getElementHTML(recipes[0]) + getElementHTML(recipes[1]),
-            });
-            recipes_container.appendChild(dynamic_card_group);
+            keep_param_on_login.value = document.getElementById("search").value;
+            return found_recipes;
+        }
+
+        //Position recipes in container
+        function placeRecipesInGrid(found_recipes, recipes_container) {
+            for (let i = 0; i < found_recipes.length;) {
+                let recipes = [];
+                //Get 3 Recipes
+                for (let j = 0; j < 2 && i < found_recipes.length; j++, i++) {
+                    let recipe = found_recipes[i];
+                    let recipe_stats = getRecipeReviewStats(recipe.idMeal);
+                    recipes.push(
+                        buildDynamicElement("recipe-card", {
+                            href: "recipe.html?id=" + recipe.idMeal,
+                            image: recipe.strMealThumb,
+                            difficulty: recipe_stats.difficulty,
+                            taste: recipe_stats.taste,
+                            reviews: recipe_stats.reviews,
+                            area: (recipe.strArea) ? recipe.strArea + " Cuisine" : " ",
+                            name: recipe.strMeal,
+                            favourite: isInCookbook(recipe.idMeal),
+                        }));
+                }
+                //Place them in the page
+                let dynamic_card_group = buildDynamicElement("recipe-card-group", {
+                    row1: getElementHTML(recipes[0]) + getElementHTML(recipes[1]),
+                });
+                recipes_container.appendChild(dynamic_card_group);
+            }
         }
 
     </script>
