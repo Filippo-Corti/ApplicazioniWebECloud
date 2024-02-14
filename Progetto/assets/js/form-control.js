@@ -135,8 +135,13 @@ function searchTags(keyword) {
 
 /* -------------- Review Form -------------- */
 
+let lock_taste_vote = false; //Has user selected a vote yet
+let lock_difficulty_vote = false;
+
 // Interaction with the Taste Input of the Review Form
-function voteTaste(vote) {
+function voteTaste(vote, force_change) {
+    if (!force_change && lock_taste_vote)
+        return;
     if (!vote)
         return;
     //Edit Graphics
@@ -150,8 +155,16 @@ function voteTaste(vote) {
     taste_input.value = vote;
 }
 
+// Interaction with the Taste Input + lock the vote
+function voteTasteAndLock(vote) {
+    lock_taste_vote = true;
+    voteTaste(vote, true);
+}
+
 // Interaction with the Difficulty Input of the Review Form
-function voteDifficulty(vote) {
+function voteDifficulty(vote, force_change) {
+    if (!force_change && lock_difficulty_vote)
+        return;
     if (!vote)
         return;
     //Edit Graphics
@@ -163,6 +176,12 @@ function voteDifficulty(vote) {
     }
     //Edit Saved Value
     difficulty_input.value = vote;
+}
+
+// Interaction with the Difficulty Input + lock the vote
+function voteDifficultyAndLock(vote) {
+    lock_difficulty_vote = true;
+    voteDifficulty(vote, true);
 }
 
 // Review Submit Form Control

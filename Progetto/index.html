@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body class="overflow-x-hidden" onclick="hideSearchResults()">
+<body style="pointer-events: none;" class="overflow-x-hidden" data-font="fancy" onclick="hideSearchResults()">
 
   <!-- Background Stripes -->
   <div class="background-stripe">
@@ -158,6 +158,11 @@
       <div>
         <ul
           class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
+          <li>
+            <button class="switch-font | btn btn-light border border-black border-2 fs-4 px-3" onclick="switchFonts()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Switch Font">
+              Aa
+            </button>
+          </li>
           <li>
             <button class="btn btn-outline-secondary fs-4">
               Reset Data
@@ -344,10 +349,11 @@
     if (logged_in) {
       placeSuggestedRecipes();
     }
-    placeRandomRecipes();
-    loadCategoriesIntoStorage();
-    loadAreasIntoStorage();
-    loadIngredientsIntoStorage();
+    await placeRandomRecipes();
+    await loadCategoriesIntoStorage();
+    await loadAreasIntoStorage();
+    await loadIngredientsIntoStorage();
+    document.body.style.pointerEvents = "auto";
 
 
     //Load and Show 30 Suggested Recipes

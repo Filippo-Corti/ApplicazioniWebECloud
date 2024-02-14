@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body class="overflow-x-hidden min-vh-100 d-flex flex-column">
+<body class="overflow-x-hidden min-vh-100 d-flex flex-column" data-font="fancy">
 
     <!-- Background Stripes -->
     <div class="background-stripe">
@@ -104,6 +104,7 @@
                     LOG IN
                 </button>
             </li>
+        </ul>
     </div>
 
     <!-- Main -->
@@ -656,15 +657,9 @@
         //Page Load
         let logged_user = getLoggedUserData();
         if (logged_user) {
-            //Load Tabs
             fillCookbookTab();
             fillReviewsTab();
             updateProfileTab();
-            //Select Tab
-            let tab = getURLParam("tab");
-            if (!tab)
-                tab = "cookbook";
-            document.querySelector("#" + tab + "-tab").click();
         }
 
         //Load Tags separately, to avoid unnecessary element nodes
@@ -750,8 +745,6 @@
             document.querySelector("input#password").value = logged_user.password;
             document.querySelector("input#password_confirm").value = logged_user.password;
         }
-
-
 
     </script>
 </body>

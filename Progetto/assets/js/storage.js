@@ -32,6 +32,11 @@ function getFromStorage(name) {
     return null;
 }
 
+//Set favourite font
+function setFavouriteFont(font) {
+    localStorage.setItem("favourite_font", font);
+}
+
 /* -------------- Load API Data into Storage  -------------- */
 
 //Load Categories from the API and put them into the Local Storage, if they aren't already there
@@ -95,11 +100,11 @@ async function loadIngredientsIntoStorage() {
     }
 }
 
-//Load N Random recipes from the API and put them into the Local Storage. It overrides any previous recipes only if the previous recipes are over a minute old. It puts only some essential detail of every recipe
+//Load N Random recipes from the API and put them into the Local Storage. It overrides any previous recipes only if the previous recipes are over 5 seconds old. It puts only some essential detail of every recipe
 async function loadRandomRecipesIntoStorage(n) {
     let now = new Date().getTime();
     let recipes_in_storage = getFromStorage("random_recipes");
-    if (!recipes_in_storage || now - recipes_in_storage.timestamp > 60000) { //60000ms = 60s = 1min
+    if (!recipes_in_storage || now - recipes_in_storage.timestamp > 5000) { //5000ms = 5s
         let results = await getRandomRecipes(n);
         let random_recipes = {
             timestamp: now,
@@ -260,6 +265,7 @@ function deleteLoggedAccount() {
         users = users.filter((u) => u.email != user.email);
     }
     localStorage.setItem("users", JSON.stringify(users));
+
     logout();
 }
 

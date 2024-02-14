@@ -150,12 +150,14 @@ What is left to do:
 
 - Shuffle randoms so that it looks more random even if it's not FATTO
 - Reorder code inside every <script> of the pages FATTO
-- Comment every function
+- Comment every function FATTO
 - Fix reviews problems FATTO
-- Add random meals next to the reviews of the page
-- Simplify input for the review score
-- Mark deleted account's reviews as anonymous
-- Make sure that deleting a review keeps you in the same reviews tab (URL param)
+- Add random meals next to the reviews of the page FATTO
+- Terms and Conditions FATTO
+- Change font button FATTO
+- Mark deleted account's reviews as anonymous FATTO
+- Simplify input for the review score FATTO
+- Make sure that deleting a review keeps you in the same reviews tab (URL param) FATTO
 - Add a button to empty the input in selecting favourite tags
 - Fix code for recipe instructions, cause there's no need to do multiple steps 
 - Increase horizontal scrollbar sizes

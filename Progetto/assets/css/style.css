@@ -1,10 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
 
 /* General Utilites and Bootstrap Overrides */
+
 body {
-    font-family: "Gloock", serif;
     font-weight: 400;
     font-style: normal;
+}
+
+body[data-font="fancy"], body[data-font="flat"] .switch-font {
+    font-family: "Gloock", serif;
+}
+
+body[data-font="flat"], body[data-font="fancy"] .switch-font {
+    font-family: serif;
+}
+
+.font-flat {
+    font-family: serif;
 }
 
 textarea {

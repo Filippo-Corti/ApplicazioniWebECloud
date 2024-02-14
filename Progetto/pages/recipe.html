@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden" data-font="fancy">
 
   <!-- Background Stripes -->
   <div class="background-stripe">
@@ -87,78 +87,97 @@
     class="container-xxl my-4 mx-auto px-4 px-md-5 bg-white rounded-5 py-5 shadow-lg mb-5 position-relative">
   </main>
 
-  <!-- Reviews -->
-  <section class="container-xxl my-4 mx-auto px-md-5">
-    <h3>REVIEWS</h3>
-    <div id="reviews_container" class="w-100 d-flex flex-column align-items-center">
-      <!-- Write a Review Form -->
-      <div class="card m-3 p-3 rounded-5 shadow border-0 w-100 logged-in-only" style="max-width: 900px;">
-        <div class="row">
-          <div class="col-md-1">
-            <div class="card-body">
-              <div class="bg-primary rounded-5" style="width:fit-content">
-                <img src="../assets/img/anon.png" alt="Profile Picture">
+
+
+  <!-- Reviews & Suggestions -->
+  <section class="container-xxl my-4 mx-auto px-md-5 row">
+    <!-- Reviews -->
+    <div class="col-lg-9 pe-3">
+      <h3>REVIEWS</h3>
+      <div id="reviews_container" class="w-100 d-flex flex-column align-items-center">
+        <div class="container-xxl mx-auto">
+          <!-- Login to Review -->
+          <div class="m-3 w-100 logged-out-only">
+            <h4 class="text-center py-4">
+              <span class="text-decoration-underline" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</span> to Write a Review!
+            </h4>
+          </div>
+        </div>
+        <!-- Write a Review Form -->
+        <div class="card m-3 p-3 rounded-5 shadow border-0 w-100 logged-in-only" style="max-width: 900px;">
+          <div class="row">
+            <div class="col-md-1">
+              <div class="card-body">
+                <div class="bg-primary rounded-5" style="width:fit-content">
+                  <img src="../assets/img/anon.png" alt="Profile Picture">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-11">
+              <div class="card-body">
+                <form action="recipe.html" name="review_form" onsubmit="return validateAndPublishReview(this)">
+                  <div class="row pe-4">
+                    <input name="content" id="review_content"
+                      class="w-100 border-0 border-bottom border-2 border-black ps-1" type="text"
+                      placeholder="Leave a review on this recipe..." onclick="showReviewForm()">
+                  </div>
+                  <div class="review-form-more | d-none">
+                    <div class="row mt-4 mb-3">
+                      <div class="col-md-4 d-flex flex-column ps-0">
+                        <div class="d-flex align-items-center">
+                          <label class="mb-0" for="review_taste">Taste:</label>
+                          <input class="form-control m-0 border-0" type="number" name="taste" id="review_taste" min="1"
+                            max="5" style="width: fit-content" onchange="voteTaste(this.value, true)"required>
+                        </div>
+                        <div class="review-taste-input | review-score" style="cursor:pointer"
+                          onmouseover="voteTaste(event.target.getAttribute('data-value'), false)" onclick="voteTasteAndLock(event.target.getAttribute('data-value'))" >
+                          <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="1">
+                          <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="2">
+                          <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="3">
+                          <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="4">
+                          <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="5">
+                        </div>
+                      </div>
+                      <div class="col-md-4 d-flex flex-column ps-0">
+                        <div class="d-flex align-items-center">
+                          <label class="mb-0" for="review_difficulty">Difficulty:</label>
+                          <input class="form-control m-0 border-0" type="number" name="difficulty"
+                            id="review_difficulty" min="1" max="5" style="width: fit-content"
+                            onchange="voteDifficulty(this.value, true)" required>
+                        </div>
+                        <div class="review-difficulty-input | review-score" style="cursor:pointer"
+                          onmouseover="voteDifficulty(event.target.getAttribute('data-value'), false)" onclick="voteDifficultyAndLock(event.target.getAttribute('data-value'))" >
+                          <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="1">
+                          <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="2">
+                          <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="3">
+                          <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="4">
+                          <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="5">
+                        </div>
+                      </div>
+                      <div class="col-md-4 d-flex flex-column ps-0">
+                        <label class="mb-0" for="preparation_date">Preparation Date</label>
+                        <input class="form-control border border-2 border-black fs-5" type="date" name="date"
+                          id="preparation_date" required>
+                      </div>
+                    </div>
+                    <input class="keep-param" type="hidden" name="id" value="">
+                    <div class="d-flex justify-content-end gap-3">
+                      <button class="btn btn-outline-secondary" type="button"
+                        onclick="closeReviewForm()">Cancel</button>
+                      <input class="btn btn-primary border-0" type="submit" value="Publish">
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <div class="col-md-11">
-            <div class="card-body">
-              <form action="recipe.html" name="review_form" onsubmit="return validateAndPublishReview(this)">
-                <div class="row pe-4">
-                  <input name="content" id="review_content"
-                    class="w-100 border-0 border-bottom border-2 border-black ps-1" type="text"
-                    placeholder="Leave a review on this recipe..." onclick="showReviewForm()">
-                </div>
-                <div class="review-form-more | d-none">
-                  <div class="row mt-4 mb-3">
-                    <div class="col-md-4 d-flex flex-column ps-0">
-                      <div class="d-flex align-items-center">
-                        <label class="mb-0" for="review_taste">Taste:</label>
-                        <input class="form-control m-0 border-0" type="number" name="taste" id="review_taste" min="1"
-                          max="5" style="width: fit-content" onchange="voteTaste(this.value)" required>
-                      </div>
-                      <div class="review-taste-input | review-score" style="cursor:pointer"
-                        onmouseover="voteTaste(event.target.getAttribute('data-value'))">
-                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="1">
-                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="2">
-                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="3">
-                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="4">
-                        <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="5">
-                      </div>
-                    </div>
-                    <div class="col-md-4 d-flex flex-column ps-0">
-                      <div class="d-flex align-items-center">
-                        <label class="mb-0" for="review_difficulty">Difficulty:</label>
-                        <input class="form-control m-0 border-0" type="number" name="difficulty" id="review_difficulty"
-                          min="1" max="5" style="width: fit-content" onchange="voteDifficulty(this.value)" required>
-                      </div>
-                      <div class="review-difficulty-input | review-score" style="cursor:pointer"
-                        onmouseover="voteDifficulty(event.target.getAttribute('data-value'))">
-                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="1">
-                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="2">
-                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="3">
-                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="4">
-                        <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="5">
-                      </div>
-                    </div>
-                    <div class="col-md-4 d-flex flex-column ps-0">
-                      <label class="mb-0" for="preparation_date">Preparation Date</label>
-                      <input class="form-control border border-2 border-black fs-5" type="date" name="date"
-                        id="preparation_date" required>
-                    </div>
-                  </div>
-                  <input class="keep-param" type="hidden" name="id" value="">
-                  <div class="d-flex justify-content-end gap-3">
-                    <button class="btn btn-outline-secondary" type="button" onclick="closeReviewForm()">Cancel</button>
-                    <input class="btn btn-primary border-0" type="submit" value="Publish">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
+        <!-- Review Card -->
       </div>
-      <!-- Review Card -->
+    </div>
+    <!-- Suggestions -->
+    <div id="suggested_recipes" class="col-lg-3 d-flex flex-column gap-3 ps-3">
+      <h3>Also check out...</h3>
     </div>
   </section>
 
@@ -443,9 +462,12 @@
           </div>
         </div>
         <!-- Review Metadata -->
-        <span data-template-type="attribute" data-template-attribute="data-timestamp" data-template-value="timestamp" class="d-none"></span>
-        <span data-template-type="attribute" data-template-attribute="data-recipe_id" data-template-value="recipe_id" class="d-none"></span>
-        <span data-template-type="attribute" data-template-attribute="data-email" data-template-value="email" class="d-none"></span>
+        <span data-template-type="attribute" data-template-attribute="data-timestamp" data-template-value="timestamp"
+          class="d-none"></span>
+        <span data-template-type="attribute" data-template-attribute="data-recipe_id" data-template-value="recipe_id"
+          class="d-none"></span>
+        <span data-template-type="attribute" data-template-attribute="data-email" data-template-value="email"
+          class="d-none"></span>
       </div>
       <div class="review-delete" data-template-type="attribute" data-template-attribute="data-bs-recipe"
         data-template-value="recipe" data-bs-toggle="modal" data-bs-target="#deleteReviewModal"
@@ -498,6 +520,46 @@
     </div>
   </template>
 
+  <!-- Recipe Card -->
+  <template id="recipe-card">
+    <div class="recipe-card | rounded-5 overflow-hidden shadow-sm w-100 scale-on-hover" data-template-type="attribute"
+      data-template-attribute="data-favourite" data-template-value="favourite" data-favourite="false">
+      <a data-template-type="attribute" data-template-attribute="href" data-template-value="href"
+        class="card border-0 position-relative h-100" href="recipe.html?id=00000">
+        <img data-template-type="attribute" data-template-attribute="src" data-template-value="image"
+          src="https://www.themealdb.com/images/media/meals/kos9av1699014767.jpg" class="recipe-image | card-img-top">
+        <div class="card-body">
+          <div class="card-text row gap-2 justify-content-center mb-2">
+            <div class="col-3 d-flex align-items-center gap-2">
+              <img width="20" src="../assets/img/star.png" alt="Taste Score">
+              <span data-template-type="content" data-template-value="taste">0.0</span>
+            </div>
+            <div class="col-3 d-flex align-items-center gap-2">
+              <img class="tint-danger" width="20" src="../assets/img/chef.png" alt="Difficulty Score">
+              <span data-template-type="content" data-template-value="difficulty">0.0</span>
+            </div>
+            <div class="col-3 d-flex align-items-center gap-2">
+              <img width="20" src="../assets/img/comment.png" alt="Number of Reviews">
+              <span data-template-type="content" data-template-value="reviews">0</span>
+            </div>
+          </div>
+          <hr>
+          <div class="py-2 d-flex flex-column justify-content-end">
+            <h5 data-template-type="content" data-template-value="area"
+              class="card-title text-primary text-uppercase fs-5 d-none">Area Cuisine</h5>
+            <h4 data-template-type="content" data-template-value="name" class="card-title fs-3 text-center px-2">Recipe
+              Name</h4>
+          </div>
+        </div>
+      </a>
+      <div data-template-type="attribute" data-template-attribute="data-bs-recipe" data-template-value="name"
+        class="recipe-save" data-bs-toggle="modal" data-bs-target="#saveRecipeModal" data-bs-recipe="Lamb Pilaf (Plov)">
+        <div class="w-100 h-100" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Save Recipe">
+        </div>
+      </div>
+    </div>
+  </template>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
@@ -515,7 +577,8 @@
     let recipe_data = await getDetailsById(id);
     document.review_form.date.valueAsDate = new Date(); //Load today's date as default for review form
     fillRecipeCard();
-    placeReviews();
+    let number_of_reviews = placeReviews();
+    placeSuggestedRecipes((number_of_reviews > 0) ? number_of_reviews : 1);
 
     //Fill Recipe Card
     async function fillRecipeCard() {
@@ -554,7 +617,7 @@
       keep_param_on_login.forEach((el) => el.value = id);
     }
 
-    //Add Reviews to the Page
+    //Add Reviews to the Page, return number of reviews placed
     function placeReviews() {
       //Get Reviews
       let reviews = getFromStorage("reviews")[id];
@@ -577,9 +640,11 @@
               difficulty_template_data[i] = "tint-primary";
           }
 
+          console.log(review.author == "Anonymous");
+
           reviews_container.appendChild(buildDynamicElement("review_card", {
             my_review: (review.author == getFromStorage("current_user")) ? "true" : "false",
-            author: getUserByEmail(review.author).username,
+            author: (getUserByEmail(review.author)) ? getUserByEmail(review.author).username : "Anonymous",
             email: review.author,
             date: new Date(review.timestamp).toDateString(),
             timestamp: review.timestamp,
@@ -591,8 +656,34 @@
           }));
         });
       }
+      return reviews? reviews.length : 0;
     }
 
+    //Place N suggested recipe cards. They are picked from the Storage
+    function placeSuggestedRecipes(n) {
+      let recipes = getFromStorage("random_recipes").recipes;
+      if (!recipes)
+        recipes = getFromStorage("suggested_recipes");
+      if (!recipes)
+        return; //There's no recipes to suggest
+      recipes = shuffle(recipes);
+      let container = document.querySelector("#suggested_recipes");
+      for (let i = 0; i < n; i++) {
+        let recipe = recipes[i];
+        console.log(recipes);
+        let recipe_stats = getRecipeReviewStats(recipe.id);
+        container.appendChild(buildDynamicElement("recipe-card", {
+          href: "recipe.html?id=" + recipe.id,
+          image: recipe.image,
+          difficulty: recipe_stats.difficulty,
+          taste: recipe_stats.taste,
+          reviews: recipe_stats.reviews,
+          area: recipe.area + " Cuisine",
+          name: recipe.name,
+          favourite: isInCookbook(recipe.id),
+        }));
+      }
+    }
 
 
   </script>

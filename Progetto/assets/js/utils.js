@@ -6,6 +6,12 @@ It is imported in every .html page.
 
 //Page Load
 let logged_in = isAnyUserLoggedIn();
+let fav_font = getFromStorage("favourite_font");
+if (!fav_font) {
+    fav_font = "fancy";
+    setFavouriteFont(fav_font);
+}
+document.body.setAttribute("data-font", fav_font);
 buildBackground();
 loadPageBasedOnLogState();
 initializeBootstrapComponentsAndEvents();
@@ -61,6 +67,17 @@ function getURLParam(name) {
 //Shuffle array
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5); //50% chance of being >0
+}
+
+//Switch fonts in the page
+function switchFonts() {
+    if (document.body.getAttribute("data-font") == "flat") {
+        document.body.setAttribute("data-font", "fancy");
+        setFavouriteFont("fancy");
+    } else {
+        document.body.setAttribute("data-font", "flat");
+        setFavouriteFont("flat");
+    }
 }
 
 /* -------------- Background Building -------------- */
