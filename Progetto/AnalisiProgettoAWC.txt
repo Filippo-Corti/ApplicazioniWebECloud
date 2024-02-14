@@ -149,6 +149,7 @@ Ogni recensione è:
 What is left to do:
 
 - Reorder code inside every <script> of the pages
+- Comment every function
 - Add random meals next to the reviews of the page
 - Simplify input for the review score
 - Make sure that deleting a review keeps you in the same reviews tab (URL param)
