@@ -584,5 +584,3 @@ function sortReviewsByDate(latest_first) {
 
     reviews.forEach((r) => container.appendChild(r));
 }
-
-/* -------------- Show Reviews and Recipes in Profile -------------- */
