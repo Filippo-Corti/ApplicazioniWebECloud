@@ -66,3 +66,7 @@ https://caniuse.com/?search=template
 ### Array Shuffle
 
 https://www.freecodecamp.org/news/how-to-shuffle-an-array-of-items-using-javascript-or-typescript/
+
+### JS6 Modules with onclick events
+
+https://stackoverflow.com/questions/17378199/uncaught-referenceerror-function-is-not-defined-with-onclick
