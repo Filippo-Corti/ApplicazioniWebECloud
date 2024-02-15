@@ -87,19 +87,18 @@
     class="container-xxl my-4 mx-auto px-4 px-md-5 bg-white rounded-5 py-5 shadow-lg mb-5 position-relative">
   </main>
 
-
-
   <!-- Reviews & Suggestions -->
-  <section class="container-xxl my-4 mx-auto px-md-5 row">
+  <section class="container-xxl my-4 mx-auto px-0 row">
     <!-- Reviews -->
-    <div class="col-lg-9 pe-3">
+    <div class="col-lg-9 pe-2">
       <h3>REVIEWS</h3>
       <div id="reviews_container" class="w-100 d-flex flex-column align-items-center">
         <div class="container-xxl mx-auto">
           <!-- Login to Review -->
           <div class="m-3 w-100 logged-out-only">
             <h4 class="text-center py-4">
-              <span class="text-decoration-underline" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#loginModal">Login</span> to Write a Review!
+              <span class="text-decoration-underline" style="cursor: pointer;" data-bs-toggle="modal"
+                data-bs-target="#loginModal">Login</span> to Write a Review!
             </h4>
           </div>
         </div>
@@ -127,10 +126,11 @@
                         <div class="d-flex align-items-center">
                           <label class="mb-0" for="review_taste">Taste:</label>
                           <input class="form-control m-0 border-0" type="number" name="taste" id="review_taste" min="1"
-                            max="5" style="width: fit-content" onchange="voteTaste(this.value, true)"required>
+                            max="5" style="width: fit-content" onchange="voteTaste(this.value, true)" required>
                         </div>
                         <div class="review-taste-input | review-score" style="cursor:pointer"
-                          onmouseover="voteTaste(event.target.getAttribute('data-value'), false)" onclick="voteTasteAndLock(event.target.getAttribute('data-value'))" >
+                          onmouseover="voteTaste(event.target.getAttribute('data-value'), false)"
+                          onclick="voteTasteAndLock(event.target.getAttribute('data-value'))">
                           <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="1">
                           <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="2">
                           <img class="tint-black" src="../assets/img/star.png" alt="Taste Score" data-value="3">
@@ -146,7 +146,8 @@
                             onchange="voteDifficulty(this.value, true)" required>
                         </div>
                         <div class="review-difficulty-input | review-score" style="cursor:pointer"
-                          onmouseover="voteDifficulty(event.target.getAttribute('data-value'), false)" onclick="voteDifficultyAndLock(event.target.getAttribute('data-value'))" >
+                          onmouseover="voteDifficulty(event.target.getAttribute('data-value'), false)"
+                          onclick="voteDifficultyAndLock(event.target.getAttribute('data-value'))">
                           <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="1">
                           <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="2">
                           <img src="../assets/img/chef.png" alt="Difficulty Score" data-value="3">
@@ -176,30 +177,39 @@
       </div>
     </div>
     <!-- Suggestions -->
-    <div id="suggested_recipes" class="col-lg-3 d-flex flex-column gap-3 ps-3">
+    <div id="suggested_recipes"
+      class="col-lg-3 d-flex flex-column gap-3 px-2 ps-lg-4 pe-lg-0 border-start border-black border-opacity-25">
       <h3>Also check out...</h3>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="border-top border-black border-opacity-25">
-    <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
+    <div class="container-xxl d-flex flex-column flex-md-row py-5 mx-auto px-3 px-md-5 justify-content-between">
       <!-- Logo -->
-      <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
-        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
-        <h1 class="h-0 text-primary">PGRC</h1>
+      <div>
+        <a class="logo | d-flex align-items-baseline gap-1" href="index.html">
+          <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+          <h1 class="h-0 text-primary">PGRC</h1>
+        </a>
       </div>
       <!-- Demo Buttons -->
       <div>
         <ul
           class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
           <li>
-            <button class="btn btn-outline-secondary fs-4">
+            <button class="switch-font | btn btn-light border border-black border-2 fs-4 px-3 py-1 rounded-4"
+              onclick="switchFonts()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Switch Font">
+              Aa
+            </button>
+          </li>
+          <li>
+            <button class="btn btn-outline-secondary fs-4" onclick="clearStorage(); location.reload();">
               Reset Data
             </button>
           </li>
           <li>
-            <button class="btn btn-outline-secondary fs-4">
+            <button class="btn btn-outline-secondary fs-4" onclick="loadDemoData();">
               Load Demo Data
             </button>
           </li>
@@ -393,15 +403,12 @@
         <!-- Recipe Instructions -->
         <div class="col-md pt-5">
           <div class="mt-5">
-            <!-- Instruction Step -->
-            <div>
-              <p class="fs-5 text-secondary mb-1">INSTRUCTIONS</p>
-              <p class="fs-5" data-template-type="element" data-template-value="instructions"
-                style="white-space: normal;">Stone and chop the dates quite small, put them in a bowl, then pour the
-                boiling water
-                over.
-              </p>
-            </div>
+            <p class="fs-5 text-secondary mb-1">INSTRUCTIONS</p>
+            <p class="fs-5" data-template-type="element" data-template-value="instructions"
+              style="white-space: normal;">Stone and chop the dates quite small, put them in a bowl, then pour the
+              boiling water
+              over.
+            </p>
           </div>
         </div>
       </div>
@@ -570,6 +577,7 @@
   <script src="../assets/js/storage.js"></script>
   <script src="../assets/js/form-control.js"></script>
   <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/test-data.js"></script>
   <script type="module">
 
     //Page Load
@@ -577,8 +585,8 @@
     let recipe_data = await getDetailsById(id);
     document.review_form.date.valueAsDate = new Date(); //Load today's date as default for review form
     fillRecipeCard();
-    let number_of_reviews = placeReviews();
-    placeSuggestedRecipes((number_of_reviews > 0) ? number_of_reviews : 1);
+    placeReviews();
+    placeSuggestedRecipes(Math.floor(document.querySelector("#reviews_container").clientHeight / 400)); //Number is calculated basing on the number of reviews
 
     //Fill Recipe Card
     async function fillRecipeCard() {
@@ -640,8 +648,6 @@
               difficulty_template_data[i] = "tint-primary";
           }
 
-          console.log(review.author == "Anonymous");
-
           reviews_container.appendChild(buildDynamicElement("review_card", {
             my_review: (review.author == getFromStorage("current_user")) ? "true" : "false",
             author: (getUserByEmail(review.author)) ? getUserByEmail(review.author).username : "Anonymous",
@@ -656,7 +662,7 @@
           }));
         });
       }
-      return reviews? reviews.length : 0;
+      return reviews ? reviews.length : 0;
     }
 
     //Place N suggested recipe cards. They are picked from the Storage
@@ -670,7 +676,6 @@
       let container = document.querySelector("#suggested_recipes");
       for (let i = 0; i < n; i++) {
         let recipe = recipes[i];
-        console.log(recipes);
         let recipe_stats = getRecipeReviewStats(recipe.id);
         container.appendChild(buildDynamicElement("recipe-card", {
           href: "recipe.html?id=" + recipe.id,

@@ -267,8 +267,14 @@
                     <div
                         class="d-flex flex-column mt-4 border-bottom border-black pb-4 border-opacity-50 position-relative">
                         <label class="fs-5 text-secondary" for="preferences">Favourite Tags:</label>
-                        <input class=" rounded-2 border-2 fs-4 text-black px-2" type="text" id="preferences"
-                            oninput="searchTags(this.value)">
+                        <div class="position-relative w-100">
+                            <input class=" rounded-2 border-2 fs-4 text-black px-2 w-100" type="text" id="preferences"
+                                oninput="searchTags(this.value)">
+                            <div class="position-absolute opacity-50" style="top: 15%; right: 2%; cursor: pointer;"
+                                onclick="this.previousElementSibling.value=''; searchTags(this.previousElementSibling.value)">
+                                <img src="../assets/img/close.png" width="13" alt="Empty field">
+                            </div>
+                        </div>
                         <div class="m-3 overflow-hidden shadow-sm" style="height: 200px">
                             <div class="custom-scrollbar overflow-y-auto overflow-x-hidden d-flex flex-column gap-2"
                                 style="max-height: 100%;">
@@ -298,24 +304,34 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-top border-black border-opacity-25 mt-auto">
-        <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
+    <footer class="border-top border-black border-opacity-25">
+        <div class="container-xxl d-flex flex-column flex-md-row py-5 mx-auto px-3 px-md-5 justify-content-between">
             <!-- Logo -->
-            <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
-                <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
-                <h1 class="h-0 text-primary">PGRC</h1>
+            <div>
+                <a class="logo | d-flex align-items-baseline gap-1" href="index.html">
+                    <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+                    <h1 class="h-0 text-primary">PGRC</h1>
+                </a>
             </div>
             <!-- Demo Buttons -->
             <div>
                 <ul
                     class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
                     <li>
-                        <button class="btn btn-outline-secondary fs-4">
+                        <button
+                            class="switch-font | btn btn-light border border-black border-2 fs-4 px-3 py-1 rounded-4"
+                            onclick="switchFonts()" data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-title="Switch Font">
+                            Aa
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-outline-secondary fs-4" onclick="clearStorage(); location.reload();">
                             Reset Data
                         </button>
                     </li>
                     <li>
-                        <button class="btn btn-outline-secondary fs-4">
+                        <button class="btn btn-outline-secondary fs-4" onclick="loadDemoData();">
                             Load Demo Data
                         </button>
                     </li>
@@ -652,6 +668,7 @@
     <script src="../assets/js/storage.js"></script>
     <script src="../assets/js/form-control.js"></script>
     <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/test-data.js"></script>
     <script type="module">
 
         //Page Load
@@ -685,7 +702,7 @@
 
 
         //Build and Place Recipes and Notes
-        function fillCookbookTab() {
+        async function fillCookbookTab() {
             let saved_recipes = logged_user.cookbook;
             let container = document.querySelector("#saved_recipes_container");
             saved_recipes.forEach(async (saved_recipe) => {
@@ -700,29 +717,36 @@
                     name: recipe.strMeal,
                     favourite: true,
                     note: saved_recipe.note,
-                }))
+                }));
             })
         }
 
-        //Build and Place personal Reviews
-        function fillReviewsTab() {
+        //Build and Place personal Reviews, max reviews shown is 20
+        async function fillReviewsTab() {
             let reviews = getFromStorage("reviews");
+            let my_reviews = [];
             let container = document.querySelector("#reviews_container");
-            //Get all reviews
-            Object.entries(reviews).forEach((entry) => {
+            //Get all user's reviews
+            let entries = Object.entries(reviews);
+            for (let entry of entries) {
                 let id = entry[0];
-                let my_reviews = entry[1].filter((review) => review.author == logged_user.email);
-                //Place only user's reviews
-                my_reviews.forEach(async (review) => {
-                    let taste_template_data = {};
-                    let difficulty_template_data = {};
-                    for (let i = 1; i <= 5; i++) {
-                        if (review.taste < i)
-                            taste_template_data[i] = "tint-black";
-                        if (review.difficulty >= i)
-                            difficulty_template_data[i] = "tint-primary";
-                    }
-                    let recipe = await getDetailsById(review.recipe_id);
+                my_reviews.push(...entry[1].filter((review) => review.author == logged_user.email));
+            }
+            console.log(my_reviews);
+            my_reviews.sort((a, b) => b.timestamp - a.timestamp);
+            //Place user's reviews
+            for (let i = 0; i < Math.min(my_reviews.length, 20); i++) {
+                let review = my_reviews[i];
+                let taste_template_data = {};
+                let difficulty_template_data = {};
+                for (let i = 1; i <= 5; i++) {
+                    if (review.taste < i)
+                        taste_template_data[i] = "tint-black";
+                    if (review.difficulty >= i)
+                        difficulty_template_data[i] = "tint-primary";
+                }
+                let recipe = await getDetailsById(review.recipe_id);
+                if (recipe) {
                     container.appendChild(buildDynamicElement("review_card", {
                         email: logged_user.email,
                         href: "recipe.html?id=" + recipe.idMeal,
@@ -733,9 +757,9 @@
                         recipe_id: recipe.idMeal,
                         taste: getElementHTML(buildDynamicElement("taste_score", taste_template_data)),
                         difficulty: getElementHTML(buildDynamicElement("difficulty_score", difficulty_template_data)),
-                    }))
-                })
-            });
+                    }));
+                }
+            }
         }
 
         //Update Profile Tab with user data (it doesn't load the tags yet)

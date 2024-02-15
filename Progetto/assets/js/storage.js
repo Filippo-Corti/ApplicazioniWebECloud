@@ -43,7 +43,6 @@ function setFavouriteFont(font) {
 async function loadCategoriesIntoStorage() {
     let categories_in_storage = getFromStorage("categories");
 
-
     if (!categories_in_storage) {
         //Categories aren't already in storage
         let results = await getAllCategories();
@@ -55,8 +54,6 @@ async function loadCategoriesIntoStorage() {
             });
         }
         localStorage.setItem("categories", JSON.stringify(categories));
-    } else {
-        console.log("Cached");
     }
 }
 
@@ -75,8 +72,6 @@ async function loadAreasIntoStorage() {
         }
 
         localStorage.setItem("areas", JSON.stringify(areas));
-    } else {
-        console.log("Cached");
     }
 }
 
@@ -95,9 +90,7 @@ async function loadIngredientsIntoStorage() {
             });
         }
         localStorage.setItem("ingredients", JSON.stringify(ingredients));
-    } else {
-        console.log("Cached");
-    }
+    } 
 }
 
 //Load N Random recipes from the API and put them into the Local Storage. It overrides any previous recipes only if the previous recipes are over 5 seconds old. It puts only some essential detail of every recipe
@@ -165,15 +158,11 @@ async function loadSuggestedRecipesIntoStorage(force_reload) {
             });
         }
         //Avoid duplicates
-        console.log(corrected_recipes);
         let jsonObject = corrected_recipes.map(JSON.stringify);
         let uniqueSet = new Set(jsonObject);
         corrected_recipes = Array.from(uniqueSet).map(JSON.parse);
-        console.log(corrected_recipes);
         sessionStorage.setItem("suggested_recipes", JSON.stringify(corrected_recipes));
-    } else {
-        console.log("No need");
-    }
+    } 
 }
 
 /* -------------- Users Management  -------------- */
@@ -320,7 +309,6 @@ function addReviewToStorage(review) {
 //Remove the review with the specified data from the Local Storage
 function removeReviewFromStorage(id, email, timestamp) {
     let reviews = getFromStorage("reviews");
-    console.log(id, email, timestamp);
     reviews[id] = reviews[id].filter((review) => review.email != email && review.timestamp != timestamp);
     localStorage.setItem("reviews", JSON.stringify(reviews));
 }

@@ -84,13 +84,13 @@
 
     <!-- Hero Section -->
     <main class="container-xxl d-flex flex-column align-items-stretch my-3 px-3 px-md-5">
-      <div class="w-100 text-center py-3 py-lg-5 my-2 py-lg-5">
+      <div class="w-100 text-center py-3 my-2">
         <h1 class="display-0 mx-auto" style="max-width: 15ch;">
           What are you cooking today?
         </h1>
       </div>
       <!-- Search Bar -->
-      <div class="py-3 py-lg-5 my-2 py-lg-5 w-100">
+      <div class="py-3 my-2 w-100">
         <form class="w-100" action="pages/search.html">
           <div class="search-input position-relative bg-white rounded-5 border border-1 border-secondary fs-3">
             <div class="d-flex flex-column flex-md-row w-100">
@@ -159,17 +159,17 @@
         <ul
           class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
           <li>
-            <button class="switch-font | btn btn-light border border-black border-2 fs-4 px-3" onclick="switchFonts()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Switch Font">
+            <button class="switch-font | btn btn-light border border-black border-2 fs-4 px-3 py-1 rounded-4" onclick="switchFonts()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Switch Font">
               Aa
             </button>
           </li>
           <li>
-            <button class="btn btn-outline-secondary fs-4">
+            <button class="btn btn-outline-secondary fs-4" onclick="clearStorage(); location.reload();">
               Reset Data
             </button>
           </li>
           <li>
-            <button class="btn btn-outline-secondary fs-4">
+            <button class="btn btn-outline-secondary fs-4" onclick="loadDemoData();">
               Load Demo Data
             </button>
           </li>
@@ -343,6 +343,7 @@
   <script src="assets/js/storage.js"></script>
   <script src="assets/js/form-control.js"></script>
   <script src="assets/js/utils.js"></script>
+  <script src="assets/js/test-data.js"></script>
   <script type="module">
 
     //Page Load
@@ -350,9 +351,6 @@
       placeSuggestedRecipes();
     }
     await placeRandomRecipes();
-    await loadCategoriesIntoStorage();
-    await loadAreasIntoStorage();
-    await loadIngredientsIntoStorage();
     document.body.style.pointerEvents = "auto";
 
 

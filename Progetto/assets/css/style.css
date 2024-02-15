@@ -78,7 +78,7 @@ a {
 }
 
 .display-0 {
-    font-size: clamp(3rem, 1.773rem + 6.545vw, 7.5rem);
+    font-size: clamp(3rem, 1.773rem + 4.145vw, 7.5rem);
 }
 
 .mb-6 {
@@ -282,7 +282,7 @@ a {
 
 /* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-    height: 8px;
+    height: 11px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {

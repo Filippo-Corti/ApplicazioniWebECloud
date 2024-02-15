@@ -120,24 +120,34 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-top border-black border-opacity-25 mt-auto">
-        <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
+    <footer class="border-top border-black border-opacity-25">
+        <div class="container-xxl d-flex flex-column flex-md-row py-5 mx-auto px-3 px-md-5 justify-content-between">
             <!-- Logo -->
-            <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
-                <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
-                <h1 class="h-0 text-primary">PGRC</h1>
+            <div>
+                <a class="logo | d-flex align-items-baseline gap-1" href="index.html">
+                    <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+                    <h1 class="h-0 text-primary">PGRC</h1>
+                </a>
             </div>
             <!-- Demo Buttons -->
             <div>
                 <ul
                     class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
                     <li>
-                        <button class="btn btn-outline-secondary fs-4">
+                        <button
+                            class="switch-font | btn btn-light border border-black border-2 fs-4 px-3 py-1 rounded-4"
+                            onclick="switchFonts()" data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-title="Switch Font">
+                            Aa
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn btn-outline-secondary fs-4" onclick="clearStorage(); location.reload();">
                             Reset Data
                         </button>
                     </li>
                     <li>
-                        <button class="btn btn-outline-secondary fs-4">
+                        <button class="btn btn-outline-secondary fs-4" onclick="loadDemoData();">
                             Load Demo Data
                         </button>
                     </li>
@@ -316,6 +326,7 @@
     <script src="../assets/js/storage.js"></script>
     <script src="../assets/js/form-control.js"></script>
     <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/test-data.js"></script>
     <script type="module">
 
         //Page Load

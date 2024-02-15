@@ -122,8 +122,9 @@
             <div class="invalid-feedback">Your Passwords are different</div>
           </div>
           <div class="d-flex flex-row-reverse justify-content-center align-items-center gap-2 text-secondary mt-5">
-            <label class="line-height-sm" style="max-width: 17ch">I agree with <span
-                class="text-decoration-underline" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#conditionsModal">Terms and Conditions</span></label>
+            <label class="line-height-sm" style="max-width: 17ch">I agree with <span class="text-decoration-underline"
+                style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#conditionsModal">Terms and
+                Conditions</span></label>
             <input class="form-check-input" style="width: 40px; height: 40px;" type="checkbox" id="accept_conditions"
               required>
           </div>
@@ -135,9 +136,12 @@
         </div>
         <!-- Step 2 -->
         <div class="col-12 d-flex flex-column">
-          <div class="d-flex flex-column my-3">
+          <div class="position-relative d-flex flex-column my-3">
             <label class="fs-4" for="preferences">Tell us about what you like:</label>
             <input class="rounded-2 p-2" type="text" id="preferences" oninput="searchTags(this.value)">
+            <div class="position-absolute opacity-50" style="top: 55%; right: 3%; cursor: pointer;"
+              onclick="this.previousElementSibling.value=''; searchTags(this.previousElementSibling.value)"><img
+                src="../assets/img/close.png" width="13" alt="Empty field"></div>
             <div class="m-3 overflow-hidden" style="max-height: 400px">
               <div class="custom-scrollbar overflow-y-auto overflow-x-hidden d-flex flex-column gap-2"
                 style="max-height: 100%;">
@@ -164,24 +168,32 @@
   </section>
 
   <!-- Footer -->
-  <footer class="border-top border-black border-opacity-25 mt-auto">
-    <div class="container-xxl d-flex flex-column flex-md-row my-5 mx-auto px-3 px-md-5 justify-content-between">
+  <footer class="border-top border-black border-opacity-25">
+    <div class="container-xxl d-flex flex-column flex-md-row py-5 mx-auto px-3 px-md-5 justify-content-between">
       <!-- Logo -->
-      <div class="logo | d-flex align-items-baseline gap-1 mx-auto ms-md-0">
-        <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
-        <h1 class="h-0 text-primary">PGRC</h1>
+      <div>
+        <a class="logo | d-flex align-items-baseline gap-1" href="index.html">
+          <img class="tint-primary" src="../assets/img/chef.png" alt="PGRC Logo">
+          <h1 class="h-0 text-primary">PGRC</h1>
+        </a>
       </div>
       <!-- Demo Buttons -->
       <div>
         <ul
           class="list-group list-unstyled list-group-horizontal-md justify-content-center align-items-center d-flex gap-2 mt-2 mt-md-0">
           <li>
-            <button class="btn btn-outline-secondary fs-4">
+            <button class="switch-font | btn btn-light border border-black border-2 fs-4 px-3 py-1 rounded-4"
+              onclick="switchFonts()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Switch Font">
+              Aa
+            </button>
+          </li>
+          <li>
+            <button class="btn btn-outline-secondary fs-4" onclick="clearStorage(); location.reload();">
               Reset Data
             </button>
           </li>
           <li>
-            <button class="btn btn-outline-secondary fs-4">
+            <button class="btn btn-outline-secondary fs-4" onclick="loadDemoData();">
               Load Demo Data
             </button>
           </li>
@@ -235,7 +247,8 @@
   </modal>
 
   <!-- Terms and Conditions Modal -->
-  <modal class="modal fade" id="conditionsModal" tabindex="-1" aria-labelledby="Modal For Terms and Conditions" aria-hidden="true">
+  <modal class="modal fade" id="conditionsModal" tabindex="-1" aria-labelledby="Modal For Terms and Conditions"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content p-3 rounded-5">
         <div class="modal-header border-0 row align-items-baseline">
@@ -245,19 +258,24 @@
           <button type="button" class="col-1 btn-close mb-auto" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body py-1">
-            <p class="font-flat fs-5 mb-0">
-              PGRC is a free-to-use platform with no commercial purpose: <br>
-              <ul class="font-flat fs-5">
-                <li>
-                  All Meals’ Data is available at <a target="_blank" class="text-decoration-underline" href="https://www.themealdb.com" >www.themealdb.com/</a>.
-                </li>
-                <li>
-                  All Personal Data is collected with the sole purpose of improving the user experience and will not be sold, shared or used anywhere outside of PGRC’s domain. <br>
-                  The User is at any point free to delete their account. All reviews written by a deleted User on PGRC will display as "Anonymous" and will be kept for statistical purposes only. Recreating the account using the same email will allow the User to view and delete their old reviews.
-                </li>
-              </ul>
-            </p>
-          <button data-bs-dismiss="modal" aria-label="Close" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Got it</button>
+          <p class="font-flat fs-5 mb-0">
+            PGRC is a free-to-use platform with no commercial purpose: <br>
+          <ul class="font-flat fs-5">
+            <li>
+              All Meals’ Data is available at <a target="_blank" class="text-decoration-underline"
+                href="https://www.themealdb.com">www.themealdb.com/</a>.
+            </li>
+            <li>
+              All Personal Data is collected with the sole purpose of improving the user experience and will not be
+              sold, shared or used anywhere outside of PGRC’s domain. <br>
+              The User is at any point free to delete their account. All reviews written by a deleted User on PGRC will
+              display as "Anonymous" and will be kept for statistical purposes only. Recreating the account using the
+              same email will allow the User to view and delete their old reviews.
+            </li>
+          </ul>
+          </p>
+          <button data-bs-dismiss="modal" aria-label="Close" class="w-100 btn btn-primary fs-5 mt-4 mb-2">Got
+            it</button>
         </div>
       </div>
     </div>
@@ -306,6 +324,7 @@
   <script src="../assets/js/storage.js"></script>
   <script src="../assets/js/form-control.js"></script>
   <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/test-data.js"></script>
 </body>
 
 </html>

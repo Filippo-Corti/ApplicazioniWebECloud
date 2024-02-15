@@ -16,6 +16,11 @@ buildBackground();
 loadPageBasedOnLogState();
 initializeBootstrapComponentsAndEvents();
 
+//Load Storage if empty
+loadCategoriesIntoStorage();
+loadAreasIntoStorage();
+loadIngredientsIntoStorage();
+
 /* -------------- General Utility -------------- */
 
 // Check Logged In / Logged Out
@@ -78,6 +83,11 @@ function switchFonts() {
         document.body.setAttribute("data-font", "flat");
         setFavouriteFont("flat");
     }
+}
+
+//Get random int in the range [0, max)        
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
 }
 
 /* -------------- Background Building -------------- */
@@ -512,14 +522,9 @@ function deleteReview(target) {
     let id = target.getAttribute("data-id")
     removeReviewFromStorage(id, email, timestamp);
 
-    console.log(email, timestamp, id);
-
     let reviews = Array.from(document.querySelectorAll(".review-card")).filter((r) => {
         return r.querySelector("[data-email]").getAttribute("data-email") == email && r.querySelector("[data-timestamp]").getAttribute("data-timestamp") == timestamp
     });
-
-    console.log(Array.from(document.querySelectorAll(".review-card")));
-    console.log(reviews);
 
     reviews[0].remove();
     bootstrap.Tooltip.getInstance(reviews[0].querySelector("[data-bs-toggle='tooltip']")).dispose();
@@ -529,7 +534,7 @@ function deleteReview(target) {
 
 /* -------------- Cards Sorting -------------- */
 
-//Sort recipes by average difficulty, from hardest to easiest
+//Sort recipes by average difficulty, from easiest to hardest
 function sortRecipesByDifficulty() {
     let container = document.querySelector("#saved_recipes_container");
     let recipes = container.querySelectorAll(".recipe-card");
@@ -540,7 +545,7 @@ function sortRecipesByDifficulty() {
         let v2 = r2.querySelector("[data-template-value='difficulty']").textContent;
         if (v1 == '-') v1 = 0;
         if (v2 == '-') v2 = 0;
-        return v2 - v1;
+        return v1 - v2;
     });
 
     recipes.forEach((r) => container.appendChild(r));
@@ -570,10 +575,12 @@ function sortReviewsByDate(latest_first) {
 
     reviews.forEach((r) => r.remove());
     reviews = Array.from(reviews).sort((r1, r2) => {
-        let v1 = r1.querySelector("[data-template-value='timestamp']").textContent;
-        let v2 = r2.querySelector("[data-template-value='timestamp']").textContent;
+        let v1 = r1.querySelector("[data-template-value='timestamp']").getAttribute("data-timestamp");
+        let v2 = r2.querySelector("[data-template-value='timestamp']").getAttribute("data-timestamp");
         return (latest_first) ? v2 - v1 : v1 - v2;
     });
+
+    console.log("Doing it");
 
     reviews.forEach((r) => container.appendChild(r));
 }

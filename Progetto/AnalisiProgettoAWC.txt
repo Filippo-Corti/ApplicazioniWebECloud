@@ -158,13 +158,15 @@ What is left to do:
 - Mark deleted account's reviews as anonymous FATTO
 - Simplify input for the review score FATTO
 - Make sure that deleting a review keeps you in the same reviews tab (URL param) FATTO
-- Add a button to empty the input in selecting favourite tags
-- Fix code for recipe instructions, cause there's no need to do multiple steps 
-- Increase horizontal scrollbar sizes
-- Make sure everything works fine on mobile
-- Maybe show more recipes in the hero section for smaller screen sizes
-- Make Reset Data button work, emptying the storage and reloading the page
-- Make Load Demo Data work, adding some AI generated data to fill recipes with reviews
+- Add a button to empty the input in selecting favourite tags FATTO
+- Fix code for recipe instructions, cause there's no need to do multiple steps FATTO
+- Increase horizontal scrollbar sizes FATTO
+- Maybe show more recipes in the hero section for smaller screen sizes FATTO
+- Remove all console logs FATTO
+- Make Reset Data button work, emptying the storage and reloading the page FATTO
+- Make Load Demo Data work, adding some AI generated data to fill recipes with reviews FATTO
+- Fix Footer for all pages FATTO
+- Make sure everything works fine on mobile FATTO
 
 
 
