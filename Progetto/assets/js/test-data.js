@@ -1,5 +1,4 @@
 //My User + 10 Demo Users
-
 const USERS =
   [
     {
@@ -154,21 +153,6 @@ const USERS =
     }
   ];
 
-//Emails of the reviews authors
-const AUTHORS = [
-  "corti.filippo03@gmail.com",
-  "john.doe@example.com",
-  "jane.smith@example.com",
-  "alice.wonder@example.com",
-  "bob.jackson@example.com",
-  "sara.connor@example.com",
-  "david.bowie@example.com",
-  "laura.palmer@example.com",
-  "bruce.wayne@example.com",
-  "ellen.ripley@example.com",
-  "harry.potter@example.com",
-];
-
 //Contents for the reviews
 const CONTENTS = [
   "This recipe is amazing! I loved every bite of it.",
@@ -201,7 +185,6 @@ const CONTENTS = [
   "",
 ];
 
-
 const TIMESTAMP_MIN = 1704063600000; //January 1st 2024
 const TIMESTAMP_MAX = 1707990030991; //February 15th 2024
 
@@ -221,7 +204,7 @@ function loadDemoData() {
     for (let i = 0; i < number_of_reviews; i++) {
       reviews_for_recipe.push({
         recipe_id: recipe_id,
-        author: pickRandom(AUTHORS),
+        author: pickRandom(USERS).email,
         content: pickRandom(CONTENTS),
         difficulty: getRandomInt(5) + 1,
         taste: getRandomInt(5) + 1,
