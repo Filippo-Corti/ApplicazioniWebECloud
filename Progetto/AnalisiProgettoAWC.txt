@@ -169,7 +169,10 @@ What is left to do:
 - Make sure everything works fine on mobile FATTO
 
 --------------------------------------
-REQUISITI:
+1. INTRODUZIONE
+Cos'è la piattaforma e a che richiesta risponde, cosa consente di fare e che tecnologie utilizza (Standard HTML5 + API + JSON)
+
+2. ANALISI ED IMPLEMENTAZIONE DEI REQUISITI:
 (F) Consultazione della Collezione di Ricette del Database TheMealDB, esplorando le pagine dell'Applicazione o tramite la funzionalità di Ricerca (UTENTI NON REGISTRATI E REGISTRATI)
 (F) Consultazione dei dettagli relativi ad una Ricetta, inclusivi delle recensioni lasciate dagli utenti su di essa (UTENTI NON REGISTRATI E REGISTRATI)
 (F) Registazione e Login al Sito, con la possibilità di indicare i propri interessi (UTENTI NON REGISTRATI)
@@ -179,7 +182,65 @@ REQUISITI:
 (F) Pubblicazione di una Recensione relativa ad una Ricetta, comprensiva di valutazioni, commento e data di preparazione della ricetta (UTENTI REGISTRATI)
 (F) Cancellazione delle proprie Recensioni pubbliche (UTENTI REGISTRATI)
 
-(NF) Fruizione dell'Applicazione su ogni Browser moderno e da ogni dispositivo di qualsiasi risoluzione
+(NF) Fruizione dell'Applicazione su ogni Browser moderno (strumenti MDN + Edge DevTools + Caniuse) 
+(NF) Fruizione dell'Applicazione da ogni dispositivo di qualsiasi risoluzione (Bootstrap breakpoints and responsiveness + css @media and @container )
+(NF) Fetch dei dati dall'API in tempi ragionevoli e senza sovraccaricare il Server (tutto il casino della random.php e errore 429 - Too Many Requests)
+
+3. STRUTTURA DEL SITO WEB:
+index.HTML
+> css
+	style.css	
+	my-colors.css
+> img
+	...
+> js
+	api.js
+	form-control.js
+	storage.js
+	test-data.js
+	utils.js
+> pages
+	profile.html
+	recipe.html
+	search.html
+	signup.html
+
+Risorse esterne:
+	- Bootstrap 5.3.2 (CSS)
+	- Bootstrap 5.3.2 (JS)
+	- Popper.js 2.11.8
+	- Google Fonts API
+
+4. PROGETTAZIONE DELLE SORGENTI DI INFORMAZIONI 
+	4.1 TheMealDB.com - API utilizzate		
+		--- tutte le API
+
+	4.2 Offline Storage per Caching, Utenze e Recensioni
+		-- Struttura dello Storage
+
+5. SCHERMATE DIMOSTRATIVE DI FUNZIONAMENTO
+	- Home Page Utente non Loggato con Ricette a caso
+	- Sign Up 1 & 2 con Validation!
+	- Login banner con Validation!
+	- Home Page Loggato con Piatti suggeriti e salvati
+	- Barra di Ricerca + Risultati di Ricerca (Keyword "chi")
+	- Scheda di una Ricetta con recensioni (mostrare che quella dell'utente loggato è cancellabile)
+	- Form per Scrittura Recensione con Validation!
+	- Salvataggio di una Ricetta nel Ricettario (Popup)
+	- Profile Page - Profile Tab con Validation! (notare log off e delete account)
+	- Profile Page - Cookbook Tab con Edit on
+	- Profile page - Reviews Tab con Load More
+
+6. NOTE FINALI
+	- Informazioni relative alla Form Validation
+	- Recensioni di Account Cancellati
+	- Cambio del Font
+	- Utilizzo dei Dati di Demo
+
+7. FONTI 
+
+	
+
 
 
 
