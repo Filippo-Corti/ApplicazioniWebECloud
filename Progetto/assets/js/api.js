@@ -6,10 +6,18 @@ It is imported in every .html page.
 
 /* -------------- API Fetch Operations -------------- */
 
+const optionsGET = {
+    method: 'GET',
+    headers: {
+        accept: 'application/json',
+    },
+    cache: "no-cache", //Fixed some issues with Edge
+}
+
 //Returns the Recipes (with Full Details) whose name matches the keyword
 async function searchByName(keyword) {
     let meals;
-    await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + keyword)
+    await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + keyword, optionsGET)
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
@@ -23,7 +31,7 @@ async function searchByFirstLetter(first_letter) {
     if (first_letter.length != 1)
         return null;
     let meals;
-    await fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=" + first_letter)
+    await fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=" + first_letter, optionsGET)
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
@@ -35,7 +43,7 @@ async function searchByFirstLetter(first_letter) {
 //Returns the full details of the recipe having idMeal = id
 async function getDetailsById(id) {
     let meal;
-    await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id)
+    await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id, optionsGET)
         .then(response => response.json())
         .then((results) => {
             if (results.meals?.length > 0)
@@ -49,7 +57,7 @@ async function getDetailsById(id) {
 async function getRandomRecipes(n) {
     let meals = new Map()
     while (meals.size < n) {
-        await fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+        await fetch("https://www.themealdb.com/api/json/v1/1/random.php", optionsGET)
             .then(response => response.json())
             .then((meal) => meals.set(meal.meals[0].idMeal, meal.meals[0]))
             .catch(err => console.error(err));
@@ -60,7 +68,7 @@ async function getRandomRecipes(n) {
 //Returns a list of all the Categories, with some details
 async function getAllCategories() {
     let categories;
-    await fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
+    await fetch("https://www.themealdb.com/api/json/v1/1/categories.php", optionsGET)
         .then(response => response.json())
         .then((results) => categories = results.categories)
         .catch(err => console.error(err));
@@ -70,7 +78,7 @@ async function getAllCategories() {
 //Returns a list of all the Areas
 async function getAllAreas() {
     let areas;
-    await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
+    await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list", optionsGET)
         .then(response => response.json())
         .then((results) => areas = results.meals)
         .catch(err => console.error(err));
@@ -80,7 +88,7 @@ async function getAllAreas() {
 //Returns a list of all the Ingredients, with some details 
 async function getAllIngredients() {
     let ingredients;
-    await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
+    await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list", optionsGET)
         .then(response => response.json())
         .then((results) => ingredients = results.meals)
         .catch(err => console.error(err));
@@ -90,7 +98,7 @@ async function getAllIngredients() {
 //Returns the Recipes (only minimal Data) that contain ingredient in their ingredients list
 async function searchByIngredient(ingredient) {
     let meals;
-    await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient)
+    await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient, optionsGET)
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
@@ -102,7 +110,7 @@ async function searchByIngredient(ingredient) {
 //Returns the Recipes (only minimal Data) of the specified category
 async function searchByCategory(category) {
     let meals;
-    await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + category)
+    await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=" + category, optionsGET)
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));
@@ -114,7 +122,7 @@ async function searchByCategory(category) {
 //Returns the Recipes (only minimal Data) of the specified area
 async function searchByArea(area) {
     let meals;
-    await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=" + area)
+    await fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=" + area, optionsGET)
         .then(response => response.json())
         .then((results) => meals = results.meals)
         .catch(err => console.error(err));

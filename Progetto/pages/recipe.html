@@ -69,7 +69,7 @@
                   <button class="btn btn-outline-secondary fs-4 d-flex align-items-center gap-2 py-2">
                     <!-- Username & Picture -->
                     <p class="username card-text bg-transparent mb-0">Username</p>
-                    <div class="bg-primary rounded-5" style="width:fit-content">
+                    <div class="bg-primary rounded-5 w-fit">
                       <img src="../assets/img/anon.png" alt="Profile Picture">
                     </div>
                   </button>
@@ -107,7 +107,7 @@
           <div class="row">
             <div class="col-md-1">
               <div class="card-body">
-                <div class="bg-primary rounded-5" style="width:fit-content">
+                <div class="bg-primary rounded-5 w-fit">
                   <img src="../assets/img/anon.png" alt="Profile Picture">
                 </div>
               </div>
@@ -125,8 +125,8 @@
                       <div class="col-md-4 d-flex flex-column ps-0">
                         <div class="d-flex align-items-center">
                           <label class="mb-0" for="review_taste">Taste:</label>
-                          <input class="form-control m-0 border-0" type="number" name="taste" id="review_taste" min="1"
-                            max="5" style="width: fit-content" onchange="voteTaste(this.value, true)" required>
+                          <input class="form-control m-0 border-0 w-fit" type="number" name="taste" id="review_taste" min="1"
+                            max="5" onchange="voteTaste(this.value, true)" required>
                         </div>
                         <div class="review-taste-input | review-score" style="cursor:pointer"
                           onmouseover="voteTaste(event.target.getAttribute('data-value'), false)"
@@ -141,8 +141,8 @@
                       <div class="col-md-4 d-flex flex-column ps-0">
                         <div class="d-flex align-items-center">
                           <label class="mb-0" for="review_difficulty">Difficulty:</label>
-                          <input class="form-control m-0 border-0" type="number" name="difficulty"
-                            id="review_difficulty" min="1" max="5" style="width: fit-content"
+                          <input class="form-control m-0 border-0 w-fit" type="number" name="difficulty"
+                            id="review_difficulty" min="1" max="5"
                             onchange="voteDifficulty(this.value, true)" required>
                         </div>
                         <div class="review-difficulty-input | review-score" style="cursor:pointer"
@@ -441,7 +441,7 @@
           <div class="card-body">
             <!-- Username & Picture -->
             <div class="d-flex align-items-center gap-2">
-              <div class="bg-primary rounded-5" style="width:fit-content">
+              <div class="bg-primary rounded-5 w-fit">
                 <img src="../assets/img/anon.png" alt="Profile Picture">
               </div>
               <p data-template-type="content" data-template-value="author" class="card-text">Username</p>

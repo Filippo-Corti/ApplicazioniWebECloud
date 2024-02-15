@@ -213,7 +213,7 @@ function validateAndPublishReview(form) {
         date.classList.remove("is-valid");
     }
 
-    //if (form_ok) add review to local storage !!!
+    //if ok add review to local storage
     if (form_ok) {
 
         let form_data = new FormData(form);

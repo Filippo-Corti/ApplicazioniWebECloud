@@ -53,6 +53,7 @@ a {
 
 .nav-item {
     width: fit-content;
+    width: -moz-fit-content;
 }
 
 .btn {
@@ -95,6 +96,12 @@ a {
     white-space: nowrap;
     overflow: hidden;
 }
+
+.w-fit {
+    width: fit-content;
+    width: -moz-fit-content;
+}
+
 
 @media (min-width: 992px) {
 
@@ -371,6 +378,7 @@ input[type="checkbox"]:checked {
     --bs-btn-padding-y: .25rem;
     --bs-btn-padding-x: 1.3rem;
     width: fit-content;
+    width: -moz-fit-content;
 }
 
 /* Profile Tabs */
