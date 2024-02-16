@@ -71,7 +71,7 @@
                                     <button class="btn btn-outline-secondary fs-4 d-flex align-items-center gap-2 py-2">
                                         <!-- Username & Picture -->
                                         <p class="username card-text bg-transparent mb-0">Username</p>
-                                        <div class="bg-primary rounded-5 w-fit">
+                                        <div class="profile-picture rounded-5 w-fit">
                                             <img src="../assets/img/anon.png" alt="Profile Picture">
                                         </div>
                                     </button>
@@ -113,7 +113,7 @@
         <!-- Side Nav -->
         <div class="bg-white rounded-lg-5 rounded-top-5 mx-lg-3 shadow px-2 py-lg-5 py-2 h-100">
             <nav>
-                <div class="bg-primary rounded-4 p-2 mx-auto d-none d-lg-block w-fit" >
+                <div class="profile-picture rounded-4 p-2 mx-auto d-none d-lg-block w-fit" >
                     <img src="../assets/img/anon.png" alt="Profile Picture">
                 </div>
                 <ul class="nav nav-pills list-unstyled my-lg-4 d-flex flex-lg-column flex-row gap-3 position-relative justify-content-around"
@@ -265,6 +265,20 @@
                         </div>
                         <button class="save-button | btn btn-outline-secondary rounded-5 mt-1 ms-auto d-none w-fit"
                              onclick="saveAndConfirmPasswordEdit(this)">
+                            Save
+                        </button>
+                    </div>
+                    <div
+                        class="d-flex flex-column mt-4 border-bottom border-black pb-3 border-opacity-50 position-relative">
+                        <label class="fs-5 text-secondary" for="username">Avatar's color:</label>
+                        <input class="editable | form-control form-control-color rounded-2 border border-2 fs-4 text-black p-0" type="color"
+                            name="color" id="color" value="#" title="Choose your color" disabled>
+                        <div class="edit-button | position-absolute" style="cursor:pointer; top: 40%; right: 4%"
+                            onclick="enableEdit(this)">
+                            <img width="24" src="../assets/img/edit.png" alt="Edit Note">
+                        </div>
+                        <button class="save-button | btn btn-outline-secondary rounded-5 mt-1 ms-auto d-none w-fit"
+                            onclick="saveColorAndDisableEdit(this);">
                             Save
                         </button>
                     </div>
@@ -804,6 +818,7 @@
             document.querySelector("input#username").value = logged_user.username;
             document.querySelector("input#password").value = logged_user.password;
             document.querySelector("input#password_confirm").value = logged_user.password;
+            document.querySelector("input#color").value = logged_user.color;
         }
 
     

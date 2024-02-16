@@ -69,7 +69,7 @@
                   <button class="btn btn-outline-secondary fs-4 d-flex align-items-center gap-2 py-2">
                     <!-- Username & Picture -->
                     <p class="username card-text bg-transparent mb-0">Username</p>
-                    <div class="bg-primary rounded-5 w-fit">
+                    <div class="profile-picture rounded-5 w-fit">
                       <img src="../assets/img/anon.png" alt="Profile Picture">
                     </div>
                   </button>
@@ -107,7 +107,7 @@
           <div class="row">
             <div class="col-md-1">
               <div class="card-body">
-                <div class="bg-primary rounded-5 w-fit">
+                <div class="profile-picture rounded-5 w-fit">
                   <img src="../assets/img/anon.png" alt="Profile Picture">
                 </div>
               </div>
@@ -441,7 +441,7 @@
           <div class="card-body">
             <!-- Username & Picture -->
             <div class="d-flex align-items-center gap-2">
-              <div class="bg-primary rounded-5 w-fit">
+              <div data-template-type="color" data-template-value="color" class="rounded-5 w-fit">
                 <img src="../assets/img/anon.png" alt="Profile Picture">
               </div>
               <p data-template-type="content" data-template-value="author" class="card-text">Username</p>
@@ -651,6 +651,7 @@
           reviews_container.appendChild(buildDynamicElement("review_card", {
             my_review: (review.author == getFromStorage("current_user")) ? "true" : "false",
             author: (getUserByEmail(review.author)) ? getUserByEmail(review.author).username : "Anonymous",
+            color: (getUserByEmail(review.author)) ? getUserByEmail(review.author).color : "#EF4C01",
             email: review.author,
             date: new Date(review.timestamp).toDateString(),
             timestamp: review.timestamp,

@@ -36,7 +36,9 @@ function loadPageBasedOnLogState() {
             el.style.display = "none"; //Hide
     }
     if (logged_in) {
-        document.querySelector(".username").textContent = getLoggedUserData().username;
+        let user_data = getLoggedUserData();
+        document.querySelector(".username").textContent = user_data.username;
+        document.querySelectorAll(".profile-picture").forEach((el) => el.style.backgroundColor = user_data.color);
     }
 }
 
@@ -255,6 +257,9 @@ function buildDynamicElement(templateId, data) {
             case "value":
                 slot.value = value;
                 break;
+            case "color":
+                slot.style.backgroundColor = value;
+                break;
         }
     }
 
@@ -325,6 +330,14 @@ function confirmPasswordEdit(clicked_element) {
     disableEdit(clicked_element.parentNode.querySelector(".editable"));
     return true;
 }
+
+//Save color edit in local storage and disable field + change color in the page
+function saveColorAndDisableEdit(clicked_element) {
+    saveAndDisableEdit(clicked_element);
+    let editable_element = clicked_element.parentNode.querySelector(".editable");
+    document.querySelectorAll('.profile-picture').forEach((el) => el.style.backgroundColor = editable_element.value);
+}
+
 
 //Save edit in local storage and Disable Password field 
 function saveAndConfirmPasswordEdit(clicked_element) {

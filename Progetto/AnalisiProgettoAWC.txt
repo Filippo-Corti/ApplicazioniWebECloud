@@ -218,7 +218,14 @@ Risorse esterne:
 	4.2 Offline Storage per Caching, Utenze e Recensioni
 		-- Struttura dello Storage
 
-5. SCHERMATE DIMOSTRATIVE DI FUNZIONAMENTO
+		
+5. NOTE FINALI
+	- Informazioni relative alla Form Validation
+	- Recensioni di Account Cancellati
+	- Cambio del Font
+	- Utilizzo dei Dati di Demo
+
+6. SCHERMATE DIMOSTRATIVE DI FUNZIONAMENTO
 	- Home Page Utente non Loggato con Ricette a caso
 	- Sign Up 1 & 2 con Validation!
 	- Login banner con Validation!
@@ -231,11 +238,6 @@ Risorse esterne:
 	- Profile Page - Cookbook Tab con Edit on
 	- Profile page - Reviews Tab con Load More
 
-6. NOTE FINALI
-	- Informazioni relative alla Form Validation
-	- Recensioni di Account Cancellati
-	- Cambio del Font
-	- Utilizzo dei Dati di Demo
 
 7. FONTI 
 

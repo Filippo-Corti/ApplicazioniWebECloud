@@ -39,7 +39,8 @@ const USERS =
           "id": "52927",
           "note": "Molto buono"
         }
-      ]
+      ],
+      "color": "#9F5DD5"
     },
     {
       "email": "john.doe@example.com",
@@ -50,7 +51,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#B69DDB"
     },
     {
       "email": "jane.smith@example.com",
@@ -61,7 +63,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#E7A59A"
     },
     {
       "email": "alice.wonder@example.com",
@@ -72,7 +75,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#6FE56F"
     },
     {
       "email": "bob.jackson@example.com",
@@ -83,7 +87,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#D27A51"
     },
     {
       "email": "sara.connor@example.com",
@@ -94,7 +99,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#71BBF3"
     },
     {
       "email": "david.bowie@example.com",
@@ -105,7 +111,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#1EB06E"
     },
     {
       "email": "laura.palmer@example.com",
@@ -116,7 +123,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#FA899E"
     },
     {
       "email": "bruce.wayne@example.com",
@@ -127,7 +135,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#09C094"
     },
     {
       "email": "ellen.ripley@example.com",
@@ -138,7 +147,8 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#D4B2E3"
     },
     {
       "email": "harry.potter@example.com",
@@ -149,9 +159,11 @@ const USERS =
         "categories": [],
         "ingredients": []
       },
-      "cookbook": []
+      "cookbook": [],
+      "color": "#EE5361"
     }
   ];
+
 
 //Contents for the reviews
 const CONTENTS = [

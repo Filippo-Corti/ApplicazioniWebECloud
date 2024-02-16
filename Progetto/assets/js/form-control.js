@@ -87,6 +87,7 @@ function registerNewUser(form) {
             categories: form_data.getAll("preferences_category"),
             ingredients: form_data.getAll("preferences_ingredient"),
         },
+        color: form_data.get("color"),
         cookbook: [],
     }
 
